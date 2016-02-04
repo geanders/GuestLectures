@@ -86,6 +86,17 @@ To find out more about this data, you can look at its help file:
 
 ![](figures/ModelFigure4.pdf)
 
+## Model design
+
+The model we fit is: 
+
+$$
+Y(t) \sim Quasipoisson(\mu_t, \sigma^2)
+$$
+$$
+\mu_t = \beta_{0} + \beta_{1}PM_{t} + f(t) + Z(t)
+$$
+
 ## Confounders
 
 ```{r echo = FALSE, fig.width = 6, fig.height = 4}
@@ -119,11 +130,8 @@ ggplot(chic, aes(x = date, y = o3)) +
 
 ## Controlling for confounders
 
-Some cofounders you might want to fit using a more complex form. 
+Some cofounders you might want to fit using a more complex form. For example, the relationship between temperature and mortality is often non-linear, with the lowest risk at mild temperatures and increasing risk as temperature gets colder or hotter. 
 
-For example, the relationship between temperature and mortality is often non-linear, with the lowest risk at mild temperatures and increasing risk as temperature gets colder or hotter. 
-
-Because of that, we often are interested in including temperature in the model using a natural cubic spline.
 
 ## Splines
 
@@ -135,15 +143,6 @@ Because of that, we often are interested in including temperature in the model u
 
 - Data-driven: Minimize a goodness-of-fit metric
 - *A priori*: Use a reasonable value based on prior knowledge
-
-## Choosing degrees of freedom
-
-> "An alternate approach is to use a fixed degrees of freedom, perhaps based
-on biological knowledge or previous work. For multisite studies, this approach
-leads to fitting the same model to data from each location. One can explore
-the sensitivity of $\hat{\beta}$ by varying the df used in the model(s) and examining the associated changes in $\hat{\beta}$."
-
-*Source: Peng and Dominici, "Statistical Methods for Environmental Epidemiology with R"*
 
 ## Convergence: "GAM-gate"
 
@@ -424,7 +423,10 @@ $$
 Case-crossover fit using a GLM:
 
 $$
-E(log(Y_{t})) \sim \beta_{0} + \beta_{1}PM_{t} + \beta_{2}Stratum_{t}
+Y(t) \sim Quasipoisson(\mu_t, \sigma^2)
+$$
+$$
+\mu_t = \beta_{0} + \beta_{1}PM_{t} + \beta_{2}Stratum_{t} + Z(t)
 $$
 
 ## Conditional logistic vs. GLM
