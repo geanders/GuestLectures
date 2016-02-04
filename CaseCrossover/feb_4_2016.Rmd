@@ -94,7 +94,7 @@ $$
 Y(t) \sim Quasipoisson(\mu_t, \sigma^2)
 $$
 $$
-\mu_t = \beta_{0} + \beta_{1}PM_{t} + f(t) + Z(t)
+log(\mu_t) = \beta_{0} + \beta_{1}PM_{t} + f(t) + Z(t)
 $$
 
 ## Confounders
@@ -426,7 +426,7 @@ $$
 Y(t) \sim Quasipoisson(\mu_t, \sigma^2)
 $$
 $$
-\mu_t = \beta_{0} + \beta_{1}PM_{t} + \beta_{2}Stratum_{t} + Z(t)
+log(\mu_t) = \beta_{0} + \beta_{1}PM_{t} + \beta_{2}Stratum_{t} + Z(t)
 $$
 
 ## Conditional logistic vs. GLM
