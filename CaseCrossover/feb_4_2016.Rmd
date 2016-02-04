@@ -20,13 +20,37 @@ library(splines)
 knitr::opts_chunk$set(fig.path='figures/feb_4_2016/plot-')
 ```
 
+# Overview
+
+## Air pollution studies
+
+- Inform policy choices
+- Evaluate effectiveness of interventions or policy changes
+- Gives clues to biological mechanism
+
+## Air pollution studies
+
+> "NMMAPs [a large study of the acute effects of air pollution] played a central role in the Environmental Protection Agency's development of national ambient air quality standards for the six 'criteria' pollutants'."
+
+*Source: Peng et al. JRSS-A 2006* 
+
+## Air pollution studies
+
+> "The critical role of the NMMAPs in the development of the air quality standards attracted intense scrutiny from the scientific community and industrial groups regarding the statistical models that are used and the methods that are employed for adjusting for potential confounding."
+
+*Source: Peng et al. JRSS-A 2006* 
+
+## Air pollution studies
+
+![](figures/SmokeLikeWater.jpg)
+
 # Example data: Chicago NMMAPS
 
 ## `chicagoNMMAPS` data
 
 For the examples in this lecture, I'll use some data from Chicago on mortality, temperature, and air pollution. These data are available as part of the `dlnm` package. You can load them in R using the following code:
 
-```{r}
+```{r message = FALSE, warning = FALSE}
 library(dlnm)
 data("chicagoNMMAPS")
 ```
@@ -37,7 +61,7 @@ To make the data a little easier to use, I'll rename the data frame as `chic`:
 
 ```{r}
 chic <- chicagoNMMAPS
-chic[1:3, c("date", "death", "cvd", "temp", "dptp", "pm10", "o3")]
+chic[1:3, c("date", "cvd", "temp", "dptp", "pm10")]
 ```
 
 ## `chicagoNMMAPS` data
@@ -52,10 +76,6 @@ To find out more about this data, you can look at its help file:
 
 ## Model design
 
-![](figures/ModelFigure1.pdf)
-
-## Model design
-
 ![](figures/ModelFigure2.pdf)
 
 ## Model design
@@ -66,6 +86,69 @@ To find out more about this data, you can look at its help file:
 
 ![](figures/ModelFigure4.pdf)
 
+## Confounders
+
+```{r echo = FALSE, fig.width = 6, fig.height = 4}
+ggplot(chic, aes(x = date, y = death)) + 
+  geom_point(alpha = 0.1, size = 0.75) + 
+  theme_minimal()
+```
+
+## Confounders
+
+```{r echo = FALSE, fig.width = 6, fig.height = 3.5}
+ggplot(chic, aes(x = date, y = o3)) + 
+  geom_point(alpha = 0.1, size = 0.75) + 
+  theme_minimal()
+```
+
+## Confounders
+
+- Measured confounders
+    - Temperature
+    - Dew point temperature
+    - Day of the week 
+- Unmeasured confounders
+    - Long-term time trends
+        - Changing population size
+        - Changing population demographics
+    - Seasonal time trends
+        - Respiratory infections
+        - Influenza
+        
+
+## Controlling for confounders
+
+Some cofounders you might want to fit using a more complex form. 
+
+For example, the relationship between temperature and mortality is often non-linear, with the lowest risk at mild temperatures and increasing risk as temperature gets colder or hotter. 
+
+Because of that, we often are interested in including temperature in the model using a natural cubic spline.
+
+## Splines
+
+![](figures/Spline.png)
+
+*Source: Wikipedia*
+
+## Choosing degrees of freedom
+
+- Data-driven: Minimize a goodness-of-fit metric
+- *A priori*: Use a reasonable value based on prior knowledge
+
+## Choosing degrees of freedom
+
+> "An alternate approach is to use a fixed degrees of freedom, perhaps based
+on biological knowledge or previous work. For multisite studies, this approach
+leads to fitting the same model to data from each location. One can explore
+the sensitivity of $\hat{\beta}$ by varying the df used in the model(s) and examining the associated changes in $\hat{\beta}$."
+
+*Source: Peng and Dominici, "Statistical Methods for Environmental Epidemiology with R"*
+
+## Convergence: "GAM-gate"
+
+![](figures/GAMgate.png)
+
 # Implementation: Time series studies
 
 ## Overdispersed Poisson example
@@ -75,7 +158,7 @@ For example, say we wanted to fit an overdispersed Poisson regression for the `c
 ```{r}
 mod_d <- glm(cvd ~ pm10, data = chic,
              family = quasipoisson())
-summary(mod_d)$coef
+summary(mod_d)$coef[ , c(1, 2, 4)]
 ```
 
 ## Overdispersed Poisson example
@@ -89,8 +172,9 @@ We usually want to control for other confounders. For example, when we look at t
 We can control for these potential confounders by adding them in to the right-hand side of the formula: 
 
 ```{r eval = FALSE}
-# Note: This is an example of code structure-- it will not run
-[health outcome] ~ [exposure of interest] + [confounder 1] + [confounder 2] ...
+# Note: This is pseudocode
+[health outcome] ~ [exposure of interest] + 
+                   [confounder1] + [confounder 2] ...
 ```
 
 ## Controlling for confounders
@@ -108,12 +192,8 @@ If so, you can include it in your model:
 ```{r}
 mod_e <- glm(cvd ~ pm10 + dow, data = chic,
              family = quasipoisson())
-summary(mod_e)$coef
+summary(mod_e)$coef[ , c(1, 2, 4)]
 ```
-
-## Controlling for confounders
-
-Other cofounders you might want to fit using a more complex form. For example, the relationship between temperature and mortality is often non-linear, with the lowest risk at mild temperatures and increasing risk as temperature gets colder or hotter. Because of that, we often are interested in including temperature in the model using a natural cubic spline.
 
 ## Controlling for confounders
 
@@ -121,9 +201,10 @@ You can use `ns()` from the `splines` package to fit temperature using a spline.
 
 ```{r}
 library(splines)
-mod_e <- glm(cvd ~ pm10 + dow + ns(temp, 4), data = chic,
+mod_e <- glm(cvd ~ pm10 + dow + ns(temp, 4),
+             data = chic,
              family = quasipoisson())
-summary(mod_e)$coef[c(1:2, 9:12), ]
+summary(mod_e)$coef[c(1:2, 9:12), c(1, 2, 4)]
 ```
 
 ## Controlling for confounders
@@ -139,7 +220,8 @@ length(unique(chic$date)) / 365
 Then add a column for `time`:
 
 ```{r}
-chic$time <- scale(chic$date, scale = FALSE, center = TRUE)
+chic$time <- scale(chic$date, scale = FALSE,
+                   center = TRUE)
 chic$time[1:3]
 summary(chic$time)
 ```
@@ -150,38 +232,27 @@ summary(chic$time)
 Now you can fit the model:
 
 ```{r}
-mod_e <- glm(cvd ~ pm10 + dow + ns(temp, 4) + ns(time, 7 * 14),
+mod_e <- glm(cvd ~ pm10 + dow + ns(temp, 4) +
+             ns(time, 7 * 14),
              data = chic,
              family = quasipoisson())
-summary(mod_e)$coef[c(1:2, 13:15), ]
+summary(mod_e)$coef[c(1:2, 13:15), c(1, 2, 4)]
 ```
 
 ## Controlling for convergence problems
 
-Dominici et al. found that there could be some problems with convergence for air pollution coefficients ("gam-gate"). One way to prevent this is to change the convergence default threshold using the `control` option in `glm`:
+One way to account for "GAM-gate" is to change the convergence default threshold using the `control` option in `glm`:
 
 ```{r}
-mod_e <- glm(cvd ~ pm10 + dow + ns(temp, 4) + ns(time, 7 * 14),
+mod_e <- glm(cvd ~ pm10 + dow + ns(temp, 4) + 
+                   ns(time, 7 * 14),
              data = chic,
              family = quasipoisson(),
-             control=glm.control(epsilon=10E-8, maxit = 10000))
-summary(mod_e)$coef[2, ]
+             control = glm.control(epsilon=10E-8,
+                                 maxit = 10000))
 ```
 
 Generally, it is good practice to include this when modeling air pollution-health relationships.
-
-## Choosing degrees of freedom
-
-From Peng and Dominici, "Statistical Methods for Environmental Epidemiology with R": 
-
-> "An alternate approach is to use a fixed degrees of freedom, perhaps based
-on biological knowledge or previous work. For multisite studies, this approach
-leads to fitting the same model to data from each location. One can explore
-the sensitivity of $\hat{\beta}$ by varying the df used in the model(s) and examining the associated changes in $\hat{\beta}$."
-
-We will re-visit this sensitivity analysis later when we talk about functions and loops. 
-
-# Interpreting model coefficients
 
 ## Interpreting model coefficients
 
@@ -302,7 +373,7 @@ grid.arrange(a, b, ncol = 2)
 
 ![](figures/CaseCrossTypes.jpg)
 
-Source: Sorock et al. 2001, Injury Prevention
+*Source: Sorock et al. 2001, Injury Prevention*
 
 ## Strata for case-crossover
 
@@ -330,11 +401,25 @@ calendarPlot(selectByDate(mydata,
              key.header = "")
 ```
 
-# Implementation: Case-crossover studies
+## Concept of case-crossover
 
-## GLM method
+For each death in the dataset: Given that the death happened on one of the days in its strata, what is the probability that it happened on the day it did?
 
-One way to fit this type of model is using a GLM, but with control by strata of year-month-day of week. 
+$$
+Pr(Death | Stratum, Exposure)
+$$
+
+## Conditional logistic vs. GLM
+
+![](figures/ZegerLu.png)
+
+## Conditional logistic vs. GLM
+
+> "In this paper, we show that case-crossover using conditional logistic regression is a special case of time series analysis when there is a common exposure such as in air pollution studies. This equivalence provides computational convenience for case-crossover analyses and a better understanding of time series models."
+
+*Source: Lu and Zeger Biostatistics 2007*
+
+## Conditional logistic vs. GLM
 
 Case-crossover fit using a GLM:
 
@@ -342,9 +427,23 @@ $$
 E(log(Y_{t})) \sim \beta_{0} + \beta_{1}PM_{t} + \beta_{2}Stratum_{t}
 $$
 
+## Conditional logistic vs. GLM
+
+![](figures/Armstrong1.png)
+
+*Source: Armstrong et al. BMC Medical Research Methodology 2014*
+
+## Conditional logistic vs. GLM
+
+![](figures/Armstrong2.png)
+
+*Source: Armstrong et al. BMC Medical Research Methodology 2014*
+
+# Implementation: Case-crossover studies
+
 ## GLM method
 
-To code this, first you need to create a column with the stratum. In R, you can use `format`  with the date to do this easily, and then convert the formatted date for a `factor` class:
+To code using a GLM, first you need to create a column with the stratum. In R, you can use `format`  with the date to do this easily, and then convert the formatted date for a `factor` class:
 
 ```{r}
 chic$casecross_stratum <- format(chic$date, "%Y-%m-%a")
@@ -360,7 +459,7 @@ Now you can include this factor in your model (note: this takes the place of mod
 mod_f <- glm(cvd ~ pm10 + ns(temp, 4) + casecross_stratum,
              data = chic,
              family = quasipoisson())
-summary(mod_f)$coef[c(1:2, 7:10), ]
+summary(mod_f)$coef[c(1:2, 7:10), c(1, 2)]
 ```
 
 ## Case-crossover
@@ -411,6 +510,10 @@ pm_coef <- mod_h$c.model$coefficients[1]
 ```
 
 # Multi-city studies
+
+## Samet editorial
+
+![](figures/Samet2002.png)
 
 ## NMMAPS
 
