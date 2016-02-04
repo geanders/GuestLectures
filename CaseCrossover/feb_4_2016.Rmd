@@ -52,7 +52,19 @@ To find out more about this data, you can look at its help file:
 
 ## Model design
 
+![](figures/ModelFigure1.pdf)
 
+## Model design
+
+![](figures/ModelFigure2.pdf)
+
+## Model design
+
+![](figures/ModelFigure3.pdf)
+
+## Model design
+
+![](figures/ModelFigure4.pdf)
 
 # Implementation: Time series studies
 
@@ -288,7 +300,7 @@ grid.arrange(a, b, ncol = 2)
 
 ## Types of case-crossover designs
 
-![](figures/F1.jpg)
+![](figures/CaseCrossTypes.jpg)
 
 Source: Sorock et al. 2001, Injury Prevention
 
