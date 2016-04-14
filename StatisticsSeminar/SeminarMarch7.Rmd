@@ -1,0 +1,413 @@
+---
+title: "Heat waves"
+subtitle: "Current and Future Risks to Human Health"
+author: "Brooke Anderson"
+date: "March 7, 2016"
+font: footnotesize
+output:
+  beamer_presentation:
+    theme: "Boadilla"
+---
+
+## Biography
+
+Training: 
+
+- B.S., Chemical Engineering, N.C. State
+- B.A., French Language and Literature, N.C. State
+- Ph.D., Environmental Engineering, Yale University
+- Postdoc, Dept. of Biostatistics, Johns Hopkins School of Public Health
+
+## Biography
+
+Research interests: 
+
+- Health impacts of climate-related disasters (heat waves, hurricanes)
+- Effects of air pollution on human health in China
+- R open source software for "open" science
+
+Service: 
+
+- Editorial Board, *Epidemiology*
+- Board of Associate Editors, *Environmental Health Perspectives*
+
+Teaching: 
+
+- R Programming
+
+# Current heat risks: Heat and respiratory hospitalizations
+
+## Heat and respiratory hospitalizations
+
+\begin{block}{Primary study question}
+Are daily Medicare hospitalizations for respiratory diseases
+associated with increased summertime temperature?
+\end{block}
+
+\begin{block}{Additional study questions}
+\begin{itemize}
+\item Do effects differ by gender, age, or specific hospitalization
+cause? 
+\item Do observed effects change when the model includes air pollution?
+\item What are the costs associated with heat-related hospitalizations?
+\end{itemize}
+\end{block}
+
+## Study data
+
+\begin{center}
+213 US counties included in study.\\
+\fbox{\includegraphics[width = 0.9\textwidth]{"figures/TemperatureMap"}} \\
+\small{ Color of circle shows the county's
+  daily mean temperature, averaged May--September, 1999--2008.}
+  \end{center}
+  
+## Study model
+
+\begin{block}{Statistical model}
+  \vspace{-12pt}
+  \begin{align*}
+  log(\alert<1>{\mu_{t}^{c}}) \onslide<1->{=}
+  &\onslide<2->{\alpha_{0}^{c} +}
+  \onslide<2->{\alert<2>{\beta^{c}T_{t}^{c}} + }
+  \onslide<3->{\alert<3>{\delta^{c}D_{t}} + }
+  \onslide<4->{\alert<4>{f(H_{t}^{c})} +}
+  \onslide<5->{\alert<5>{f(L_{t}^{c})}} \\
+  & \onslide<6->{+ \alert<6>{B_{t}^{c}}}
+  \end{align*}
+  \vspace{-8pt}
+\end{block}
+  
+\begin{block}{}
+  \begin{equation*}
+  \alert<1>{\mbox{Daily } \mbox{hospitalizations }} 
+  \onslide<1->{= \mbox{function } \mbox{of }}
+  \begin{cases}
+  \onslide<2->{\mbox{\alert<2>{temperature}}}\\
+  \onslide<3->{\mbox{\alert<3>{day of week}}}\\
+  \onslide<4->{\alert<4>{\mbox{dewpoint}}}\\
+  \onslide<5->{\alert<5>{\mbox{long-term trends}}}\\
+  \onslide<6->{\alert<6>{\mbox{offset}}}
+  \end{cases}
+  \end{equation*}
+\end{block}
+
+## Combining county-level estimates for national estimate
+  
+\begin{block}{Two-level normal independent sampling estimation}
+  \begin{align*}
+  \hat{\beta^{c}} | \beta^{c}, \hat{\nu^{c}} &\sim \mathcal{N}(\beta^c,
+  \hat{\nu^c}), c = 1, ..., 213 \\
+  \beta^{c} | \phi, \tau^2 &\sim \mathcal{N}(\phi, \tau^2)
+  \end{align*}
+  where:
+  
+  \begin{description}
+  \item[$\hat{\beta^c}$] Estimated temperature effect for county $c$
+  \item[$\beta^c$] True temperature effect for county $c$
+  \item[$\hat{\nu^c}$] Estimated variance of temperature effect for
+  county $c$
+  \item[$\phi$] True national temperature effect
+  \item[$\tau^2$] Between-county variance in true temperature effects
+  \end{description}
+\end{block}
+
+##
+
+\begin{center}
+\vspace{-1ex}
+Temperature effects on Medicare respiratory hospitalizations.\\[1ex]
+\fbox{\includegraphics[height = 0.87\textheight]{"figures/MainEffects"}}
+\end{center}
+
+## Effect modification by county climate
+\begin{center}
+County-level heat effects by average county temperature, May--September.\\[2ex]
+\includegraphics[width = 0.75\textwidth]{"figures/TempVsEffect"}
+\end{center}
+
+
+## Study conclusions
+
+\begin{itemize}
+  \item Same-day respiratory hospitalizations increase significantly
+  with hotter temperatures 
+  \item These effects are similar for different respiratory causes, age
+  groups, and genders 
+  \item Effects are lower for cities with cooler climates 
+  \item Effect estimates were stable to including ozone and particulate matter in the model
+  \item Based on results, each $10^oF$ increase in temperature is associated with ~30 excess respiratory Medicare hospitalizations across the 213 study communities
+\end{itemize}
+
+## Other research on present risks of heat
+
+\begin{block}{First / senior author} 
+\begin{itemize}
+\item Heat and risk of cardiorespiratory mortality in 107 U.S. communities
+\item Modification of heat wave risks on mortality by heat wave characteristic in 43 US communities
+\item County-level preparedness and response to 2011's extreme heat in the US
+\item Impact of the 2003 power outage on human mortality in New York, NY
+\end{itemize}
+\end{block}
+
+\begin{block}{Contributing author}
+\begin{itemize}
+\item Occupational heat-related mortality in the United States
+\item Heat waves and mortality risk in Korea
+\end{itemize}
+\end{block}
+
+# `futureheatwaves` package: Identifying, Characterizing, and Exploring Heat Waves in Climate Projections
+
+## Patterns in heat waves with climate change 
+
+\begin{center}
+Patterns in heat wave length, frequency, and total days, 2061--2080\\
+\fbox{
+\includegraphics[width = 0.95\textwidth]{"figures/HeatwavePatterns"}
+}
+\end{center}
+
+Source: [Oleson et al. 2015](http://www.theurbanclimatologist.com/uploads/4/4/2/5/44250401/olesonetal2015urbanruralheatcoldwaves.pdf)
+
+## Multiple climate models
+
+\begin{center}
+Uncertainty across climate models
+\fbox{\includegraphics[width = \textwidth]{"figures/WGI_AR5_Fig11-25"}}
+\end{center}
+
+Source: [IPCC Fifth Assessment, Working Group I, Figure 11-25](http://www.climatechange2013.org)
+
+## Large-ensemble climate models
+
+\begin{center}
+Uncertainty across ensemble members from internal climate variability
+\fbox{\includegraphics[width = \textwidth]{"figures/ClimateEnsemble"}}
+\end{center}
+
+Source: [Ball and Plant, 2008](http://rsta.royalsocietypublishing.org/content/366/1875/2603.short)
+
+## `futureheatwaves` package
+
+Design goals: 
+
+- Ease processing of large sets of climate projections often needed for research on health impacts of heat waves under climate change
+- Not only identify, but also characterize, all heat waves, to allow use of more complex epidemiological models
+- Increase processing speed with C++
+- Allow easy exploration across all resulting heat wave datasets
+
+## `futureheatwaves` package
+
+\begin{center}
+Overview of `futureheatwaves` package.
+\fbox{\includegraphics[width = \textwidth]{"figures/OverviewFigure"}}
+\end{center}
+
+## Heat wave definitions
+
+\begin{center}
+Examples of heat wave definitions used for health or climate studies.
+\fbox{\includegraphics[width = \textwidth]{"figures/HeatwaveDefinitions"}}
+\end{center}
+
+Source: [Kent et al., 2014](http://ehp.niehs.nih.gov/1307262/)
+
+## Heat wave definitions
+
+```{r, eval = FALSE}
+gen_hw_set(out = "example_results",
+           dataFolder = projection_dir_location ,
+           dataDirectories = list("hist" = c(1990, 1999),
+                                  "rcp85" = c(2060, 2079)),
+           citycsv = city_file_location,
+           coordinateFilenames = "latlong.csv",
+           tasFilenames = "projections.csv",
+           timeFilenames = "timepoints.csv",
+           IDheatwavesFunction = "new_function")
+```
+
+## Adaptation assumptions
+
+\begin{center}
+Relationship between "reference temperatures" and adaptation scenarios.
+\fbox{\includegraphics[width = 0.9\textwidth]{"figures/AdaptationApproach2"}}
+\end{center}
+
+## Adaptation assumptions
+
+```{r, eval = FALSE}
+gen_hw_set(out = "example_results",
+           dataFolder = projection_dir_location ,
+           dataDirectories = list("hist" = c(1990, 1999),
+                                  "rcp85" = c(2060, 2079)),
+           citycsv = city_file_location,
+           coordinateFilenames = "latlong.csv",
+           tasFilenames = "projections.csv",
+           timeFilenames = "timepoints.csv",
+           referenceBoundaries = c(1990, 1999))
+```
+
+## Work on other packages
+
+- `weathermetrics`: Convert between common weather metrics (including calculating heat index based on the National Weather Service's algorithm)
+- `hurricaneexposure`: Create time series of tropical storm exposure based on rain, wind, and distance criteria
+- `stormwindmodel`: Model tropical storm winds based on historical hurricane tracking data
+- `countyweather`: Coordinate with `rnoaa` to pull observed weather data for county-level health studies
+
+# Predicting high-mortality heat waves
+
+## High-mortality heat waves
+
+\begin{center}
+Mortality during the 2003 French heat wave
+\fbox{
+\includegraphics[width = 0.9\textwidth]{"figures/HemonFrenchHeatwave"}
+}
+\end{center}
+
+Source: [Pirard et al., 2005](http://www.eurosurveillance.org/ViewArticle.aspx?ArticleId=554)
+
+## High-mortality heat waves
+
+\begin{center}
+High-mortality heat wave in Russia, 2010
+\fbox{
+\includegraphics[width = 0.8\textwidth]{"figures/RussiaHeatwave"}
+}
+\end{center}
+
+Source: [pbs.org, 2010](http://www.pbs.org/newshour/rundown/heat-wave-wildfires-raise-deaths-in-moscow/)
+
+## Predictive model of high-mortality heat waves
+
+Applications: 
+
+- (Short-term) Will next week have a high-mortality heat wave?
+- (Mid-term) Which communities need to prioritize heat response plans?
+- (Long-term) What are the health impacts and costs of severe heat waves under climate change scenarios?
+
+## High-mortality heat waves
+
+\begin{center}
+Mortality risks during all heat waves in 82 US communities, 1987--2005
+\fbox{\includegraphics[width = \textwidth]{"figures/HeatwaveDistribution"}}
+\end{center}
+
+## Predicting high-mortality heat waves
+
+Category | Variable
+---------|----------
+Absolute intensity | Average $T_{mean}$
+. | Highest daily $T_{mean}$
+. | Lowest daily $T_{mean}$
+Relative intensity | Quantile of average $T_{mean}$
+. | Quantile of highest $T_{mean}$
+. | Quantile of lowest $T_{mean}$
+Timing | Day of year heat wave started
+. | Month heat wave started
+. | Whether heat wave was first in year
+
+## Predicting high-mortality heat waves
+
+Category | Variable
+---------|----------
+Length | Number of days
+. | Days with $T_{mean} > 80^oF$
+. | Days with $T_{mean} > 85^oF$
+. | Days with $T_{mean} > 90^oF$
+. | Days with $T_{mean} > 95^oF$
+. | Days with $T_{mean} > 99^{th}$ perc.
+. | Days with $T_{mean} > 99.5^{th}$ perc.
+Community | Population
+. | Population density
+. | Long-term average $T_{mean}$
+. | Long-term warm-season $T_{mean}$
+
+## Predicting high-mortality heat waves
+
+\begin{block}{Model types}
+\begin{itemize}
+\item Classification tree
+\item Conditional tree 
+\item Bagging
+\item Random forest
+\item Boosting
+\end{itemize}
+\end{block}
+
+\begin{block}{Accounting for class imbalance}
+\begin{itemize}
+\item No adjustment
+\item Oversampling from rare class
+\item Over / under sampling
+\item Randomly Over-Sampling Examples (ROSE)
+\end{itemize}
+\end{block}
+
+## Model performance 
+
+Model performance based on Monte Carlo cross-validation (all models use ROSE to account for class imbalance). \bigskip
+
+Model | Recall | Precision (IQR) 
+------|--------|-----------------
+Classification tree | 94.0% | 2.6% (0.7%) 
+Conditional tree | 87.5% | 7.2% (4.5%) 
+Bagging | 94.0% | 2.6% (0.6%)
+Random forest | 94.0% | 4.1% (2.0%) 
+Boosting | 94.0% | 2.3% (0.5%)
+
+## Variable importance
+
+Most important variables across models (scaled to sum to 100% across each model). \bigskip
+
+Variable | Class. tree | Bagging | Boosting
+---------|-------------|---------|--------- 
+Quantile of highest daily $T_{mean}$ | x | 64.44 | 64.60
+Month heat wave started | x | 34.51 | 35.26
+Average community warm $T_{mean}$ | | 0.33 | 0.00
+Average community $T_{mean}$ | | 0.29 | 0.01
+Number of days with $T_{mean} > 95^oF$ | | 0.27 | 0.12
+
+## Heat wave characteristics
+
+\begin{center}
+Absolute intensity for high-mortality and less-dangerous heat waves
+\fbox{
+\includegraphics[width = 0.8\textwidth]{"figures/HeatwaveAbsTempDist"}
+}
+\end{center}
+
+## Heat wave characteristics
+
+\begin{center}
+Relative intensity for high-mortality and less-dangerous heat waves
+\fbox{
+\includegraphics[width = 0.8\textwidth]{"figures/HeatwaveRelTempDist"}
+}
+\end{center}
+
+## Multi-level structure
+
+\includegraphics[width = \textwidth]{"figures/MultilevelHeatwaves"}
+
+## "Out of sample" heat waves
+
+\includegraphics[width = \textwidth]{"figures/HistoricalHeatwaves"}
+
+## Improving the model?
+
+- "Whole-pipeline" analysis
+- Adding other variables: 
+    - Power outages
+    - Atmospheric patterns
+    - Concurrent exposures (air pollution, humidity)
+    
+## Climate projection applications
+
+- Avoided high-mortality heat waves under RCP8.5 versus RCP4.5
+    - Collaboration with NCAR group
+    - Used NCAR's large-ensemble model
+- Uncertainty in projections of frequency of and exposure to high-mortality heat waves
+    - Uncertainty related to climate model (CMIP5 models)
+    - Uncertainty related to assumptions about adaptation

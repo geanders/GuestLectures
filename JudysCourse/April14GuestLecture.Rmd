@@ -1,0 +1,209 @@
+---
+title: "Environmental Epidemiology"
+subtitle: "Estimating exposure to climate-related threats"
+author: "Brooke Anderson"
+date: "April 14, 2016"
+font: footnotesize
+output:
+  beamer_presentation:
+    theme: "Boadilla"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(dplyr)
+```
+
+## Hurricane Floyd
+
+![](../JudysCourse/figures/floyd_radar.jpg)
+
+\footnotesize{Source: NOAA}
+
+## Hurricane Floyd
+
+![](../JudysCourse/figures/floyd_flooding.jpg)
+
+\footnotesize{Source: National Geographic}
+
+## Hurricane Floyd
+
+![](../JudysCourse/figures/floyd_rain.gif)
+
+\footnotesize{Source: learnnc.org}
+
+## Hurricane Floyd
+
+![](../JudysCourse/figures/nc_hogs.jpg)
+
+\footnotesize{Source: learnnc.org}
+
+## Hurricane Floyd
+
+\begin{center}
+\includegraphics{../JudysCourse/figures/floyd-hogs-roof-250.jpg}
+\end{center}
+
+\footnotesize{Source: AP}
+
+## Scale of environmental epidemiology studies
+
+\begin{center}
+\includegraphics{../JudysCourse/figures/storm_tracks.pdf}
+\end{center}
+
+## Scale of environmental epidemiology studies
+
+\begin{center}
+\includegraphics{../JudysCourse/figures/aphea_no2.jpg}
+\end{center}
+
+\footnotesize{Samoli et al., 2006}
+
+## Scale of environmental epidemiology studies
+
+![](../JudysCourse/figures/nmmaps_cities.gif)
+
+\footnotesize{Source: ihapss.jhsph.edu}
+
+## R open source software
+
+![](../JudysCourse/figures/CRANpackages.png)
+
+## R open source software
+
+![](../JudysCourse/figures/xkcd_algorithms.png)
+
+\footnotesize{Source: xkcd.com}
+
+## NOAA observational data
+
+![](../JudysCourse/figures/NOAAweb.png)
+
+## NOAA web services
+
+![](../JudysCourse/figures/noaa_api.png)
+
+## NOAA web services
+
+\begin{center}
+\includegraphics{../JudysCourse/figures/xkcd_api.png}
+\end{center}
+
+\footnotesize{Source: xkcd.com}
+
+## `countyweather` package
+
+```{r eval = FALSE, echo = TRUE}
+df <- weather_fips(fips = "22071",
+                   percent_coverage = 0.90,
+                   date_min = "2005-08-15",
+                   date_max = "2005-09-15")
+ggplot(df, aes(x = date, y = prcp)) + geom_line() + 
+  geom_point(aes(color = prcp_reporting))
+```
+
+## `countyweather` package
+
+![](../JudysCourse/figures/rplot02-2.png)
+
+## NLDAS-2 weather data
+
+![](../JudysCourse/figures/noah_release_fig1.gif)
+
+## `hurricaneexposure` package
+
+```{r echo = TRUE, eval = FALSE}
+library(hurricaneexposure)
+data("hurr_tracks")
+data("storm_rains")
+map_1 <- map_counties(storm = "Floyd-1999",
+                      metric = "weekly rainfall")
+map_1
+```
+
+## `hurricaneexposure` package
+
+```{r fig.width = 7, fig.height = 4, warning = FALSE, message = FALSE}
+library(hurricaneexposure)
+data("storm_rains")
+map_1 <- map_counties(storm = "Floyd-1999",
+                      metric = "weekly rainfall")
+map_1
+```
+
+## Floyd rains
+
+\begin{center}
+\includegraphics{../JudysCourse/figures/Rain1.jpg}
+\end{center}
+
+\footnotesize{Source: weather.gov}
+
+## `hurricaneexposure` package
+
+```{r fig.width = 6, fig.height = 4, warning = FALSE, message = FALSE}
+library(hurricaneexposure)
+data("hurr_tracks")
+map_3 <- map_tracks(storms = "Floyd-1999")
+map_3
+```
+
+## `stormwindmodel` package
+
+```{r echo = TRUE, eval = FALSE}
+library(stormwindmodel)
+floyd_tracks <- subset(hurr_tracks, storm_id == "Floyd-1999")
+grid_winds_floyd <- get_grid_winds(hurr_track = floyd_tracks,
+                                     grid_df = tracts)
+map_wind(grid_winds_floyd)
+```
+
+## `stormwindmodel` package
+
+```{r cache = TRUE, fig.width = 6, fig.height = 4, warning = FALSE, message = FALSE}
+library(stormwindmodel)
+data(county_centers)
+tracts <- filter(county_centers,
+                 tolower(state_name) %in% c("alabama", "arkansas",
+                                            "connecticut", "delaware",
+                                            "district of columbia", "florida",
+                                            "georgia", "illinois", "indiana",
+                                            "iowa", "kansas", "kentucky", "louisiana",
+                                            "maine", "maryland", "massachusetts",
+                                            "michigan", "mississippi",
+                                            "missouri", "new hampshire", "new jersey",
+                                            "new york", "north carolina", "ohio",
+                                            "oklahoma", "pennsylvania", "rhode island",
+                                            "south carolina", "tennessee", "texas",
+                                            "vermont", "virginia", "west virginia",
+                                            "wisconsin")) %>%
+  rename(gridid = fips,
+         glat = latitude,
+         glon = longitude,
+         gpop = population) %>%
+  select(gridid, glat, glon, gpop)
+
+floyd_tracks <- subset(hurr_tracks, storm_id == "Floyd-1999")
+grid_winds_floyd <- get_grid_winds(hurr_track = floyd_tracks,
+                                     grid_df = tracts)
+map_wind(grid_winds_floyd)
+```
+
+## `stormwindmodel` package
+
+```{r}
+library(stormwindmodel)
+```
+
+```{r eval = FALSE, echo = TRUE}
+map_wind(grid_winds_floyd, break_point = 30)
+```
+
+## `stormwindmodel` package
+
+```{r fig.width = 6, fig.height = 4, warning = FALSE, message = FALSE}
+map_wind(grid_winds_floyd, break_point = 30)
+```
+
+
