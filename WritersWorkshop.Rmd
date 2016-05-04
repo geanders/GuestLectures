@@ -1,0 +1,277 @@
+---
+title: "Some tips on grammar and writing"
+subtitle: "Writer’s Workshop"
+author: "Brooke Anderson"
+date: "May 4, 2016"
+output: beamer_presentation
+---
+
+# Editing sentences
+
+## Telling stories about characters and actions
+
+"Once upon a time, as a walk through the woods was taking place on the part of Little Red Riding Hood, the Wolf's jump out from behind a tree occurred, causing fright in Little Red Riding Hood." \bigskip
+
+- Express main characters as subjects
+- Express actions as verbs
+
+## Nominalizations
+
+Nominalization is the changing of verbs (and adjectives) into nouns, such as making the verb "to know" into "knowledge." Compare these sentences: \bigskip
+
+Many colleges have come to the **realization** that continued increases in tuition are no longer possible because of **strong resistance** from parents to the high cost of higher education. \bigskip
+
+Many colleges **realize** that continued tuition increases are no longer possible, because parents **strongly resist** the high cost of higher education.
+
+## Nominalizations
+
+- analysis --> analyze
+- belief --> believe
+- comparison --> compare
+- conclusion --> conclude
+- determination --> determine
+- failure --> fail
+- reaction --> react
+- suggestion --> suggest
+
+## Diagnosis
+
+Ignoring short introductory phrases ("In the meantime," "Although," etc.), underline the first seven or eight words in each sentence. \bigskip
+
+Look for three characteristics: 
+
+1. Sentences that begin not with characters, but abstract nouns. 
+2. Sentences that take more than six or seven words to get to a verb. 
+3. Verbs that are less specific than the actions buried in the nouns around them.
+
+## Revision
+
+- Change the nominalizations into verbs and adjectives.
+- Make the characters the subjects of those new verbs.
+- Rewrite the sentence with conjunctions like because, if, when, although, why, how, whether, that.
+
+## Example
+
+Compare these two paragraphs: \bigskip 
+
+"The importance of language skills in children’s problem-solving ability was stressed by Jones (1985) in his paper on children’s thinking. Improvement in nonverbal problem solving was reported to have occurred as a result of improvements in language skills. The use of previously acquired language habits for problem articulation and activation of knowledge previously learned through language are thought to be the cause of better performance." \bigskip
+
+"In his paper on children's thinking, Jones (1985) stressed the importance of language skills in accounting for the success children have in solving problems. When children increased their language skills, they simultaneously improved their skills in solving nonverbal problems. Children became better problem-solvers, Jones concludes, because they used language to articulate such problems and because, in using language, they activated knowledge they had previously acquired through language."
+
+## Test yourself 
+
+1. The loss of market share to Japan by domestic automakers resulted in the disappearance of hundreds of thousands of jobs.
+
+2. Complaints by editorial writers about voter apathy rarely offer suggestions about dispelling it.
+
+3. Attempts by economists at defining full employment have been met with failure.
+
+4. The application by the farmer of pesticides in large quantities to the crops results in the desired increase in yields in the first years.  However, after many treatments, the resistance of some of the individual insect populations under assault by the pesticide allows for the establishment of new populations with no ill effects from the pesticides.
+
+## Possible solutions
+
+1. When domestic automakers lost market share to the Japanese, hundreds of thousands of jobs disappeared.
+
+2. Although editorial writers complain that voters are apathetic, they rarely suggest ways to dispell that apathy.
+
+3. Economists have attempted but failed to define full employment.
+
+4. When the farmer first applies pesticides in large quantities to the crops, the yields increase as desired.  However, many insects can resist this assault and can establish new populations that the pesticides won’t affect.
+
+# Comma usage
+
+## Two independent clauses
+
+1. Use commas to separate independent clauses when they are joined by any of these seven coordinating conjunctions: and, but, for, or, nor, so, yet. \bigskip
+
+The game was over, but the crowd refused to leave. \bigskip
+
+Yesterday was her brother's birthday, so she took him out to dinner.
+
+## Introductory clause
+
+2. Use commas after introductory a) clauses, b) phrases, or c) words that come before the main clause. \bigskip
+
+While I was eating, the cat scratched at the door. \bigskip
+
+Because her alarm clock was broken, she was late for class. \bigskip
+
+When the snow stops falling, we'll shovel the driveway. \bigskip
+
+To get a seat, you'd better come early.
+
+## Parenthetical clauses
+
+3. Use a pair of commas in the middle of a sentence to set off clauses, phrases, and words that are not essential to the meaning of the sentence. Use one comma before to indicate the beginning of the pause and one at the end to indicate the end of the pause. \bigskip
+
+That Tuesday, which happens to be my birthday, is the only day when I am available to meet. \bigskip
+
+This restaurant has an exciting atmosphere. The food, on the other hand, is rather bland. \bigskip
+
+I appreciate your hard work. In this case, however, you seem to have over-exerted yourself.
+
+## Parenthetical clauses
+
+Here are some clues to help you decide whether the sentence element is essential:
+
+- If you leave out the clause, phrase, or word, does the sentence still make sense?
+- Does the clause, phrase, or word interrupt the flow of words in the original sentence?
+- If you move the element to a different position in the sentence, does the sentence still make sense?
+
+## which / that
+
+4. Do not use commas to set off essential elements of the sentence, such as clauses beginning with that (relative clauses). That clauses after nouns are always essential. That clauses following a verb expressing mental action are always essential. \bigskip
+
+The book that I borrowed from you is excellent. \bigskip
+
+They wished that warm weather would finally arrive.
+
+## Serial comma
+
+5. Use commas to separate three or more words, phrases, or clauses written in a series.\bigskip
+
+The Constitution establishes the legislative, executive, and judicial branches of government. \bigskip
+
+The candidate promised to lower taxes, protect the environment, reduce crime, and end unemployment.
+
+## Test yourself
+
+http://writing.engr.psu.edu/exercises/general13.html
+
+# "Omit needless words"
+
+## Meaningless modifiers
+
+These modifiers rarely add meaning: \bigskip 
+
+- kind of
+- really
+- basically
+- practically
+- actually
+- virtually
+- generally
+- certain
+- particular
+- individual
+- given
+- various
+
+## Meaningless modifiers
+
+Compare these two sentences: \bigskip
+
+Productivity **actually** depends on **certain** factors that **basically** involve psychology more than any **particular** technology. \bigskip
+
+Productivity depends on factors that involve psychology more than any technology.
+
+## Redundant modifiers
+
+- completely finish
+- true facts
+- important essentials
+- future plans
+- sudden crisis
+- consensus of opinion
+- personal beliefs
+- terrible tragedy
+- end result
+- past history
+- each individual
+- various differences
+- final outcome
+- free gift
+- initial preparation
+
+## Redundant modifiers
+
+Compare these two sentences: \bigskip
+
+Do not try to *anticipate* **in advance** those events that will **completely** *revolutionize* our society because **past** *history* shows that it is the **eventual** *outcome* of seemingly minor events that has **unexpectedly** *surprised* us most. \bigskip
+
+Do not try to anticipate revolutionary events because history shows that the outcome of seemingly minor events surprises us most.
+
+## Replacing phrases with words
+
+**Phrases**: 
+
+- the reason for
+- for the reason that
+- due to the fact that
+- owing to the fact that
+- in light of the fact that
+- considering the fact that
+- on the grounds that
+
+**Words to replace with**: 
+
+- because
+- since 
+- why
+
+## Replacing phrases with words
+
+**Phrases**: 
+
+- despite the fact that
+- regardless of the fact that
+- notwithstanding the fact that
+
+**Words to replace with**: 
+
+- although
+- even though
+
+## Replacing phrases with words
+
+**Phrases**: 
+
+- in the event that
+- if it should transpire/happen that
+- under circumstances in which
+
+**Word to replace with**: 
+
+- if
+
+## Replacing phrases with words
+
+**Phrases**: 
+
+- is able to
+- is in a position to
+- has the opportunity to
+- has the capacity for
+- has the ability to
+
+**Words to replace with**: 
+
+- can
+
+## Replace negatives
+
+- not different	--> similar
+- not the same	--> different
+- not many	--> few
+- not often	--> rarely
+- not remember	--> forget
+- not old enough	--> too young
+- not have	--> lack	
+- not allow	--> prevent
+- not include	--> omit	
+- not admit	--> deny
+- not consider	--> ignore	
+- not accept	--> reject
+
+# Going further
+
+## Other resources
+
+- Joseph Williams. Style: Toward Clarity and Grace.
+- Anne E. Greene. Writing Science in Plain English.
+
+## Other resources
+
+Try out more exercises, especially "Advanced grammar":
+
+http://writing.engr.psu.edu/exercises/index.html
