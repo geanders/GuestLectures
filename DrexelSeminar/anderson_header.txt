@@ -1,5 +1,6 @@
 \usepackage[british]{babel}
 \usepackage{graphicx,hyperref,anderson,url}
+\usepackage{fontawesome}
 
 \title[Assessing hurricane exposure for epidemiology]{Assessing exposure to hurricanes and other tropical
 storms for epidemiological research}
@@ -8,9 +9,9 @@ storms for epidemiological research}
 
 \author[Brooke Anderson]{
   Brooke Anderson \\\medskip
-  {\small \url{brooke.anderson@colostate.edu}} \\
-  {\small \url{www.github.com/geanders}}} 
-  
+  {\small \faEnvelope: \url{brooke.anderson@colostate.edu}} \\
+  {\small \faGithub:  \url{www.github.com/geanders}}}
+
 \institute[Colorado State University]{
   Department of Environmental \& Radiological Health Sciences \\
   Environmental Epidemiology Section \\
