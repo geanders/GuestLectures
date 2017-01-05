@@ -1,0 +1,17 @@
+\usepackage[british]{babel}
+\usepackage{graphicx,hyperref,anderson,url}
+
+\title[Assessing hurricane exposure for epidemiology]{Assessing exposure to hurricanes and other tropical
+storms for epidemiological research}
+\subtitle{Drexel University Environmental and Occupational Health Research Seminar}
+\date{January 11, 2017}
+
+\author[Brooke Anderson]{
+  Brooke Anderson \\\medskip
+  {\small \url{brooke.anderson@colostate.edu}} \\
+  {\small \url{www.github.com/geanders}}} 
+  
+\institute[Colorado State University]{
+  Department of Environmental \& Radiological Health Sciences \\
+  Environmental Epidemiology Section \\
+  Colorado State University}

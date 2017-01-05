@@ -1,0 +1,238 @@
+\documentclass[ignorenonframetext,]{beamer}
+\setbeamertemplate{caption}[numbered]
+\setbeamertemplate{caption label separator}{: }
+\setbeamercolor{caption name}{fg=normal text.fg}
+\beamertemplatenavigationsymbolsempty
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+\ifxetex
+\usepackage{mathspec}
+\else
+\usepackage{fontspec}
+\fi
+\defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\newif\ifbibliography
+
+% Prevent slide breaks in the middle of a paragraph:
+\widowpenalties 1 10000
+\raggedbottom
+
+\AtBeginPart{
+\let\insertpartnumber\relax
+\let\partname\relax
+\frame{\partpage}
+}
+\AtBeginSection{
+\ifbibliography
+\else
+\let\insertsectionnumber\relax
+\let\sectionname\relax
+\frame{\sectionpage}
+\fi
+}
+\AtBeginSubsection{
+\let\insertsubsectionnumber\relax
+\let\subsectionname\relax
+\frame{\subsectionpage}
+}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+\usepackage[british]{babel}
+\usepackage{graphicx,hyperref,anderson,url}
+
+\title[Assessing hurricane exposure for epidemiology]{Assessing exposure to hurricanes and other tropical
+storms for epidemiological research}
+\subtitle{Drexel University Environmental and Occupational Health Research Seminar}
+\date{January 11, 2017}
+
+\author[Brooke Anderson]{
+  Brooke Anderson \\\medskip
+  {\small \url{brooke.anderson@colostate.edu}} \\
+  {\small \url{www.github.com/geanders}}} 
+  
+\institute[Colorado State University]{
+  Department of Environmental \& Radiological Health Sciences \\
+  Environmental Epidemiology Section \\
+  Colorado State University}
+
+\date{}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\section{Motivation}\label{motivation}
+
+\section{Assessing exposure}\label{assessing-exposure}
+
+\begin{frame}{Hazard-specific metrics}
+
+\begin{itemize}
+\tightlist
+\item
+  Distance from the storm
+\item
+  High winds
+\item
+  Rainfall
+\item
+  Flood events
+\item
+  Storm events
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Distance from storm}
+
+{[}Intro to best tracks{]}
+
+\end{frame}
+
+\begin{frame}{Distance from storm}
+
+{[}Importance of interpolating tracks{]}
+
+\end{frame}
+
+\begin{frame}{Wind exposure}
+
+{[}Reminder of best tracks, intro to Willoughby model{]}
+
+\end{frame}
+
+\begin{frame}{Wind exposure}
+
+{[}Factors of doing the modeling (transfering from surface to gradient
+and back, etc.), other applications of the model{]}
+
+\end{frame}
+
+\begin{frame}{Rain exposure}
+
+{[}Intro to NLDAS-2 data{]}
+
+\end{frame}
+
+\begin{frame}{Rain exposure}
+
+{[}Showing how to ID date of closest approach{]}
+
+\end{frame}
+
+\begin{frame}{Rain exposure}
+
+{[}Showing map from hurricaneexposure{]}
+
+\end{frame}
+
+\begin{frame}{Flood and tornado events}
+
+{[}Intro to NOAA Storm Events{]}
+
+\end{frame}
+
+\begin{frame}[fragile]{Flood and tornado events}
+
+{[}Figure from \texttt{hurricaneexposure}{]}
+
+\end{frame}
+
+\section{Agreement between exposure
+metrics}\label{agreement-between-exposure-metrics}
+
+\begin{frame}{Agreement on intensity}
+
+{[}How we measured this{]}
+
+\end{frame}
+
+\begin{frame}{Agreement on intensity}
+
+{[}What we found{]}
+
+\end{frame}
+
+\begin{frame}{Agreement at the county level}
+
+{[}How we measured this{]}
+
+\end{frame}
+
+\begin{frame}{Agreement at the county level}
+
+{[}What we found{]}
+
+\end{frame}
+
+\begin{frame}{Discussion}
+
+\end{frame}
+
+\section{Software}\label{software}
+
+\begin{frame}{Software as a research product}
+
+{[}Open science, ROpenSci, influence of example packages{]}
+
+\end{frame}
+
+\begin{frame}{Software as a research product}
+
+{[}Coursera specialization, book{]}
+
+\end{frame}
+
+\begin{frame}{Project software}
+
+{[}list of software, availability through CRAN, GitHub{]}
+
+\end{frame}
+
+\begin{frame}[fragile]{Sharing exposure data}
+
+{[}\texttt{hurricaneexposure}, \texttt{hurricaneexposuredata}, web
+page{]}
+
+\end{frame}
+
+\begin{frame}[fragile]{Modeling storm winds}
+
+{[}\texttt{stormwindmodel}{]}
+
+\end{frame}
+
+\begin{frame}[fragile]{Working with NOAA Storm Events}
+
+{[}\texttt{noaastormevents}{]}
+
+\end{frame}
+
+\begin{frame}[fragile]{Dealing with time zones}
+
+{[}\texttt{countytimezones}{]}
+
+\end{frame}
+
+\end{document}

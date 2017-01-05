@@ -1,13 +1,10 @@
 ---
-title: "Assessing exposure to hurricanes and other tropical
-storms for epidemiological research"
-author: Brooke Anderson
-date: January 11, 2017
 output:
   beamer_presentation:
-    theme: "AnnArbor"
-    colortheme: "dolphin"
-    fonttheme: "structurebold"
+    keep_tex : true
+    includes: 
+      in_header: anderson_header.txt
+      before_body: anderson_beforebody.txt
 ---
 
 ```{r setup, include=FALSE}
