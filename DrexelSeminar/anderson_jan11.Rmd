@@ -80,4 +80,34 @@ knitr::opts_chunk$set(echo = FALSE)
 
 [What we found]
 
+## Discussion
+
 # Software
+
+## Software as a research product
+
+[Open science, ROpenSci, influence of example packages]
+
+## Software as a research product
+
+[Coursera specialization, book]
+
+## Project software
+
+[list of software, availability through CRAN, GitHub]
+
+## Sharing exposure data
+
+[`hurricaneexposure`, `hurricaneexposuredata`, web page]
+
+## Modeling storm winds
+
+[`stormwindmodel`]
+
+## Working with NOAA Storm Events
+
+[`noaastormevents`]
+
+## Dealing with time zones
+
+[`countytimezones`]
