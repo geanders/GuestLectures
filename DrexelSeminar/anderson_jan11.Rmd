@@ -1,0 +1,83 @@
+---
+title: "Assessing exposure to hurricanes and other tropical
+storms for epidemiological research"
+author: Brooke Anderson
+date: January 11, 2017
+output:
+  beamer_presentation:
+    theme: "AnnArbor"
+    colortheme: "dolphin"
+    fonttheme: "structurebold"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+# Motivation
+
+# Assessing exposure
+
+## Hazard-specific metrics
+
+- Distance from the storm
+- High winds
+- Rainfall
+- Flood events
+- Storm events
+
+## Distance from storm
+
+[Intro to best tracks]
+
+## Distance from storm
+
+[Importance of interpolating tracks]
+
+## Wind exposure
+
+[Reminder of best tracks, intro to Willoughby model]
+
+## Wind exposure
+
+[Factors of doing the modeling (transfering from surface to gradient and back, etc.), other applications of the model]
+
+## Rain exposure
+
+[Intro to NLDAS-2 data]
+
+## Rain exposure
+
+[Showing how to ID date of closest approach]
+
+## Rain exposure
+
+[Showing map from hurricaneexposure]
+
+## Flood and tornado events
+
+[Intro to NOAA Storm Events]
+
+## Flood and tornado events
+
+[Figure from `hurricaneexposure`]
+
+# Agreement between exposure metrics
+
+## Agreement on intensity
+
+[How we measured this]
+
+## Agreement on intensity
+
+[What we found]
+
+## Agreement at the county level
+
+[How we measured this]
+
+## Agreement at the county level
+
+[What we found]
+
+# Software
