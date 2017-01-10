@@ -104,19 +104,27 @@ storms for epidemiological research}
 
 \begin{frame}{Hazard-specific metrics}
 
-\begin{itemize}
-\tightlist
-\item
-  Distance from the storm
-\item
-  High winds
-\item
-  Rainfall
-\item
-  Flood events
-\item
-  Storm events
-\end{itemize}
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\begin{block}{Tropical storm hazard metrics}
+   \begin{itemize}
+    \item Distance from the storm
+    \item High winds
+    \item Rainfall
+    \item Flood events
+    \item Tornado events
+   \end{itemize}
+\end{block}
+\end{column}
+\begin{column}{0.5\textwidth}  
+    \vspace{-0.25cm}
+    \begin{center}
+     \includegraphics[width=0.8\textwidth]{storm_hazards.png}
+     \end{center}
+     \vspace{-0.25cm}
+     \scriptsize{Image sources: Los Angeles Times, NBC}
+\end{column}
+\end{columns}
 
 \end{frame}
 
@@ -145,9 +153,60 @@ and back, etc.), other applications of the model{]}
 
 \end{frame}
 
+\begin{frame}{Wind exposure}
+
+Wind radii from Extended Best Tracks data for Katrina
+
+\begin{flushleft}\includegraphics[width=1.03\textwidth]{ext_tracks_3} \end{flushleft}
+
+\end{frame}
+
+\begin{frame}{Wind exposure}
+
+Evaluating wind model: Hurricane Katrina, 2005
+
+\begin{flushleft}\includegraphics[width=1.05\textwidth]{wind_model_eval_katrina_2005} \end{flushleft}
+
+\end{frame}
+
+\begin{frame}{Wind exposure}
+
+Evaluating wind model: Hurricane Ike, 2008
+
+\begin{flushleft}\includegraphics[width=1.05\textwidth]{wind_model_eval_ike_2008} \end{flushleft}
+
+\end{frame}
+
+\begin{frame}{Wind exposure}
+
+Evaluating wind model: Hurricane Sandy, 2012
+
+\begin{flushleft}\includegraphics[width=1.05\textwidth]{wind_model_eval_sandy_2012} \end{flushleft}
+
+\end{frame}
+
 \begin{frame}{Rain exposure}
 
-{[}Intro to NLDAS-2 data{]}
+\begin{columns}
+\begin{column}{0.35\textwidth}
+\footnotesize
+\begin{block}{NLDAS-2 precipitation}
+  \begin{itemize}
+  \item Find out more: http://ldas.gsfc.nasa.gov/nldas/
+  \item Also available at county-level through CDC Wonder: https://wonder.cdc.gov
+  \end{itemize}
+\end{block}
+\end{column}
+\begin{column}{0.65\textwidth}  
+    \vspace{-0.25cm}
+    NLDAS-2 precipitation data for Tropical Storm Lee
+    \begin{center}
+     \includegraphics[width=\textwidth]{nldas2_ts_lee.png}
+     \end{center}
+     \vspace{-0.25cm}
+     \scriptsize{Image source: Goddard Earth Sciences DISC}
+\end{column}
+\end{columns}
 
 \end{frame}
 
@@ -177,13 +236,21 @@ and back, etc.), other applications of the model{]}
 
 \begin{frame}{Flood and tornado events}
 
-{[}Intro to NOAA Storm Events{]}
+\includegraphics[width=\textwidth]{noaastormevents}
+
+Website: \url{https://www.ncdc.noaa.gov/stormevents/}
 
 \end{frame}
 
-\begin{frame}[fragile]{Flood and tornado events}
+\begin{frame}{Flood and tornado events}
 
-{[}Figure from \texttt{hurricaneexposure}{]}
+\begin{center}\includegraphics[width=0.9\textwidth]{anderson_jan11_files/figure-beamer/floyd_flood_example-1} \end{center}
+
+\end{frame}
+
+\begin{frame}{Flood and tornado events}
+
+\begin{center}\includegraphics[width=0.9\textwidth]{anderson_jan11_files/figure-beamer/ivan_tornado_example-1} \end{center}
 
 \end{frame}
 
@@ -301,7 +368,7 @@ Ivan, 2004 (91)\strut
 
 \begin{frame}{Storm-specific severity}
 
-\begin{center}\includegraphics[width=0.8\textwidth]{anderson_jan11_files/figure-beamer/unnamed-chunk-5-1} \end{center}
+\begin{center}\includegraphics[width=0.8\textwidth]{anderson_jan11_files/figure-beamer/unnamed-chunk-10-1} \end{center}
 
 \end{frame}
 
@@ -436,7 +503,9 @@ where:
 
 \begin{frame}{Software as a research product}
 
-{[}Coursera specialization, book{]}
+\includegraphics[width=\textwidth]{coursera_screenshot}
+\url{https://www.coursera.org/specializations/r}
+\url{https://bookdown.org/rdpeng/RProgDA/}
 
 \end{frame}
 

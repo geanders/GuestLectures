@@ -55,11 +55,27 @@ map_tracks(c("Hugo-1989", "Bob-1991", "Andrew-1992",
 
 ## Hazard-specific metrics
 
-- Distance from the storm
-- High winds
-- Rainfall
-- Flood events
-- Storm events
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\begin{block}{Tropical storm hazard metrics}
+   \begin{itemize}
+    \item Distance from the storm
+    \item High winds
+    \item Rainfall
+    \item Flood events
+    \item Tornado events
+   \end{itemize}
+\end{block}
+\end{column}
+\begin{column}{0.5\textwidth}  
+    \vspace{-0.25cm}
+    \begin{center}
+     \includegraphics[width=0.8\textwidth]{storm_hazards.png}
+     \end{center}
+     \vspace{-0.25cm}
+     \scriptsize{Image sources: Los Angeles Times, NBC}
+\end{column}
+\end{columns}
 
 ## Distance from storm
 
@@ -77,9 +93,56 @@ map_tracks(c("Hugo-1989", "Bob-1991", "Andrew-1992",
 
 [Factors of doing the modeling (transfering from surface to gradient and back, etc.), other applications of the model]
 
+## Wind exposure
+
+Wind radii from Extended Best Tracks data for Katrina
+```{r echo = FALSE, out.width = "1.03\\textwidth", fig.align = "left"}
+knitr::include_graphics("ext_tracks_3.png")
+```
+
+## Wind exposure
+
+Evaluating wind model: Hurricane Katrina, 2005
+```{r echo = FALSE, out.width = "1.05\\textwidth", fig.align = "left"}
+knitr::include_graphics("wind_model_eval_katrina_2005.png")
+```
+
+## Wind exposure
+
+Evaluating wind model: Hurricane Ike, 2008
+```{r echo = FALSE, out.width = "1.05\\textwidth", fig.align = "left"}
+knitr::include_graphics("wind_model_eval_ike_2008.png")
+```
+
+## Wind exposure
+
+Evaluating wind model: Hurricane Sandy, 2012
+```{r echo = FALSE, out.width = "1.05\\textwidth", fig.align = "left"}
+knitr::include_graphics("wind_model_eval_sandy_2012.png")
+```
+
 ## Rain exposure
 
-[Intro to NLDAS-2 data]
+\begin{columns}
+\begin{column}{0.35\textwidth}
+\footnotesize
+\begin{block}{NLDAS-2 precipitation}
+  \begin{itemize}
+  \item Find out more: http://ldas.gsfc.nasa.gov/nldas/
+  \item Also available at county-level through CDC Wonder: https://wonder.cdc.gov
+  \end{itemize}
+\end{block}
+\end{column}
+\begin{column}{0.65\textwidth}  
+    \vspace{-0.25cm}
+    NLDAS-2 precipitation data for Tropical Storm Lee
+    \begin{center}
+     \includegraphics[width=\textwidth]{nldas2_ts_lee.png}
+     \end{center}
+     \vspace{-0.25cm}
+     \scriptsize{Image source: Goddard Earth Sciences DISC}
+\end{column}
+\end{columns}
 
 ## Rain exposure
 
@@ -179,9 +242,8 @@ storm <- "Ike-2008"
 map_tracks(storms = storm, plot_points = FALSE, 
                 plot_object = map_counties(storm = storm, 
                                            metric = "rainfall")) + 
-        ggtitle("Rainfall during Lee, 2011")
+        ggtitle("Rainfall during Ike, 2008")
 ```
-
 
 ## Rain exposure
 
@@ -195,11 +257,32 @@ map_tracks(storms = storm, plot_points = FALSE,
 
 ## Flood and tornado events
 
-[Intro to NOAA Storm Events]
+```{r echo = FALSE, out.width = "\\textwidth"}
+knitr::include_graphics("noaastormevents.png")
+```
+
+Website: https://www.ncdc.noaa.gov/stormevents/
 
 ## Flood and tornado events
 
-[Figure from `hurricaneexposure`]
+```{r floyd_flood_example, echo = FALSE, fig.width = 6, fig.height = 4, fig.align = "center", out.width = "0.9\\textwidth", warning = FALSE, message = FALSE}
+storm <- "Floyd-1999"
+map_tracks(storms = storm, plot_points = FALSE, 
+                plot_object = map_event_exposure(storm = storm, 
+                                           event_type = "flood")) + 
+        ggtitle("Flood events during Floyd, 1999")
+```
+
+## Flood and tornado events
+
+```{r ivan_tornado_example, echo = FALSE, fig.width = 6, fig.height = 4, fig.align = "center", out.width = "0.9\\textwidth", warning = FALSE, message = FALSE}
+storm <- "Ivan-2004"
+map_tracks(storms = storm, plot_points = FALSE, 
+                plot_object = map_event_exposure(storm = storm, 
+                                           event_type = "tornado")) + 
+        ggtitle("Tornado events during Ivan, 2004")
+```
+
 
 # Agreement between exposure metrics
 
@@ -332,7 +415,10 @@ storm_cor %>%
 
 ```{r eval = FALSE}
 library(coin)
-spearman_test()
+spearman_test(Distance ~ Rain, data = storm_severity)
+spearman_test(Distance ~ Wind, data = storm_severity)
+spearman_test(Distance ~ Flood, data = storm_severity)
+spearman_test(Distance ~ Tornado, data = storm_severity)
 ```
 
 
@@ -363,7 +449,12 @@ where:
 
 ## Software as a research product
 
-[Coursera specialization, book]
+```{r echo = FALSE, out.width = "\\textwidth"}
+knitr::include_graphics("coursera_screenshot.png")
+```
+
+Courses: https://www.coursera.org/specializations/r
+Course book: https://bookdown.org/rdpeng/RProgDA/
 
 ## Project software
 
