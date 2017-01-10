@@ -7,13 +7,51 @@ output:
       before_body: anderson_beforebody.txt
 ---
 
-```{r setup, include=FALSE}
+```{r setup, include=FALSE, message = FALSE, warning = FALSE}
 knitr::opts_chunk$set(echo = FALSE)
+library(ggplot2)
+library(dplyr)
+library(lubridate)
+library(gridExtra)
+library(tidyr)
+library(stringr)
+
+library(hurricaneexposuredata)
+library(hurricaneexposure)
+library(countyweather)
 ```
 
 # Motivation
 
 # Assessing exposure
+
+## Study data
+
+```{r echo = FALSE, fig.align = 'center', message = FALSE, fig.width = 4, out.width = "0.75\\textwidth"}
+data(closest_dist)
+storms <- unique(closest_dist$storm_id)
+storms <- storms[gsub("*.+-", "", storms) <= 2011 & 
+                        gsub("*.+-", "", storms) >= 1988]
+a <- map_tracks(storms, plot_points = FALSE, alpha = 0.3, color = "darkcyan")
+# Add storms whose names were retired
+# Source: http://www.nhc.noaa.gov/aboutnames_history.shtml
+map_tracks(c("Hugo-1989", "Bob-1991", "Andrew-1992", 
+             "Opal-1995", "Fran-1996", "Georges-1998", "Mitch-1998",
+             "Floyd-1999", "Allison-2001", "Michelle-2001",
+             "Isidore-2002", "Lili-2002", "Isabel-2003",
+             "Charley-2004", "Frances-2004",
+             "Ivan-2004", "Jeanne-2004", 
+             "Dennis-2005", "Katrina-2005", "Rita-2005",
+             "Wilma-2005", "Noel-2007",
+             "Gustav-2008", "Ike-2008", "Paloma-2008",
+             "Irene-2011"),
+           plot_object = a, plot_points = FALSE, color = "darkcyan",
+           padding = 0) + 
+  theme_void() + 
+  theme(panel.background = element_rect(fill = "white")) + 
+  coord_map() 
+```
+
 
 ## Hazard-specific metrics
 
@@ -49,7 +87,111 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## Rain exposure
 
-[Showing map from hurricaneexposure]
+```{r compare_rain_ex_counties, echo = FALSE, fig.width = 9, fig.height = 2.75, fig.align = "left", out.width = "1.05\\textwidth"}
+plot_county_rain_compare <- function(ex_fips, ex_dir, ex_title, 
+                                     get_data = FALSE){
+        if(get_data){
+                write_daily_timeseries(ex_fips, coverage = 0,
+                                       date_min = "1988-01-01",
+                                       date_max = "2011-12-31",
+                                       var = "PRCP",
+                                       out_directory = ex_dir,
+                                       keep_map = FALSE)
+        }
+        
+        check_dates <- closest_dist %>%
+                dplyr::filter(fips == ex_fips) %>%
+                dplyr::select(-storm_dist) %>%
+                dplyr::mutate(closest_date = ymd(closest_date)) %>%
+                dplyr::rename(day_0 = closest_date) %>%
+                dplyr::mutate(fips = as.integer(fips),
+                              day_0 = day_0 + days(0),
+                              day_b1 = day_0 - days(1),
+                              day_b2 = day_0 - days(2),
+                              day_a1 = day_0 + days(1)) %>%
+                dplyr::select(storm_id, day_b2, day_b1, day_0, day_a1) %>%
+                tidyr::gather(key = lag, value = day, -storm_id) %>%
+                dplyr::rename(date = day)
+        all_dates <- unique(check_dates$date)
+        
+        ex_weather <- readRDS(paste0(ex_dir, ex_fips, ".rds"))
+        ex_weather <- as.data.frame(ex_weather$daily_data)
+        
+        ex_weather <- ex_weather %>%
+                dplyr::filter(date %in% all_dates) %>%
+                dplyr::right_join(check_dates, by = "date") %>%
+                dplyr::group_by(storm_id) %>%
+                dplyr::summarize(prcp = sum(prcp),
+                                ave_n = mean(prcp_reporting))
+        
+        ex_rain <- county_rain(counties = ex_fips,
+                               start_year = 1988, end_year = 2011,
+                               rain_limit = 0, dist_limit = 500) %>%
+                full_join(ex_weather, by = "storm_id") %>%
+                filter(!is.na(prcp) & !is.na(tot_precip)) %>%
+                mutate(prcp = prcp / 10) ## Units for countyweather are now 10ths
+                                         ## of millimeters for precipitation
+        
+        ave_n <- round(mean(ex_rain$ave_n, na.rm = TRUE))
+        n_storms <- nrow(ex_rain)
+        ex_title <- paste0(ex_title, "\n(storms: ", n_storms,
+                           "; monitors: ", ave_n, ")")
+        
+        plot_range <- range(ex_rain[ , c("prcp", "tot_precip")],
+                            na.rm = TRUE)
+        
+        ex_plot <- ggplot(ex_rain, aes(x = tot_precip, y = prcp)) +
+                geom_hline(aes(yintercept = 75), color = "lightgray") +
+                geom_vline(aes(xintercept = 75), color = "lightgray") +
+                geom_abline(aes(intercept = 0, slope = 1), color = "gray",
+                    alpha = 0.5) +
+                geom_point(alpha = 0.5, color = "red") +
+                theme_classic() +
+                scale_size_continuous(guide = "none") +
+                xlab("Rainfall (mm)  from\nNLDAS-2 data") +
+                ylab("Rainfall (mm)\nfrom monitors") +
+                xlim(plot_range) + ylim(plot_range) + 
+                ggtitle(ex_title)
+        return(ex_plot)
+}
+
+a <- plot_county_rain_compare(ex_fips = "12086", ex_dir = "dade_data/",
+                         ex_title = "Miami-Dade, FL",
+                         get_data = FALSE)
+
+b <- plot_county_rain_compare(ex_fips = "42101",
+                              ex_dir = "philadelphia_data/",
+                         ex_title = "Philadelphia County, PA",
+                         get_data = FALSE)
+
+c <- plot_county_rain_compare(ex_fips = "48201", ex_dir = "harris_data/",
+                         ex_title = "Harris County, TX",
+                         get_data = FALSE)
+
+
+grid.arrange(a, b, c, ncol = 3)
+```
+
+## Rain exposure
+
+```{r ike_rain_example, echo = FALSE, fig.width = 6, fig.height = 4, fig.align = "center", out.width = "0.9\\textwidth", warning = FALSE, message = FALSE}
+storm <- "Ike-2008"
+map_tracks(storms = storm, plot_points = FALSE, 
+                plot_object = map_counties(storm = storm, 
+                                           metric = "rainfall")) + 
+        ggtitle("Rainfall during Lee, 2011")
+```
+
+
+## Rain exposure
+
+```{r lee_rain_example, echo = FALSE, fig.width = 6, fig.height = 4, fig.align = "center", out.width = "0.9\\textwidth", warning = FALSE, message = FALSE}
+storm <- "Lee-2011"
+map_tracks(storms = storm, plot_points = FALSE, 
+                plot_object = map_counties(storm = storm, 
+                                           metric = "rainfall")) + 
+        ggtitle("Rainfall during Lee, 2011")
+```
 
 ## Flood and tornado events
 
@@ -61,19 +203,153 @@ knitr::opts_chunk$set(echo = FALSE)
 
 # Agreement between exposure metrics
 
-## Agreement on intensity
+## Storm exposure
 
-[How we measured this]
 
-## Agreement on intensity
+```{r}
+my_fips <- unique(closest_dist$fips)
+distance_exposure <- county_distance(counties = my_fips, start_year = 1988,
+                                     end_year = 2011, dist_limit = 100) %>%
+  select(storm_id, fips) %>%
+  mutate(distance_exposed = TRUE,
+         storm_id = as.character(storm_id))
+rain_exposure <- county_rain(counties = my_fips,
+                             start_year = 1988, end_year = 2011,
+                             rain_limit = 75, dist_limit = 500) %>%
+  select(storm_id, fips) %>%
+  mutate(rain_exposed = TRUE,
+         storm_id = as.character(storm_id))
+wind_exposure <- county_wind(counties = my_fips, start_year = 1988,
+                             end_year = 2011, wind_limit = 15) %>%
+  select(storm_id, fips) %>%
+  mutate(wind_exposed = TRUE,
+         storm_id = as.character(storm_id))
+flood_exposure <- county_events(counties = my_fips,
+                              start_year = 1996, end_year = 2011,
+                              event_type = "flood") %>%
+  select(storm_id, fips) %>%
+  mutate(flood_exposed = TRUE,
+         storm_id = as.character(storm_id))
+tornado_exposure <- county_events(counties = my_fips,
+                              start_year = 1996, end_year = 2011,
+                              event_type = "tornado") %>%
+  select(storm_id, fips) %>%
+  mutate(tornado_exposed = TRUE,
+         storm_id = as.character(storm_id))
+total_exposure <- distance_exposure %>%
+  full_join(rain_exposure, by = c("storm_id", "fips")) %>%
+  full_join(wind_exposure, by = c("storm_id", "fips")) %>%
+  full_join(flood_exposure, by = c("storm_id", "fips")) %>%
+  full_join(tornado_exposure, by = c("storm_id", "fips")) %>%
+  gather(metric, exposed, 
+         -storm_id, -fips, na.rm = FALSE) %>%
+  mutate(exposed = ifelse(is.na(exposed), FALSE, exposed)) 
+```
 
-[What we found]
+\footnotesize
+```{r}
+data_frame(
+  `Exposure metric` = c("Distance",
+                        "Rain",
+                        "Wind",
+                        "Flood",
+                        "Tornado"),
+  `Criterial for exposure` = c("County population mean center within 100 km of storm track",
+                               "County received 75 mm or more rain over the period from two days before to one day after the storm's closest approach and the storm passed within 500 km of the county",
+                               "Modeled wind speed at county's population mean center met or exceeded 15 m / s during the storm",
+                               "Flood event listed with a start date within two days of the storm's closest approach and county within 500 km of storm track",
+                               "Tornado event listed with a start date within two days of the storm's closest approach and county within 500 km of storm track")
+  ) %>%
+  pander::pander(justify = "ll", split.cells = c(15, 50))
+```
 
-## Agreement at the county level
+## Storm exposure 
 
-[How we measured this]
+```{r}
+total_exposure %>%
+  group_by(storm_id, metric) %>%
+  dplyr::summarize(n_exposed = sum(exposed)) %>%
+  dplyr::ungroup() %>%
+  dplyr::group_by(metric) %>%
+  dplyr::summarize(median_exposure2 = median(n_exposed),
+                   iqr_exposure = paste(quantile(n_exposed, c(0.25, 0.75)),
+                                              collapse = ", "), 
+                   median_exposure = paste0(median_exposure2, " (",
+                                                  iqr_exposure, ")"),
+                   max_exposure = max(n_exposed),
+                   which_max_exposure = storm_id[which.max(n_exposed)],
+                   which_max_exposure = gsub("-", ", ", which_max_exposure),
+                   max_exposure = paste0(which_max_exposure, " (",
+                                               max_exposure, ")")) %>%
+  arrange(desc(median_exposure2)) %>%
+  dplyr::select(-iqr_exposure, -which_max_exposure, -median_exposure2) %>%
+  mutate(metric = str_replace(metric, "_exposed", ""),
+         metric = str_to_title(metric)) %>%
+  rename(`Exposure metric` = metric,
+         `Median number of exposed counties (IQR)` = median_exposure,
+         `Storm with most counties exposed` = max_exposure) %>%
+  pander::pander(justify = "lcc")
+```
 
-## Agreement at the county level
+\footnotesize{\textsuperscript{*}Note: Flood and Tornado events only include storms in 1996--2011. All other event listings cover storms in 1988--2011.}
+
+## Storm-specific severity
+
+[How we measured this: Spearman's rank correlation]
+
+## Storm-specific severity
+
+```{r echo = FALSE, message = FALSE, warning = FALSE, fig.width = 6, fig.height = 4, out.width = "0.8\\textwidth", fig.align = "center"}
+storm_severity <- total_exposure %>%
+  mutate(metric = str_replace(metric, "_exposed", ""),
+         metric = str_to_title(metric)) %>%
+  group_by(storm_id, metric) %>%
+  summarize(exposed_counties = sum(exposed)) %>%
+  spread(metric, exposed_counties) %>% 
+  ungroup()
+library(GGally)
+ggpairs(storm_severity, columns = c("Distance", "Rain", "Wind")) + 
+  theme_classic()
+```
+
+## Storm-specific severity
+
+```{r echo = FALSE}
+storm_cor <- cor(storm_severity[, c("Distance", "Rain", "Wind",
+                                    "Flood", "Tornado")],
+    method = "spearman") 
+# cor(storm_severity[, 2:5], method = "kendall")
+storm_cor <- apply(storm_cor, 1, function(x){ sprintf("%.2f", x)})
+row.names(storm_cor) <- c("Distance", "Rain", "Wind", "Flood", "Tornado")
+for(i in 1:nrow(storm_cor)){
+  for(j in 1:ncol(storm_cor)){
+    if(i <= j){storm_cor[i, j] <- "-"}
+  }
+}
+storm_cor %>%
+ pander::pander(round = 2)
+```
+
+```{r eval = FALSE}
+library(coin)
+spearman_test()
+```
+
+
+## County-specific classification
+
+We measured agreement in county-specific exposure classifications for different storm hazards using **Cohen's Kappa**:
+
+$$
+\kappa = \frac{p_{o} - p_{e}}{1 - p_{e}}
+$$
+
+where: 
+
+- $p_o$: Observed agreement between two hazard classifications
+- $p_e$: Expected agreement between two hazard classifications if ratings were independent  
+
+## County-specific classification
 
 [What we found]
 
