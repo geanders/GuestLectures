@@ -21,37 +21,80 @@ library(hurricaneexposure)
 library(countyweather)
 ```
 
-# Motivation
+# Motivation and Study Aims
 
-# Assessing exposure
+## Epidemiologic research on tropical storms
 
-## Study data
+\begin{block}{Outcomes studied for U.S. tropical storms}
+\begin{itemize}
+  \item Mortality 
+  \begin{itemize}
+    \item Direct deaths
+    \item Indirect deaths
+  \end{itemize}
+  \item Cardiovascular events
+  \item Birth rates
+  \item Birth outcomes
+\end{itemize}
+\end{block}
 
-```{r echo = FALSE, fig.align = 'center', message = FALSE, fig.width = 4, out.width = "0.75\\textwidth"}
-data(closest_dist)
-storms <- unique(closest_dist$storm_id)
-storms <- storms[gsub("*.+-", "", storms) <= 2011 & 
-                        gsub("*.+-", "", storms) >= 1988]
-a <- map_tracks(storms, plot_points = FALSE, alpha = 0.3, color = "darkcyan")
-# Add storms whose names were retired
-# Source: http://www.nhc.noaa.gov/aboutnames_history.shtml
-map_tracks(c("Hugo-1989", "Bob-1991", "Andrew-1992", 
-             "Opal-1995", "Fran-1996", "Georges-1998", "Mitch-1998",
-             "Floyd-1999", "Allison-2001", "Michelle-2001",
-             "Isidore-2002", "Lili-2002", "Isabel-2003",
-             "Charley-2004", "Frances-2004",
-             "Ivan-2004", "Jeanne-2004", 
-             "Dennis-2005", "Katrina-2005", "Rita-2005",
-             "Wilma-2005", "Noel-2007",
-             "Gustav-2008", "Ike-2008", "Paloma-2008",
-             "Irene-2011"),
-           plot_object = a, plot_points = FALSE, color = "darkcyan",
-           padding = 0) + 
-  theme_void() + 
-  theme(panel.background = element_rect(fill = "white")) + 
-  coord_map() 
+\begin{block}{Focus of exposure assessment for this study}
+Multi-storm studies with aggregated daily counts of outcomes (for example, daily deaths by county). 
+\end{block}
+
+## Assessing exposure
+
+\begin{block}{Challenge for epidemiological research}
+How can we determine whether a county was exposed to a tropical storm?
+\end{block}
+
+Previous approaches have varied but include: 
+
+- Distance from storm track
+- Storm winds above a threshold
+- Evacuation orders
+- FEMA reports
+- Combined metric (property damage, power outages, gas shortages, etc.) 
+
+## Assessing exposure
+
+\begin{columns}
+\begin{column}{0.7\textwidth}
+```{r echo = FALSE, fig.align = "center", out.width = "\\textwidth"}
+knitr::include_graphics("coastal_inland_mortality_figure.png")
 ```
+\vspace{-0.3cm}
+\begin{center}
+\footnotesize Czajkowski et al. 2011
+\end{center}
+\end{column}
+\begin{column}{0.3\textwidth}
+\small
+\begin{block}{Example exposure assessment}
+Czajkowski et al. (2011) classified counties based on distance to storm tracks to study mortality risks.
+\end{block}
+\end{column}
+\end{columns}
 
+## Assessing exposure
+
+\begin{columns}
+\begin{column}{0.7\textwidth}
+```{r echo = FALSE, fig.align = "center", out.width = "\\textwidth"}
+knitr::include_graphics("florida_direct_indirect_mortality_figure.png")
+```
+\vspace{-0.6cm}
+\begin{center}
+\footnotesize McKinney et al. 2011
+\end{center}
+\end{column}
+\begin{column}{0.3\textwidth}
+\small
+\begin{block}{Example exposure assessment}
+McKinney et al. (2011) classified counties based on distance to storm tracks, evacuations, and wind to study mortality risk.
+\end{block}
+\end{column}
+\end{columns}
 
 ## Hazard-specific metrics
 
@@ -77,78 +120,190 @@ map_tracks(c("Hugo-1989", "Bob-1991", "Andrew-1992",
 \end{column}
 \end{columns}
 
+## Study aims
+
+\begin{block}{Study aims}
+\begin{itemize}
+  \item Develop exposure classifications of all U.S. Atlantic basin tropical storms, 1988--2011, based on state-of-the-art measurements of tropical storm hazards
+  \item Assess agreement between hazard-based classifications for (1) storm severity and (2) county-specific classification
+  \item Make exposure assessments accessible to other researchers for epidemiological and other impact studies 
+\end{itemize}
+\end{block}
+
+# Assessing exposure
+
+## Study data
+\vspace{-0.4cm}
+\begin{center}
+\large Atlantic basin tropical storms, 1988--2011
+\end{center}
+\vspace{-0.6cm}
+
+```{r echo = FALSE, fig.align = 'center', message = FALSE, fig.width = 4, out.width = "0.7\\textwidth"}
+data(closest_dist)
+storms <- unique(closest_dist$storm_id)
+storms <- storms[gsub("*.+-", "", storms) <= 2011 & 
+                        gsub("*.+-", "", storms) >= 1988]
+a <- map_tracks(storms, plot_points = FALSE, alpha = 0.3, color = "darkcyan")
+# Add storms whose names were retired
+# Source: http://www.nhc.noaa.gov/aboutnames_history.shtml
+map_tracks(c("Hugo-1989", "Bob-1991", "Andrew-1992", 
+             "Opal-1995", "Fran-1996", "Georges-1998", "Mitch-1998",
+             "Floyd-1999", "Allison-2001", "Michelle-2001",
+             "Isidore-2002", "Lili-2002", "Isabel-2003",
+             "Charley-2004", "Frances-2004",
+             "Ivan-2004", "Jeanne-2004", 
+             "Dennis-2005", "Katrina-2005", "Rita-2005",
+             "Wilma-2005", "Noel-2007",
+             "Gustav-2008", "Ike-2008", "Paloma-2008",
+             "Irene-2011"),
+           plot_object = a, plot_points = FALSE, color = "darkcyan",
+           padding = 0) + 
+  theme_void() + 
+  theme(panel.background = element_rect(fill = "white")) + 
+  coord_map() 
+```
+\vspace{-1cm}
+\begin{center}
+\footnotesize Tracks shown in bold indicate storms whose names were retired. Storms that did not come within 250 km of a U.S. county are excluded.
+\end{center}
+
+## Storm exposure
+
+\footnotesize
+```{r}
+data_frame(
+  `Exposure metric` = c("Distance",
+                        "Rain",
+                        "Wind",
+                        "Flood",
+                        "Tornado"),
+  `Criterial for exposure` = c("County population mean center within 100 km of storm track",
+                               "County received 75 mm or more rain over the period from two days before to one day after the storm's closest approach and the storm passed within 500 km of the county",
+                               "Modeled wind speed at county's population mean center met or exceeded 15 m / s during the storm",
+                               "Flood event listed with a start date within two days of the storm's closest approach and county within 500 km of storm track",
+                               "Tornado event listed with a start date within two days of the storm's closest approach and county within 500 km of storm track")
+  ) %>%
+  pander::pander(justify = "ll", split.cells = c(15, 50))
+```
+
 ## Distance from storm
 
-[Intro to best tracks]
+\large Tropical storm "Best Track" data
+\vspace{-0.7cm}
 
-## Distance from storm
-
-[Importance of interpolating tracks]
+\begin{columns}
+\begin{column}{0.7\textwidth}
+```{r echo = FALSE, out.width = "\\textwidth"}
+knitr::include_graphics("finding_closest_point.pdf")
+```
+\end{column}
+\begin{column}{0.3\textwidth}
+\small
+\begin{block}{Distance metric}
+We matched storm tracks to county population mean centers to determine the closest approach and date of closest approach of each storm to each county.
+\end{block}
+\end{column}
+\end{columns}
 
 ## Wind exposure
 
-[Reminder of best tracks, intro to Willoughby model]
+\begin{columns}
+\begin{column}{0.7\textwidth}
+```{r echo = FALSE, out.width = "\\textwidth", fig.width = 6, fig.height = 4}
+map_tracks("Katrina-2005", padding = 2, plot_points = TRUE) + 
+  coord_map()
+```
+\end{column}
+\begin{column}{0.3\textwidth}
+\small
+\begin{block}{Wind metric}
+We modeled county winds with the Willoughby wind model. This model inputs storm location and maximum wind from best tracks data. 
+\end{block}
+\end{column}
+\end{columns}
 
 ## Wind exposure
 
-[Factors of doing the modeling (transfering from surface to gradient and back, etc.), other applications of the model]
-
-## Wind exposure
-
-Wind radii from Extended Best Tracks data for Katrina
-```{r echo = FALSE, out.width = "1.03\\textwidth", fig.align = "left"}
-knitr::include_graphics("ext_tracks_3.png")
+```{r echo = FALSE, out.width = "\\textwidth", message = FALSE, warning = FALSE, fig.width = 6, fig.height = 4, fig.align = "center"}
+map_tracks("Katrina-2005", padding = 0, 
+           plot_object = map_counties("Katrina-2005", metric = "wind")) + 
+  coord_map() + 
+  ggtitle("Modeled winds, Katrina, 2005")
 ```
 
 ## Wind exposure
 
-Evaluating wind model: Hurricane Katrina, 2005
-```{r echo = FALSE, out.width = "1.05\\textwidth", fig.align = "left"}
+\begin{block}{Assessment}
+To assess results of the storm wind model, we compared modeled results with wind radii from the Extended Best Tracks for each storm. 
+\end{block}
+\vspace{-0.5cm}
+```{r echo = FALSE, out.width = "0.75\\textwidth", fig.align = "center"}
+knitr::include_graphics("ext_tracks_2.png")
+```
+
+## Wind exposure
+
+\begin{center}
+Comparison of modeled wind versus wind radii, Katrina, 2005
+\end{center}
+\vspace{-1cm}
+
+```{r echo = FALSE, out.width = "1.08\\textwidth", fig.align = "left"}
 knitr::include_graphics("wind_model_eval_katrina_2005.png")
 ```
 
 ## Wind exposure
 
-Evaluating wind model: Hurricane Ike, 2008
+\begin{center}
+Comparison of modeled wind versus wind radii, Ike, 2008
+\end{center}
+\vspace{-1cm}
+
 ```{r echo = FALSE, out.width = "1.05\\textwidth", fig.align = "left"}
 knitr::include_graphics("wind_model_eval_ike_2008.png")
-```
-
-## Wind exposure
-
-Evaluating wind model: Hurricane Sandy, 2012
-```{r echo = FALSE, out.width = "1.05\\textwidth", fig.align = "left"}
-knitr::include_graphics("wind_model_eval_sandy_2012.png")
 ```
 
 ## Rain exposure
 
 \begin{columns}
-\begin{column}{0.35\textwidth}
-\footnotesize
-\begin{block}{NLDAS-2 precipitation}
-  \begin{itemize}
-  \item Find out more: http://ldas.gsfc.nasa.gov/nldas/
-  \item Also available at county-level through CDC Wonder: https://wonder.cdc.gov
-  \end{itemize}
-\end{block}
-\end{column}
-\begin{column}{0.65\textwidth}  
+\begin{column}{0.7\textwidth}  
     \vspace{-0.25cm}
-    NLDAS-2 precipitation data for Tropical Storm Lee
+    \begin{center}
+    Rain during Tropical Storm Lee
+    \end{center}
     \begin{center}
      \includegraphics[width=\textwidth]{nldas2_ts_lee.png}
      \end{center}
-     \vspace{-0.25cm}
+     \begin{center}
+         \vspace{-0.4cm}
      \scriptsize{Image source: Goddard Earth Sciences DISC}
+     \end{center}
+\end{column}
+\begin{column}{0.3\textwidth}
+\footnotesize
+\begin{block}{Rain metric}
+We used NLDAS-2 precipitation data to assess county rainfall. We summed rain from two days before to one day after the storm. We include a distance threshold for the rain metric.
+\end{block}
 \end{column}
 \end{columns}
 
 ## Rain exposure
 
-[Showing how to ID date of closest approach]
+```{r frances_rain_example, echo = FALSE, fig.width = 6, fig.height = 4, fig.align = "center", out.width = "0.9\\textwidth", warning = FALSE, message = FALSE}
+storm <- "Frances-2004"
+map_tracks(storms = storm, plot_points = FALSE, 
+                plot_object = map_counties(storm = storm, 
+                                           metric = "rainfall")) + 
+        ggtitle("Rainfall during Frances, 2004")
+```
 
 ## Rain exposure
+
+\small
+\begin{block}{Assessment}
+To assess this rain metric, we compared it to rainfall measured at weather stations. X-axis: Rainfall summed for days near storm; y-axis: average of summed rain at each monitor for the same days.
+\end{block}
 
 ```{r compare_rain_ex_counties, echo = FALSE, fig.width = 9, fig.height = 2.75, fig.align = "left", out.width = "1.05\\textwidth"}
 plot_county_rain_compare <- function(ex_fips, ex_dir, ex_title, 
@@ -286,8 +441,7 @@ map_tracks(storms = storm, plot_points = FALSE,
 
 # Agreement between exposure metrics
 
-## Storm exposure
-
+## Storm exposure 
 
 ```{r}
 my_fips <- unique(closest_dist$fips)
@@ -329,25 +483,6 @@ total_exposure <- distance_exposure %>%
   mutate(exposed = ifelse(is.na(exposed), FALSE, exposed)) 
 ```
 
-\footnotesize
-```{r}
-data_frame(
-  `Exposure metric` = c("Distance",
-                        "Rain",
-                        "Wind",
-                        "Flood",
-                        "Tornado"),
-  `Criterial for exposure` = c("County population mean center within 100 km of storm track",
-                               "County received 75 mm or more rain over the period from two days before to one day after the storm's closest approach and the storm passed within 500 km of the county",
-                               "Modeled wind speed at county's population mean center met or exceeded 15 m / s during the storm",
-                               "Flood event listed with a start date within two days of the storm's closest approach and county within 500 km of storm track",
-                               "Tornado event listed with a start date within two days of the storm's closest approach and county within 500 km of storm track")
-  ) %>%
-  pander::pander(justify = "ll", split.cells = c(15, 50))
-```
-
-## Storm exposure 
-
 ```{r}
 total_exposure %>%
   group_by(storm_id, metric) %>%
@@ -378,11 +513,21 @@ total_exposure %>%
 
 ## Storm-specific severity
 
-[How we measured this: Spearman's rank correlation]
+\begin{block}{Assessing agreement in storm severity across metrics}
+\begin{itemize}
+\item For this assessment, we measured \textbf{storm-specific severity} as the number of counties classified as exposed by a given metric for a given storm
+\item We measured this storm-specific severity for every storm and every metric (1988--2011 for distance, rain, wind; 1996--2011 for flood and tornado)
+\item We measured the rank correlation (Kendall's $\tau$) between storm severity for each pair of exposure metrics 
+\end{itemize}
+\end{block}
 
 ## Storm-specific severity
 
-```{r echo = FALSE, message = FALSE, warning = FALSE, fig.width = 6, fig.height = 4, out.width = "0.8\\textwidth", fig.align = "center"}
+\begin{center}
+\large Agreement in storm severity for distance, wind, and rain metrics
+\end{center}
+
+```{r}
 storm_severity <- total_exposure %>%
   mutate(metric = str_replace(metric, "_exposed", ""),
          metric = str_to_title(metric)) %>%
@@ -390,18 +535,34 @@ storm_severity <- total_exposure %>%
   summarize(exposed_counties = sum(exposed)) %>%
   spread(metric, exposed_counties) %>% 
   ungroup()
+```
+
+```{r echo = FALSE, message = FALSE, warning = FALSE, fig.width = 6, fig.height = 4, out.width = "0.7\\textwidth", fig.align = "center", eval = FALSE}
 library(GGally)
 ggpairs(storm_severity, columns = c("Distance", "Rain", "Wind")) + 
   theme_classic()
 ```
 
+```{r echo = FALSE, message = FALSE, warning = FALSE, fig.width = 5, fig.height = 3.5, out.width = "0.7\\textwidth", fig.align = "center"}
+library(psych)
+pairs.panels(storm_severity[, c("Distance", "Wind", "Rain")], 
+             method = "kendall", smooth = FALSE, ellipses = FALSE,
+             hist.col = "gray", cex.cor = 0.6)
+```
+
+
 ## Storm-specific severity
+
+\begin{center}
+\large Agreement in storm severity for exposure metrics
+\end{center}
 
 ```{r echo = FALSE}
 storm_cor <- cor(storm_severity[, c("Distance", "Rain", "Wind",
                                     "Flood", "Tornado")],
-    method = "spearman") 
-# cor(storm_severity[, 2:5], method = "kendall")
+    method = "kendall") 
+
+storm_cor <- corr.test(storm_severity[ , c("Distance", "Rain", "Wind", "Flood", "Tornado")], method = "kendall", adjust = "bonferroni")$r
 storm_cor <- apply(storm_cor, 1, function(x){ sprintf("%.2f", x)})
 row.names(storm_cor) <- c("Distance", "Rain", "Wind", "Flood", "Tornado")
 for(i in 1:nrow(storm_cor)){
@@ -414,38 +575,248 @@ storm_cor %>%
 ```
 
 ```{r eval = FALSE}
-library(coin)
-spearman_test(Distance ~ Rain, data = storm_severity)
-spearman_test(Distance ~ Wind, data = storm_severity)
-spearman_test(Distance ~ Flood, data = storm_severity)
-spearman_test(Distance ~ Tornado, data = storm_severity)
+corr.test(storm_severity[ , c("Distance", "Rain", "Wind", "Flood", "Tornado")], method = "kendall", adjust = "bonferroni")$p
 ```
 
+```{r eval = FALSE}
+cor.ci(storm_severity[ , c("Distance", "Rain", "Wind", "Flood", "Tornado")], method = "kendall", plot = FALSE)
+```
+
+\footnotesize The table gives Kendall's $\tau$ for each pair of exposure metrics. All comparisons that include flood or tornado metrics are limited to storms since 1996. 
 
 ## County-specific classification
 
-We measured agreement in county-specific exposure classifications for different storm hazards using **Cohen's Kappa**:
+\begin{block}{Assessing agreement in county classifications}
+For each storm and each pair of metrics, we measured the probability a county was classified as exposed by one of the metrics conditional on it being classified as exposed by the other metric:
 
-$$
-\kappa = \frac{p_{o} - p_{e}}{1 - p_{e}}
-$$
+\begin{equation}
+Pr(Exposure_{Y} = 1 | Exposure_{X} = 1)
+\end{equation}
 
-where: 
+\end{block}
 
-- $p_o$: Observed agreement between two hazard classifications
-- $p_e$: Expected agreement between two hazard classifications if ratings were independent  
+## County-specific classification-- Floyd, 1999
 
-## County-specific classification
+```{r agreefunction, echo = FALSE, eval = FALSE}
+#' Estimates the probability of exposure for metric \eqn{Y} given 
+#' exposure for metric \eqn{X} at the county level
+#'
+#' @param df The dataframe with the data on exposure by different metrics by 
+#'    storm and county
+#' @param exp_x A character vector defining metric \eqn{X}
+#' @param exp_y A character vector defining metric \eqn{Y}
+#' @param permute Logical, whether to permutate metric \eqn{Y} before 
+#'    calculating the probability. This option can be used for a 
+#'    permutation test 
+#' @storms Character string identifying a storm. This can be used to 
+#'    get agreement for a single storm or group of storms. Default is 
+#'    all storms in the dataframe input
+check_agree <- function(df, exp_x, exp_y, permute = FALSE, storms = NULL){
+  
+  if(!is.null(storms)){
+    df <- df %>%
+      dplyr::filter_(~storm_id %in% storms)
+    if(nrow(df) == 0){ 
+      warning("There are no storms with that name or names.")
+      return(NULL)
+      }
+  }
+  
+  if(exp_x %in% c("Flood", "Tornado") | exp_y %in% c("Flood", "Tornado")){
+    storm_year <- as.numeric(str_replace(df$storm_id, ".+-", ""))
+    df <- df %>%
+      dplyr::filter_(~ storm_year >= 1996)
+    if(nrow(df) == 0){
+      warning("'Flood' or 'Torando' exposures cannot be evaluated for storms before 1996")
+      return(NULL)
+    }
+    
+  }
+  
+  out <- df %>%
+    dplyr::filter_(~ metric %in% c(exp_x, exp_y)) %>%
+    dplyr::mutate_(metric = ~ ifelse(metric == exp_x, "exp_x", "exp_y")) %>%
+    tidyr::spread_(key_col = "metric", value_col = "exposed") 
+  
+  if(permute){
+    out <- out %>%
+      dplyr::group_by_(~storm_id) %>%
+      dplyr::mutate_(exp_y = ~ sample(exp_y)) %>%
+      dplyr::ungroup()
+  }
+  
+  out <- out %>%
+    dplyr::filter_(~ exp_x) %>%
+    dplyr::summarize_(prob = ~ mean(exp_y))
+  
+  return(out$prob)
+}
+```
 
-[What we found]
+```{r calcagreement, echo = FALSE, eval = FALSE}
+all_storm_fips <- expand.grid(unique(total_exposure$storm_id),
+                              my_fips, 
+                              unique(total_exposure$metric)) %>%
+  rename(storm_id = Var1, 
+         fips = Var2,
+         metric = Var3) %>%
+  mutate(storm_id = as.character(storm_id),
+         fips = as.character(fips),
+         metric = as.character(metric))
 
-## Discussion
+df <- total_exposure %>% 
+  full_join(all_storm_fips, by = c("storm_id", "fips", "metric")) %>%
+  mutate(metric = str_replace(metric, "_exposed", ""),
+         metric = str_to_title(metric)) %>%
+  mutate(exposed = ifelse(is.na(exposed), FALSE, exposed))
+metrics <- unique(df$metric)
+agree_df <- expand.grid(metrics, metrics) %>%
+  rename(exp_x = Var1, exp_y = Var2) %>%
+  mutate(exp_x = as.character(exp_x), 
+         exp_y = as.character(exp_y), 
+         same = exp_x == exp_y) %>%
+  filter(!same) %>%
+  select(-same) %>%
+  mutate(prob = NA,
+         p_value = NA)
+
+# For Hurricane Floyd
+agree_df_floyd <- agree_df
+for(i in 1:nrow(agree_df)){
+  print(i)
+  agree_df_floyd$prob[i] <- check_agree(df = df,
+                                        exp_x = agree_df_floyd$exp_x[i], 
+                                        exp_y = agree_df_floyd$exp_y[i],
+                                        storms = "Floyd-1999")
+  agree_distribution <- replicate(499, 
+                                  check_agree(df = df,
+                                          exp_x = agree_df_floyd$exp_x[i],
+                                          exp_y = agree_df_floyd$exp_y[i],
+                                          storms = "Floyd-1999", 
+                                          permute = TRUE))
+  agree_distribution <- c(agree_distribution, agree_df_floyd$prob[i])
+  agree_df_floyd$p_value[i] <- mean(agree_distribution >=
+                                     agree_df_floyd$prob[i])
+}
+save(agree_df_floyd, file = "data/agree_df_floyd.RData")
+
+agree_mat_floyd <- matrix(NA, nrow = length(metrics), ncol = length(metrics))
+colnames(agree_mat_floyd) <- metrics
+rownames(agree_mat_floyd) <- metrics
+agree_pvalue_floyd <- agree_mat_floyd
+for(i in 1:length(metrics)){
+  for(j in 1:length(metrics)){
+    if(i == j){
+      agree_mat_floyd[i, j] <- 0
+      agree_pvalue_floyd[i, j] <- 0
+    } else {
+      agree_mat_floyd[i, j] <- agree_df_floyd[agree_df_floyd$exp_x ==
+                                                metrics[j] & 
+                                    agree_df_floyd$exp_y == metrics[i],
+                                    "prob"]
+      agree_pvalue_floyd[i, j] <- agree_df_floyd[agree_df_floyd$exp_x ==
+                                                   metrics[j] & 
+                                    agree_df_floyd$exp_y == metrics[i],
+                                    "p_value"]
+    }
+  }
+}
+save(agree_mat_floyd, file = "agree_mat_floyd.RData")
+save(agree_pvalue_floyd, file = "agree_pvalue_floyd.RData")
+
+# For all storms
+for(i in 1:nrow(agree_df)){
+  print(i)
+  agree_df$prob[i] <- check_agree(df = df,
+                                  exp_x = agree_df$exp_x[i], 
+                                  exp_y = agree_df$exp_y[i])
+    agree_distribution <- replicate(499, 
+                                  check_agree(df = df,
+                                          exp_x = agree_df$exp_x[i],
+                                          exp_y = agree_df$exp_y[i],
+                                          permute = TRUE))
+  agree_distribution <- c(agree_distribution, agree_df$prob[i])
+  agree_df$p_value[i] <- mean(agree_distribution >= agree_df$prob[i])
+}
+save(agree_df, file = "data/agree_df.RData")
+
+agree_mat <- matrix(NA, nrow = length(metrics), ncol = length(metrics))
+colnames(agree_mat) <- metrics
+rownames(agree_mat) <- metrics
+agree_pvalue <- agree_mat
+for(i in 1:length(metrics)){
+  for(j in 1:length(metrics)){
+    if(i == j){
+      agree_mat[i, j] <- 0
+      agree_pvalue[i, j] <- 0
+    } else {
+      agree_mat[i, j] <- agree_df[agree_df$exp_x == metrics[j] & 
+                                    agree_df$exp_y == metrics[i],
+                                    "prob"]
+      agree_pvalue[i, j] <- agree_df[agree_df$exp_x == metrics[j] & 
+                                    agree_df$exp_y == metrics[i],
+                                    "p_value"]
+    }
+  }
+}
+save(agree_mat, file = "agree_mat.RData")
+save(agree_pvalue, file = "agree_pvalue.RData")
+```
+
+\begin{columns}
+\begin{column}{0.6\textwidth}
+```{r echo = FALSE, fig.width = 6, fig.height = 3, out.width = "\\textwidth"}
+load("agree_mat_floyd.RData")
+load("agree_pvalue_floyd.RData")
+library(corrplot)
+library(viridis)
+
+corrplot(t(agree_mat_floyd), method = "number", is.corr = FALSE,
+         diag = FALSE, outline = TRUE, tl.col = "black",
+         tl.srt = 45, p.mat = t(agree_pvalue_floyd), sig.level = 0.05,
+         col = viridis(n=20, option = "D"), 
+         cl.lim=c(0,1), cl.pos = "n")
+```
+\end{column}
+\begin{column}{0.4\textwidth}
+\small
+\begin{block}{County agreement}
+Above the diagonal shows the probability that, given the county was exposed based on the metric for that row, it was also exposed based on the metric for that column. Below the diagonal shows the probability that, given the county was exposed based on the metric for that column, it was also exposed based on the metric for that row.
+\end{block}
+\end{column}
+\end{columns}
+
+## County-specific classification-- All storms
+
+\begin{columns}
+\begin{column}{0.6\textwidth}
+```{r echo = FALSE, fig.width = 6, fig.height = 3, out.width = "\\textwidth"}
+load("agree_mat.RData")
+load("agree_pvalue.RData")
+library(corrplot)
+library(viridis)
+corrplot(t(agree_mat), method = "number", is.corr = FALSE,
+         diag = FALSE, outline = TRUE, tl.col = "black",
+         tl.srt = 45, p.mat = t(agree_pvalue_floyd), sig.level = 0.05,
+         col = viridis(n=20, option = "D"), 
+         cl.lim=c(0,1), cl.pos = "n")
+```
+\end{column}
+\begin{column}{0.4\textwidth}
+\small
+\begin{block}{County agreement}
+Above the diagonal shows the probability that, given the county was exposed based on the metric for that row, it was also exposed based on the metric for that column. Below the diagonal shows the probability that, given the county was exposed based on the metric for that column, it was also exposed based on the metric for that row.
+\end{block}
+\end{column}
+\end{columns}
 
 # Software
 
-## Software as a research product
+## Open data / reproducible research
 
-[Open science, ROpenSci, influence of example packages]
+```{r echo = FALSE, out.width = "0.8\\textwidth", fig.align = "center"}
+knitr::include_graphics("open_data_headlines.png")
+```
 
 ## Software as a research product
 
@@ -458,20 +829,81 @@ Course book: https://bookdown.org/rdpeng/RProgDA/
 
 ## Project software
 
-[list of software, availability through CRAN, GitHub]
+\footnotesize
+\begin{block}{`hurricaneexposure`}
+Create county-level exposure time series for tropical storms in U.S. counties. Exposure can be determined based on several hazards (e.g., distance, wind, rain), with user-specified thresholds. 
+https://github.com/geanders/hurricaneexposure
+\end{block}
 
-## Sharing exposure data
+```{r echo = TRUE, eval = FALSE}
+county_rain(counties = c("22071", "51700"), rain_limit = 100, 
+            start_year = 1995, end_year = 2005, dist_limit = 100,
+            days_included = c(-1, 0, 1))
+```
 
-[`hurricaneexposure`, `hurricaneexposuredata`, web page]
+```{r echo = FALSE}
+county_rain(counties = c("22071", "51700"), rain_limit = 100, 
+            start_year = 1995, end_year = 2005, dist_limit = 100,
+            days_included = c(-1, 0, 1)) %>%
+  slice(1:6) %>%
+  select(storm_id, fips, closest_date, storm_dist, tot_precip)
+```
 
-## Modeling storm winds
+## Project software
 
-[`stormwindmodel`]
+\vspace{-0.2cm}
+\large
+\begin{center}
+Web application interface to `hurricaneexposure`
+\end{center}
+\vspace{-0.3cm}
 
-## Working with NOAA Storm Events
+```{r echo = FALSE, out.width = "\\textwidth"}
+knitr::include_graphics("hurricane_exposure_website.png")
+```
 
-[`noaastormevents`]
+## Project software
 
-## Dealing with time zones
+\begin{columns}
+\begin{column}{0.3\textwidth}
+\footnotesize
+\begin{block}{`stormwindmodel`}
+Model storm winds from Best Tracks data at U.S. locations. Includes modeling sustained and gust winds, as well as duration of sustained and gust winds above a specified threshold. On CRAN.
+\end{block}
+\end{column}
+\begin{column}{0.7\textwidth}
+```{r echo = FALSE, out.width = "\\textwidth", fig.align = "center"}
+knitr::include_graphics("census_track_modeled_winds.png")
+```
+\end{column}
+\end{columns}
 
-[`countytimezones`]
+## Project software
+
+\footnotesize
+\begin{block}{`noaastormevents`}
+Download and explore listings from the NOAA Storm Events database. Includes the ability to pull events based on a tropical storm, using events listed close in time and distance to the storm's tracks. 
+https://github.com/zailchen/noaastormevents
+\end{block}
+
+\footnotesize
+\begin{block}{`countytimezones`}
+Convert time-stamps from UTC to local time zones for U.S. counties based on county FIPs. Facilitates merging weather observations with locally measured data, including health outcomes. On CRAN.
+\end{block}
+
+\footnotesize
+\begin{block}{`countyweather`}
+Download weather monitor data through NOAA API by U.S. county. Includes functions to map available monitors for each county. On CRAN.
+\end{block}
+
+## Future work
+
+\begin{block}{Future work}
+\begin{itemize}
+\item Epidemiological study of mortality risk and tropical storm hazards
+\item Exploring alternative measures of flood and tornado exposure
+\item Improving wind model for extra-tropical storms
+\item Incorporating metrics of infrastructure damage
+\end{itemize}
+\end{block}
+

@@ -29,6 +29,46 @@
 \hypersetup{
             pdfborder={0 0 0},
             breaklinks=true}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{{#1}}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{{#1}}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{{#1}}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{{#1}}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{{#1}}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{{#1}}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{{#1}}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{{#1}}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{{#1}}}
+\newcommand{\ImportTok}[1]{{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{{#1}}}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{{#1}}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{{#1}}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{{#1}}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{{#1}}}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{{#1}}}}
+\newcommand{\BuiltInTok}[1]{{#1}}
+\newcommand{\ExtensionTok}[1]{{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{{#1}}}
+\newcommand{\RegionMarkerTok}[1]{{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{{#1}}}}
+\newcommand{\NormalTok}[1]{{#1}}
 \usepackage{longtable,booktabs}
 \usepackage{caption}
 % These lines are needed to make table captions work with longtable:
@@ -92,13 +132,92 @@ storms for epidemiological research}
   \titlepage
 \end{frame}
 
-\section{Motivation}\label{motivation}
+\section{Motivation and Study Aims}\label{motivation-and-study-aims}
 
-\section{Assessing exposure}\label{assessing-exposure}
+\begin{frame}{Epidemiologic research on tropical storms}
 
-\begin{frame}{Study data}
+\begin{block}{Outcomes studied for U.S. tropical storms}
+\begin{itemize}
+  \item Mortality 
+  \begin{itemize}
+    \item Direct deaths
+    \item Indirect deaths
+  \end{itemize}
+  \item Cardiovascular events
+  \item Birth rates
+  \item Birth outcomes
+\end{itemize}
+\end{block}
 
-\begin{center}\includegraphics[width=0.75\textwidth]{anderson_jan11_files/figure-beamer/unnamed-chunk-1-1} \end{center}
+\begin{block}{Focus of exposure assessment for this study}
+Multi-storm studies with aggregated daily counts of outcomes (for example, daily deaths by county). 
+\end{block}
+
+\end{frame}
+
+\begin{frame}{Assessing exposure}
+
+\begin{block}{Challenge for epidemiological research}
+How can we determine whether a county was exposed to a tropical storm?
+\end{block}
+
+Previous approaches have varied but include:
+
+\begin{itemize}
+\tightlist
+\item
+  Distance from storm track
+\item
+  Storm winds above a threshold
+\item
+  Evacuation orders
+\item
+  FEMA reports
+\item
+  Combined metric (property damage, power outages, gas shortages, etc.)
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Assessing exposure}
+
+\begin{columns}
+\begin{column}{0.7\textwidth}
+
+\begin{center}\includegraphics[width=\textwidth]{coastal_inland_mortality_figure} \end{center}
+\vspace{-0.3cm}
+\begin{center}
+\footnotesize Czajkowski et al. 2011
+\end{center}
+\end{column}
+\begin{column}{0.3\textwidth}
+\small
+\begin{block}{Example exposure assessment}
+Czajkowski et al. (2011) classified counties based on distance to storm tracks to study mortality risks.
+\end{block}
+\end{column}
+\end{columns}
+
+\end{frame}
+
+\begin{frame}{Assessing exposure}
+
+\begin{columns}
+\begin{column}{0.7\textwidth}
+
+\begin{center}\includegraphics[width=\textwidth]{florida_direct_indirect_mortality_figure} \end{center}
+\vspace{-0.6cm}
+\begin{center}
+\footnotesize McKinney et al. 2011
+\end{center}
+\end{column}
+\begin{column}{0.3\textwidth}
+\small
+\begin{block}{Example exposure assessment}
+McKinney et al. (2011) classified counties based on distance to storm tracks, evacuations, and wind to study mortality risk.
+\end{block}
+\end{column}
+\end{columns}
 
 \end{frame}
 
@@ -128,134 +247,39 @@ storms for epidemiological research}
 
 \end{frame}
 
-\begin{frame}{Distance from storm}
+\begin{frame}{Study aims}
 
-{[}Intro to best tracks{]}
-
-\end{frame}
-
-\begin{frame}{Distance from storm}
-
-{[}Importance of interpolating tracks{]}
-
-\end{frame}
-
-\begin{frame}{Wind exposure}
-
-{[}Reminder of best tracks, intro to Willoughby model{]}
-
-\end{frame}
-
-\begin{frame}{Wind exposure}
-
-{[}Factors of doing the modeling (transfering from surface to gradient
-and back, etc.), other applications of the model{]}
-
-\end{frame}
-
-\begin{frame}{Wind exposure}
-
-Wind radii from Extended Best Tracks data for Katrina
-
-\begin{flushleft}\includegraphics[width=1.03\textwidth]{ext_tracks_3} \end{flushleft}
-
-\end{frame}
-
-\begin{frame}{Wind exposure}
-
-Evaluating wind model: Hurricane Katrina, 2005
-
-\begin{flushleft}\includegraphics[width=1.05\textwidth]{wind_model_eval_katrina_2005} \end{flushleft}
-
-\end{frame}
-
-\begin{frame}{Wind exposure}
-
-Evaluating wind model: Hurricane Ike, 2008
-
-\begin{flushleft}\includegraphics[width=1.05\textwidth]{wind_model_eval_ike_2008} \end{flushleft}
-
-\end{frame}
-
-\begin{frame}{Wind exposure}
-
-Evaluating wind model: Hurricane Sandy, 2012
-
-\begin{flushleft}\includegraphics[width=1.05\textwidth]{wind_model_eval_sandy_2012} \end{flushleft}
-
-\end{frame}
-
-\begin{frame}{Rain exposure}
-
-\begin{columns}
-\begin{column}{0.35\textwidth}
-\footnotesize
-\begin{block}{NLDAS-2 precipitation}
-  \begin{itemize}
-  \item Find out more: http://ldas.gsfc.nasa.gov/nldas/
-  \item Also available at county-level through CDC Wonder: https://wonder.cdc.gov
-  \end{itemize}
+\begin{block}{Study aims}
+\begin{itemize}
+  \item Develop exposure classifications of all U.S. Atlantic basin tropical storms, 1988--2011, based on state-of-the-art measurements of tropical storm hazards
+  \item Assess agreement between hazard-based classifications for (1) storm severity and (2) county-specific classification
+  \item Make exposure assessments accessible to other researchers for epidemiological and other impact studies 
+\end{itemize}
 \end{block}
-\end{column}
-\begin{column}{0.65\textwidth}  
-    \vspace{-0.25cm}
-    NLDAS-2 precipitation data for Tropical Storm Lee
-    \begin{center}
-     \includegraphics[width=\textwidth]{nldas2_ts_lee.png}
-     \end{center}
-     \vspace{-0.25cm}
-     \scriptsize{Image source: Goddard Earth Sciences DISC}
-\end{column}
-\end{columns}
 
 \end{frame}
 
-\begin{frame}{Rain exposure}
+\section{Assessing exposure}\label{assessing-exposure-3}
 
-{[}Showing how to ID date of closest approach{]}
+\begin{frame}{Study data}
 
-\end{frame}
+\vspace{-0.4cm}
 
-\begin{frame}{Rain exposure}
+\begin{center}
+\large Atlantic basin tropical storms, 1988--2011
+\end{center}
 
-\begin{flushleft}\includegraphics[width=1.05\textwidth]{anderson_jan11_files/figure-beamer/compare_rain_ex_counties-1} \end{flushleft}
+\vspace{-0.6cm}
 
-\end{frame}
+\begin{center}\includegraphics[width=0.7\textwidth]{anderson_jan11_files/figure-beamer/unnamed-chunk-3-1} \end{center}
 
-\begin{frame}{Rain exposure}
+\vspace{-1cm}
 
-\begin{center}\includegraphics[width=0.9\textwidth]{anderson_jan11_files/figure-beamer/ike_rain_example-1} \end{center}
-
-\end{frame}
-
-\begin{frame}{Rain exposure}
-
-\begin{center}\includegraphics[width=0.9\textwidth]{anderson_jan11_files/figure-beamer/lee_rain_example-1} \end{center}
+\begin{center}
+\footnotesize Tracks shown in bold indicate storms whose names were retired. Storms that did not come within 250 km of a U.S. county are excluded.
+\end{center}
 
 \end{frame}
-
-\begin{frame}{Flood and tornado events}
-
-\includegraphics[width=\textwidth]{noaastormevents}
-
-Website: \url{https://www.ncdc.noaa.gov/stormevents/}
-
-\end{frame}
-
-\begin{frame}{Flood and tornado events}
-
-\begin{center}\includegraphics[width=0.9\textwidth]{anderson_jan11_files/figure-beamer/floyd_flood_example-1} \end{center}
-
-\end{frame}
-
-\begin{frame}{Flood and tornado events}
-
-\begin{center}\includegraphics[width=0.9\textwidth]{anderson_jan11_files/figure-beamer/ivan_tornado_example-1} \end{center}
-
-\end{frame}
-
-\section{Agreement between exposure
-metrics}\label{agreement-between-exposure-metrics}
 
 \begin{frame}{Storm exposure}
 
@@ -304,6 +328,163 @@ closest approach and county within 500 km of storm track\strut
 \end{longtable}
 
 \end{frame}
+
+\begin{frame}{Distance from storm}
+
+\large Tropical storm ``Best Track'' data \vspace{-0.7cm}
+
+\begin{columns}
+\begin{column}{0.7\textwidth}
+
+\includegraphics[width=\textwidth]{finding_closest_point} 
+\end{column}
+\begin{column}{0.3\textwidth}
+\small
+\begin{block}{Distance metric}
+We matched storm tracks to county population mean centers to determine the closest approach and date of closest approach of each storm to each county.
+\end{block}
+\end{column}
+\end{columns}
+
+\end{frame}
+
+\begin{frame}{Wind exposure}
+
+\begin{columns}
+\begin{column}{0.7\textwidth}
+
+\includegraphics[width=\textwidth]{anderson_jan11_files/figure-beamer/unnamed-chunk-6-1} 
+\end{column}
+\begin{column}{0.3\textwidth}
+\small
+\begin{block}{Wind metric}
+We modeled county winds with the Willoughby wind model. This model inputs storm location and maximum wind from best tracks data. 
+\end{block}
+\end{column}
+\end{columns}
+
+\end{frame}
+
+\begin{frame}{Wind exposure}
+
+\begin{center}\includegraphics[width=\textwidth]{anderson_jan11_files/figure-beamer/unnamed-chunk-7-1} \end{center}
+
+\end{frame}
+
+\begin{frame}{Wind exposure}
+
+\begin{block}{Assessment}
+To assess results of the storm wind model, we compared modeled results with wind radii from the Extended Best Tracks for each storm. 
+\end{block}
+
+\vspace{-0.5cm}
+
+\begin{center}\includegraphics[width=0.75\textwidth]{ext_tracks_2} \end{center}
+
+\end{frame}
+
+\begin{frame}{Wind exposure}
+
+\begin{center}
+Comparison of modeled wind versus wind radii, Katrina, 2005
+\end{center}
+
+\vspace{-1cm}
+
+\begin{flushleft}\includegraphics[width=1.08\textwidth]{wind_model_eval_katrina_2005} \end{flushleft}
+
+\end{frame}
+
+\begin{frame}{Wind exposure}
+
+\begin{center}
+Comparison of modeled wind versus wind radii, Ike, 2008
+\end{center}
+
+\vspace{-1cm}
+
+\begin{flushleft}\includegraphics[width=1.05\textwidth]{wind_model_eval_ike_2008} \end{flushleft}
+
+\end{frame}
+
+\begin{frame}{Rain exposure}
+
+\begin{columns}
+\begin{column}{0.7\textwidth}  
+    \vspace{-0.25cm}
+    \begin{center}
+    Rain during Tropical Storm Lee
+    \end{center}
+    \begin{center}
+     \includegraphics[width=\textwidth]{nldas2_ts_lee.png}
+     \end{center}
+     \begin{center}
+         \vspace{-0.4cm}
+     \scriptsize{Image source: Goddard Earth Sciences DISC}
+     \end{center}
+\end{column}
+\begin{column}{0.3\textwidth}
+\footnotesize
+\begin{block}{Rain metric}
+We used NLDAS-2 precipitation data to assess county rainfall. We summed rain from two days before to one day after the storm. We include a distance threshold for the rain metric.
+\end{block}
+\end{column}
+\end{columns}
+
+\end{frame}
+
+\begin{frame}{Rain exposure}
+
+\begin{center}\includegraphics[width=0.9\textwidth]{anderson_jan11_files/figure-beamer/frances_rain_example-1} \end{center}
+
+\end{frame}
+
+\begin{frame}{Rain exposure}
+
+\small
+
+\begin{block}{Assessment}
+To assess this rain metric, we compared it to rainfall measured at weather stations. X-axis: Rainfall summed for days near storm; y-axis: average of summed rain at each monitor for the same days.
+\end{block}
+
+\begin{flushleft}\includegraphics[width=1.05\textwidth]{anderson_jan11_files/figure-beamer/compare_rain_ex_counties-1} \end{flushleft}
+
+\end{frame}
+
+\begin{frame}{Rain exposure}
+
+\begin{center}\includegraphics[width=0.9\textwidth]{anderson_jan11_files/figure-beamer/ike_rain_example-1} \end{center}
+
+\end{frame}
+
+\begin{frame}{Rain exposure}
+
+\begin{center}\includegraphics[width=0.9\textwidth]{anderson_jan11_files/figure-beamer/lee_rain_example-1} \end{center}
+
+\end{frame}
+
+\begin{frame}{Flood and tornado events}
+
+\includegraphics[width=\textwidth]{noaastormevents}
+
+Website: \url{https://www.ncdc.noaa.gov/stormevents/}
+
+\end{frame}
+
+\begin{frame}{Flood and tornado events}
+
+\begin{center}\includegraphics[width=0.9\textwidth]{anderson_jan11_files/figure-beamer/floyd_flood_example-1} \end{center}
+
+\end{frame}
+
+\begin{frame}{Flood and tornado events}
+
+\begin{center}\includegraphics[width=0.9\textwidth]{anderson_jan11_files/figure-beamer/ivan_tornado_example-1} \end{center}
+
+\end{frame}
+
+\section{Agreement between exposure
+metrics}\label{agreement-between-exposure-metrics}
 
 \begin{frame}{Storm exposure}
 
@@ -362,17 +543,31 @@ Ivan, 2004 (91)\strut
 
 \begin{frame}{Storm-specific severity}
 
-{[}How we measured this: Spearman's rank correlation{]}
+\begin{block}{Assessing agreement in storm severity across metrics}
+\begin{itemize}
+\item For this assessment, we measured \textbf{storm-specific severity} as the number of counties classified as exposed by a given metric for a given storm
+\item We measured this storm-specific severity for every storm and every metric (1988--2011 for distance, rain, wind; 1996--2011 for flood and tornado)
+\item We measured the rank correlation (Kendall's $\tau$) between storm severity for each pair of exposure metrics 
+\end{itemize}
+\end{block}
 
 \end{frame}
 
 \begin{frame}{Storm-specific severity}
 
-\begin{center}\includegraphics[width=0.8\textwidth]{anderson_jan11_files/figure-beamer/unnamed-chunk-10-1} \end{center}
+\begin{center}
+\large Agreement in storm severity for distance, wind, and rain metrics
+\end{center}
+
+\begin{center}\includegraphics[width=0.7\textwidth]{anderson_jan11_files/figure-beamer/unnamed-chunk-16-1} \end{center}
 
 \end{frame}
 
 \begin{frame}{Storm-specific severity}
+
+\begin{center}
+\large Agreement in storm severity for exposure metrics
+\end{center}
 
 \begin{longtable}[]{@{}cccccc@{}}
 \toprule
@@ -407,7 +602,7 @@ Tornado\strut
 \begin{minipage}[t]{0.17\columnwidth}\centering\strut
 \textbf{Rain}\strut
 \end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering\strut
-0.79\strut
+0.60\strut
 \end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\centering\strut
 -\strut
 \end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\centering\strut
@@ -420,9 +615,9 @@ Tornado\strut
 \begin{minipage}[t]{0.17\columnwidth}\centering\strut
 \textbf{Wind}\strut
 \end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering\strut
-0.71\strut
+0.52\strut
 \end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\centering\strut
-0.69\strut
+0.51\strut
 \end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\centering\strut
 -\strut
 \end{minipage} & \begin{minipage}[t]{0.09\columnwidth}\centering\strut
@@ -433,11 +628,11 @@ Tornado\strut
 \begin{minipage}[t]{0.17\columnwidth}\centering\strut
 \textbf{Flood}\strut
 \end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering\strut
-0.46\strut
+0.35\strut
 \end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\centering\strut
-0.54\strut
+0.43\strut
 \end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\centering\strut
-0.44\strut
+0.32\strut
 \end{minipage} & \begin{minipage}[t]{0.09\columnwidth}\centering\strut
 -\strut
 \end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\centering\strut
@@ -446,97 +641,182 @@ Tornado\strut
 \begin{minipage}[t]{0.17\columnwidth}\centering\strut
 \textbf{Tornado}\strut
 \end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering\strut
-0.43\strut
+0.32\strut
 \end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\centering\strut
-0.50\strut
+0.38\strut
 \end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\centering\strut
-0.45\strut
+0.34\strut
 \end{minipage} & \begin{minipage}[t]{0.09\columnwidth}\centering\strut
-0.78\strut
+0.62\strut
 \end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\centering\strut
 -\strut
 \end{minipage}\tabularnewline
 \bottomrule
 \end{longtable}
 
-\end{frame}
-
-\begin{frame}{County-specific classification}
-
-We measured agreement in county-specific exposure classifications for
-different storm hazards using \textbf{Cohen's Kappa}:
-
-\[
-\kappa = \frac{p_{o} - p_{e}}{1 - p_{e}}
-\]
-
-where:
-
-\begin{itemize}
-\tightlist
-\item
-  \(p_o\): Observed agreement between two hazard classifications
-\item
-  \(p_e\): Expected agreement between two hazard classifications if
-  ratings were independent
-\end{itemize}
+\footnotesize The table gives Kendall's \(\tau\) for each pair of
+exposure metrics. All comparisons that include flood or tornado metrics
+are limited to storms since 1996.
 
 \end{frame}
 
 \begin{frame}{County-specific classification}
 
-{[}What we found{]}
+\begin{block}{Assessing agreement in county classifications}
+For each storm and each pair of metrics, we measured the probability a county was classified as exposed by one of the metrics conditional on it being classified as exposed by the other metric:
+
+\begin{equation}
+Pr(Exposure_{Y} = 1 | Exposure_{X} = 1)
+\end{equation}
+
+\end{block}
 
 \end{frame}
 
-\begin{frame}{Discussion}
+\begin{frame}{County-specific classification-- Floyd, 1999}
+
+\begin{columns}
+\begin{column}{0.6\textwidth}
+
+\includegraphics[width=\textwidth]{anderson_jan11_files/figure-beamer/unnamed-chunk-20-1} 
+\end{column}
+\begin{column}{0.4\textwidth}
+\small
+\begin{block}{County agreement}
+Above the diagonal shows the probability that, given the county was exposed based on the metric for that row, it was also exposed based on the metric for that column. Below the diagonal shows the probability that, given the county was exposed based on the metric for that column, it was also exposed based on the metric for that row.
+\end{block}
+\end{column}
+\end{columns}
+
+\end{frame}
+
+\begin{frame}{County-specific classification-- All storms}
+
+\begin{columns}
+\begin{column}{0.6\textwidth}
+
+\includegraphics[width=\textwidth]{anderson_jan11_files/figure-beamer/unnamed-chunk-21-1} 
+\end{column}
+\begin{column}{0.4\textwidth}
+\small
+\begin{block}{County agreement}
+Above the diagonal shows the probability that, given the county was exposed based on the metric for that row, it was also exposed based on the metric for that column. Below the diagonal shows the probability that, given the county was exposed based on the metric for that column, it was also exposed based on the metric for that row.
+\end{block}
+\end{column}
+\end{columns}
 
 \end{frame}
 
 \section{Software}\label{software}
 
-\begin{frame}{Software as a research product}
+\begin{frame}{Open data / reproducible research}
 
-{[}Open science, ROpenSci, influence of example packages{]}
+\begin{center}\includegraphics[width=0.8\textwidth]{open_data_headlines} \end{center}
 
 \end{frame}
 
 \begin{frame}{Software as a research product}
 
 \includegraphics[width=\textwidth]{coursera_screenshot}
-\url{https://www.coursera.org/specializations/r}
+
+Courses: \url{https://www.coursera.org/specializations/r} Course book:
 \url{https://bookdown.org/rdpeng/RProgDA/}
+
+\end{frame}
+
+\begin{frame}[fragile]{Project software}
+
+\footnotesize
+
+\begin{block}{`hurricaneexposure`}
+Create county-level exposure time series for tropical storms in U.S. counties. Exposure can be determined based on several hazards (e.g., distance, wind, rain), with user-specified thresholds. 
+https://github.com/geanders/hurricaneexposure
+\end{block}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{county_rain}\NormalTok{(}\DataTypeTok{counties =} \KeywordTok{c}\NormalTok{(}\StringTok{"22071"}\NormalTok{, }\StringTok{"51700"}\NormalTok{), }\DataTypeTok{rain_limit =} \DecValTok{100}\NormalTok{, }
+            \DataTypeTok{start_year =} \DecValTok{1995}\NormalTok{, }\DataTypeTok{end_year =} \DecValTok{2005}\NormalTok{, }\DataTypeTok{dist_limit =} \DecValTok{100}\NormalTok{,}
+            \DataTypeTok{days_included =} \KeywordTok{c}\NormalTok{(-}\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       storm_id  fips closest_date storm_dist tot_precip
+## 1    Bill-2003 22071   2003-06-30   38.78412      141.1
+## 2 Charley-2004 51700   2004-08-14   43.01152      136.2
+## 3   Cindy-2005 22071   2005-07-06   32.21758      113.2
+## 4   Floyd-1999 51700   1999-09-16   46.50729      207.5
+## 5 Isidore-2002 22071   2002-09-26    6.37844      249.0
+## 6 Katrina-2005 22071   2005-08-29   36.88933      196.2
+\end{verbatim}
 
 \end{frame}
 
 \begin{frame}{Project software}
 
-{[}list of software, availability through CRAN, GitHub{]}
+\vspace{-0.2cm} \large
+
+\begin{center}
+Web application interface to `hurricaneexposure`
+\end{center}
+
+\vspace{-0.3cm}
+
+\includegraphics[width=\textwidth]{hurricane_exposure_website}
 
 \end{frame}
 
-\begin{frame}[fragile]{Sharing exposure data}
+\begin{frame}{Project software}
 
-{[}\texttt{hurricaneexposure}, \texttt{hurricaneexposuredata}, web
-page{]}
+\begin{columns}
+\begin{column}{0.3\textwidth}
+\footnotesize
+\begin{block}{`stormwindmodel`}
+Model storm winds from Best Tracks data at U.S. locations. Includes modeling sustained and gust winds, as well as duration of sustained and gust winds above a specified threshold. On CRAN.
+\end{block}
+\end{column}
+\begin{column}{0.7\textwidth}
 
-\end{frame}
-
-\begin{frame}[fragile]{Modeling storm winds}
-
-{[}\texttt{stormwindmodel}{]}
-
-\end{frame}
-
-\begin{frame}[fragile]{Working with NOAA Storm Events}
-
-{[}\texttt{noaastormevents}{]}
+\begin{center}\includegraphics[width=\textwidth]{census_track_modeled_winds} \end{center}
+\end{column}
+\end{columns}
 
 \end{frame}
 
-\begin{frame}[fragile]{Dealing with time zones}
+\begin{frame}{Project software}
 
-{[}\texttt{countytimezones}{]}
+\footnotesize
+
+\begin{block}{`noaastormevents`}
+Download and explore listings from the NOAA Storm Events database. Includes the ability to pull events based on a tropical storm, using events listed close in time and distance to the storm's tracks. 
+https://github.com/zailchen/noaastormevents
+\end{block}
+
+\footnotesize
+
+\begin{block}{`countytimezones`}
+Convert time-stamps from UTC to local time zones for U.S. counties based on county FIPs. Facilitates merging weather observations with locally measured data, including health outcomes. On CRAN.
+\end{block}
+
+\footnotesize
+
+\begin{block}{`countyweather`}
+Download weather monitor data through NOAA API by U.S. county. Includes functions to map available monitors for each county. On CRAN.
+\end{block}
+
+\end{frame}
+
+\begin{frame}{Future work}
+
+\begin{block}{Future work}
+\begin{itemize}
+\item Epidemiological study of mortality risk and tropical storm hazards
+\item Exploring alternative measures of flood and tornado exposure
+\item Improving wind model for extra-tropical storms
+\item Incorporating metrics of infrastructure damage
+\end{itemize}
+\end{block}
 
 \end{frame}
 
