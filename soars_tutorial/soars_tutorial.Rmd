@@ -1,0 +1,59 @@
+---
+title: "SOARS Tutorial"
+author: "Brooke Anderson"
+date: "3/8/2017"
+output: ioslides_presentation
+---
+
+```{r echo = FALSE, message = FALSE, warning = FALSE}
+library(knitr)
+library(dplyr)
+library(pander)
+```
+
+## Sources / Find out more
+
+- Website for R `leaflet` package: http://rstudio.github.io/leaflet/
+- Website for R `plotly` package: 
+- Website for `htmlWidgets`: 
+
+## Example data
+
+```{r}
+load("data/co_floods.Rdata")
+colnames(co_floods)
+co_floods %>% select(event_type, cz_name, fips) %>% slice(1:3)
+```
+
+
+## Example data
+
+```{r}
+co_floods %>% select(begin_date, episode_narrative) %>% slice(1:2) %>% 
+  pander(split.cells = c(5, 50))
+```
+
+## Mapping Colorado floods
+
+```{r message = FALSE, fig.width = 5, fig.height = 4, fig.align = "center"}
+library(ggplot2)
+map_data("county", region = "colorado") %>% 
+  ggplot(aes(x = long, y = lat, group = group)) + 
+  geom_polygon(color = "darkgray", fill = "white") + 
+  geom_point(data = co_floods, aes(x = begin_lon, y = begin_lat, group = NULL),
+             color = "red", alpha = 0.5) +
+  coord_map() + theme_void()
+```
+
+## Mapping Colorado floods
+
+```{r echo = FALSE, message = FALSE, warning = FALSE, fig.align = "center"}
+library(leaflet)
+co_floods %>% 
+  leaflet() %>% 
+  setView(lng = -105.0844, lat = 40.5853, zoom = 10) %>% 
+  addTiles() %>% 
+  addCircleMarkers(~ begin_lon, ~ begin_lat, color = "red", radius = 3) %>% 
+  addMiniMap()
+```
+
