@@ -1,14 +1,18 @@
 ---
-title: "SOARS Tutorial"
+title: "SOARS Tutorial-- htmlWidgets"
 author: "Brooke Anderson"
 date: "3/8/2017"
-output: ioslides_presentation
+output:
+  ioslides_presentation:
+    widescreen: true
+    smaller: true
 ---
 
 ```{r echo = FALSE, message = FALSE, warning = FALSE}
 library(knitr)
 library(dplyr)
 library(pander)
+library(htmltools)
 ```
 
 ## Sources / Find out more
@@ -29,13 +33,13 @@ co_floods %>% select(event_type, cz_name, fips) %>% slice(1:3)
 ## Example data
 
 ```{r}
-co_floods %>% select(begin_date, episode_narrative) %>% slice(1:2) %>% 
+co_floods %>% select(begin_date, event_narrative) %>% sample_n(4) %>% 
   pander(split.cells = c(5, 50))
 ```
 
 ## Mapping Colorado floods
 
-```{r message = FALSE, fig.width = 5, fig.height = 4, fig.align = "center"}
+```{r message = FALSE, fig.width = 4, fig.height = 3.25, fig.align = "center"}
 library(ggplot2)
 map_data("county", region = "colorado") %>% 
   ggplot(aes(x = long, y = lat, group = group)) + 
@@ -45,15 +49,238 @@ map_data("county", region = "colorado") %>%
   coord_map() + theme_void()
 ```
 
-## Mapping Colorado floods
+## Mapping Colorado floods and tornadoes
 
 ```{r echo = FALSE, message = FALSE, warning = FALSE, fig.align = "center"}
 library(leaflet)
+load("data/co_tornadoes.RData")
+co_tornadoes <- co_tornadoes %>% 
+  mutate(popup_text = paste0("<div class='leaflet-popup-scrolled' style='max-height:150px'>",
+                             "<b>County:  </b>", cz_name, "<br/>", 
+                             "<b>Dates:  </b>", begin_date, " to ", end_date, "<br/>", 
+                             "<b># deaths:  </b>", deaths_direct, "<br/>", 
+                             "<b># injuries:  </b>", injuries_direct, "<br/>", 
+                             "<b>Property damage:  </b>$", damage_property, "<br/>", 
+                             "<b>Crop damage:  </b>$", damage_crops, "<br/>", 
+                             event_narrative))
+
 co_floods %>% 
+  mutate(popup_text = paste0("<div class='leaflet-popup-scrolled' style='max-height:150px'>",
+                             "<b>County:  </b>", cz_name, "<br/>", 
+                             "<b>Dates:  </b>", begin_date, " to ", end_date, "<br/>", 
+                             "<b># deaths:  </b>", deaths_direct, "<br/>", 
+                             "<b># injuries:  </b>", injuries_direct, "<br/>", 
+                             "<b>Property damage:  </b>$", damage_property, "<br/>", 
+                             "<b>Crop damage:  </b>$", damage_crops, "<br/>", 
+                             event_narrative)) %>% 
   leaflet() %>% 
-  setView(lng = -105.0844, lat = 40.5853, zoom = 10) %>% 
-  addTiles() %>% 
-  addCircleMarkers(~ begin_lon, ~ begin_lat, color = "red", radius = 3) %>% 
+  setView(lng = -105.0844, lat = 40.5853, zoom = 10) %>%  
+  addProviderTiles("OpenStreetMap.Mapnik") %>%  
+  addCircleMarkers(~ begin_lon, ~ begin_lat, color = "blue", radius = 3, 
+                   popup = ~ popup_text) %>% 
+  addCircleMarkers(data = co_tornadoes, ~ begin_lon, ~ begin_lat,
+                   color = "red", radius = 3, popup = ~ popup_text) %>% 
   addMiniMap()
 ```
 
+## Creating a basic leaflet map
+
+The three basic components of a leaflet map are: 
+
+- Leaflet widget
+- Background (tiles)
+- Mapping of data to locations
+
+```{r fig.width = 8, fig.height = 2.75}
+co_floods %>% leaflet() %>% 
+  addProviderTiles("OpenStreetMap.Mapnik") %>% 
+  addCircleMarkers(lng = ~ begin_lon, lat = ~begin_lat, radius = 3, color = "blue")
+```
+
+## Choices for map tiles
+
+With `addProviderTiles`, you can pick from many different background map tiles. Visit [this provider preview page](https://leaflet-extras.github.io/leaflet-providers/preview/) to see options and get the provider names to use in the R call. Here is the same map using different map tiles: 
+
+```{r fig.width = 8, fig.height = 3}
+co_floods %>% leaflet() %>% 
+  addProviderTiles("NASAGIBS.ViirsEarthAtNight2012") %>% 
+  addProviderTiles("CartoDB.DarkMatterOnlyLabels") %>%
+  addCircleMarkers(lng = ~ begin_lon, lat = ~begin_lat, radius = 3, color = "green")
+```
+
+## Choices for mapping data to locations
+
+There are various things you can add to the map to map data to locations. Several are listed here, and all can be add using `add` plus the item name (for example, `addMarkers`).
+
+- `Markers`: "Push pin" style markers
+- `CircleMarkers`: The circle markers shown in examples so far
+- `LabelOnlyMarkers`
+- `Polylines`
+- `Circles`
+- `Rectangles`
+- `Polygons`
+
+You can layer several of these on the same leaflet map (e.g., roads with `Polylines`, counties with `Polygons`, exact locations with one of the markers).
+
+## Choices for mapping data to locations
+
+Data can be mapped from a dataframe with columns for longitude and latitude. In this case, the names of the correct columns for longitude and latitude should be specified with the `lng` and `lat` arguments: 
+
+```{r fig.width = 8, fig.height = 2.75}
+leaflet() %>% 
+  addProviderTiles("OpenStreetMap.Mapnik") %>% 
+  addCircleMarkers(data = co_floods, lng = ~ begin_lon, ~ begin_lat, 
+                   radius = 3, color = "blue") %>% 
+  addMarkers(data = co_tornadoes, lng = ~ begin_lon, ~ begin_lat)
+```
+
+## Choices for mapping data to locations
+
+Alternatively, if you have data saved as a spatial object, you can map that directly without specifying latitude and longitude columns. 
+
+The [`tigris` package](https://github.com/walkerke/tigris) allows you to pull US Census TIGER shapefiles directly from R. The following call pulls a shape file with Colorado county boundaries (the `cb` options is so we pull a lower-resolution version):
+
+```{r warning = FALSE, message = FALSE}
+library(tigris)
+co_counties <- counties(state = 'CO', cb = TRUE)
+class(co_counties)
+```
+
+## Choices for mapping data to locations
+
+This spatial object can be used when mapping data to location with the `data` option:
+
+```{r fig.width = 8, fig.height = 2.75}
+leaflet() %>% 
+  addProviderTiles("Stamen.TonerBackground") %>% 
+  addPolygons(data = co_counties) %>% 
+  addCircleMarkers(data = co_floods, lng = ~ begin_lon, ~ begin_lat, 
+                   radius = 3, color = "green") 
+```
+
+## Customizing icons
+
+You can use a custom icon for the map markers. For example, [this tornado icon](https://thenounproject.com/term/tornado/11563/) was created by Gilad Fried and is under a Creative Commons license. You can use the following code to use it to mark the Colorado tornados (this assumes it's been saved locally as "figures/tornado.png"):
+
+```{r fig.width = 7, fig.height = 3}
+co_tornadoes %>% 
+  leaflet() %>% addProviderTiles("OpenStreetMap.Mapnik") %>%  
+  addMarkers(~ begin_lon, ~ begin_lat, 
+             icon = makeIcon("figures/tornado.png", iconWidth = 20, iconHeight = 20))
+```
+
+## Using cluster markers
+
+In cases where a leaflet map has a lot of points, it can be hard to interpret until you zoom in. In this case, it often helps to use `markerClusterOptions()` to create cluster markers until the map is zoomed in.
+
+```{r fig.width = 8, fig.height = 2.75}
+leaflet() %>% 
+  addProviderTiles("OpenStreetMap.Mapnik") %>% 
+  addCircleMarkers(data = co_floods, lng = ~ begin_lon, ~ begin_lat, 
+                   radius = 3, color = "blue", 
+                   clusterOptions = markerClusterOptions()) 
+```
+
+## Adding pop-ups
+
+For any of these data mappings, you can add "pop-ups" to show information when a person clicks on a marker or shape. To do this, specify either a column from the dataframe you're mapping or a vector of the same length for the `popup` option. For example, the following call uses the beginning date of each flood in the pop-ups:
+
+```{r fig.width = 8, fig.height = 2.75}
+leaflet() %>% 
+  addProviderTiles("OpenStreetMap.Mapnik") %>% 
+  addCircleMarkers(data = co_floods, lng = ~ begin_lon, ~ begin_lat, popup = ~ begin_date,
+                   radius = 3, color = "green") 
+```
+
+## Adding pop-ups
+
+Shape files will often include some information in the `data` slot that might be useful in a pop-up. For example, the `data` for `co_counties` includes county name: 
+
+```{r}
+head(co_counties@data)
+```
+
+## Adding pop-ups
+
+You can reference values in that `data` slot when mapping data to locations from data stored in a spatial object:
+
+```{r fig.width = 8, fig.height = 2.75}
+leaflet() %>% 
+  addProviderTiles("Stamen.TonerBackground") %>% 
+  addPolygons(data = co_counties, popup = co_counties@data$NAME) 
+```
+
+## Adding pop-ups
+
+Often, it can be helpful to paste together information from several columns of the dataframe to include in the pop-up:
+
+```{r fig.width = 8, fig.height = 2.75}
+co_floods %>% 
+  leaflet() %>% 
+  addProviderTiles("OpenStreetMap.Mapnik") %>% 
+  addCircleMarkers(data = co_floods, lng = ~ begin_lon, ~ begin_lat, 
+                   popup = ~ paste("Date:", begin_date, "to", end_date),
+                   radius = 3, color = "green") 
+```
+
+## Adding pop-ups
+
+If you want to get even fancier, you can include HTML tags to style the text in the pop-ups:
+
+```{r}
+co_floods <- co_floods %>% 
+  mutate(popup_text = paste0("<div class='leaflet-popup-scrolled' style='max-height:150px'>",
+                             "<b>County:  </b>", cz_name, "<br/>", 
+                             "<b>Dates:  </b>", begin_date, " to ", end_date, "<br/>", 
+                             "<b># deaths:  </b>", deaths_direct, "<br/>", 
+                             "<b># injuries:  </b>", injuries_direct, "<br/>", 
+                             "<b>Property damage:  </b>$", damage_property, "<br/>", 
+                             "<b>Crop damage:  </b>$", damage_crops, "<br/>", 
+                             event_narrative))
+```
+
+## Adding pop-ups
+
+Here is the map using these fancier pop-ups:
+
+```{r fig.width = 8, fig.height = 2.75}
+co_floods %>% 
+  leaflet() %>% 
+  addProviderTiles("OpenStreetMap.Mapnik") %>% 
+  addCircleMarkers(data = co_floods, lng = ~ begin_lon, ~ begin_lat, popup = ~ popup_text,
+                   radius = 3, color = "green") 
+```
+
+## Setting the initial view
+
+By default, the map will initial zoom to a point that bounds all the mappings. If you want to customize where and how much the map initially zooms, you can do that with `setView`. For example, this call sets the initial map to show the Fort Collins area rather than all of Colorado:
+
+```{r fig.width = 8, fig.height = 2.75}
+co_floods %>% 
+  leaflet() %>% setView(lng = -105.0844, lat = 40.5853, zoom = 9) %>% 
+  addProviderTiles("OpenStreetMap.Mapnik") %>% 
+  addCircleMarkers(data = co_floods, lng = ~ begin_lon, ~ begin_lat, popup = ~ popup_text,
+                   radius = 3, color = "blue") 
+```
+
+## Adding a minimap
+
+If you set a tighter zoom like this, but also have data for a wider area, you may want to include a mini-map to help users navigate the map. You can do this with `addMinimap`:
+
+```{r fig.width = 8, fig.height = 2.75}
+co_floods %>% 
+  leaflet() %>% setView(lng = -105.0844, lat = 40.5853, zoom = 9) %>% 
+  addMiniMap(position = "topright") %>% 
+  addProviderTiles("OpenStreetMap.Mapnik") %>% 
+  addCircleMarkers(data = co_floods, lng = ~ begin_lon, ~ begin_lat, popup = ~ popup_text,
+                   radius = 3, color = "blue") 
+```
+
+## More widgets
+
+- `htmlWidgets` gallery: http://gallery.htmlwidgets.org
+- Make your own: http://www.htmlwidgets.org/develop_intro.html
+- Find out more about the Javascript libraries: http://leafletjs.com/, https://plot.ly/javascript/
+- Widgets within widgets (within widgets): http://seankross.com/2017/03/02/Mise-en-Abyme.html
+- Interactive Periodic Table CV: http://www.masalmon.eu/2017/02/03/chemist/
+- Crosstalk: https://rstudio.github.io/crosstalk/using.html 
