@@ -13,15 +13,44 @@ library(knitr)
 library(dplyr)
 library(pander)
 library(htmltools)
+library(tidyr)
+library(lubridate)
+library(stringr)
 ```
 
-## Sources / Find out more
+## Getting the slides and data
 
-- Website for R `leaflet` package: http://rstudio.github.io/leaflet/
-- Website for R `plotly` package: 
-- Website for `htmlWidgets`: 
+The slides (as HTML), data, and code for this talk are all available on GitHub: 
+
+https://github.com/geanders/GuestLectures/tree/master/soars_tutorial
+
+```{r echo = FALSE, fig.align = "center", out.width = "80%"}
+knitr::include_graphics("figures/slide_source.png")
+```
+
+## What are htmlWidgets?
+
+The `htmlWidgets` family of packages wrap Javascript visualization libraries. In practice, that means that you can create interactive visualizations from R in which code run by the viewer's web browser allows the interaction. 
+
+These packages can be used to create interactive visualizations that can be added to several outputs: 
+
+- RStudio's Viewer
+- RMarkdown documents rendered to HTML (including presentations)
+- Books or blogs developed using RMarkdown tools (`bookdown` and `blogdown`, respectively)
+- Package vignettes
+- Shiny web applications
 
 ## Example data
+
+```{r echo = FALSE, fig.align = "center", out.width = "90%"}
+knitr::include_graphics("../DrexelSeminar/noaastormevents.png")
+```
+
+For example data, I've pulled listings from NOAA's Storm Events Database. I've pulled all listings of flood and tornado events in Colorado between 2013 and 2015. (Note: I used the [`noaastormevents` package](https://github.com/zailchen/noaastormevents), with development lead by Ziyu Chen, to do this directly from R.)
+
+## Example data
+
+I've created two datasets, `co_floods` and `co_tornados`. Each row represents an event. Columns include the event's date, location, damage, and a few other details.
 
 ```{r}
 load("data/co_floods.Rdata")
@@ -29,8 +58,9 @@ colnames(co_floods)
 co_floods %>% select(event_type, cz_name, fips) %>% slice(1:3)
 ```
 
-
 ## Example data
+
+One of the variables gives longer text descriptions of the event (and can be missing):
 
 ```{r}
 co_floods %>% select(begin_date, event_narrative) %>% sample_n(4) %>% 
@@ -38,6 +68,8 @@ co_floods %>% select(begin_date, event_narrative) %>% sample_n(4) %>%
 ```
 
 ## Mapping Colorado floods
+
+It's pretty straightforward to use R functions to create a static map with this data:
 
 ```{r message = FALSE, fig.width = 4, fig.height = 3.25, fig.align = "center"}
 library(ggplot2)
@@ -50,6 +82,8 @@ map_data("county", region = "colorado") %>%
 ```
 
 ## Mapping Colorado floods and tornadoes
+
+However, we might prefer sometimes to create something interactive:
 
 ```{r echo = FALSE, message = FALSE, warning = FALSE, fig.align = "center"}
 library(leaflet)
@@ -105,7 +139,7 @@ With `addProviderTiles`, you can pick from many different background map tiles. 
 co_floods %>% leaflet() %>% 
   addProviderTiles("NASAGIBS.ViirsEarthAtNight2012") %>% 
   addProviderTiles("CartoDB.DarkMatterOnlyLabels") %>%
-  addCircleMarkers(lng = ~ begin_lon, lat = ~begin_lat, radius = 3, color = "green")
+  addCircleMarkers(lng = ~ begin_lon, lat = ~ begin_lat, radius = 3, color = "green")
 ```
 
 ## Choices for mapping data to locations
@@ -276,6 +310,149 @@ co_floods %>%
                    radius = 3, color = "blue") 
 ```
 
+## The `plotly` library
+
+The `plotly` library is another library in the `htmlWidgets` family. It is more general-purpose, with functions for creating lots of different types of interactive plots.
+
+One particular appeal is that it can be used to wrap `ggplot` objects, to create interactive visualizations very efficiently from code you already have to create static plots. 
+
+For example, you can create a static time series of number of flood events by date in Colorado using this code:
+
+```{r message = FALSE, warning = FALSE, out.width = "90%", out.height = "25%"}
+flood_ts <- co_floods %>% count(begin_date) %>% 
+  full_join(data_frame(begin_date = seq(ymd("2013-01-01"), 
+                                        ymd("2015-12-31"), by = 1))) %>% 
+  mutate(n = ifelse(is.na(n), 0, n)) %>% arrange(begin_date) %>% 
+  ggplot(aes(x = begin_date, y = n)) + 
+  geom_line() + theme_classic() + 
+  labs(x = "Date", y = "# of flood events\nin Colorado") +
+  facet_wrap(~ year(begin_date), ncol = 1, scales = "free_x")
+```
+
+## Flood timeseries
+
+```{r message = FALSE, warning = FALSE, out.width = "80%", out.height = "15%"}
+flood_ts 
+```
+
+## Flood timeseries
+
+Then you can use `ggplotly` to transform that `ggplot` object to an interactive graphic:
+
+```{r message = FALSE, warning = FALSE}
+library(plotly)
+ggplotly(flood_ts)
+```
+
+## Tornado count vs. county population
+
+You can also create plotly graphics "from scratch". This uses a similar piping method as `ggplot2`.
+
+As an example, we might want to figure out: 
+
+- Are more tornadoes are reported in counties with larger populations? and 
+- Are total tornado property damages higher in counties with larger populations?
+
+The `choroplethr` package includes a dataset with US county populations (`df_pop_county`). (You could also pull this through `acs` or something similar, but you'd need an API key.)
+
+```{r}
+data(df_pop_county, package = "choroplethr")
+head(df_pop_county)
+```
+
+## Tornado count vs. county population
+
+Property damages are in a weird format: 
+
+```{r}
+head(co_tornadoes$damage_property, 20)
+```
+
+But there's a function in `noaastormevents` we can use to parse those to numeric values: 
+
+```{r}
+head(noaastormevents::parse_damage(co_tornadoes$damage_property), 20)
+```
+
+
+## Tornado count vs. county population
+
+You can count the number of tornadoes in each county and join with this population data:
+
+```{r}
+county_tornadoes <- co_tornadoes %>% 
+  mutate(damage_property = noaastormevents::parse_damage(damage_property)) %>% 
+  group_by(cz_name) %>% 
+  summarize(fips = first(fips), 
+            tornado_count = n(),
+            damage_property = sum(damage_property)) %>% 
+  right_join(df_pop_county %>% mutate(is_co = str_detect(region, "^8")) %>% 
+               filter(is_co) %>% rename(population = value) %>% select(-is_co), 
+             by = c("fips" = "region")) %>% 
+  mutate(tornado_count = ifelse(is.na(tornado_count), 0, tornado_count),
+         damage_property = ifelse(is.na(damage_property), 1, damage_property + 1))
+head(county_tornadoes, 5)
+```
+
+## Tornado count vs. county population
+
+You can use piping to create a `plotly` object, map attributes of the plot to elements of the data, and then add and change elements of the object (add markers, adjust axes, etc.).
+
+```{r message = FALSE, warning = FALSE}
+co_plot <- county_tornadoes %>% 
+  plot_ly(x = ~ population, y = ~ tornado_count) %>% 
+  add_markers(color = ~ log10(damage_property), 
+              alpha = 0.6,
+              text = ~ paste0(cz_name, " (FIPS: ", fips, ")"), 
+              hoverinfo = c("x", "y", "text")) %>% 
+  colorbar(title = "Log of property damage") %>% 
+  layout(title = "Colorado tornadoes by county",
+         xaxis = list(title = "Population", showgrid = F, type = "log"),
+         yaxis = list(title = "# of tornados (2013-2015)", showgrid = F))
+```
+
+## Tornado count vs. county population
+
+```{r message = FALSE, warning = FALSE}
+co_plot 
+```
+
+## Tornado count vs. county population
+
+You can also create 3-D scatterplots with `plotly`:
+
+```{r warning = FALSE, message = FALSE, fig.height = 4, fig.width = 6, fig.align = "center"}
+county_tornadoes %>% 
+  plot_ly(x = ~ log10(population), y = ~ tornado_count, 
+          z = ~ log10(damage_property)) %>% 
+  add_markers(size = I(4), text = ~ paste0(cz_name, " (FIPS: ", fips, ")"), 
+              hoverinfo = c("x", "y", "text"))
+```
+
+
+## Difference between Shiny and htmlWidgets
+
+Shiny allows you to power web applications with R code run on a Server. The interactive graphics created with `htmlWidgets`, on the other hand, are interactive through Javascript code run on the viewer's web browser. 
+
+```{r echo = FALSE, out.width = "80%", fig.align = "center"}
+knitr::include_graphics("figures/ServerSideClientSide.jpg")
+```
+
+Image source: http://mi-linux.wlv.ac.uk/
+
+This means that `htmlWidgets` graphs can be viewed without creating something linked to a Shiny server. (It also can mean that the data behind the graphic is passed to the viewers, so be careful if using sensitive data.) 
+
+## Sources / Find out more
+
+Many of the packages in the `htmlWidgets` family were developed at RStudio. Both the overall documentation for `htmlWidgets` and documentation for specific packages in the family are typically exceptional. 
+
+These sources were used in developing these slides and are also excellent references for finding out more:
+
+- Website for R `leaflet` package: http://rstudio.github.io/leaflet/
+- Website for R `plotly` book: https://cpsievert.github.io/plotly_book/
+- Website for `htmlWidgets`: http://www.htmlwidgets.org/
+- Website for `htmlWidgets` Showcase: http://www.htmlwidgets.org/showcase_leaflet.html
+
 ## More widgets
 
 - `htmlWidgets` gallery: http://gallery.htmlwidgets.org
@@ -284,3 +461,4 @@ co_floods %>%
 - Widgets within widgets (within widgets): http://seankross.com/2017/03/02/Mise-en-Abyme.html
 - Interactive Periodic Table CV: http://www.masalmon.eu/2017/02/03/chemist/
 - Crosstalk: https://rstudio.github.io/crosstalk/using.html 
+- Using htmlWidgets in Shiny: Several examples in the [Shiny Gallery](https://shiny.rstudio.com/gallery/)
