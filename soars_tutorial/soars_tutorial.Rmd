@@ -50,12 +50,12 @@ For example data, I've pulled listings from NOAA's Storm Events Database. I've p
 
 ## Example data
 
-I've created two datasets, `co_floods` and `co_tornados`. Each row represents an event. Columns include the event's date, location, damage, and a few other details.
+I've created two data sets, `co_floods` and `co_tornados`. Each row represents an event. Columns include the event's date, location, damage, and a few other details.
 
 ```{r}
 load("data/co_floods.Rdata")
 colnames(co_floods)
-co_floods %>% select(event_type, cz_name, fips) %>% slice(1:3)
+co_floods %>% select(begin_date, event_type, cz_name, fips, begin_lat, begin_lon) %>% slice(1:3)
 ```
 
 ## Example data
@@ -77,7 +77,7 @@ map_data("county", region = "colorado") %>%
   ggplot(aes(x = long, y = lat, group = group)) + 
   geom_polygon(color = "darkgray", fill = "white") + 
   geom_point(data = co_floods, aes(x = begin_lon, y = begin_lat, group = NULL),
-             color = "red", alpha = 0.5) +
+             color = "blue", alpha = 0.5) +
   coord_map() + theme_void()
 ```
 
@@ -194,7 +194,7 @@ leaflet() %>%
 
 ## Customizing icons
 
-You can use a custom icon for the map markers. For example, [this tornado icon](https://thenounproject.com/term/tornado/11563/) was created by Gilad Fried and is under a Creative Commons license. You can use the following code to use it to mark the Colorado tornados (this assumes it's been saved locally as "figures/tornado.png"):
+You can use a custom icon for the map markers. For example, [this tornado icon](https://thenounproject.com/term/tornado/11563/) was created by Gilad Fried and is under a Creative Commons license. You can use the following code to use it to mark the Colorado tornadoes (this assumes it's been saved locally as "figures/tornado.png"):
 
 ```{r fig.width = 7, fig.height = 3}
 co_tornadoes %>% 
@@ -353,7 +353,7 @@ As an example, we might want to figure out:
 - Are more tornadoes are reported in counties with larger populations? and 
 - Are total tornado property damages higher in counties with larger populations?
 
-The `choroplethr` package includes a dataset with US county populations (`df_pop_county`). (You could also pull this through `acs` or something similar, but you'd need an API key.)
+The `choroplethr` package includes a data set with US county populations (`df_pop_county`). (You could also pull this through `acs` or something similar, but you'd need an API key.)
 
 ```{r}
 data(df_pop_county, package = "choroplethr")
@@ -419,7 +419,7 @@ co_plot
 
 ## Tornado count vs. county population
 
-You can also create 3-D scatterplots with `plotly`:
+You can also create 3-D scatter plots with `plotly`:
 
 ```{r warning = FALSE, message = FALSE, fig.height = 4, fig.width = 6, fig.align = "center"}
 county_tornadoes %>% 
