@@ -20,7 +20,7 @@ library(memisc)
 
 \begin{block}{Course notes}
 A pdf of these coursenotes can be downloaded at: \\ \medskip
-\url{www.github.com/geanders/GuestLectures/AdvancedEpidemiology/sample_size.pdf}
+\url{https://github.com/geanders/GuestLectures/blob/master/AdvancedEpi/sample_size.pdf}
 \end{block}
 
 \begin{block}{Required reading}
