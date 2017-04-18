@@ -1,0 +1,983 @@
+---
+output:
+  beamer_presentation:
+    keep_tex : true
+    includes: 
+      in_header: anderson_header_regression.txt
+      before_body: anderson_beforebody.txt
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+library(ggplot2)
+library(memisc)
+library(stargazer)
+```
+
+## Further reading and sources
+
+- Woodward (2014) *Epidemiology: Study Design and Data Analysis.* Chapman & Hall.
+- Vittinghoff et al. (2005) *Regression Methods in Biostatistics: Linear, Logistic, Survival, and Repeated Measures Models.* Springer. 
+- Harrell. (2001) *Regression Modelling Strategies: With Applications to Linear Models, Logistic and Ordinal Regression, and Survival Analysis.* Springer.
+
+## Basics of logarithms
+
+There are a few basics of logartithms you should keep in mind for this lecture (these all use $log$ for a natural logarithm):
+
+1. If $log(a) = b$, then $a = e^b$.
+2. $log(e^a) = a$. Similarly, $e^{log(a)} = a$.
+3. $log(1) = 0$ and $e^0 = 1$.
+4. $log(a * b) = log(a) + log(b)$.
+5. $log(a / b) = log(a) - log(b)$. As a result, $log(1/a) = -log(a)$.
+
+## General model equation for generalized linear regression
+
+Systematic part of generalized linear models (GLMs):
+
+$$ 
+g(E[Y_i]) = \beta_0 + \beta_1X_1 + \beta_2X_2 + \beta_3X_3 + ...
+$$
+where: 
+
+- $E[Y_i]$ is the expected value of the outcome ($Y_i$) for observation $i$
+- $g(.)$ is a function linking the expected value of the outcomes to the predictors (identity function for linear regression, logit function for logistic regression, etc.)
+- $\beta_0$ is the model intercept
+- $X_1$, $X_2$, $X_3$, etc., are predictor variables
+- $\beta_1$, $\beta_2$, $\beta_3$, etc., are parameters describing the relationship between the predictor variables and the outcome
+
+The right-hand side of this model equation is the **linear predictor**.
+
+## General model equation for generalized linear regression
+
+Random part of GLMs:
+
+- What is the distribution of the outcome ($Y_i$) conditional on the observed values of the predictors ($X_1$, $X_2$, etc.)?
+
+\begin{block}{Fitting GLMs}
+GLMs are fit through \textbf{maximum-likelihood estimation}. For each candidate model, the \textbf{likelihood} of the data (joint probability of the data) under that model is measured. The \textbf{maximum-likelihood estimates} for the parameters are the values that maximize the likelihood of the observed data. 
+\end{block}
+
+## General model equation for generalized linear regression
+
+\begin{block}{Simple regression}
+If only one explanatory variable is included, it's a "simple" regression: 
+\begin{equation*} 
+g(E[Y_i]) = \beta_0 + \beta_1X_1 
+\end{equation*}
+\end{block}
+
+\begin{block}{Multiple regression}
+If two or more explanatory variables are included, it's a "multiple" regression: 
+\begin{equation*}
+g(E[Y_i]) = \beta_0 + \beta_1X_1 + \beta_2X_2 + \beta_3X_3 + ...
+\end{equation*}
+\end{block}
+
+## An epidemiologist walks into a movie theater...
+
+```{r echo = FALSE, message = FALSE, warning = FALSE, results = "asis"}
+library(readr)
+library(dplyr)
+titanic <- read_csv("http://biostat.mc.vanderbilt.edu/wiki/pub/Main/DataSets/titanic3.csv") %>% 
+  dplyr::select(survived, pclass, sex, age) %>% 
+  mutate(pclass = ifelse(pclass == 2, 1, pclass),
+         Class = factor(pclass, levels = c(1, 3), labels = c("First or Second", "Third")),
+         Sex = factor(sex, levels = c("female", "male"), labels = c("Female", "Male")),
+         Age = ifelse(age >= 12, "Adult", "Child"),
+         Age = factor(Age),
+         Outcome = factor(survived, levels = c(1, 0), labels = c("Survived", "Died"))) %>% 
+  dplyr::rename("Survived" = survived) %>% 
+  dplyr::select(Outcome, Class, Sex, Age) %>% 
+  filter(!is.na(Outcome) & !is.na(Class) & !is.na(Sex) & !is.na(Age))
+```
+
+
+
+\begin{columns}
+\begin{column}{0.45\textwidth}
+\includegraphics[width=\textwidth]{images/titanic_poster.jpg}
+\end{column}
+\begin{column}{0.55\textwidth}
+The mortality outcomes, by sex, of passengers on the Titanic were (note: some passengers with missing data have been excluded):\\[0.5ex]
+
+\centering
+
+```{r echo = FALSE, message = FALSE, warning = FALSE, results = "asis"}
+titanic %>% 
+  dplyr::select(Sex, Outcome) %>% 
+  table() %>% 
+  ftable() %>% 
+  toLatex(digits = 0, center = TRUE, useBooktabs = TRUE)
+```
+
+\medskip
+
+\justifying
+
+\footnotesize{Data obtained from \url{http://biostat.mc.vanderbilt.edu/wiki/Main/DataSets}. Original data source: Hind (1999) \textit{Encyclopedia Titanica.} \url{http://atschool.eduweb.co.uk/phind}. Figure source: \url{http://www.imdb.com}}
+\end{column}
+\end{columns}
+
+## Example-- Surviving the Titanic
+
+Based on this table (i.e., using contingency table methods), determine and discuss: 
+
+- Does sex affect the odds of dying during the Titanic sinking?
+- Are the odds that someone like Jack will die on the Titanic versus the odds that someone like Rose will?
+- How do these two questions differ?
+- Are the odds of dying on the Titanic significantly higher (statistically) for males versus females? What about for someone like Jack versus someone like Rose?
+- What other information would you like to have to better answer these questions? How would the information help to answer the previous questions?
+
+## Example-- Surviving the Titanic
+
+\centering
+
+```{r echo = FALSE, message = FALSE, warning = FALSE, results = "asis", fig.align = 'center'}
+titanic %>% 
+  dplyr::select(Sex, Outcome) %>% 
+  table() %>% 
+  ftable() %>% 
+  toLatex(digits = 0, center = TRUE, useBooktabs = TRUE)
+```
+
+- The odds for dying on the Titanic for females is $\frac{96}{292} = 0.33$ 
+- The odds for dying on the Titanic for males is $\frac{523}{135} = 3.87$
+- The odds ratio for dying on the Titanic for males compared to females is $\frac{523 * 292}{135 * 96} = 11.78$ 
+- The log odds ratio is $log(11.78) = 2.47$
+- The estimated standard error for the log odds ratio is $\sqrt{\frac{1}{292} + \frac{1}{96} + \frac{1}{135} + \frac{1}{523}} = 0.15$
+- The 95% confidence interval for the odds ratio is (8.74, 15.88)
+
+## Logistic function 
+
+Logistic function, with $p_i = Pr(Y_i = 1 | X_i)$:
+
+$$
+p_i = \frac{1}{1 + e^{-\beta_0-\beta_1X_i}}
+$$
+
+Plot of logistic function with $\beta_0$ = 0, $\beta_1$ = 1 (note that y is always between 0 and 1):
+
+```{r echo = FALSE, fig.width = 4, fig.height = 2, fig.align = "center", out.width = "3in"}
+data_frame(x = seq(-5, 5, length.out = 100)) %>% 
+  mutate(y = 1 / (1 + exp(-x))) %>% 
+  ggplot(aes(x = x, y = y)) + 
+  geom_line() + 
+  theme_classic() + 
+  geom_hline(yintercept = c(0, 1), linetype = 3) + 
+  labs(x = expression(X[i]), y = expression(p[i]))
+```
+
+## Logit function 
+
+Notice what happens if you change the equation so the right-hand side matches the typical model equation format for a GLM. \medskip
+
+Before:
+
+$$
+p_i = \frac{1}{1 + e^{-\beta_0 - \beta_1X_i}}
+$$
+
+After:
+
+$$
+log(\frac{p_i}{1 - p_i}) = \beta_0 + \beta_1X_i
+$$
+
+\medskip The left-hand side of this equation is the **logit** of $p_i$. 
+
+
+## Logistic regression example
+
+Let's fit a logistic regression for the previous example on sex and risk of dying in the Titanic sinking. The systematic part of this model is:
+
+$$
+log(\frac{p_i}{1 - p_i}) = \beta_0 + \beta_1X_{1,i}
+$$
+
+where: 
+
+- $p_i$: Probability person $i$ died during the sinking, $Pr(Y_i = 1 | X_i)$
+- $Y_i$: Whether person $i$ died during the sinking
+
+\begin{equation*}
+    X_i=
+    \begin{cases}
+      0 \text{ if person \textit{i} is female} \\
+      1 \text{ if person \textit{i} is male}
+    \end{cases}
+\end{equation*}
+
+The random part of the model is: Outcomes ($Y_i$) follow a binomial distribution.
+
+## Interpreting coefficients-- logistic regression
+
+For males, this equation evaluates to: 
+
+$$
+log(\frac{p_m}{1 - p_m}) = \beta_0 + \beta_1*1 = \beta_0 + \beta_1
+$$
+
+For females, this equation evaluates to: 
+
+$$
+log(\frac{p_f}{1 - p_f}) = \beta_0 + \beta_1*0 = \beta_0 
+$$
+
+Therefore: 
+
+- The log odds for males is estimated by $\beta_0 + \beta_1$
+- The log odds for females is estimated by $\beta_0$.
+
+## Interpreting coefficients-- logistic regression
+
+Now look at what happens when you subtract the log odds for males from the log odds for females: 
+
+$$
+log(\frac{p_m}{1 - p_m}) - log(\frac{p_f}{1 - p_f}) = (\beta_0 + \beta_1) - (\beta_0)
+$$
+
+You can rearrange this to:
+
+$$
+log\left(\frac{\frac{p_m}{1-p_m}}{\frac{p_f}{1-p_f}}\right) = \beta_1
+$$
+
+- The log(odds ratio) (which equals the difference in the log(odds)) for males compared to females is estimated by $\hat{\beta_1}$.
+
+## Example-- Surviving the Titanic
+
+To fit this model, you'll want to have your data in a form where there is one row per observation (person in this case), with columns for the outcome (died [1] / survived [0]) and predictor variable (sex: male [1] / female [0]). The first few rows might look like:
+
+```{r echo = FALSE}
+titanic %>% 
+  dplyr::select(Outcome, Sex) %>% 
+  mutate(Outcome = as.numeric(Outcome) - 1,
+         Sex = as.numeric(Sex) - 1) %>% 
+  slice(1:6) %>% knitr::kable()
+```
+
+\footnotesize
+
+Note that if you take the mean of the `Outcome` column, it gives you the probability of death across the observations ($p_i = E(Y_i)$).
+
+## Example-- Surviving the Titanic
+
+Here are results from fitting a logistic regression to the data on sex and odds of death on the Titanic:
+
+\begin{table}
+```{r echo = FALSE, results = 'asis'}
+simple_model <- glm(Outcome ~ Sex, data = titanic, family = "binomial")
+mtable("Simple logistic" = simple_model,
+       summary.stats=c("Log-likelihood","Deviance","AIC","BIC")) %>% 
+  relabel() %>% 
+  toLatex(compact = TRUE)
+```
+\end{table}
+
+\footnotesize Values for each row of the top of the table are estimated model coefficients ($\hat{\beta_0}$ and $\hat{\beta_1}$). Values in parentheses are estimated standard errors for each coefficient. Stars indicate the range of the p-value for the estimated coefficient.
+
+## Example-- Surviving the Titanic
+
+From the previous table, the p-value for each parameter is for a hypothesis test of: 
+
+$$
+H_0: \beta_j = 0
+$$
+$$
+H_a: \beta_j \neq 0
+$$
+
+We already saw that $\hat{\beta_1}$ in the previous model is estimating the log odds ratio of dying during the Titanic sinking for males versus females. If the odds are identical for males and females, the odds ratio would be 1, so the log odds ratio would be $log(1) = 0$. 
+
+## Logistic regression example
+
+The systematic model form we fit was:
+
+$$
+log(\frac{p_i}{1 - p_i}) = \hat{\beta_0} + \hat{\beta_1}X_{1,i}
+$$
+
+The model we estimated based on the data is:
+
+$$
+log(\frac{p_i}{1 - p_i}) = -1.112 + 2.467X_{1,i}
+$$
+
+where: 
+
+\begin{equation*}
+    X_i=
+    \begin{cases}
+      0 \text{ if person \textit{i} is female} \\
+      1 \text{ if person \textit{i} is male}
+    \end{cases}
+\end{equation*}
+
+## Logistic regression example
+
+$$
+log(\frac{p_i}{1 - p_i}) = -1.112 + 2.467X_{1,i}
+$$
+\small
+
+- The log odds for females is estimated by $-1.112$. The odds for females of dying during the sinking of the Titanic is estimated as $e^{-1.112} = 0.33$. This corresponds with about a 25% risk of dying.
+- The log odds for males is estimated as $-1.112 + 2.467 = 1.355$. The odds for males of dying during the sinking of the Titanic is estimated as $e^{1.355} = 3.88$. This corresponds with about an 80% risk of dying.  
+- The log odds ratio for males versus females is estimated as $2.467$. The odds ratio for males versus females is estimated as $e^{2.467} = 11.78$.
+- The standard error of the log odds ratio is estimated as $0.1522$. The estimated 95% confidence interval for the log odds ratio is $2.467 \pm 1.96(0.1522) = (2.169, 2.765)$. The 95% confidence interval for the odds ratio is $(e^{2.169}, e^{2.765}) = (8.75, 15.88)$. 
+
+## Example-- Surviving the Titanic
+
+Our analysis so far has not made any consideration for the age of each person in the data. Here is the data divided by age group:
+
+\vspace{-5mm}
+
+```{r echo = FALSE, fig.width = 5, fig.height = 3, out.width = "0.8\\textwidth", fig.align = "center"}
+titanic %>% 
+  ggplot(aes(x = Age, y = Outcome, color = Sex)) + 
+  geom_jitter(alpha = 0.5, size = 0.6) + 
+  theme_classic() + 
+  theme(legend.position = "top") + 
+  labs(x = "", y = "")
+```
+
+\vspace{-5mm}
+
+\footnotesize
+
+Each point represents a person in the data. Color shows whether the person was male or female. The quadrant in which the point is plotted shows whether the person was an adult or a child (x-axis) and whether the person survived or died (y-axis).
+
+
+
+## Example-- Surviving the Titanic
+
+Two things we might want to consider are: 
+
+- Would the odds ratio for males versus females be different if we **adjusted** for age?
+- Is there an **interaction** between sex and age in the odds of death during the sinking of the Titanic?
+
+How would you assess these two questions based on a table of the data?
+
+\centering
+
+```{r echo = FALSE, message = FALSE, warning = FALSE, results = "asis"}
+titanic %>% 
+  dplyr::select(Sex, Age, Outcome) %>% 
+  table() %>% 
+  ftable() %>% 
+  toLatex(digits = 0, center = TRUE, useBooktabs = TRUE)
+```
+
+## Adjusting for a variable
+
+- "Adjusting" estimates the association for a predictor and outcome while ensuring the comparison is within the same strata of another variable (e.g., comparing odds for males versus females while ensuring that adults are compared to adults and children to children).
+
+\begin{block}{Idea of adjusting for a variable in Titanic example}
+We assume there is a constant odds ratio of dying for males versus females, regardless of age. However, in our simple logistic regression, we may not be estimating this odds ratio well because: 
+\begin{enumerate}
+  \item The proportion of males versus females may differ by age category.
+  \item The odds of death may differ by age category.
+\end{enumerate}
+\end{block}
+
+## Adjusting for a variable
+
+```{r echo = FALSE, fig.align = "center", out.width = "0.9\\textwidth"}
+knitr::include_graphics("images/purity.png")
+```
+
+\vspace{-8mm}
+
+\footnotesize{Figure source: \url{www.xkcd.com}.}
+
+\small
+
+- Adjusting for a variable can help correct for bias from a confounder.
+- For continuous outcomes, adjusting for a variable that helps explain residual variance in the outcome can improve efficiency
+
+\footnotesize{Shisterman et al. (2009) Overadjustment bias and unnecessary adjustment in epidemiologic studies. \textit{Epidemiology} 20(4):488--295.}
+
+## Investigating interaction with a variable
+
+\begin{block}{Idea of interaction in Titanic example}
+The odds ratio of dying during the Titanic sinking for males versus females is \textbf{different} within each age category. We will estimate separate odds ratios for adults and children.
+\end{block}
+
+- If we find that there is an interaction between sex and age in odds of dying, we would say that age **modifies** the association between sex and odds of dying. We would call age an **effect modifier** for this association. (Note that this is *not* mediation!)
+
+## Example-- Surviving the Titanic
+
+We can fit a model to estimate the log odds ratio of dying during the sinking of the Titanic for males versus females, adjusted for age, with the following regression model:
+
+$$
+log(\frac{p_i}{1 - p_i}) = \beta_0 + \beta_1X_{1,i} + \beta_2X_{2,i}
+$$
+
+where: 
+
+\begin{equation*}
+    X_{1,i}=
+    \begin{cases}
+      0 \text{ if person \textit{i} is female} \\
+      1 \text{ if person \textit{i} is male}
+    \end{cases}
+\end{equation*}
+
+\begin{equation*}
+    X_{2,i}=
+    \begin{cases}
+      0 \text{ if person \textit{i} is an adult} \\
+      1 \text{ if person \textit{i} is a child}
+    \end{cases}
+\end{equation*}
+
+## Example-- Surviving the Titanic
+
+From this logistic regression model, here are the log odds that will be estimated for each group:
+
+\centering
+
+\begin{tabular}{lcc}
+\toprule \\
+ & Adult & Child \\
+\midrule
+Female & $\hat{\beta_0}$ & $\hat{\beta_0} + \hat{\beta_2}$ \\
+Male & $\hat{\beta_0} + \hat{\beta_1}$ & $\hat{\beta_0} + \hat{\beta_1} + \hat{\beta_2}$ \\
+\bottomrule
+\end{tabular}
+
+\vspace{5mm}
+
+\justifying
+
+Notice that these estimates always estimate the same difference in log odds between males and females within an age category ($\hat{\beta_1}$), regardless of which age category you consider. This is the estimated log odds ratio for males versus females, *adjusted for* or *controlling for* age category.
+
+## Example-- Surviving the Titanic
+
+Here are the results from fitting the regression model ("Sex and Age" column):
+
+\begin{table}
+```{r echo = FALSE, results = 'asis'}
+adj_model_2 <- glm(Outcome ~ Sex + Age, data = titanic, family = "binomial")
+mtable("Sex only" = simple_model,
+       "Sex and Age" = adj_model_2,
+       summary.stats=c("Log-likelihood","Deviance","AIC","BIC")) %>% 
+  relabel() %>% 
+  toLatex(compact = TRUE)
+```
+\end{table}
+
+## Example-- Surviving the Titanic
+
+When we fit our data to the model, we get the following regression model:
+
+$$
+log(\frac{p_i}{1 - p_i}) = -1.0532 + 2.4634X_{1,i} + -0.6413X_{2,i}
+$$
+
+where: 
+
+\begin{equation*}
+    X_{1,i}=
+    \begin{cases}
+      0 \text{ if person \textit{i} is female} \\
+      1 \text{ if person \textit{i} is male}
+    \end{cases}
+\end{equation*}
+
+\begin{equation*}
+    X_{2,i}=
+    \begin{cases}
+      0 \text{ if person \textit{i} is an adult} \\
+      1 \text{ if person \textit{i} is a child}
+    \end{cases}
+\end{equation*}
+
+## Example-- Surviving the Titanic
+
+Here are the log odds estimated for each group:
+
+\centering
+
+\begin{tabular}{lcc}
+\toprule \\
+ & Adult & Child \\
+\midrule
+Female & -1.0532 & -1.0532 - 0.6413 \\
+Male   & -1.0532 + 2.4634 & -1.0532 + 2.4634 - 0.6413 \\
+\bottomrule
+\end{tabular}
+
+- The estimated log odds ratio for males versus females, *adjusted for age group*, is $2.4634$.
+- The estimated odds ratio for males versus females, *adjusted for age group*, is $e^{2.4634} = 11.74$.
+- The 95% confidence interval for the log odds ratio is $2.4634 \pm 1.96(0.1527) = (2.164, 2.763)$.
+- The 95% confidence interval for the odds ratio is $(e^{2.164}, e^{2.763}) = (8.71, 15.84)$.
+
+## Example-- Surviving the Titanic
+
+Here are graphs of the estimated log odds within each group (the dotted line shows the estimate from the simple logistic regression):
+
+```{r echo = FALSE, message = FALSE, warning = FALSE, fig.width = 7, fig.height = 3}
+or_male <- coef(simple_model)["SexMale"]
+prob_male <- predict(simple_model, newdata = data_frame(Sex = "Male"), type = "response")
+prob_female <- predict(simple_model, newdata = data_frame(Sex = "Female"), type = "response")
+
+prob_adj <- predict(adj_model_2, 
+                    newdata = data_frame(Sex = c("Male", "Male", "Female", "Female"),
+                                         Age = c("Adult", "Child", "Adult", "Child")), 
+                    type = "link")
+
+data_frame(sex = c(1, 1, 0, 0),
+           Sex = c("Male", "Male", "Female", "Female"),
+           Age = c("Adult", "Child", "Adult", "Child"),
+           prob_simple = car::logit(c(prob_male, prob_male, prob_female, prob_female)),
+           prob_adj = prob_adj) %>% 
+  ggplot() + 
+  geom_line(aes(x = sex, y = prob_simple), linetype = 3, alpha = 0.5) +
+  geom_point(aes(x = sex, y = prob_adj), color = "black", size = 2) + 
+  geom_line(aes(x = sex, y = prob_adj)) + 
+  theme_classic() + 
+  # geom_jitter(data = titanic, aes(x = as.numeric(Sex) - 1, y = as.numeric(Outcome) - 1), 
+  #             alpha = 0.7, height = 0.1, width = 0.2, size = 0.5) +
+  # ylim(c(0, 1)) + 
+  xlim(c(-.5, 1.5)) + 
+  theme(legend.position = "top") + 
+  facet_wrap(~ Age) +
+  scale_x_continuous(name = "Sex", breaks = c(0, 1), labels = c("Female", "Male")) + 
+  ylab("Log odds of death")
+```
+
+In this analysis, we made the assumption that the odds ratio for males versus females is the same within each age category. However, we have allowed the age categories to have different baseline log odds. 
+
+## Deviance / Likelihood test statistic
+
+The deviance and log-likeihood values can be used to calculate test statistics for hypothesis tests of **nested** models. Models are nested if: 
+
+- The predictors for one model are a subset of the predictors for the other model.
+- The models were fit using the same observations. 
+
+Information criteria (e.g., AIC, BIC) can be used to compare models whether they are tested or not. However, they can not be used for specific hypothesis tests. 
+
+## Example-- Surviving the Titanic
+
+We can fit a model to estimate the log odds ratio of dying during the sinking of the Titanic for males versus females, with an interaction for age, with the following regression model:
+
+$$
+log(\frac{p_i}{1 - p_i}) = \beta_0 + \beta_1X_{1,i} + \beta_2X_{2,i} + \beta_3X_{1,i}X_{2,i}
+$$
+
+where: 
+
+\begin{equation*}
+    X_{1,i}=
+    \begin{cases}
+      0 \text{ if person \textit{i} is female} \\
+      1 \text{ if person \textit{i} is male}
+    \end{cases}
+\end{equation*}
+
+\begin{equation*}
+    X_{2,i}=
+    \begin{cases}
+      0 \text{ if person \textit{i} is an adult} \\
+      1 \text{ if person \textit{i} is a child}
+    \end{cases}
+\end{equation*}
+
+## Example-- Surviving the Titanic
+
+From this logistic regression model, here are the odds that will be estimated for each group:
+
+\centering
+
+\begin{tabular}{lcc}
+\toprule \\
+ & Adult & Child \\
+\midrule
+Female & $\hat{\beta_0}$ & $\hat{\beta_0} + \hat{\beta_2}$ \\
+Male & $\hat{\beta_0} + \hat{\beta_1}$ & $\hat{\beta_0} + \hat{\beta_1} + \hat{\beta_2} + \hat{\beta_3}$ \\
+\bottomrule
+\end{tabular}
+
+\vspace{5mm}
+
+\justifying
+
+Notice that now the difference in log odds for males versus females is different depending whether the person is an adult (difference in log odds of $\hat{\beta_1}$ between males and females) or a child (difference in log odds of $\hat{\beta_1} + \hat{\beta_3}$ between males and females). We are now estimating different odds ratios for males versus females for the two age categories.
+
+## Example-- Surviving the Titanic
+
+Here are the results from fitting the regression model ("Sex:Age" column):
+
+\vspace{-5mm}
+
+\begin{table}
+\footnotesize
+```{r echo = FALSE, results = 'asis'}
+inter_model_2 <- glm(Outcome ~ Sex * Age, data = titanic, family = "binomial")
+mtable("Sex only" = simple_model,
+       "Sex+Age" = adj_model_2,
+       "Sex:Age" = inter_model_2,
+       summary.stats=c("Log-likelihood","Deviance","AIC","BIC")) %>% 
+  relabel() %>% 
+  toLatex(compact = TRUE)
+```
+\end{table}
+
+## Example-- Surviving the Titanic
+
+When we fit our data to the model, we get the following regression model:
+
+$$
+log(\frac{p_i}{1 - p_i}) = -1.2178 + 2.7411X_{1,i} + 0.8321X_{2,i} + -2.4780X_{1,i}X_{2,i}
+$$
+
+where: 
+
+\begin{equation*}
+    X_{1,i}=
+    \begin{cases}
+      0 \text{ if person \textit{i} is female} \\
+      1 \text{ if person \textit{i} is male}
+    \end{cases}
+\end{equation*}
+
+\begin{equation*}
+    X_{2,i}=
+    \begin{cases}
+      0 \text{ if person \textit{i} is an adult} \\
+      1 \text{ if person \textit{i} is a child}
+    \end{cases}
+\end{equation*}
+
+## Example-- Surviving the Titanic
+
+Here are the log odds estimated for each group:
+
+\centering
+
+\begin{tabular}{lcc}
+\toprule \\
+ & Adult & Child \\
+\midrule
+Female & -1.2178 & -1.2178 + 0.8321 \\
+Male   & -1.2178 + 2.7411 & -1.2178 + 2.7411 + 0.8321 - 2.4780 \\
+\bottomrule
+\end{tabular}
+
+\small
+
+- The estimated log odds ratio for males versus females, *among adults*, is $2.7411$.
+- The estimated log odds ratio for males versus females, *among children*, is $2.7411 - 2.4780 = 0.2631$.
+- The estimated odds ratio for males versus females is $e^{2.7411} = 15.50$ among adults and $e^{0.2631} = 1.30$ among children.
+- The 95% confidence interval for the log odds ratio among adults is $2.7411 \pm 1.96(0.1661) = (2.416, 3.067)$.
+- The 95% confidence interval for the odds ratio is $(e^{2.416}, e^{3.067}) = (11.20, 21.47)$.
+
+## Example-- Surviving the Titanic
+
+Here are graphs of the estimated log odds within each group (the dotted line shows the estimate from the simple logistic regression):
+
+\vspace{-2mm}
+
+```{r echo = FALSE, message = FALSE, warning = FALSE, fig.width = 7, fig.height = 3, out.width = "0.9\\textwidth", fig.align = "center"}
+prob_inter <- predict(inter_model_2, 
+                    newdata = data_frame(Sex = c("Male", "Male", "Female", "Female"),
+                                         Age = c("Adult", "Child", "Adult", "Child")), 
+                    type = "link")
+
+data_frame(sex = c(1, 1, 0, 0),
+           Sex = c("Male", "Male", "Female", "Female"),
+           Age = c("Adult", "Child", "Adult", "Child"),
+           prob_simple = car::logit(c(prob_male, prob_male, prob_female, prob_female)),
+           prob_inter = prob_inter) %>% 
+  ggplot() + 
+  geom_line(aes(x = sex, y = prob_simple), linetype = 3, alpha = 0.5) +
+  geom_point(aes(x = sex, y = prob_inter), color = "black", size = 2) + 
+  geom_line(aes(x = sex, y = prob_inter)) + 
+  theme_classic() + 
+  # geom_jitter(data = titanic, aes(x = as.numeric(Sex) - 1, y = as.numeric(Outcome) - 1), 
+  #             alpha = 0.7, height = 0.1, width = 0.2, size = 0.5) +
+  # ylim(c(0, 1)) + 
+  xlim(c(-.5, 1.5)) + 
+  theme(legend.position = "top") + 
+  facet_wrap(~ Age) +
+  scale_x_continuous(name = "Sex", breaks = c(0, 1), labels = c("Female", "Male")) + 
+  ylab("Log odds of death")
+```
+
+\small 
+
+In this analysis, we have estimated **different** odds ratios within each age category. These two odds ratios are very different, indicating evidence of an interation between age and sex on the odds of dying during the sinking of the Titanic.
+
+## Example-- Surviving the Titanic
+
+\begin{columns}
+\begin{column}{0.55\textwidth}
+\begin{itemize}
+\small
+  \item \textbf{Adjusting for age:} The odds ratio for males versus females of dying during the sinking of the Titanic is very similar with or without adjustment for age. 
+  \item \textbf{Interaction with age:} There is strong evidence of an interaction between age and sex in the odds of dying during the sinking of the Titanic. While the odds of dying are much higher for males than females among adults, the odds do not vary much by sex among children.
+\end{itemize}
+\end{column}
+
+\begin{column}{0.45\textwidth}
+\includegraphics{images/interaction.jpg}
+\end{column}
+\end{columns}
+
+## Example-- Surviving the Titanic
+
+You could continue expanding the regression model. For example, do you think that the odds ratio for males versus females should be adjusted for ticket class? Do you think there might be an interaction between sex and ticket class? What about age and ticket class?
+
+```{r echo = FALSE, fig.width = 6, fig.height = 3.5, out.width = "0.85\\textwidth"}
+titanic %>% 
+  ggplot(aes(x = Class, y = Outcome, color = Sex)) + 
+  geom_jitter(alpha = 0.5) + 
+  facet_wrap(~ Age) + 
+  theme_classic() + 
+  theme(legend.position = "top") + 
+  labs(x = "", y = "")
+```
+
+## Generalized linear models
+
+Different forms of GLMs are distinguished by (1) the link function and (2) the distribution of the outcome. 
+
+\centering \small
+
+\begin{tabular}{lccc}
+\toprule \\
+ & Example & & Outcome \\
+Model & outcome & Link &  distribution \\
+\midrule
+Linear & Continuous & Identity: $E(Y)$ & Normal\\
+Logistic & Binary & Logit: $log(\frac{E(Y)}{1-E(Y)})$ & Binomial\\
+Poisson & Count & Log: $log(E(Y))$ & Poisson \\
+Log-binomial & Binary & Log: $log(E(Y))$ & Binomial\\
+Additive risk & Binary & Identity: $E(Y)$  & Binomial\\
+\bottomrule
+\end{tabular}
+
+## Generalized linear models-- link functions
+
+Here are how the systematic part of a GLM looks for different link functions:
+
+\begin{block}{Identity link:}
+$$
+E([Y_i]) = \beta_0 + \beta_1X_1 + \beta_2X_2 + ...
+$$
+\end{block}
+
+\begin{block}{Log link:} 
+$$
+log(E[Y_i]) = \beta_0 + \beta_1X_1 + \beta_2X_2 + ...
+$$
+\end{block}
+
+\begin{block}{Logit link:}
+$$
+log\left(\frac{E[Y_i]}{1 - E[Y_i]}\right) = \beta_0 + \beta_1X_1 + \beta_2X_2 + ...
+$$
+\end{block}
+
+## Survival analysis
+
+What if we were interested in how long people survived instead of whether they survived? 
+
+\vspace*{-5mm}
+
+```{r echo = FALSE, message = FALSE, warning = FALSE, fig.width = 8, fig.height = 5, fig.align = "center", out.width = "0.85\\textwidth"}
+library(lubridate)
+library(grid)
+titanic_survival <- data_frame(time = c(rep("1912-04-14 11:45 PM", 3),
+                                        "1912-04-15 12:30 AM",
+                                        "1912-04-15 01:00 AM",
+                                        "1912-04-15 01:30 AM",
+                                        "1912-04-15 02:00 AM",
+                                        rep("1912-04-15 02:20 AM", 4),
+                                        "1912-04-15 03:00",
+                                        rep("1912-04-15 04:00 AM", 5)),
+                               Sex = c(rep("Male", 3),
+                                       sample(c("Male", "Female"), size = 9, 
+                                              replace = TRUE, prob = c(0.65, 0.35)),
+                                       "Male", "Female", "Male", "Female", "Female")) %>% 
+  mutate(person = 1:n(),
+         time = ymd_hm(time),
+         survived = time == ymd_hm("1912-04-15 04:00 AM"))
+important_times <- data_frame(time = c("1912-04-14 11:40 PM",
+                                       "1912-04-15 12:20 AM",
+                                       "1912-04-15 02:20 AM",
+                                       "1912-04-15 04:00 AM"),
+                              label = c("Hit iceberg",
+                                        "Lifeboat boarding begins",
+                                        "Ship sinks",
+                                        "Survivors rescued")) %>% 
+  mutate(time = ymd_hm(time))
+survival_plot <- titanic_survival %>% 
+  ggplot(aes(x = time, y = person, color = Sex)) + 
+  geom_segment(data = titanic_survival %>% dplyr::filter(survived == TRUE),
+               aes(yend = person), 
+               xend = as.numeric(ymd_hm("1912-04-14 11:40 PM")), 
+               arrow = arrow(ends = "first", type = "closed", angle = 15,
+                             length = unit(0.12, "inches"))) +
+  geom_point(data = titanic_survival %>% dplyr::filter(survived == FALSE)) +
+  geom_segment(data = titanic_survival %>% dplyr::filter(survived == FALSE),
+               aes(yend = person),
+               xend = as.numeric(ymd_hm("1912-04-14 11:40 PM"))) +
+  theme_classic() + 
+  xlim(ymd_hm(c("1912-04-14 11:30 PM", "1912-04-15 04:15 AM"))) + 
+  geom_vline(data = important_times, aes(xintercept = as.numeric(time), color = NULL), 
+             linetype = 3) + 
+  geom_text(data = important_times, 
+            aes(x = time, y = nrow(titanic_survival) + 0.5, label = label, color = NULL),
+            angle = 40, hjust = 0) + 
+  labs(x = "", y = "") + 
+  theme(axis.ticks.y = element_blank(),
+        axis.text.y = element_blank(),
+        plot.margin = unit(c(3, 2, 1, 1), "cm"),
+        legend.position = "bottom")
+survival_plot <- ggplot_gtable(ggplot_build(survival_plot))
+survival_plot$layout$clip[survival_plot$layout$name == "panel"] <- "off"
+grid.draw(survival_plot)
+```
+
+\vspace*{-5mm}
+
+\footnotesize
+Each line shows a person on the Titanic. The lines with arrows are people who survived. The lines with points show people who died, with the point at the time they died. 
+
+## Survival analysis
+
+\begin{columns}
+\begin{column}{0.5\textwidth}
+Characteristics of survival analysis:
+\begin{itemize}
+  \item Outcome is no longer binary (survived / died)
+  \item Outcome is survival time (time to event)
+  \item Right-censored data-- time to event is longer than follow-up time and so unobserved
+\end{itemize}
+\end{column}
+
+\begin{column}{0.5\textwidth}
+\includegraphics{images/survival_analysis.png}
+\end{column}
+\end{columns}
+
+## Survival analysis
+
+For a survival analysis, you can model the log hazard ratio as a linear function of predictors using a proportional hazard model:
+
+$$
+log[HR(\mathbf{x_i})] = log\frac{h(t|\mathbf{x_i})}{h_0(t)} = \beta_1X_{1,i} + \beta_2X_{2,i} + ... 
+$$
+
+where: 
+
+- $h_0(t)$: The baseline hazard at time *t*
+- $h(t|\mathbf{x_i})$: The hazard at time *t* given characteristics $\mathbf{x_i}$
+- $HR(\mathbf{x_i})$: The hazard ratio for person *i*
+
+This model assumes *proportional hazards*. Cox proportional hazard model is a popular semi-parameteric model to fit.
+
+## Survival analysis
+
+In the Titanic example, if we were interested in how survival time is associated with sex, we could fit the following Cox proportional hazards model:
+
+$$
+log[HR(\mathbf{x_i})] = log\frac{h(t|X_{1,i})}{h_0(t)} = \beta_1X_i 
+$$
+
+where: 
+
+$$
+    X_i=
+    \begin{cases}
+      0 \text{ if person i is female} \\
+      1 \text{ if person i is male}
+    \end{cases}
+$$
+
+## Association versus causation
+
+An important caveat of all these models is that all they guarantee to estimate is association, not causation. There are ways to use regression modeling as a tool in causal inference, but using a regression model does not guarantee a causal interpretation.
+
+\centering
+
+\includegraphics[width = 0.8\textwidth]{images/correlation.png}
+
+\justifying
+
+\footnotesize{Source: \url{www.xkcd.com}}
+
+## Multicollinearity
+
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\includegraphics{images/multicollinearity.jpg}
+\end{column}
+
+\begin{column}{0.5\textwidth}
+A second caveat is that you need to careful of including multiple predictors that are strongly correlated. If not, you will run into problems from \textbf{multicollinearity}-- the regression model will struggle to separate estimated coefficients between the correlated variables.
+\end{column}
+\end{columns}
+
+- For the Titanic example, a model that included ticket class and ticket price might suffer from multicollinearity.
+- Implications: (1) instability of coefficient estimates and (2) large standard errors for coefficient estimates. 
+
+## Model assumptions
+
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\includegraphics{images/violated_assumptions.jpg}
+\end{column}
+
+\begin{column}{0.5\textwidth}
+Assumptions of GLMs: 
+\begin{itemize}
+  \item Independence assumption (observations are independently distributed)
+  \item Outcome follows the specified distribution for a fixed set of covariates
+  \item For continuous predictors, relationship with $g(E[Y_i])$ is linear
+\end{itemize}
+\end{column}
+\end{columns}
+
+## Non-independent outcomes
+
+\begin{columns}
+\begin{column}{0.54\textwidth}
+\small
+In epidemiological studies, the independence assumption is often violated. Examples of when the independence assumption might be violated include:
+\begin{itemize}
+  \item Repeated measures / longitudinal data
+  \item Hierarchical / clustered data (families, schools, multi-site clinical trials)
+\end{itemize}
+In the Titanic example, the independence assumption might be violated because many of the passengers were traveling as families, and survival outcomes might be more similar within families than between families.
+\end{column}
+
+\begin{column}{0.45\textwidth}
+\includegraphics[width = 0.9\textwidth]{images/independence_assumption.jpg}
+\end{column}
+\end{columns}
+
+## Non-independent outcomes
+
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\includegraphics{images/GEE.jpg}
+\end{column}
+
+\begin{column}{0.5\textwidth}
+There are a number of ways to model data in which the independence assumption is violated. A popular one in epidemiological studies are \textbf{Generalized Estimating Equations} (GEEs).
+\end{column}
+\end{columns}
+
+- GEEs accomodate correlated observations.
+- You must specify which variables indicate clustering (e.g., family in the Titanic example).
+- You must also specify a "working correlation structure" (e.g., exchangeable correlation structure; autoregressive correlation structure). 
+
+## Non-independent outcomes
+
+For more on GEEs in epidemiologic studies:
+
+- Hanley et al. (2003) Statistical analysis of correlated data using generalized estimating equations: an orientation. \textit{American Journal of Epidemiology.}
+- Hubbard et al. (2009) To GEE or not to GEE: comparing estimating function and likelihood-based methods for estimating the associations between neighborhoods and health. \textit{Epidemiology}.
