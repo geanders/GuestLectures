@@ -1,0 +1,17 @@
+\usepackage[british]{babel}
+\usepackage{graphicx,hyperref,anderson,url}
+\usepackage{fontawesome}
+
+\title[Extreme weather and health risk in the U.S.]{An overview of the health risks of extreme weather events for elderly in the United States}
+\subtitle{Extreme Events, Environmental Health and the Elderly Workshop}
+\date{June 13, 2017}
+
+\author[Brooke Anderson]{
+  Brooke Anderson \\\medskip
+  {\small \faEnvelope: \url{brooke.anderson@colostate.edu}} \\
+  {\small \faGithub:  \url{www.github.com/geanders}}}
+
+\institute[Colorado State University]{
+  Department of Environmental \& Radiological Health Sciences \\
+  Environmental Epidemiology Section \\
+  Colorado State University}

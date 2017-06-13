@@ -1,0 +1,438 @@
+\documentclass[ignorenonframetext,]{beamer}
+\setbeamertemplate{caption}[numbered]
+\setbeamertemplate{caption label separator}{: }
+\setbeamercolor{caption name}{fg=normal text.fg}
+\beamertemplatenavigationsymbolsempty
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\newif\ifbibliography
+\hypersetup{
+            pdfborder={0 0 0},
+            breaklinks=true}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight0.8\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+
+% Prevent slide breaks in the middle of a paragraph:
+\widowpenalties 1 10000
+\raggedbottom
+
+\AtBeginPart{
+  \let\insertpartnumber\relax
+  \let\partname\relax
+  \frame{\partpage}
+}
+\AtBeginSection{
+  \ifbibliography
+  \else
+    \let\insertsectionnumber\relax
+    \let\sectionname\relax
+    \frame{\sectionpage}
+  \fi
+}
+\AtBeginSubsection{
+  \let\insertsubsectionnumber\relax
+  \let\subsectionname\relax
+  \frame{\subsectionpage}
+}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+\usepackage[british]{babel}
+\usepackage{graphicx,hyperref,anderson,url}
+\usepackage{fontawesome}
+
+\title[Extreme weather and health risk in the U.S.]{An overview of the health risks of extreme weather events for elderly in the United States}
+\subtitle{Extreme Events, Environmental Health and the Elderly Workshop}
+\date{June 13, 2017}
+
+\author[Brooke Anderson]{
+  Brooke Anderson \\\medskip
+  {\small \faEnvelope: \url{brooke.anderson@colostate.edu}} \\
+  {\small \faGithub:  \url{www.github.com/geanders}}}
+
+\institute[Colorado State University]{
+  Department of Environmental \& Radiological Health Sciences \\
+  Environmental Epidemiology Section \\
+  Colorado State University}
+
+\date{}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{Extreme weather events in the U.S.}
+
+\includegraphics[width=58.04in]{billion_dollar_disasters_2016}
+
+\scriptsize Source: NOAA National Centers for Environmental Information
+(NCEI), 2017.
+
+\end{frame}
+
+\section{Extreme precipitation /
+flooding}\label{extreme-precipitation-flooding}
+
+\begin{frame}{Extreme precipitation exposure in U.S. communities}
+
+\begin{center}
+\large Exposure in 106 U.S. communities, 1987--2005
+\end{center}
+
+\begin{center}\includegraphics[width=\textwidth]{prcp_exposure} \end{center}
+
+\vspace{-0.2cm} \scriptsize \textbf{Extreme precipitation day:} Any day
+with measured precipitation \(\ge\) 30 millimeters. Precipitation data
+is from the county-aggregated NLDAS-2 Reanalysis data set available
+through the CDC WONDER database. The histogram (right) shows
+distributions in exposures across days. Colors of circles on the map
+correspond to color code in histogram sextiles.
+
+\end{frame}
+
+\begin{frame}{Flood exposure in the U.S.}
+
+\vspace{-0.2cm} \small
+
+\begin{center}
+Thirty-two most severe floods in the U.S. in the 20\textsuperscript{th} century
+\end{center}
+
+\vspace{-0.4cm}
+
+\begin{center}\includegraphics[width=0.95\textwidth]{usa_flood_map} \end{center}
+
+\vspace{-0.8cm} \scriptsize Source: Perry, 2000. USGS Fact Sheet 024-00.
+
+\end{frame}
+
+\begin{frame}{Health risks associated with extreme precipitation /
+floods}
+
+\begin{columns}
+
+\begin{column}{0.45\textwidth}
+\begin{center}
+\small Combined sewer system
+\vspace{-0.1cm}
+\end{center}
+
+\includegraphics[width=\textwidth]{combined_sewer} 
+\vspace{-0.1cm}
+\scriptsize Source: \url{jerseywaterworks.org}.
+\end{column}
+
+\begin{column}{0.55\textwidth}
+\begin{block}{Identified health risks}
+\small
+\begin{itemize}
+  \item Gastrointestinal illness (e.g., Wade et al. 2014; Tornevi et al. 2013)
+  \begin{itemize}
+    \item Risks may be increased by combined sewer systems (left; Jagai et al. 2015)
+  \end{itemize}
+  \item Respiratory outcomes
+  \begin{itemize}
+    \item Aerosol-transmitted pathogens (e.g., \textit{Legionella pneumophila})
+    \item Asthma hospitalizations (Soneja et al. 2016)
+    \item Mold exposure
+  \end{itemize}
+  \item Motor vehicle accidents (Ashley et al. 2015)
+\end{itemize}
+\end{block}
+\end{column}
+
+\end{columns}
+
+\end{frame}
+
+\begin{frame}{Trends in extreme precipitation}
+
+\begin{columns}
+
+\begin{column}{0.5\textwidth}
+\begin{block}{Trends in extreme precipitation}
+\small
+\begin{itemize}
+  \item Recent trend of increased exposure to extreme precipitation in all regions of the U.S., especially in the Northeast and Midwest (Peterson et al. 2014).
+  \item Number of extreme precipitation days per year expected to increase throughout U.S. in coming decades (right; Wuebbles et al. 2014), especially in certain regions.
+\end{itemize}
+\end{block}
+\end{column}
+
+\begin{column}{0.5\textwidth}
+\vspace{-0.2cm}
+\begin{center}
+\footnotesize Expected increase in number of extreme precipitation days by end of century.
+\end{center}
+\vspace{-0.2cm}
+
+\includegraphics[width=\textwidth]{projs_extreme_rain} 
+\vspace{-0.1cm}
+\scriptsize Source: Wuebbles et al. 2014.
+\end{column}
+
+\end{columns}
+
+\end{frame}
+
+\begin{frame}{Trends in flooding}
+
+\begin{columns}
+
+\begin{column}{0.6\textwidth}
+\footnotesize Trends in days of flood exposure, 1940--2013.
+\vspace{-0.3cm}
+
+\begin{center}\includegraphics[width=\textwidth]{flood_trends} \end{center}
+\vspace{-0.1cm}
+\scriptsize \textbf{Orange, red:} Significant decrease in exposure. \textbf{Blue, purple:} Significant decrease in exposure. 
+\vspace{0.1cm}
+Source: Archfield et al. 2016.
+\end{column}
+
+\begin{column}{0.4\textwidth}
+\begin{block}{Recent and future trends}
+\small
+\begin{itemize}
+  \item Between 1940 and 2013, frequency of flood days has increased in some areas and decreased in others (map at left; Archfield et al. 2016).
+  \item In future decades, flooding is expected to increase in some regions, although a lot of uncertainty in expected trends in flooding remains (Berghuijs et al. 2016).
+\end{itemize}
+\end{block}
+\end{column}
+
+\end{columns}
+
+\end{frame}
+
+\section{Wildfires}\label{wildfires}
+
+\begin{frame}{Exposure to wildfires}
+
+\includegraphics[width=17.38in]{fema_wildfires}
+
+\scriptsize Source: FEMA, 2017.
+
+\end{frame}
+
+\begin{frame}{Increased health risks associated with wildfires}
+
+\vspace{-0.6cm}
+
+\small
+
+\begin{center}
+Widespread smoke from 2016 eastern wildfires
+\end{center}
+
+\vspace{-0.9cm}
+
+\begin{center}\includegraphics[width=0.9\textwidth]{wildfire_smoke} \end{center}
+
+\vspace{-0.7cm} \scriptsize Sources: NASA, 2016 and Wildfire Today,
+2016.
+
+\begin{columns}
+
+\begin{column}{0.5\textwidth}
+\begin{block}{\small Consistent evidence}
+\footnotesize
+\begin{itemize}
+  \item Respiratory morbidity
+  \item Asthma / COPD exacerbations
+\end{itemize}
+\end{block}
+\end{column}
+
+\begin{column}{0.5\textwidth}
+\begin{block}{\small Mixed evidence}
+\footnotesize
+\begin{itemize}
+  \item All-cause mortality
+  \item Cardiovascular outcomes
+\end{itemize}
+\end{block}
+\end{column}
+\end{columns}
+
+\vspace{-0.4cm}
+
+\begin{center}
+\footnotesize Sources: Reid et al. 2016, Liu et al. 2015.
+\end{center}
+
+\end{frame}
+
+\begin{frame}{Past and expected future trends in wildfires}
+
+\begin{columns}
+
+\begin{column}{0.6\textwidth}
+
+\begin{center}\includegraphics[width=\textwidth]{future_wildfire} \end{center}
+\scriptsize Source: Liu et al. 2016. For an interactive map, see \url{http://khanotations.github.io/smoke-map/}.
+\end{column}
+
+\begin{column}{0.4\textwidth}
+\begin{block}{Recent and expected future trends}
+\small
+\begin{itemize}
+  \item Recently, there has been a trend to more intense fires and longer fire seasons (U.S. Forest Service, 2009; Karl et al. 2009).
+  \item In the coming decades, wildfire smoke days are expected become more frequent (left) and intense (Liu et al. 2016).
+\end{itemize}
+\end{block}
+\end{column}
+
+\end{columns}
+
+\end{frame}
+
+\section{Tropical storms}\label{tropical-storms}
+
+\begin{frame}{Tropical storms bring exposure from multiple hazards}
+
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\begin{block}{Tropical storm hazards}
+   \begin{itemize}
+    \item High winds
+    \item Extreme precipitation
+    \item Flood events
+    \item Tornado events
+   \end{itemize}
+\end{block}
+\end{column}
+\begin{column}{0.5\textwidth}  
+    \vspace{-0.25cm}
+    \begin{center}
+     \includegraphics[width=0.8\textwidth]{storm_hazards.png}
+     \end{center}
+     \vspace{-0.25cm}
+     \scriptsize{Image sources: Los Angeles Times, NBC}
+\end{column}
+\end{columns}
+
+\end{frame}
+
+\begin{frame}{County-level exposure to Hurricane Ivan (2004)}
+
+\vspace{-0.6cm} \includegraphics{ivanexposure.pdf}
+
+\vspace{-0.7cm} \scriptsize Criteria for exposure classifications:
+\textbf{Distance:} Within 100 kms of storm track. \textbf{Rain:} \(\ge\)
+75 mm of rain total for two days before to one day after storm.
+\textbf{Wind:} Modeled wind of \(\ge\) 15 m/s. \textbf{Flood, Tornado:}
+Listed event in NOAA Storm Events database.
+
+\end{frame}
+
+\begin{frame}{Tropical storm exposure in U.S. counties}
+
+\begin{centering}
+\small Storm hits per county per decade based on rain (left) and wind (right) exposure metrics.
+\end{centering}
+
+\begin{center}\includegraphics[width=0.95\textwidth]{hurricane_exposure} \end{center}
+
+\vspace{-0.7cm} \scriptsize Criteria for exposure classifications:
+\textbf{Rain:} \(\ge\) 75 mm of rain total for two days before to one
+day after storm. \textbf{Wind:} Modeled wind of \(\ge\) 15 m/s.
+
+\end{frame}
+
+\begin{frame}{Risks in Miami, FL, during Hurricane Andrew (1992)}
+
+\begin{centering}
+\small Relative risk for all-cause (left) and accidental (right) mortality in Miami, FL, at lags from the storm day (lag 0) compared to non-storm days.
+\end{centering}
+
+\includegraphics{miami_andrew_2.pdf}
+
+\vspace{-0.2cm} \scriptsize Estimates were obtained by comparing storm
+days to matched non-storm days in the same time of year and day of week
+in other years. Matched days were picked to exclude days near other
+storms. Lag 0 represents the storm day. Negative lags represent days
+before the storm and positive lags represent days after the storm.
+Vertical lines give 95\% confidence intervals.
+
+\end{frame}
+
+\begin{frame}{Health risks associated with Hurricane Sandy (2012)}
+
+\begin{columns}
+
+\begin{column}{0.4\textwidth}
+
+\begin{center}\includegraphics[width=0.9\textwidth]{sandy_satellite} \end{center}
+\vspace{-0.5cm}
+\begin{center}
+\scriptsize Source: NOAA / NASA GOES Project
+\end{center}
+\end{column}
+
+\begin{column}{0.6\textwidth}
+\begin{block}{Health risks in storm-affected areas}
+\small
+\begin{itemize}
+  \item Change in patterns of emergency department visits (Kim et al. 2016)
+  \item Increased outpatient cases of food and waterborne disease among elderly (Bloom et al. 2016)
+  \item Increased rate of myocardial infarctions (Swerdel et al. 2014)
+  \item Increased hospitalizations for dehydration (Lee et al. 2016)
+  \item Difficulty obtaining medical care, medications, and medical equipment (Davidow et al. 2016)
+\end{itemize}
+\end{block}
+\end{column}
+
+\end{columns}
+
+\end{frame}
+
+\begin{frame}{Conclusion}
+
+\begin{block}{Closing comments}
+\begin{itemize}
+  \item Epidemiological research continues to identify new health risks associated with extreme weather. 
+  \item Infrastructure may often play a role in the pathway between extreme events and health risks.
+  \item Patterns in exposure to several types of extreme events have changed in recent decades and are expected to continue to change in U.S. cities in the coming decades.
+\end{itemize}
+\end{block}
+
+\begin{block}{Acknowledgements}
+\small Meilin Yan, Rachel Severson, and Roger Peng collaborated on original research shown here. This research was supported by grant R00ES022631 from the National Institute of Environmental Health Sciences. 
+\end{block}
+
+\end{frame}
+
+\end{document}
