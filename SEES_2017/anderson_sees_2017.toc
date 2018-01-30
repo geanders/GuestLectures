@@ -1,0 +1,6 @@
+\beamer@endinputifotherversion {3.36pt}
+\select@language {british}
+\beamer@sectionintoc {1}{Projecting heat wave-related mortality impacts}{2}{0}{1}
+\beamer@sectionintoc {2}{Tropical storm exposure in U.S. counties}{10}{0}{2}
+\beamer@sectionintoc {3}{Agreement between exposure metrics}{15}{0}{3}
+\beamer@sectionintoc {4}{Software}{21}{0}{4}

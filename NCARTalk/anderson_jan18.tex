@@ -434,38 +434,38 @@ metrics}\label{agreement-between-exposure-metrics}
 \toprule
 \begin{minipage}[b]{0.24\columnwidth}\raggedright\strut
 Exposure metric\strut
-\end{minipage} & \begin{minipage}[b]{0.65\columnwidth}\raggedright\strut
+\end{minipage} & \begin{minipage}[b]{0.68\columnwidth}\raggedright\strut
 Criterial for exposure\strut
 \end{minipage}\tabularnewline
 \midrule
 \endhead
 \begin{minipage}[t]{0.24\columnwidth}\raggedright\strut
 Distance\strut
-\end{minipage} & \begin{minipage}[t]{0.65\columnwidth}\raggedright\strut
+\end{minipage} & \begin{minipage}[t]{0.68\columnwidth}\raggedright\strut
 County population mean center within 100 km of storm track\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.24\columnwidth}\raggedright\strut
 Rain\strut
-\end{minipage} & \begin{minipage}[t]{0.65\columnwidth}\raggedright\strut
+\end{minipage} & \begin{minipage}[t]{0.68\columnwidth}\raggedright\strut
 County received 75 mm or more rain over the period from two days before
 to one day after the storm's closest approach and the storm passed
 within 500 km of the county\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.24\columnwidth}\raggedright\strut
 Wind\strut
-\end{minipage} & \begin{minipage}[t]{0.65\columnwidth}\raggedright\strut
+\end{minipage} & \begin{minipage}[t]{0.68\columnwidth}\raggedright\strut
 Modeled wind speed at county's population mean center met or exceeded 15
 m / s during the storm\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.24\columnwidth}\raggedright\strut
 Flood\strut
-\end{minipage} & \begin{minipage}[t]{0.65\columnwidth}\raggedright\strut
+\end{minipage} & \begin{minipage}[t]{0.68\columnwidth}\raggedright\strut
 Flood event listed with a start date within two days of the storm's
 closest approach and county within 500 km of storm track\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.24\columnwidth}\raggedright\strut
 Tornado\strut
-\end{minipage} & \begin{minipage}[t]{0.65\columnwidth}\raggedright\strut
+\end{minipage} & \begin{minipage}[t]{0.68\columnwidth}\raggedright\strut
 Tornado event listed with a start date within two days of the storm's
 closest approach and county within 500 km of storm track\strut
 \end{minipage}\tabularnewline
@@ -715,7 +715,9 @@ Create county-level exposure time series for tropical storms in U.S. counties. E
 \end{Shaded}
 
 \begin{verbatim}
+## # A tibble: 5 x 5
 ##       storm_id  fips closest_date storm_dist tot_precip
+##          <chr> <chr>        <chr>      <dbl>      <dbl>
 ## 1    Bill-2003 22071   2003-06-30   38.78412      141.1
 ## 2 Charley-2004 51700   2004-08-14   43.01152      136.2
 ## 3   Cindy-2005 22071   2005-07-06   32.21758      113.2

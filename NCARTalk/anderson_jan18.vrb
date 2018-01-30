@@ -1,0 +1,28 @@
+\frametitle{Project software}
+
+\footnotesize
+
+\begin{block}{`hurricaneexposure`}
+Create county-level exposure time series for tropical storms in U.S. counties. Exposure can be determined based on several hazards (e.g., distance, wind, rain), with user-specified thresholds.
+\url{https://github.com/geanders/hurricaneexposure}
+\end{block}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{county_rain}\NormalTok{(}\DataTypeTok{counties =} \KeywordTok{c}\NormalTok{(}\StringTok{"22071"}\NormalTok{, }\StringTok{"51700"}\NormalTok{), }\DataTypeTok{rain_limit =} \DecValTok{100}\NormalTok{, }
+            \DataTypeTok{start_year =} \DecValTok{1995}\NormalTok{, }\DataTypeTok{end_year =} \DecValTok{2005}\NormalTok{, }\DataTypeTok{dist_limit =} \DecValTok{100}\NormalTok{,}
+            \DataTypeTok{days_included =} \KeywordTok{c}\NormalTok{(-}\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 5 x 5
+##       storm_id  fips closest_date storm_dist tot_precip
+##          <chr> <chr>        <chr>      <dbl>      <dbl>
+## 1    Bill-2003 22071   2003-06-30   38.78412      141.1
+## 2 Charley-2004 51700   2004-08-14   43.01152      136.2
+## 3   Cindy-2005 22071   2005-07-06   32.21758      113.2
+## 4   Floyd-1999 51700   1999-09-16   46.50729      207.5
+## 5 Isidore-2002 22071   2002-09-26    6.37844      249.0
+\end{verbatim}
+

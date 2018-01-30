@@ -1,0 +1,279 @@
+---
+output:
+  beamer_presentation:
+    keep_tex : true
+    includes: 
+      in_header: anderson_header.txt
+      before_body: anderson_beforebody.txt
+---
+
+```{r setup, include=FALSE, message = FALSE, warning = FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+library(ggplot2)
+library(dplyr)
+library(lubridate)
+library(gridExtra)
+library(tidyr)
+library(stringr)
+
+library(hurricaneexposuredata)
+library(hurricaneexposure)
+library(countyweather)
+```
+
+## Presenter disclosures
+
+\large
+
+\begin{center}
+\textbf{Presenter: Brooke Anderson}
+\end{center}
+
+The following personal financial relationships with commercial interests relevant to this presentation existed during the past 12 months: \textbf{No relationships to disclose.}
+
+# Motivation
+
+## Health risks associated with Hurricane Sandy (2012)
+
+\begin{columns}
+
+\begin{column}{0.45\textwidth}
+```{r echo = FALSE, fig.align = "center", out.width = "\\textwidth"}
+knitr::include_graphics("sandy_satellite.jpg")
+```
+\vspace{-0.5cm}
+\begin{center}
+\scriptsize Source: NOAA / NASA GOES Project
+\end{center}
+\end{column}
+
+\begin{column}{0.55\textwidth}
+\small
+\begin{block}{Health risks in storm-affected areas}
+\begin{itemize}
+  \item Change in patterns of emergency department visits (Kim et al. 2016)
+  \item Increased outpatient cases of food and waterborne disease among elderly (Bloom et al. 2016)
+  \item Increased rate of myocardial infarctions (Swerdel et al. 2014)
+  \item Increased hospitalizations for dehydration (Lee et al. 2016)
+  \item Difficulty obtaining medical care, medications, and medical equipment (Davidow et al. 2016)
+\end{itemize}
+\end{block}
+\end{column}
+
+\end{columns}
+
+## Hazard-specific tropical storm metrics
+
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\begin{block}{Tropical storm hazard metrics}
+   \begin{itemize}
+    \item Distance from the storm
+    \item High winds
+    \item Rainfall
+    \item Storm surge
+    \item Flood events
+    \item Tornado events
+   \end{itemize}
+\end{block}
+\end{column}
+\begin{column}{0.5\textwidth}  
+    \vspace{-0.25cm}
+    \begin{center}
+     \includegraphics[width=0.8\textwidth]{storm_hazards.png}
+     \end{center}
+     \vspace{-0.25cm}
+     \scriptsize{Image sources: Los Angeles Times, NBC}
+\end{column}
+\end{columns}
+
+## Assessing tropical storm exposure
+
+\begin{block}{Challenge for epidemiological research}
+How should we determine whether a county was exposed to a tropical storm for epidemiological research?
+\end{block}
+
+\vspace{-0.3cm}
+
+\pause
+
+```{r fig.align = "center", out.height = "0.77\\textheight"}
+knitr::include_graphics("previous_exposure_metrics.pdf")
+```
+
+## Project aims
+
+\begin{block}{Project aims}
+\begin{itemize}
+  \item Develop exposure classifications of all U.S. Atlantic basin tropical storms, 1996--2011, based on reasonable measurements of tropical storm hazards
+  \item Assess agreement between hazard-based county-specific exposure classifications
+  \item Make exposure assessments accessible to other researchers for epidemiological and other impact studies 
+\end{itemize}
+\end{block}
+
+# Assessing exposure
+
+## Assessing tropical storm exposure 
+
+\begin{columns}
+\begin{column}{0.5\textwidth}
+```{r echo = FALSE, out.width = "\\textwidth"}
+knitr::include_graphics("finding_closest_point.pdf")
+```
+
+\vspace{-0.5cm}
+\small
+Example of "Best Tracks" data
+\end{column}
+\begin{column}{0.5\textwidth}
+\small
+\begin{block}{Distance metric}
+\begin{itemize}
+\item \textbf{Distance:} National Hurricane Center Best Tracks data
+\item \textbf{Wind:} Wind model based on Willoughby et al. (2006)
+\item \textbf{Rain:} Re-analysis rain data (NLDAS-2)
+\item \textbf{Flood and tornado events:} NOAA Storm Events database
+\end{itemize}
+\end{block}
+\end{column}
+\end{columns}
+
+## Rain exposure
+
+```{r frances_rain_example, echo = FALSE, fig.width = 6, fig.height = 4, fig.align = "center", out.width = "0.9\\textwidth", warning = FALSE, message = FALSE}
+storm <- "Frances-2004"
+map_tracks(storms = storm, plot_points = FALSE, 
+                plot_object = map_counties(storm = storm, 
+                                           metric = "rainfall")) + 
+        ggtitle("Rainfall during Frances, 2004")
+```
+
+# Agreement between exposure metrics
+
+## County-level exposure to Hurricane Ivan (2004)
+
+\vspace{-0.6cm}
+```{r echo = FALSE, out.height="0.75\\textheight", fig.align = "center"}
+knitr::include_graphics("ivanexposurepresentation.pdf")
+```
+
+\vspace{-0.5cm}
+\scriptsize Criteria for exposure classifications: \textbf{Distance:} Within 100 kms of storm track. \textbf{Rain:} $\ge$ 75 mm of rain total for two days before to one day after storm. \textbf{Wind:} Modeled wind of $\ge$ 15 m/s. \textbf{Flood, Tornado:} Listed event in NOAA Storm Events database.
+
+
+## County-level agreement in storm exposure 
+
+\begin{block}{Assessing agreement in county classifications}
+For each storm and each pair of metrics, we measured the \textit{Jaccard index} as a measure of county-level agreement in exposure classification for a storm:
+
+\begin{equation*}
+J = \frac{X_1 \cap X_2}{X_1 \cup X_2}
+\end{equation*}
+
+where $X_1$ is the set of counties exposed to a storm based on the first metric and $X_2$ is the set of counties exposed to the storm based on the second metric. 
+
+\end{block}
+
+## County-level agreement in storm exposure 
+
+\vspace{-0.3cm}
+
+```{r fig.align = "center", out.height = "0.87\\textheight"}
+knitr::include_graphics("jaccard_heatmap_presentation.pdf")
+```
+
+## Tropical storm exposure in U.S. counties
+
+\begin{centering}
+\small Storm hits per county per decade based on rain (left) and wind (right) exposure metrics.
+\end{centering}
+
+```{r echo = FALSE, fig.align = "center", out.width = "0.95\\textwidth"}
+knitr::include_graphics("hurricane_exposure.png")
+```
+
+\vspace{-0.7cm}
+\scriptsize Criteria for exposure classifications: \textbf{Rain:} $\ge$ 75 mm of rain total for two days before to one day after storm. \textbf{Wind:} Modeled wind of $\ge$ 15 m/s. 
+
+# Software
+
+## Project software
+
+\footnotesize
+\begin{block}{`hurricaneexposure`}
+Create county-level exposure time series for tropical storms in U.S. counties. Exposure can be determined based on several hazards (e.g., distance, wind, rain), with user-specified thresholds. On CRAN.
+\end{block}
+
+```{r echo = TRUE, eval = FALSE}
+county_rain(counties = c("22071", "51700"), rain_limit = 100, 
+            start_year = 1995, end_year = 2005, dist_limit = 100,
+            days_included = c(-1, 0, 1))
+```
+
+```{r echo = FALSE}
+county_rain(counties = c("22071", "51700"), rain_limit = 100, 
+            start_year = 1995, end_year = 2005, dist_limit = 100,
+            days_included = c(-1, 0, 1)) %>%
+  slice(1:4) %>%
+  select(storm_id, fips, closest_date, storm_dist, tot_precip)
+```
+
+## Project software
+
+\begin{columns}
+\begin{column}{0.3\textwidth}
+\footnotesize
+\begin{block}{`stormwindmodel`}
+Model storm winds from Best Tracks data at U.S. locations. Includes modeling sustained and gust winds, as well as duration of sustained and gust winds above a specified threshold. On CRAN.
+\end{block}
+\end{column}
+\begin{column}{0.7\textwidth}
+```{r echo = FALSE, out.width = "\\textwidth", fig.align = "center"}
+knitr::include_graphics("census_track_modeled_winds.png")
+```
+\end{column}
+\end{columns}
+
+## Project software
+
+\footnotesize
+\begin{block}{`countyweather`, `countyfloods`}
+Download weather monitor data through NOAA and USGS APIs by U.S. county. Includes functions to map available monitors / gages for each county. On CRAN.
+\end{block}
+
+\footnotesize
+\begin{block}{`noaastormevents`}
+Download and explore listings from the NOAA Storm Events database. Includes the ability to pull events based on a tropical storm, using events listed close in time and distance to the storm's tracks. On CRAN.
+\end{block}
+
+\footnotesize
+\begin{block}{`countytimezones`}
+Convert time-stamps from UTC to local time zones for U.S. counties based on county FIPs. Facilitates merging weather observations with locally measured data, including health outcomes. On CRAN.
+\end{block}
+
+# Conclusions
+
+## Continuing work
+
+\begin{centering}
+\small Relative risk for all-cause (left) and accidental (right) mortality in Miami, FL, at lags from the Hurricane Andrew storm day (lag 0) compared to non-storm days.
+\end{centering}
+
+```{r echo = FALSE}
+knitr::include_graphics("miami_andrew_2.pdf")
+```
+
+\vspace{-0.2cm}
+\scriptsize Estimates were obtained by comparing storm days to matched non-storm days in the same time of year and day of week in other years. Matched days were picked to exclude days near other storms. Lag 0 represents the storm day. Negative lags represent days before the storm and positive lags represent days after the storm. Vertical lines give 95\% confidence intervals.
+
+## Acknowledgements
+
+\small
+
+\begin{block}{Funding}
+This work was supported in part by grants from the National Institute of Environmental Health Sciences (R00ES022631), the National Science Foundation (1331399), and a NASA Applied Sciences Program/Public Health Program Grant (NNX09AV81G).
+\end{block}
+
+\begin{block}{Collaborators}
+Roger Peng, Meilin Yan, Joshua Ferreri, Dirk Eddelbuettel, Mohammad Al-Hamdan, William Crosson, Andrea Schumacher, Seth Guikema, and Steven Quiring collaborated on research and software shown here.
+\end{block}

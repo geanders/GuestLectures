@@ -1,0 +1,7 @@
+\beamer@endinputifotherversion {3.36pt}
+\select@language {british}
+\beamer@sectionintoc {1}{Motivation}{2}{0}{1}
+\beamer@sectionintoc {2}{Assessing exposure}{9}{0}{2}
+\beamer@sectionintoc {3}{Agreement between exposure metrics}{25}{0}{3}
+\beamer@sectionintoc {4}{Software}{34}{0}{4}
+\beamer@sectionintoc {5}{R tools for open science}{40}{0}{5}
