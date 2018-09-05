@@ -1,0 +1,627 @@
+\documentclass[ignorenonframetext,]{beamer}
+\setbeamertemplate{caption}[numbered]
+\setbeamertemplate{caption label separator}{: }
+\setbeamercolor{caption name}{fg=normal text.fg}
+\beamertemplatenavigationsymbolsempty
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\newif\ifbibliography
+\hypersetup{
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\usepackage{longtable,booktabs}
+\usepackage{caption}
+% These lines are needed to make table captions work with longtable:
+\makeatletter
+\def\fnum@table{\tablename~\thetable}
+\makeatother
+
+% Prevent slide breaks in the middle of a paragraph:
+\widowpenalties 1 10000
+\raggedbottom
+
+\AtBeginPart{
+  \let\insertpartnumber\relax
+  \let\partname\relax
+  \frame{\partpage}
+}
+\AtBeginSection{
+  \ifbibliography
+  \else
+    \let\insertsectionnumber\relax
+    \let\sectionname\relax
+    \frame{\sectionpage}
+  \fi
+}
+\AtBeginSubsection{
+  \let\insertsubsectionnumber\relax
+  \let\subsectionname\relax
+  \frame{\subsectionpage}
+}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+\usepackage[british]{babel}
+\usepackage{graphicx,hyperref,url}
+\usepackage{fontawesome}
+\usepackage{hyperref}
+\usepackage{adjustbox}
+\hypersetup{colorlinks=true,allcolors=blue}
+
+\usetheme{metropolis}
+\title{Tropical cyclones and human health}
+\subtitle{Exploring evidence of associations using environmental epidemiology tools}
+\date{Sept. 5, 2018}
+
+\author[Anderson]{
+  Brooke Anderson, Colorado State University \\
+  Department of Environmental \& Radiological Health Sciences \\ \\
+  {\small \faEnvelope: \url{brooke.anderson@colostate.edu}} \\
+  {\small \faTwitter: \href{www.twitter.com/gbwanderson}{@gbwanderson}} \\
+  {\small \faGithub:  \url{github.com/geanders}} \\ 
+  }
+
+\date{}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\section{Motivation}\label{motivation}
+
+\begin{frame}{Impacts in excess of official death tolls}
+
+Evidence from Hurricane Maria in Puerto Rico of extensive mortality
+impacts.
+
+\begin{center}\includegraphics[width=0.9\textwidth]{figures/maria_excess_deaths.png} \end{center}
+
+\footnotesize Source: The New York Times
+
+\end{frame}
+
+\begin{frame}{Counting tropical cyclone fatalities}
+
+\begin{center}\includegraphics[width=\textwidth]{figures/icd_disaster_codes} \end{center}
+
+\end{frame}
+
+\begin{frame}{Reporting cause of death}
+
+\begin{center}\includegraphics[width=\textwidth]{figures/cdc_direct_death} \end{center}
+
+\footnotesize Source:
+\url{https://www.cdc.gov/nchs/data/dvs/hurricane_certification.pdf}
+
+\end{frame}
+
+\begin{frame}{Reporting cause of death}
+
+\begin{center}\includegraphics[width=\textwidth]{figures/cdc_indirect_death} \end{center}
+
+\footnotesize Source:
+\url{https://www.cdc.gov/nchs/data/dvs/hurricane_certification.pdf}
+
+\end{frame}
+
+\begin{frame}{Reporting cause of death}
+
+\begin{center}\includegraphics[width=\textwidth]{figures/cdc_notlinked_death} \end{center}
+
+\footnotesize Source:
+\url{https://www.cdc.gov/nchs/data/dvs/hurricane_certification.pdf}
+
+\end{frame}
+
+\begin{frame}{Impacts in excess of official death tolls}
+
+Evidence from Hurricane Maria in Puerto Rico.
+
+\includegraphics[width=\textwidth]{figures/maria_timeseries}
+
+\footnotesize Source: The New York Times
+
+\end{frame}
+
+\section{Measuring tropical cyclone
+exposure}\label{measuring-tropical-cyclone-exposure}
+
+\begin{frame}{Potential pathways through which tropical cyclone exposure
+might increase mortality risk}
+
+\begin{center}\includegraphics[width=0.9\textwidth]{figures/storm_death_pathways} \end{center}
+
+\end{frame}
+
+\begin{frame}{Assessing tropical storm exposure}
+
+\begin{block}{Challenge for epidemiological research}
+How should we determine whether a county was exposed to a tropical storm for epidemiological research?
+\end{block}
+
+\vspace{-0.3cm}
+
+\begin{center}\includegraphics[width=\textwidth]{figures/previous_exposure_metrics} \end{center}
+
+\end{frame}
+
+\begin{frame}{Distance as a surrogate measure of tropical cyclone
+exposure}
+
+\begin{center}\includegraphics[width=\textwidth]{figures/katrina_west_nile} \end{center}
+
+\end{frame}
+
+\begin{frame}{Potential pathway for effects of Katrina on West Nile
+risk}
+
+\begin{center}\includegraphics[width=\textwidth]{figures/causal_wind} \end{center}
+
+\end{frame}
+
+\begin{frame}{Distance from storm}
+
+\large Tropical storm ``Best Track'' data \vspace{-0.7cm}
+
+\begin{columns}
+\begin{column}{0.7\textwidth}
+
+\includegraphics[width=\textwidth]{figures/finding_closest_point} 
+\end{column}
+\begin{column}{0.3\textwidth}
+\small
+\begin{block}{Distance metric}
+We matched storm tracks to county population mean centers to determine the closest approach and date of closest approach of each storm to each county.
+\end{block}
+\end{column}
+\end{columns}
+
+\end{frame}
+
+\begin{frame}{Wind exposure}
+
+\begin{columns}
+\begin{column}{0.7\textwidth}
+
+\includegraphics[width=\textwidth]{Sept_5_2018_GuestLecture_files/figure-beamer/unnamed-chunk-12-1} 
+\end{column}
+\begin{column}{0.3\textwidth}
+\small
+\begin{block}{Wind metric}
+We modeled county winds with a wind model based on a Willoughby et al. paper. This model inputs storm location and maximum wind from best tracks data. 
+\end{block}
+\end{column}
+\end{columns}
+
+\end{frame}
+
+\begin{frame}{Rain exposure}
+
+\begin{columns}
+\begin{column}{0.7\textwidth}  
+    \vspace{-0.25cm}
+    \begin{center}
+    Rain during Tropical Storm Lee
+    \end{center}
+    \begin{center}
+     \includegraphics[width=\textwidth]{figures/nldas2_ts_lee.png}
+     \end{center}
+     \begin{center}
+         \vspace{-0.4cm}
+     \scriptsize{Image source: Goddard Earth Sciences DISC}
+     \end{center}
+\end{column}
+\begin{column}{0.3\textwidth}
+\footnotesize
+\begin{block}{Rain metric}
+We used NLDAS-2 precipitation data to assess county rainfall. We summed rain from two days before to one day after the storm. We include a distance threshold for the rain metric.
+\end{block}
+\end{column}
+\end{columns}
+
+\end{frame}
+
+\begin{frame}{Flood and tornado events}
+
+\includegraphics[width=\textwidth]{figures/noaastormevents}
+
+Website: \url{https://www.ncdc.noaa.gov/stormevents/}
+
+\end{frame}
+
+\begin{frame}{Storm exposure}
+
+\footnotesize
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+\begin{minipage}[b]{0.24\columnwidth}\raggedright\strut
+Exposure metric\strut
+\end{minipage} & \begin{minipage}[b]{0.68\columnwidth}\raggedright\strut
+Criterial for exposure\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.24\columnwidth}\raggedright\strut
+Distance\strut
+\end{minipage} & \begin{minipage}[t]{0.68\columnwidth}\raggedright\strut
+County population mean center within 100 km of storm track\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.24\columnwidth}\raggedright\strut
+Rain\strut
+\end{minipage} & \begin{minipage}[t]{0.68\columnwidth}\raggedright\strut
+County received 75 mm or more rain over the period from two days before
+to one day after the storm's closest approach and the storm passed
+within 500 km of the county\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.24\columnwidth}\raggedright\strut
+Wind\strut
+\end{minipage} & \begin{minipage}[t]{0.68\columnwidth}\raggedright\strut
+Modeled wind speed at county's population mean center met or exceeded 15
+m / s during the storm\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.24\columnwidth}\raggedright\strut
+Flood\strut
+\end{minipage} & \begin{minipage}[t]{0.68\columnwidth}\raggedright\strut
+Flood event listed with a start date within two days of the storm's
+closest approach and county within 500 km of storm track\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.24\columnwidth}\raggedright\strut
+Tornado\strut
+\end{minipage} & \begin{minipage}[t]{0.68\columnwidth}\raggedright\strut
+Tornado event listed with a start date within two days of the storm's
+closest approach and county within 500 km of storm track\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+\end{frame}
+
+\begin{frame}{Tropical storm exposure classifications for Hurricane
+Katrina}
+
+\begin{center}\includegraphics[width=\textwidth]{figures/katrina_all_exposures} \end{center}
+
+\end{frame}
+
+\begin{frame}{County-level agreement in storm exposure}
+
+\begin{block}{Assessing agreement in county classifications}
+For each storm and each pair of metrics, we measured the \textit{Jaccard index} as a measure of county-level agreement in exposure classification for a storm:
+
+\begin{equation*}
+J = \frac{X_1 \cap X_2}{X_1 \cup X_2}
+\end{equation*}
+
+where $X_1$ is the set of counties exposed to a storm based on the first metric and $X_2$ is the set of counties exposed to the storm based on the second metric. 
+
+\end{block}
+
+\end{frame}
+
+\begin{frame}{Similarity among tropical cyclone hazards}
+
+\begin{center}\includegraphics[width=\textwidth]{figures/jaccard_heatmap_presentation} \end{center}
+
+\end{frame}
+
+\section{Software}\label{software}
+
+\begin{frame}{Open data / reproducible research}
+
+\begin{center}\includegraphics[width=0.8\textwidth]{figures/open_data_headlines} \end{center}
+
+\end{frame}
+
+\begin{frame}[fragile]{Project software}
+
+\footnotesize
+
+\begin{block}{`hurricaneexposure`}
+Create county-level exposure time series for tropical storms in U.S. counties. Exposure can be determined based on several hazards (e.g., distance, wind, rain), with user-specified thresholds. 
+https://github.com/geanders/hurricaneexposure
+\end{block}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{county_rain}\NormalTok{(}\DataTypeTok{counties =} \KeywordTok{c}\NormalTok{(}\StringTok{"22071"}\NormalTok{, }\StringTok{"51700"}\NormalTok{), }\DataTypeTok{rain_limit =} \DecValTok{100}\NormalTok{, }
+            \DataTypeTok{start_year =} \DecValTok{1995}\NormalTok{, }\DataTypeTok{end_year =} \DecValTok{2005}\NormalTok{, }\DataTypeTok{dist_limit =} \DecValTok{100}\NormalTok{,}
+            \DataTypeTok{days_included =} \KeywordTok{c}\NormalTok{(}\OperatorTok{-}\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 6 x 5
+##   storm_id     fips  closest_date storm_dist tot_precip
+##   <chr>        <chr> <chr>             <dbl>      <dbl>
+## 1 Bill-2003    22071 2003-06-30        38.8        141.
+## 2 Charley-2004 51700 2004-08-14        43.0        136.
+## 3 Cindy-2005   22071 2005-07-06        32.2        113.
+## 4 Floyd-1999   51700 1999-09-16        46.5        208.
+## 5 Isidore-2002 22071 2002-09-26         6.38       249.
+## 6 Katrina-2005 22071 2005-08-29        36.9        196.
+\end{verbatim}
+
+\end{frame}
+
+\begin{frame}{Project software}
+
+\vspace{-0.2cm} \large
+
+\begin{center}
+Web application interface to `hurricaneexposure`
+\end{center}
+
+\vspace{-0.3cm}
+
+\includegraphics[width=\textwidth]{figures/hurricane_exposure_website}
+
+\end{frame}
+
+\begin{frame}{Project software}
+
+\begin{columns}
+\begin{column}{0.3\textwidth}
+\footnotesize
+\begin{block}{`stormwindmodel`}
+Model storm winds from Best Tracks data at U.S. locations. Includes modeling sustained and gust winds, as well as duration of sustained and gust winds above a specified threshold. On CRAN.
+\end{block}
+\end{column}
+\begin{column}{0.7\textwidth}
+
+\begin{center}\includegraphics[width=\textwidth]{figures/census_track_modeled_winds} \end{center}
+\end{column}
+\end{columns}
+
+\end{frame}
+
+\begin{frame}{Project software}
+
+\footnotesize
+
+\begin{block}{`noaastormevents`}
+Download and explore listings from the NOAA Storm Events database. Includes the ability to pull events based on a tropical storm, using events listed close in time and distance to the storm's tracks. 
+https://github.com/zailchen/noaastormevents
+\end{block}
+
+\footnotesize
+
+\begin{block}{`countytimezones`}
+Convert time-stamps from UTC to local time zones for U.S. counties based on county FIPs. Facilitates merging weather observations with locally measured data, including health outcomes. On CRAN.
+\end{block}
+
+\footnotesize
+
+\begin{block}{`countyweather`}
+Download weather monitor data through NOAA API by U.S. county. Includes functions to map available monitors for each county. On CRAN.
+\end{block}
+
+\end{frame}
+
+\begin{frame}{Software as a research product}
+
+\includegraphics[width=\textwidth]{figures/coursera_screenshot}
+
+Courses: \url{https://www.coursera.org/specializations/r} Course book:
+\url{https://bookdown.org/rdpeng/RProgDA/}
+
+\end{frame}
+
+\section{Associations between tropical cyclone exposure and
+mortality}\label{associations-between-tropical-cyclone-exposure-and-mortality}
+
+\begin{frame}{Impacts in excess of official death tolls}
+
+Evidence from Hurricane Maria in Puerto Rico.
+
+\includegraphics[width=\textwidth]{figures/maria_timeseries}
+
+\footnotesize Source: The New York Times
+
+\end{frame}
+
+\begin{frame}{Relative risk of mortality associated with storm exposure}
+
+\begin{block}{Relative risk of mortality associated with storm exposure}
+We aimed to measure the \textit{relative risk (RR)} of mortality during the storm compared to what would have been expected the same days if there had not been a storm:
+
+\begin{equation*}
+RR = \frac{\text{Community-wide risk of death during storm}}{\text{Expected community-wide risk of death without storm}}
+\end{equation*}
+
+\end{block}
+
+\end{frame}
+
+\begin{frame}{Seasonality in tropical cyclones}
+
+Storm occurence by month for three high-risk US counties.
+
+\begin{center}\includegraphics[width=0.8\textwidth]{figures/storm_seasonality} \end{center}
+
+\end{frame}
+
+\begin{frame}{Matching to control for seasonality}
+
+\begin{center}\includegraphics[width=\textwidth]{figures/example_picking_controls} \end{center}
+
+\small We selected unexposed days in each community, matched to each
+storm exposed day, ensuring all matches are on similar days of the year.
+
+\end{frame}
+
+\begin{frame}{Estimating relative risk of mortality}
+
+To this matched data, we fit a random effects generalized linear model,
+using an \textbf{unconstrained distributed lag approach} to explore
+risks in the period surrounding the storm:
+
+\begin{equation*}
+log[E(Y_t^c)]=log(n^c) + \alpha + \alpha^c + 
+\boldsymbol{\beta}\sum_{l=-2}^{7} x_{t-l}^c + \boldsymbol{\delta} Year_t^c + 
+\boldsymbol{\gamma} DOW_t^c
+\end{equation*}
+
+\small
+
+where \(Y_t^c\): observed death count on day \(t\) in community \(c\);
+\(n^c\): population size in community \(c\) in year of day \(t\);
+\(\alpha\), \(\alpha^c\): overall intercept and community random effect
+intercepts, respectively; \(x_{t-l}^c\): indicator of whether the day at
+lag \(l\) from day \(t\) was exposed to the storm in community \(c\);
+\(Year_t^c\): year of day \(t\); and \(DOW_t^c\): day of week of day
+\(t\).
+
+\end{frame}
+
+\begin{frame}{Study storms and communities}
+
+\begin{center}\includegraphics[width=0.85\textwidth]{figures/mortality_storms_counties} \end{center}
+
+\footnotesize Source: Preliminary results, Yan et al.
+
+\end{frame}
+
+\begin{frame}{Mortality risks by day during storm period}
+
+\begin{columns}
+\begin{column}{0.6\textwidth}  
+    \begin{center}
+     \includegraphics[width=\textwidth]{figures/all_cause_lags.png}
+     \end{center}
+\end{column}
+\begin{column}{0.4\textwidth}
+\footnotesize
+\begin{block}{Risks by day}
+\footnotesize
+\begin{itemize}
+  \item For all-cause deaths, RRs were highest on storm's closest day
+  \item There was some evidence of elevated risk before and after the storm
+  \item Lag patterns were similar for cardiovascular and accidental deaths
+\end{itemize}
+\end{block}
+\end{column}
+\end{columns}
+
+\footnotesize Source: Preliminary results, Yan et al.
+
+\end{frame}
+
+\begin{frame}{Mortality risk by exposure metric}
+
+\begin{center}\includegraphics[width=\textwidth]{figures/rrs_by_metric} \end{center}
+
+\footnotesize Source: Preliminary results, Yan et al.
+
+\end{frame}
+
+\section{Final thoughts}\label{final-thoughts}
+
+\begin{frame}{CSU R Programming course}
+
+I teach a course each fall in R Programming (ERHS 535). The coursebook
+is available online:
+\url{https://geanders.github.io/RProgrammingForResearch/}
+
+\begin{center}\includegraphics[width=\textwidth]{figures/r_coursebook} \end{center}
+
+\end{frame}
+
+\begin{frame}{Partnership for Air Quality, Climate, and Health}
+
+\begin{center}\includegraphics[width=\textwidth]{figures/PAQCH} \end{center}
+
+\end{frame}
+
+\begin{frame}{Statistics for dynamic / mechanistic models}
+
+\begin{center}\includegraphics[width=0.8\textwidth]{figures/F1large} \end{center}
+
+\footnotesize{Source: Metcalfe et al., 2017. Identifying climate drivers of infectious disease dynamics: recent advances and challenges ahead. \textit{Proc. R. Soc. B}.}
+
+\end{frame}
+
+\begin{frame}{Statistics for dynamic / mechanistic models}
+
+\begin{center}\includegraphics[width=\textwidth]{figures/F2large} \end{center}
+
+\footnotesize{Source: Metcalfe et al., 2017. Identifying climate drivers of infectious disease dynamics: recent advances and challenges ahead. \textit{Proc. R. Soc. B}.}
+
+\end{frame}
+
+\begin{frame}{Multiple hypothesis testing}
+
+\begin{center}\includegraphics[width=0.5\textwidth]{figures/GreenJellyBeans} \end{center}
+
+\footnotesize{Source: xkcd}
+
+\end{frame}
+
+\end{document}

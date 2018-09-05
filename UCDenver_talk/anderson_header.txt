@@ -1,0 +1,16 @@
+\usepackage[british]{babel}
+\usepackage{graphicx,hyperref,anderson,url,amsmath,appendixnumberbeamer}
+\usepackage{fontawesome}
+
+\title[Tropical cyclones and mortality]{United States county-level exposure to tropical cyclones and associated mortality risks}
+\subtitle{Colorado School of Public Health Epidemiology Seminar}
+\date{May 7, 2018}
+
+\author[Brooke Anderson]{
+  Brooke Anderson \\\medskip
+  {\small \faEnvelope: \url{brooke.anderson@colostate.edu}} \\
+  {\small \faGithub:  \url{www.github.com/geanders}}}
+
+\institute[Colorado State University]{
+  Department of Environmental \& Radiological Health Sciences \\
+  Colorado State University}
