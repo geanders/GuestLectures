@@ -1,0 +1,262 @@
+---
+title: "Hurricanes and Health"
+subtitle: "The association between Medicare cardiorespiratory hospitalizations and tropical cyclones"
+author: "Brooke Anderson"
+date: "October 16, 2018"
+output:
+  beamer_presentation:
+    theme: metropolis
+    includes:
+      in_header: header.tex
+fontsize: 10pt
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+
+library(dplyr)
+library(tidyr)
+library(stringr)
+library(tibble)
+library(lubridate)
+
+library(ggplot2)
+library(viridis)
+library(ggrepel)
+
+library(sf)
+library(maps)
+library(tigris)
+options(tigris_class = "sf")
+options(tigris_use_cache = TRUE)
+
+library(kableExtra)
+
+library(hurricaneexposuredata)
+library(hurricaneexposure)
+
+data(state)
+state <- data_frame(state = state.name, 
+                    abbr = state.abb)
+data(hurr_tracks)
+data(closest_dist)
+
+our_states <- c("ME", "NH", "VT", "MA", "RI", "CT", "NY", 
+                "PA", "NJ", "OH", "MI", "WV", "VA", "DE", 
+                "MD", "KY", "IN", "IL", "NC", "SC", "GA",
+                "AL", "FL", "MS", "LA", "AR", "TN", "MO", 
+                "TX", "OK", "KS", "IA", "WI")
+us_counties <- counties(state = our_states, 
+                        cb = TRUE,
+                        resolution = "20m",
+                        year = 2010)
+us_states <- st_as_sf(map("state", plot = FALSE, fill = TRUE)) %>% 
+  mutate(ID = str_to_title(ID)) %>% 
+  inner_join(state, by = c("ID" = "state")) %>% 
+  filter(abbr %in% our_states) %>% 
+  st_transform(crs = 4269)
+```
+
+## Acknowledgements
+
+\small
+
+\begin{columns}
+
+\begin{column}{0.49\textwidth}
+\textit{Colorado State University}
+\begin{itemize}
+\item \textbf{Meilin Yan}
+\item Ander Wilson
+\item Joshua Ferreri
+\end{itemize}
+
+
+\end{column}
+
+\begin{column}{0.49\textwidth}
+
+\textit{Johns Hopkins (Public Health)}
+\begin{itemize}
+\item Roger Peng
+\end{itemize}
+
+\textit{Harvard (Public Health)}
+\begin{itemize}
+\item Francesca Dominici
+\end{itemize}
+
+\textit{University of Michigan}
+\begin{itemize}
+\item Seth Guikema
+\end{itemize}
+
+\textit{Ohio State University}
+\begin{itemize}
+\item Steven Quiring
+\end{itemize}
+
+\end{column}
+
+\end{columns}
+
+## Top 10 wind-based exposures in our study
+
+```{r message = FALSE, warning = FALSE}
+top_storms <- hurr_tracks %>% 
+  tbl_df() %>% 
+  filter(storm_id %in% c("Wilma-2005", "Charley-2004", "Ike-2008",
+                         "Katrina-2005", "Frances-2004", "Irene-1999")) %>% 
+  filter(24 <= latitude & latitude <= 48 & 
+           -110 <= longitude & longitude <= -65) %>% 
+  select(-date) %>% 
+  separate(storm_id, c("storm_name", "storm_year"), sep = "-") %>% 
+  st_as_sf(coords = c("longitude", "latitude"),
+           crs = 4269) 
+top_storm_tracks <- top_storms %>% 
+  group_by(storm_name, storm_year) %>% 
+  summarize(max_wind = max(wind), do_union=FALSE) %>% 
+  st_cast("LINESTRING")
+
+storm_labels <- top_storms %>% 
+  group_by(storm_name, storm_year) %>% 
+  slice(n()) %>% 
+  ungroup() 
+
+top_counties <- us_counties %>% 
+  mutate(fips = paste(STATE, COUNTY, sep = "")) %>% 
+  filter(fips %in% c("12099", "12071", "12095", "48201", 
+                     "12127", "12011"))
+```
+
+```{r fig.width = 7, fig.height = 5, out.width = "\\textwidth", fig.align = "center"}
+ggplot() +
+  geom_sf(data = us_states, color = "white", fill = "lightgray") + 
+  geom_sf(data = top_storm_tracks, color = "red", alpha = 0.4) + 
+  geom_sf(data = top_storms, aes(color = wind), alpha = 0.7) + 
+  geom_sf(data = top_counties, alpha = 0.7, fill = "cyan4", color = "cyan3") + 
+  geom_label_repel(data = storm_labels, aes(label = storm_name, geometry = geometry),
+    stat = "sf_coordinates", min.segment.length = 0, alpha = 0.7, color = "white",
+    fontface = "bold", fill = "red") +
+  geom_label_repel(data = top_counties, aes(label = NAME, geometry = geometry),
+    stat = "sf_coordinates", min.segment.length = 0, color = "cyan4",
+    fontface = "bold", fill = "white", alpha = 0.7) + 
+  scale_color_viridis(name = "Wind\n(knots)", option = "B", direction = -1) + 
+  theme_dark() + 
+  theme(legend.position = "right",
+        axis.title = element_blank(),
+        axis.text = element_blank(),
+        axis.ticks = element_blank())
+```
+
+## Potential for seasonal confounding
+
+## Selecting matched unexposed days
+
+```{r fig.width = 7, fig.height = 4, out.width = "\\textwidth"}
+all_dates <- data_frame(date = seq(from = ymd("1999-01-01"), to = ymd("2011-12-31"), by = 1)) %>% 
+  mutate(year = year(date), 
+         yday = yday(date))
+
+closest_date <- closest_dist %>% 
+  filter(storm_id == "Wilma-2005", fips == "12099") %>% 
+  select(storm_id, closest_date) %>% 
+  rename(date = closest_date) %>% 
+  mutate(date = ymd(date),
+         year = year(date), 
+         yday = yday(date)) 
+
+a <- ggplot(all_dates, aes(x = yday, y = year)) + 
+  geom_path(aes(group = year), alpha = 0.5, color = "lightgray") + 
+  labs(x = "Day in year", y = "Year in study") + 
+  scale_y_reverse() + 
+  geom_point(data = closest_date, color = "red") + 
+  theme_dark()
+a + 
+  geom_label_repel(data = closest_date, aes(label = storm_id),
+                   fill = "red", color = "white", fontface = "bold",
+                   alpha = 0.7)
+```
+
+## Selecting matched unexposed days
+
+```{r fig.width = 7, fig.height = 4, out.width = "\\textwidth"}
+a + 
+  annotate("rect", xmin = 287, xmax = 307, ymin = 1998.75, ymax = 2011.25,
+        alpha = .2, fill = "cyan") 
+```
+
+## Selecting matched unexposed days
+
+```{r fig.width = 7, fig.height = 4, out.width = "\\textwidth"}
+matched_days <- data_frame(
+  year = c(sample(c(1999:2004, 2006:2011), 10, replace = FALSE)),
+  yday = c(sample(287:307, 10, replace = TRUE))
+)
+
+a + 
+  annotate("rect", xmin = 287, xmax = 307, ymin = 1998.75, ymax = 2011.25,
+        alpha = .2, fill = "cyan") + 
+  geom_point(data = matched_days, color = "lightyellow")
+```
+
+## Selecting matched unexposed days
+
+```{r fig.width = 7, fig.height = 4, out.width = "\\textwidth"}
+matched_days <- matched_days %>% 
+  mutate(start = yday - 2,
+         end = yday + 7)
+
+a + 
+  annotate("rect", xmin = 287, xmax = 307, ymin = 1998.75, ymax = 2011.25,
+        alpha = .2, fill = "cyan") +
+  geom_point(data = matched_days, color = "lightyellow") +
+  geom_errorbarh(data = matched_days, 
+                 aes(xmax = yday + 7, xmin = yday - 2), 
+                 color = "lightyellow", height = 0, size = 1.5) + 
+  geom_errorbarh(data = closest_date, 
+                 aes(xmin = yday - 2, xmax = yday + 7),
+                 color = "red", height = 0, size = 1.5)
+```
+
+
+## Respiratory hospitalizations
+
+\small
+
+```{r}
+resp_hosps <- tribble(
+  ~ storm, ~ county, ~ wind, ~ percincreasenum, ~ percincrease, 
+  "Wilma (2005)", "Palm Beach County, FL", 51.5,  38, "38 (-3, 95)",
+  "Charley (2004)", "Lee County, FL", 45.3, 25, "25 (-10, 73)",
+  "Charley (2004)", "Orange County, FL", 41.2, 44, "44 (4, 99)",
+  "Ike (2008)", "Harris County, TX", 38.7, 44, "44 (25, 65)",
+  "Charley (2004)", "Volusia County, FL", 37.0, 8, "8 (-15, 38)",
+  "Wilma (2005)", "Broward County, FL", 36.7, 66, "66 (36, 104)",
+  "Katrina (2005)", "Broward County, FL", 33.5, 36, "36 (19, 57)",
+  "Frances (2004)", "Palm Beach County, FL", 33.3, 35, "35 (15, 59)",
+  "Irene (1999)", "Broward County, FL", 33.3, 10, "10 (-14, 41)",
+  "Irene (1999)", "Palm Beach County, FL", 33.2, 40, "40 (-3, 100)"
+)
+
+resp_hosps %>% 
+  mutate(wind = cell_spec(round(wind), "latex", bold = TRUE, color = "white",
+                          background = spec_color(round(wind), end = 0.9, direction = -1, option = "A")),
+         percincrease = cell_spec(percincrease, "latex", bold = TRUE, 
+                                   color = spec_color(percincreasenum, end = 0.9, 
+                                                      direction = -1))) %>% 
+  select(storm, county, wind, percincrease) %>% 
+  kable("latex", booktabs = TRUE, escape = FALSE, align = "c", linesep = "",
+        col.names = linebreak(c("Tropical cyclone", "County", "Wind[note]", "Percent increase[note]"))) %>% 
+  add_footnote(c("Modeled maximum sustained surface wind (m/s) at county center",
+                 "Percent increase in hospitalizations compared to matched unexposed days"),
+               escape = TRUE)
+```
+
+## Cardiovascular hospitalizations
+
+## All study storms and counties
+
+
+
+## Hospitalization risks by lag day
