@@ -167,13 +167,13 @@ knitr::include_graphics("figures/sandy_satellite.jpg")
 
 ## Study goals
 
-- Quantify the association between tropical cyclone exposure and community mortality risks within a large set of exposures and counties
+- Quantify the association between tropical cyclone exposure and community mortality risks within a large set of exposures and communities
 - Explore the temporal pattern in risks in the days surrounding the storm
 - Investigate how estimated associations change with changing definitions of tropical cyclone exposure
 
 # Methods 
 
-## All study storms and counties
+## All study storms and communities
 
 ```{r fig.width = 7, fig.height = 5, out.width = "\\textwidth", fig.align = "center"}
 study_counties <- readRDS("data/county.rds") %>% 
@@ -228,81 +228,81 @@ Given this potential for seasonal confounding, we used **a matched analysis** to
 the seasonal distribution was similar for exposed and unexposed days, matching
 across years within a community. 
 
-## Selecting matched unexposed days
+<!-- ## Selecting matched unexposed days -->
 
-```{r fig.width = 7, fig.height = 5, out.width = "\\textwidth"}
-all_dates <- data_frame(date = seq(from = ymd("1988-01-01"), to = ymd("2005-12-31"), by = 1)) %>% 
-  mutate(year = year(date), 
-         yday = yday(date))
+<!-- ```{r fig.width = 7, fig.height = 5, out.width = "\\textwidth"} -->
+<!-- all_dates <- data_frame(date = seq(from = ymd("1988-01-01"), to = ymd("2005-12-31"), by = 1)) %>%  -->
+<!--   mutate(year = year(date),  -->
+<!--          yday = yday(date)) -->
 
-closest_date <- closest_dist %>% 
-  filter(storm_id == "Andrew-1992", fips == "12086") %>% 
-  select(storm_id, closest_date) %>% 
-  rename(date = closest_date) %>% 
-  mutate(date = ymd(date),
-         year = year(date), 
-         yday = yday(date)) 
+<!-- closest_date <- closest_dist %>%  -->
+<!--   filter(storm_id == "Andrew-1992", fips == "12086") %>%  -->
+<!--   select(storm_id, closest_date) %>%  -->
+<!--   rename(date = closest_date) %>%  -->
+<!--   mutate(date = ymd(date), -->
+<!--          year = year(date),  -->
+<!--          yday = yday(date))  -->
 
-a <- ggplot(all_dates, aes(x = yday, y = year)) + 
-  geom_path(aes(group = year), alpha = 0.5, color = "lightgray") + 
-  labs(x = "Day in year", y = "Year in study") + 
-  scale_y_reverse() + 
-  geom_point(data = closest_date, color = "red") + 
-  theme_dark()
-a + 
-  geom_label_repel(data = closest_date, aes(label = storm_id),
-                   fill = "red", color = "white", fontface = "bold",
-                   alpha = 0.7) + 
-  ggtitle("1. Identify the day-of-year of the storm",
-          subtitle = "Example for Hurricane Andrew in Miami, FL")
-```
+<!-- a <- ggplot(all_dates, aes(x = yday, y = year)) +  -->
+<!--   geom_path(aes(group = year), alpha = 0.5, color = "lightgray") +  -->
+<!--   labs(x = "Day in year", y = "Year in study") +  -->
+<!--   scale_y_reverse() +  -->
+<!--   geom_point(data = closest_date, color = "red") +  -->
+<!--   theme_dark() -->
+<!-- a +  -->
+<!--   geom_label_repel(data = closest_date, aes(label = storm_id), -->
+<!--                    fill = "red", color = "white", fontface = "bold", -->
+<!--                    alpha = 0.7) +  -->
+<!--   ggtitle("1. Identify the day-of-year of the storm", -->
+<!--           subtitle = "Example for Hurricane Andrew in Miami, FL") -->
+<!-- ``` -->
 
-## Selecting matched unexposed days
+<!-- ## Selecting matched unexposed days -->
 
-```{r fig.width = 7, fig.height = 5, out.width = "\\textwidth"}
-a + 
-  annotate("rect", xmin = 234, xmax = 240, ymin = 1987.75, ymax = 2005.25,
-        alpha = .2, fill = "cyan") + 
-  ggtitle("2. Create a seven-day window centered on the storm's day-of-year",
-          subtitle = "Example for Hurricane Andrew in Miami, FL") 
-```
+<!-- ```{r fig.width = 7, fig.height = 5, out.width = "\\textwidth"} -->
+<!-- a +  -->
+<!--   annotate("rect", xmin = 234, xmax = 240, ymin = 1987.75, ymax = 2005.25, -->
+<!--         alpha = .2, fill = "cyan") +  -->
+<!--   ggtitle("2. Create a seven-day window centered on the storm's day-of-year", -->
+<!--           subtitle = "Example for Hurricane Andrew in Miami, FL")  -->
+<!-- ``` -->
 
-## Selecting matched unexposed days
+<!-- ## Selecting matched unexposed days -->
 
-```{r fig.width = 7, fig.height = 5, out.width = "\\textwidth"}
-matched_days <- data_frame(
-  year = c(sample(c(1988:1991, 1993:2005), 10, replace = FALSE)),
-  yday = c(sample(234:240, 10, replace = TRUE))
-)
+<!-- ```{r fig.width = 7, fig.height = 5, out.width = "\\textwidth"} -->
+<!-- matched_days <- data_frame( -->
+<!--   year = c(sample(c(1988:1991, 1993:2005), 10, replace = FALSE)), -->
+<!--   yday = c(sample(234:240, 10, replace = TRUE)) -->
+<!-- ) -->
 
-a + 
-  annotate("rect", xmin = 234, xmax = 240, ymin = 1987.75, ymax = 2005.25,
-        alpha = .2, fill = "cyan") + 
-  geom_point(data = matched_days, color = "lightyellow") + 
-  ggtitle("3. Randomly pick ten unexposed days from other years within window",
-          subtitle = "Example for Hurricane Andrew in Miami, FL")
-```
+<!-- a +  -->
+<!--   annotate("rect", xmin = 234, xmax = 240, ymin = 1987.75, ymax = 2005.25, -->
+<!--         alpha = .2, fill = "cyan") +  -->
+<!--   geom_point(data = matched_days, color = "lightyellow") +  -->
+<!--   ggtitle("3. Randomly pick ten unexposed days from other years within window", -->
+<!--           subtitle = "Example for Hurricane Andrew in Miami, FL") -->
+<!-- ``` -->
 
-## Selecting matched unexposed days
+<!-- ## Selecting matched unexposed days -->
 
-```{r fig.width = 7, fig.height = 5, out.width = "\\textwidth"}
-matched_days <- matched_days %>% 
-  mutate(start = yday - 2,
-         end = yday + 7)
+<!-- ```{r fig.width = 7, fig.height = 5, out.width = "\\textwidth"} -->
+<!-- matched_days <- matched_days %>%  -->
+<!--   mutate(start = yday - 2, -->
+<!--          end = yday + 7) -->
 
-a + 
-  annotate("rect", xmin = 234, xmax = 240, ymin = 1987.75, ymax = 2005.25,
-        alpha = .2, fill = "cyan") +
-  geom_point(data = matched_days, color = "lightyellow") +
-  geom_errorbarh(data = matched_days, 
-                 aes(xmax = yday + 7, xmin = yday - 2), 
-                 color = "lightyellow", height = 0, size = 1.5) + 
-  geom_errorbarh(data = closest_date, 
-                 aes(xmin = yday - 2, xmax = yday + 7),
-                 color = "red", height = 0, size = 1.5) + 
-  ggtitle("4. Determine the number of deaths for a period around each day",
-          subtitle = "Example for Hurricane Andrew in Miami, FL")
-```
+<!-- a +  -->
+<!--   annotate("rect", xmin = 234, xmax = 240, ymin = 1987.75, ymax = 2005.25, -->
+<!--         alpha = .2, fill = "cyan") + -->
+<!--   geom_point(data = matched_days, color = "lightyellow") + -->
+<!--   geom_errorbarh(data = matched_days,  -->
+<!--                  aes(xmax = yday + 7, xmin = yday - 2),  -->
+<!--                  color = "lightyellow", height = 0, size = 1.5) +  -->
+<!--   geom_errorbarh(data = closest_date,  -->
+<!--                  aes(xmin = yday - 2, xmax = yday + 7), -->
+<!--                  color = "red", height = 0, size = 1.5) +  -->
+<!--   ggtitle("4. Determine the number of deaths for a period around each day", -->
+<!--           subtitle = "Example for Hurricane Andrew in Miami, FL") -->
+<!-- ``` -->
 
 <!-- ## Estimating tropical cyclone-hospitalization associations -->
 
@@ -382,7 +382,7 @@ ggplot() +
         axis.text = element_blank(),
         axis.ticks = element_blank()) + 
   ggtitle("All tropical cyclone wind exposures",
-          subtitle = "Counties and storms with at least one exposure of 21 m/s or higher")
+          subtitle = "Communities and storms with at least one exposure of 21 m/s or higher")
 ```
 
 ## Storm-period risks by storm exposure threshold
@@ -413,6 +413,7 @@ ggplot(wind_cumul_ests, aes(x = (rr - 1), y = threshold)) +
   expand_limits(x = 0)
 ```
 
+\footnotesize{\textbf{Storm period:} Two days before to seven days after the storm's closest approach to the community.}
 
 ## Storm-period risks by storm exposure threshold
 
@@ -446,6 +447,8 @@ ggplot(wind_cumul_ests, aes(x = (rr - 1), y = threshold)) +
              ncol = 3, scales = "free_x")
 ```
 
+\footnotesize{\textbf{Storm period:} Two days before to seven days after the storm's closest approach to the community.}
+
 ## Mortality risks by lag day
 
 ```{r fig.width = 7, fig.height = 4.5, out.width = "\\textwidth"}
@@ -472,7 +475,7 @@ ggplot(wind_lags_all, aes(x = lag, y = (rr - 1))) +
   scale_y_continuous(name = "Percent increase in mortality\ncompared to matched unexposed days",
                      label = percent) + 
   ggtitle("All-cause mortality risks by lag day",
-          subtitle = "Storm exposure assessed as maximum sustained winds in the county of 21 m/s or higher")
+          subtitle = "Storm exposure assessed as maximum sustained winds in the community of 21 m/s or higher")
 ```
 
 ## Mortality risks by lag day
@@ -501,7 +504,7 @@ ggplot(wind_lags_cvd, aes(x = lag, y = (rr - 1))) +
   scale_y_continuous(name = "Percent increase in mortality\ncompared to matched unexposed days",
                      label = percent) + 
   ggtitle("Cardiovascular mortality risks by lag day",
-          subtitle = "Storm exposure assessed as maximum sustained winds in the county of 21 m/s or higher")
+          subtitle = "Storm exposure assessed as maximum sustained winds in the community of 21 m/s or higher")
 ```
 
 <!-- ## Mortality risks by lag day -->
@@ -583,7 +586,7 @@ ggplot() +
         axis.title = element_blank(),
         axis.text = element_blank(),
         axis.ticks = element_blank()) + 
-  ggtitle("Storms and counties for top 10 wind-based exposures",
+  ggtitle("Storms and communities for top 10 wind-based exposures",
           subtitle = "Color of points corresponds to storm's maximum 1-minute sustained surface winds")
 ```
 
@@ -651,7 +654,7 @@ cvd_deaths %>%
                                                       direction = -1))) %>% 
   select(storm, county, wind, percincrease) %>% 
   kable("latex", booktabs = TRUE, escape = FALSE, align = "c", linesep = "",
-        col.names = linebreak(c("Tropical cyclone", "County", "Wind[note]", "Percent increase[note]"))) %>% 
+        col.names = linebreak(c("Tropical cyclone", "Community", "Wind[note]", "Percent increase[note]"))) %>% 
   add_footnote(c("Modeled maximum sustained surface wind (m/s) at community center",
                  "% increase in cardiovascular mortality compared to matched unexposed days"),
                escape = TRUE)
@@ -659,9 +662,22 @@ cvd_deaths %>%
 
 # Discussion
 
+
+## Understanding variation across storms in health effects
+
+\centering
+Tropical Storm Allison (2001) caused extensive flooding in Houston, TX
+
+```{r out.width = "0.8\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/Allison_Flood_Houston.jpg")
+```
+\vspace{-0.2cm}
+\footnotesize
+*Source: National Oceanic and Atmospheric Administration*
+
 ## Differences in exposures by hazard
 
-The counties assessed as "exposed" to tropical cyclones can differ substantially based on the hazard metrics considered in assessing exposure. 
+The communities assessed as "exposed" to tropical cyclones can differ substantially based on the hazard metrics considered in assessing exposure. 
 
 ```{r echo = FALSE, fig.width = 8, out.width = "\\textwidth", fig.align = "center"}
 storm <- "Ivan-2004"
@@ -678,17 +694,6 @@ gridExtra::grid.arrange(a, b, ncol = 2)
 
 \footnotesize Exposures for Hurricane Ivan based on rain measurements (left) and modeled maximum sustained winds (right).
 
-## Understanding variation across storms in health effects
-
-\centering
-Tropical Storm Allison (2001) caused extensive flooding in Houston, TX
-
-```{r out.width = "0.8\\textwidth", fig.align = "center"}
-knitr::include_graphics("figures/Allison_Flood_Houston.jpg")
-```
-\vspace{-0.2cm}
-\footnotesize
-*Source: National Oceanic and Atmospheric Administration*
 
 ## Tropical cyclones under climate change
 
@@ -698,13 +703,13 @@ knitr::include_graphics("figures/noaa_study.png")
 
 Based on recent research, climate change is likely to increase the number of major hurricanes in active hurricane seasons.
 
-## Climate attribution studies
+<!-- ## Climate attribution studies -->
 
-```{r out.width = "0.8\\textwidth", fig.align = "center"}
-knitr::include_graphics("figures/attr_1.png")
-knitr::include_graphics("figures/attr_2.png")
-knitr::include_graphics("figures/attr_3.png")
-```
+<!-- ```{r out.width = "0.8\\textwidth", fig.align = "center"} -->
+<!-- knitr::include_graphics("figures/attr_1.png") -->
+<!-- knitr::include_graphics("figures/attr_2.png") -->
+<!-- knitr::include_graphics("figures/attr_3.png") -->
+<!-- ``` -->
 
 <!-- ## Climate attribution studies -->
 
@@ -728,15 +733,15 @@ knitr::include_graphics("figures/attr_3.png")
 <!-- \footnotesize -->
 <!-- *Source: Lackmann 2015, BAMS* -->
 
-## Other related research in our research group
+<!-- ## Other related research in our research group -->
 
-We have a number of related research projects ongoing in our research group: 
+<!-- We have a number of related research projects ongoing in our research group:  -->
 
-- Estimating associations between tropical cyclone exposures and cardiorespiratory Medicare hospitalizations
-- Exploring how the associations between tropical cyclone exposure and health outcomes change across definitions of tropical cyclone exposure
-- Open source software: Enabling access to county-level tropical cyclone exposure data for multiple storm hazards (wind, rain, floods, tornadoes)
-- Developing methods for epidemiological research on climate-related disasters
-- Quantifying health-related risks for other climate-related disasters, especially extreme temperatures and heat waves
+<!-- - Estimating associations between tropical cyclone exposures and cardiorespiratory Medicare hospitalizations -->
+<!-- - Exploring how the associations between tropical cyclone exposure and health outcomes change across definitions of tropical cyclone exposure -->
+<!-- - Open source software: Enabling access to county-level tropical cyclone exposure data for multiple storm hazards (wind, rain, floods, tornadoes) -->
+<!-- - Developing methods for epidemiological research on climate-related disasters -->
+<!-- - Quantifying health-related risks for other climate-related disasters, especially extreme temperatures and heat waves -->
 
 
 ## Questions?
