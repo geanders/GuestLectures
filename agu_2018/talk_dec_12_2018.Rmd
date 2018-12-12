@@ -1,0 +1,750 @@
+---
+output:
+  beamer_presentation:
+    includes:
+      in_header: header.tex
+      before_body: anderson_beforebody.txt
+fontsize: 10pt
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+
+library(dplyr)
+library(tidyr)
+library(stringr)
+library(tibble)
+library(lubridate)
+library(forcats)
+
+library(ggplot2)
+library(viridis)
+library(ggrepel)
+library(scales)
+
+library(sf)
+library(maps)
+library(tigris)
+options(tigris_class = "sf")
+options(tigris_use_cache = TRUE)
+
+library(kableExtra)
+
+library(hurricaneexposuredata)
+library(hurricaneexposure)
+
+data(state)
+state <- data_frame(state = state.name, 
+                    abbr = state.abb)
+data(hurr_tracks)
+data(closest_dist)
+data(storm_winds)
+
+our_states <- c("ME", "NH", "VT", "MA", "RI", "CT", "NY", 
+                "PA", "NJ", "OH", "MI", "WV", "VA", "DE", 
+                "MD", "KY", "IN", "IL", "NC", "SC", "GA",
+                "AL", "FL", "MS", "LA", "AR", "TN", "MO", 
+                "TX", "OK", "KS", "IA", "WI", "DC")
+us_counties <- counties(state = our_states, 
+                        cb = TRUE,
+                        resolution = "20m",
+                        year = 2010)
+us_states <- st_as_sf(map("state", plot = FALSE, fill = TRUE)) %>% 
+  mutate(ID = str_to_title(ID)) %>% 
+  inner_join(state, by = c("ID" = "state")) %>% 
+  filter(abbr %in% our_states) %>% 
+  st_transform(crs = 4269)
+```
+
+## Acknowledgements
+
+\small
+
+\begin{columns}
+
+\begin{column}{0.49\textwidth}
+
+\textit{Colorado State University}
+\begin{itemize}
+\item \textbf{Meilin Yan}
+\item Ander Wilson
+\item Joshua Ferreri
+\item Andrea Schumacher
+\end{itemize}
+
+\textit{NASA Marshall Space Flight Center}
+\begin{itemize}
+\item Mohammad Al-Hamdan
+\item William Crosson
+\end{itemize}
+
+\textit{Debian / University of Illinois}
+\begin{itemize}
+\item Dirk Eddelbuettel
+\end{itemize}
+
+\end{column}
+
+\begin{column}{0.49\textwidth}
+
+\textit{Johns Hopkins (Public Health)}
+\begin{itemize}
+\item Roger Peng
+\end{itemize}
+
+\textit{Harvard (Public Health)}
+\begin{itemize}
+\item Francesca Dominici
+\item Yun Wang
+\end{itemize}
+
+\textit{University of Michigan}
+\begin{itemize}
+\item Seth Guikema
+\end{itemize}
+
+\textit{Ohio State University}
+\begin{itemize}
+\item Steven Quiring
+\end{itemize}
+
+
+
+\end{column}
+
+\end{columns}
+
+# Motivation
+
+## Impacts in excess of official death tolls
+
+Evidence from Hurricane Maria in Puerto Rico of extensive mortality impacts. 
+
+```{r echo = FALSE, out.width="0.9\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/maria_excess_deaths.png.png")
+```
+
+\footnotesize Source: The New York Times
+
+## Impacts in excess of official death tolls
+
+Evidence from Hurricane Maria in Puerto Rico. 
+
+```{r out.width = "\\textwidth"}
+knitr::include_graphics("figures/maria_timeseries.png")
+```
+
+\footnotesize Source: The New York Times
+
+## Health risks associated with Hurricane Sandy (2012)
+
+\begin{columns}
+
+\begin{column}{0.45\textwidth}
+```{r echo = FALSE, fig.align = "center", out.width = "\\textwidth"}
+knitr::include_graphics("figures/sandy_satellite.jpg")
+```
+\vspace{-0.5cm}
+\begin{center}
+\scriptsize Source: NOAA / NASA GOES Project
+\end{center}
+\end{column}
+
+\begin{column}{0.55\textwidth}
+\small
+\begin{block}{Health risks in storm-affected areas}
+\begin{itemize}
+  \item Change in patterns of emergency department visits (Kim et al. 2016)
+  \item Increased outpatient cases of food and waterborne disease among elderly (Bloom et al. 2016)
+  \item Increased rate of myocardial infarctions (Swerdel et al. 2014)
+  \item Increased hospitalizations for dehydration (Lee et al. 2016)
+  \item Difficulty obtaining medical care, medications, and medical equipment (Davidow et al. 2016)
+\end{itemize}
+\end{block}
+\end{column}
+
+\end{columns}
+
+## Study goals
+
+- Quantify the association between tropical cyclone exposure and community mortality risks within a large set of exposures and counties
+- Explore the temporal pattern in risks in the days surrounding the storm
+- Investigate how estimated associations change with changing definitions of tropical cyclone exposure
+
+# Methods 
+
+## All study storms and counties
+
+```{r fig.width = 7, fig.height = 5, out.width = "\\textwidth", fig.align = "center"}
+study_counties <- readRDS("data/county.rds") %>% 
+  mutate(stfips = str_pad(stfips, 2, pad = "0"),
+         cofips = str_pad(cofips, 3, pad = "0")) %>% 
+  unite(fips, stfips, cofips, sep = "") %>%
+  mutate(fips = case_when(
+    cityname == "Miami" ~ "12086",
+    TRUE ~ fips
+  )) %>% 
+  filter(state %in% our_states) 
+
+study_counties <- us_counties %>% 
+  mutate(fips = paste(STATEFP, COUNTYFP, sep = "")) %>% 
+  inner_join(study_counties, by = "fips")
+
+study_communities <- readRDS("data/city.char.rds") %>% 
+  filter(state %in% our_states) %>% 
+  mutate(lat = as.numeric(lat),
+         long = as.numeric(long),
+         long = -1 * long) %>% 
+  st_as_sf(coords = c("long", "lat"), crs = 4269)
+
+ggplot() + 
+  geom_sf(data = us_states, color = "white", fill = "lightgray") +  
+  geom_sf(data = study_communities, 
+          color = "darkcyan", size = 6, alpha = 0.3) +
+  geom_sf(data = study_counties, alpha = 0.7, fill = "peachpuff", color = "peachpuff3") +
+  geom_text(aes(x = -72, y = 30, label = "# of communities = 78"), color = "white") + 
+  theme_dark() + 
+  theme(legend.position = "right",
+        axis.title = element_blank(),
+        axis.text = element_blank(),
+        axis.ticks = element_blank()) + 
+  ggtitle("Communities considered in our study",
+          subtitle = "Data from the National Morbidity, Mortality, and Air Pollution Study (NMMAPS)")
+  
+```
+
+
+## Potential for seasonal confounding
+
+**Analysis aim: Estimate the change in mortality during tropical
+cyclone exposures compared to if the storm had not hit the community.**
+
+It is important to control for potential seasonal confounding because: 
+
+- There are strong seasonal patterns in many **health outcomes**
+- There are strong seasonal patterns in **tropical cyclone exposures**
+
+Given this potential for seasonal confounding, we used **a matched analysis** to ensure that
+the seasonal distribution was similar for exposed and unexposed days, matching
+across years within a community. 
+
+## Selecting matched unexposed days
+
+```{r fig.width = 7, fig.height = 5, out.width = "\\textwidth"}
+all_dates <- data_frame(date = seq(from = ymd("1988-01-01"), to = ymd("2005-12-31"), by = 1)) %>% 
+  mutate(year = year(date), 
+         yday = yday(date))
+
+closest_date <- closest_dist %>% 
+  filter(storm_id == "Andrew-1992", fips == "12086") %>% 
+  select(storm_id, closest_date) %>% 
+  rename(date = closest_date) %>% 
+  mutate(date = ymd(date),
+         year = year(date), 
+         yday = yday(date)) 
+
+a <- ggplot(all_dates, aes(x = yday, y = year)) + 
+  geom_path(aes(group = year), alpha = 0.5, color = "lightgray") + 
+  labs(x = "Day in year", y = "Year in study") + 
+  scale_y_reverse() + 
+  geom_point(data = closest_date, color = "red") + 
+  theme_dark()
+a + 
+  geom_label_repel(data = closest_date, aes(label = storm_id),
+                   fill = "red", color = "white", fontface = "bold",
+                   alpha = 0.7) + 
+  ggtitle("1. Identify the day-of-year of the storm",
+          subtitle = "Example for Hurricane Andrew in Miami, FL")
+```
+
+## Selecting matched unexposed days
+
+```{r fig.width = 7, fig.height = 5, out.width = "\\textwidth"}
+a + 
+  annotate("rect", xmin = 234, xmax = 240, ymin = 1987.75, ymax = 2005.25,
+        alpha = .2, fill = "cyan") + 
+  ggtitle("2. Create a seven-day window centered on the storm's day-of-year",
+          subtitle = "Example for Hurricane Andrew in Miami, FL") 
+```
+
+## Selecting matched unexposed days
+
+```{r fig.width = 7, fig.height = 5, out.width = "\\textwidth"}
+matched_days <- data_frame(
+  year = c(sample(c(1988:1991, 1993:2005), 10, replace = FALSE)),
+  yday = c(sample(234:240, 10, replace = TRUE))
+)
+
+a + 
+  annotate("rect", xmin = 234, xmax = 240, ymin = 1987.75, ymax = 2005.25,
+        alpha = .2, fill = "cyan") + 
+  geom_point(data = matched_days, color = "lightyellow") + 
+  ggtitle("3. Randomly pick ten unexposed days from other years within window",
+          subtitle = "Example for Hurricane Andrew in Miami, FL")
+```
+
+## Selecting matched unexposed days
+
+```{r fig.width = 7, fig.height = 5, out.width = "\\textwidth"}
+matched_days <- matched_days %>% 
+  mutate(start = yday - 2,
+         end = yday + 7)
+
+a + 
+  annotate("rect", xmin = 234, xmax = 240, ymin = 1987.75, ymax = 2005.25,
+        alpha = .2, fill = "cyan") +
+  geom_point(data = matched_days, color = "lightyellow") +
+  geom_errorbarh(data = matched_days, 
+                 aes(xmax = yday + 7, xmin = yday - 2), 
+                 color = "lightyellow", height = 0, size = 1.5) + 
+  geom_errorbarh(data = closest_date, 
+                 aes(xmin = yday - 2, xmax = yday + 7),
+                 color = "red", height = 0, size = 1.5) + 
+  ggtitle("4. Determine the number of deaths for a period around each day",
+          subtitle = "Example for Hurricane Andrew in Miami, FL")
+```
+
+<!-- ## Estimating tropical cyclone-hospitalization associations -->
+
+<!-- We then used this matched data to fit a generalized linear model of mortality in association with tropical cyclone exposure:  -->
+
+<!-- $$ -->
+<!-- log[E(Y_T)] = \alpha + \beta x_T + \delta Z_T -->
+<!-- $$ -->
+<!-- \small -->
+<!-- where: -->
+
+<!-- - $Y_T$ is the total mortality count in the 10-day period $T$ -->
+<!-- - $\alpha$ is the model intercept -->
+<!-- - $x_T$ is an indicator variable for storm exposure, with associated coefficient $\beta$ -->
+<!-- - $Z_T$ is the year of period $T$, fit as a linear term and with associated coefficient $\delta$ -->
+
+<!-- ## Estimating tropical cyclone-mortality associations -->
+
+<!-- We then used this matched data to fit a generalized linear mixed-effect model of mortality risk in association with tropical cyclone exposure:  -->
+
+<!-- $$ -->
+<!-- log[E(Y_t^c)] = \alpha + \alpha_c + \sum_{l=-2}^7\beta_{l} x_{t-l}^c + \delta Z_t + \gamma D_t -->
+<!-- $$ -->
+<!-- \small -->
+<!-- where: -->
+
+<!-- - $Y_t$ is the total mortality count on day $t$ in community $c$ -->
+<!-- - $\alpha$ is the model intercept -->
+<!-- - $\alpha_c$ is a random effect for study county -->
+<!-- - $x_{t-l}$ is an indicator variable for storm exposure, with associated lag-specific coefficients $\beta_l$ -->
+<!-- - $Z_t$ is the year of day $t$, fit as a factor and with associated coefficient $\delta$ -->
+<!-- - $D_t$ is the day of week of day $t$, with associated coefficient $\gamma$ -->
+
+# Results
+
+
+## Wind-based exposures in study communities
+
+```{r fig.width = 7, fig.height = 4, out.width = "\\textwidth"}
+study_hurr_tracks <- hurr_tracks %>%
+  mutate(year = str_sub(date, 1, 4)) %>% 
+  filter(1988 <= year & year <= 2005) %>%
+  filter(24 <= latitude & latitude <= 48 & 
+           -110 <= longitude & longitude <= -65) %>% 
+  st_as_sf(coords = c("longitude", "latitude"),
+           crs = 4269) %>% 
+  group_by(storm_id) %>% 
+  summarize(max_wind = max(wind), do_union = FALSE) %>% 
+  st_cast("LINESTRING")
+
+study_storm_winds <- storm_winds %>% 
+  filter(fips %in% study_counties$fips) %>% 
+  filter(storm_id %in% study_hurr_tracks$storm_id) %>% 
+  filter(vmax_sust >= 12)
+
+study_storm_winds_fips <- study_storm_winds %>% 
+  group_by(fips) %>% 
+  summarize(highest_wind = max(vmax_sust)) %>% 
+  left_join(mutate(us_counties, fips = paste(STATEFP, COUNTYFP, sep = "")), by = "fips")
+
+study_storm_winds_tracks <- study_storm_winds %>% 
+  group_by(storm_id) %>% 
+  summarize(highest_wind = max(vmax_sust)) %>% 
+  left_join(study_hurr_tracks, by = "storm_id")
+
+ggplot() + 
+  geom_sf(data = us_states, color = "white", fill = "lightgray") +  
+  #geom_sf(data = study_storm_winds_tracks, aes(color = highest_wind),
+   #       alpha = 0.2) +
+  geom_sf(data = study_storm_winds_tracks, color = "ivory", alpha = 0.2) + 
+  geom_sf(data = study_storm_winds_fips, aes(fill = highest_wind)) +
+  theme_dark() + 
+  scale_fill_viridis(name = "Most severe wind\nexposure (m/s)", option = "A", direction = -1) + 
+  # scale_color_viridis(name = "Most severe wind\nexposure (m/s)", option = "A", direction = -1) +
+  theme(legend.position = "right",
+        axis.title = element_blank(),
+        axis.text = element_blank(),
+        axis.ticks = element_blank()) + 
+  ggtitle("All tropical cyclone wind exposures",
+          subtitle = "Counties and storms with at least one exposure of 21 m/s or higher")
+```
+
+## Storm-period risks by storm exposure threshold
+
+```{r fig.width = 7, fig.height = 4.5, out.width = "\\textwidth"}
+wind_cumul_ests <- readRDS("data/overall_rr_to_plot_Nov2018.rds") %>% 
+  filter(str_detect(exposure, "Wind")) %>% 
+  filter(cause == "All-cause mortality") %>% 
+  mutate(threshold = str_extract(exposure, "[0-9]+"),
+         threshold = as.numeric(threshold)) %>% 
+  rename(rr = RR,
+         low_ci = low,
+         high_ci = high) %>% 
+  mutate(n = c(336, 192, 124, 83))
+
+ggplot(wind_cumul_ests, aes(x = (rr - 1), y = threshold)) + 
+  geom_vline(xintercept = 0, linetype = 2) + 
+  geom_errorbarh(aes(xmin = (low_ci - 1), xmax = (high_ci - 1)), height = 0, color = "white") + 
+  geom_point(color = "white") + 
+  geom_text(aes(label = paste("N =", n)), color = "lightgray", nudge_y = -0.5) +
+  scale_x_continuous(name = "Percent increase in mortality\ncompared to matched unexposed days",
+                     label = percent) + 
+  scale_y_continuous(name = "Wind threshold used to\nidentify storm exposure",
+                     breaks = c(12, 15, 18, 21), labels = c("12 m/s", "15 m/s", "18 m/s", "21 m/s")) + 
+  theme_dark() + 
+  ggtitle("Storm-period all-cause mortality risks by storm exposure definition",
+          subtitle = "Number of storm exposures under each definition are shown with labels") + 
+  expand_limits(x = 0)
+```
+
+
+## Storm-period risks by storm exposure threshold
+
+```{r fig.width = 6.5, fig.height = 3, out.width = "\\textwidth"}
+wind_cumul_ests <- readRDS("data/overall_rr_to_plot_Nov2018.rds") %>% 
+  filter(str_detect(exposure, "Wind")) %>% 
+  filter(cause != "All-cause mortality") %>% 
+  mutate(threshold = str_extract(exposure, "[0-9]+"),
+         threshold = as.numeric(threshold),
+         cause = str_remove(cause, " mortality"),
+         cause = fct_relevel(cause, 
+                             "Cardiovascular", "Respiratory", 
+                             "Accidental")) %>% 
+  rename(rr = RR,
+         low_ci = low,
+         high_ci = high)
+
+ggplot(wind_cumul_ests, aes(x = (rr - 1), y = threshold)) + 
+  geom_vline(xintercept = 0, linetype = 2) + 
+  geom_errorbarh(aes(xmin = (low_ci - 1), xmax = (high_ci - 1)), height = 0, color = "white") + 
+  geom_point(color = "white") + 
+  scale_x_continuous(name = "Percent increase in mortality\ncompared to matched unexposed days",
+                     label = percent, 
+                     breaks = scales::pretty_breaks(3)) + 
+  scale_y_continuous(name = "Wind threshold used to\nidentify storm exposure",
+                     breaks = c(12, 15, 18, 21), labels = c("12 m/s", "15 m/s", "18 m/s", "21 m/s")) + 
+  theme_dark() + 
+  ggtitle("Storm-period all-cause mortality risks by storm exposure definition") + 
+  expand_limits(x = 0) + 
+  facet_wrap(~ cause, 
+             ncol = 3, scales = "free_x")
+```
+
+## Mortality risks by lag day
+
+```{r fig.width = 7, fig.height = 4.5, out.width = "\\textwidth"}
+wind_lags_all <- readRDS("data/dist_rr_three_metrics_to_plot.rds") %>% 
+  filter(exposure == "Wind: 21 m/s") %>% 
+  filter(cause == "All-cause mortality") %>% 
+  rename(rr = RR, 
+         low_ci = low,
+         high_ci = high) %>% 
+  mutate(lag = -2:7)
+
+ggplot(wind_lags_all, aes(x = lag, y = (rr - 1))) +
+  annotate("rect", xmin = -0.5, xmax = 0.5, ymin = -0.05, ymax = 0.6,
+        alpha = .2, fill = "cyan") +
+  geom_text(data = data_frame(x = 0, y = 0.55),
+            aes(x = x, y = y), label = "Storm\nday") +
+  geom_hline(yintercept = 0, linetype = 3) +
+  geom_line() + 
+  geom_point(color = "white") + 
+  geom_errorbar(aes(ymin = (low_ci - 1), ymax = (high_ci - 1)), 
+                width = 0, color = "white") + 
+  theme_dark() + 
+  scale_x_continuous(name = "Day since storm's closest approach", breaks = -2:7) + 
+  scale_y_continuous(name = "Percent increase in mortality\ncompared to matched unexposed days",
+                     label = percent) + 
+  ggtitle("All-cause mortality risks by lag day",
+          subtitle = "Storm exposure assessed as maximum sustained winds in the county of 21 m/s or higher")
+```
+
+## Mortality risks by lag day
+
+```{r fig.width = 7, fig.height = 4.5, out.width = "\\textwidth"}
+wind_lags_cvd <- readRDS("data/dist_rr_three_metrics_to_plot.rds") %>% 
+  filter(exposure == "Wind: 21 m/s") %>% 
+  filter(cause == "Cardiovascular mortality") %>% 
+  rename(rr = RR, 
+         low_ci = low,
+         high_ci = high) %>% 
+  mutate(lag = -2:7)
+
+ggplot(wind_lags_cvd, aes(x = lag, y = (rr - 1))) +
+  annotate("rect", xmin = -0.5, xmax = 0.5, ymin = -0.15, ymax = 0.35,
+        alpha = .2, fill = "cyan") +
+  geom_text(data = data_frame(x = 0, y = 0.3),
+            aes(x = x, y = y), label = "Storm\nday") +
+  geom_hline(yintercept = 0, linetype = 3) +
+  geom_line() + 
+  geom_point(color = "white") + 
+  geom_errorbar(aes(ymin = (low_ci - 1), ymax = (high_ci - 1)), 
+                width = 0, color = "white") + 
+  theme_dark() + 
+  scale_x_continuous(name = "Day since storm's closest approach", breaks = -2:7) + 
+  scale_y_continuous(name = "Percent increase in mortality\ncompared to matched unexposed days",
+                     label = percent) + 
+  ggtitle("Cardiovascular mortality risks by lag day",
+          subtitle = "Storm exposure assessed as maximum sustained winds in the county of 21 m/s or higher")
+```
+
+<!-- ## Mortality risks by lag day -->
+
+<!-- ```{r fig.width = 7, fig.height = 4.5, out.width = "\\textwidth"} -->
+<!-- wind_lags_acc <- readRDS("data/dist_rr_three_metrics_to_plot.rds") %>%  -->
+<!--   filter(exposure == "Wind: 21 m/s") %>%  -->
+<!--   filter(cause == "Accidental mortality") %>%  -->
+<!--   rename(rr = RR,  -->
+<!--          low_ci = low, -->
+<!--          high_ci = high) %>%  -->
+<!--   mutate(lag = -2:7) -->
+
+<!-- ggplot(wind_lags_acc, aes(x = lag, y = (rr - 1))) + -->
+<!--   annotate("rect", xmin = -0.5, xmax = 0.5, ymin = -0.15, ymax = 14.5, -->
+<!--         alpha = .2, fill = "cyan") + -->
+<!--   geom_text(data = data_frame(x = 0, y = 13.5),  -->
+<!--             aes(x = x, y = y), label = "Storm\nday") + -->
+<!--   geom_hline(yintercept = 0, linetype = 3) + -->
+<!--   geom_line() +  -->
+<!--   geom_point(color = "white") +  -->
+<!--   geom_errorbar(aes(ymin = (low_ci - 1), ymax = (high_ci - 1)),  -->
+<!--                 width = 0, color = "white") +  -->
+<!--   theme_dark() +  -->
+<!--   scale_x_continuous(name = "Day since storm's closest approach", breaks = -2:7) +  -->
+<!--   scale_y_continuous(name = "Percent increase in mortality\ncompared to matched unexposed days", -->
+<!--                      label = percent) +  -->
+<!--   ggtitle("Accidental mortality risks by lag day", -->
+<!--           subtitle = "Storm exposure assessed as maximum sustained winds in the county of 21 m/s or higher") -->
+<!-- ``` -->
+
+
+## Top 10 wind-based exposures in our study
+
+```{r message = FALSE, warning = FALSE}
+top_storms <- hurr_tracks %>% 
+  tbl_df() %>% 
+  filter(storm_id %in% c("Andrew-1992", "Charley-2004", "Katrina-2005",
+                         "Bob-1991", "Irene-1999", "Wilma-2005", 
+                         "Hugo-1989", "Bertha-1996")) %>% 
+  filter(24 <= latitude & latitude <= 48 & 
+           -110 <= longitude & longitude <= -65) %>% 
+  select(-date) %>% 
+  separate(storm_id, c("storm_name", "storm_year"), sep = "-") %>% 
+  st_as_sf(coords = c("longitude", "latitude"),
+           crs = 4269) 
+top_storm_tracks <- top_storms %>% 
+  group_by(storm_name, storm_year) %>% 
+  summarize(max_wind = max(wind), do_union=FALSE) %>% 
+  st_cast("LINESTRING")
+
+storm_labels <- top_storms %>% 
+  group_by(storm_name, storm_year) %>% 
+  slice(n()) %>% 
+  ungroup() 
+
+top_counties <- study_counties %>% 
+  filter(fips %in% c("12086", "12095", "44007", "37119", "22071", 
+                     "22033"))
+```
+
+```{r fig.width = 7, fig.height = 5, out.width = "\\textwidth", fig.align = "center"}
+ggplot() +
+  geom_sf(data = us_states, color = "white", fill = "lightgray") + 
+  geom_sf(data = top_storm_tracks, color = "red", alpha = 0.4) + 
+  geom_sf(data = top_storms, aes(color = wind), alpha = 0.7) + 
+  geom_sf(data = top_counties, alpha = 0.7, fill = "cyan4", color = "cyan3") + 
+  geom_label_repel(data = storm_labels, aes(label = storm_name, geometry = geometry),
+    stat = "sf_coordinates", min.segment.length = 0, alpha = 0.7, color = "white",
+    fontface = "bold", fill = "red", size = 3) +
+  geom_label_repel(data = top_counties, 
+                   aes(label = paste(citynameU, state, sep = ", "), 
+                       geometry = geometry),
+    stat = "sf_coordinates", min.segment.length = 0, color = "cyan4",
+    fontface = "bold", fill = "white", alpha = 0.7, size = 3) + 
+  scale_color_viridis(name = "Wind\n(knots)", option = "B", direction = -1) + 
+  theme_dark() + 
+  theme(legend.position = "right",
+        axis.title = element_blank(),
+        axis.text = element_blank(),
+        axis.ticks = element_blank()) + 
+  ggtitle("Storms and counties for top 10 wind-based exposures",
+          subtitle = "Color of points corresponds to storm's maximum 1-minute sustained surface winds")
+```
+
+<!-- ## All-cause mortality -->
+
+<!-- \centering All-cause mortality risks during the top 10 wind-based storm exposures compared to matched unexposed days -->
+
+<!-- \small -->
+
+<!-- ```{r} -->
+<!-- all_cause <- tribble( -->
+<!--   ~ storm, ~ county, ~ wind, ~ percincreasenum, ~ percincrease,  -->
+<!--   "Andrew (1992)", "Miami, FL", 52.1, log(1.25), "25 (14, 37)", -->
+<!--   "Charley (2004)", "Orlando, FL", 41.2, log(1.09), "9 (-11, 32)", -->
+<!--   "Katrina (2005)", "New Orleans, LA", 40.3, log(5.77), "477 (394, 573)", -->
+<!--   "Bob (1991)", "Providence, RI", 33.5, log(1.01), "1 (-17, 22)", -->
+<!--   "Katrina (2005)", "Miami, FL", 32.3, log(1.23), "23 (11, 37)", -->
+<!--   "Andrew (1992)", "Baton Rouge, FL", 31.8, log(1.03), "3 (-19, 32)",  -->
+<!--   "Irene (1991)", "Miami, FL", 31.3, log(1.12), "12 (2, 23)",  -->
+<!--   "Wilma (2005)", "Miami, FL", 31.0, log(0.98), "-2 (-12, 9)",  -->
+<!--   "Hugo (1989)", "Charlotte, NC", 30.8, log(0.99), "-1 (-22, 26)", -->
+<!--   "Bertha (1996)", "Providence, RI", 30.8, log(0.95), "-5 (-21, 13)" -->
+<!-- ) -->
+
+<!-- all_cause %>%  -->
+<!--   mutate(wind = cell_spec(round(wind), "latex", bold = TRUE, color = "white", -->
+<!--                           background = spec_color(round(wind), end = 0.9, direction = -1, option = "A")), -->
+<!--          percincrease = cell_spec(percincrease, "latex", bold = TRUE,  -->
+<!--                                    color = spec_color(percincreasenum, end = 0.9,  -->
+<!--                                                       direction = -1))) %>%  -->
+<!--   select(storm, county, wind, percincrease) %>%  -->
+<!--   kable("latex", booktabs = TRUE, escape = FALSE, align = "c", linesep = "", -->
+<!--         col.names = linebreak(c("Tropical cyclone", "County", "Wind[note]", "Percent increase[note]"))) %>%  -->
+<!--   add_footnote(c("Modeled maximum sustained surface wind (m/s) at community center", -->
+<!--                  "% increase in all-cause mortality compared to matched unexposed days"), -->
+<!--                escape = TRUE) -->
+<!-- ``` -->
+
+## Cardiovascular mortality
+
+\centering Cardiovascular mortality risks during the top 10 wind-based storm exposures compared to matched unexposed days
+
+\small
+
+```{r}
+cvd_deaths <- tribble(
+  ~ storm, ~ county, ~ wind, ~ percincreasenum, ~ percincrease, 
+  "Andrew (1992)", "Miami, FL", 52.1, log(1.38), "38 (20, 58)",
+  "Charley (2004)", "Orlando, FL", 41.2, log(1.09), "9 (-22, 51)",
+  "Katrina (2005)", "New Orleans, LA", 40.3, log(2.46), "146 (80, 236)",
+  "Bob (1991)", "Providence, RI", 33.5, log(1.5), "5 (-21, 39)",
+  "Katrina (2005)", "Miami, FL", 32.3, log(1.15), "15 (-3, 36)",
+  "Andrew (1992)", "Baton Rouge, FL", 31.8, log(1.17), "17 (-18, 68)", 
+  "Irene (1991)", "Miami, FL", 31.3, log(1.17), "17 (2, 35)", 
+  "Wilma (2005)", "Miami, FL", 31.0, log(0.97), "-3 (-18, 15)", 
+  "Hugo (1989)", "Charlotte, NC", 30.8, log(0.98), "-2 (-33, 42)",
+  "Bertha (1996)", "Providence, RI", 30.8, log(0.91), "-9 (-31, 21)"
+)
+
+cvd_deaths %>% 
+  mutate(wind = cell_spec(round(wind), "latex", bold = TRUE, color = "white",
+                          background = spec_color(round(wind), end = 0.9, direction = -1, option = "A")),
+         percincrease = cell_spec(percincrease, "latex", bold = TRUE, 
+                                   color = spec_color(percincreasenum, end = 0.9, 
+                                                      direction = -1))) %>% 
+  select(storm, county, wind, percincrease) %>% 
+  kable("latex", booktabs = TRUE, escape = FALSE, align = "c", linesep = "",
+        col.names = linebreak(c("Tropical cyclone", "County", "Wind[note]", "Percent increase[note]"))) %>% 
+  add_footnote(c("Modeled maximum sustained surface wind (m/s) at community center",
+                 "% increase in cardiovascular mortality compared to matched unexposed days"),
+               escape = TRUE)
+```
+
+# Discussion
+
+## Differences in exposures by hazard
+
+The counties assessed as "exposed" to tropical cyclones can differ substantially based on the hazard metrics considered in assessing exposure. 
+
+```{r echo = FALSE, fig.width = 8, out.width = "\\textwidth", fig.align = "center"}
+storm <- "Ivan-2004"
+a <- map_tracks(storms = storm, plot_points = FALSE, 
+                plot_object = map_rain_exposure(storm = storm,
+                                                rain_limit = 50, dist_limit = 500)) + 
+        ggtitle("Rain exposures during Ivan, 2004")
+b <- map_tracks(storms = storm, plot_points = FALSE, 
+                plot_object = map_wind_exposure(storm = storm,
+                                                wind_limit = 12)) + 
+        ggtitle("Wind exposures during Ivan, 2004")
+gridExtra::grid.arrange(a, b, ncol = 2)
+```
+
+\footnotesize Exposures for Hurricane Ivan based on rain measurements (left) and modeled maximum sustained winds (right).
+
+## Understanding variation across storms in health effects
+
+\centering
+Tropical Storm Allison (2001) caused extensive flooding in Houston, TX
+
+```{r out.width = "0.8\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/Allison_Flood_Houston.jpg")
+```
+\vspace{-0.2cm}
+\footnotesize
+*Source: National Oceanic and Atmospheric Administration*
+
+## Tropical cyclones under climate change
+
+```{r out.width = "\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/noaa_study.png")
+```
+
+Based on recent research, climate change is likely to increase the number of major hurricanes in active hurricane seasons.
+
+## Climate attribution studies
+
+```{r out.width = "0.8\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/attr_1.png")
+knitr::include_graphics("figures/attr_2.png")
+knitr::include_graphics("figures/attr_3.png")
+```
+
+<!-- ## Climate attribution studies -->
+
+<!-- \centering Past, present, and future **intensities** for Hurricane Sandy from an attribution study -->
+
+<!-- ```{r out.width = "\\textwidth", fig.align = "center"} -->
+<!-- knitr::include_graphics("figures/sandy_attr2.png") -->
+<!-- ``` -->
+<!-- \vspace{-0.2cm} -->
+<!-- \footnotesize -->
+<!-- *Source: Lackmann 2015, BAMS* -->
+
+<!-- ## Climate attribution studies -->
+
+<!-- \centering Past, present, and future **paths** for Hurricane Sandy from an attribution study -->
+
+<!-- ```{r out.width = "\\textwidth", fig.align = "center"} -->
+<!-- knitr::include_graphics("figures/sandy_attr1.png") -->
+<!-- ``` -->
+<!-- \vspace{-0.2cm} -->
+<!-- \footnotesize -->
+<!-- *Source: Lackmann 2015, BAMS* -->
+
+## Other related research in our research group
+
+We have a number of related research projects ongoing in our research group: 
+
+- Estimating associations between tropical cyclone exposures and cardiorespiratory Medicare hospitalizations
+- Exploring how the associations between tropical cyclone exposure and health outcomes change across definitions of tropical cyclone exposure
+- Open source software: Enabling access to county-level tropical cyclone exposure data for multiple storm hazards (wind, rain, floods, tornadoes)
+- Developing methods for epidemiological research on climate-related disasters
+- Quantifying health-related risks for other climate-related disasters, especially extreme temperatures and heat waves
+
+
+## Questions?
+
+```{r out.width = "0.9\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/butterfly-hurricane.png")
+```
+\vspace{-0.2cm}
+\footnotesize
+*Source: The New Yorker*
+
