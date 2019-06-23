@@ -1,0 +1,155 @@
+---
+author: Brooke Anderson
+address: Colorado State University
+title: Climate Epidemiology
+subtitle: Advancing health research in the context of climate change
+date: June 20, 2019
+output: binb::presento
+---
+
+___
+
+\vspace{1in}
+
+\begin{quotation}
+``Everybody talks about the weather, but nobody does anything about it.''\\[1cm]
+\hfill --- Mark Twain \\ \hfill (attributed)
+\end{quotation}
+
+## Galveston Hurricane, 1900
+
+\begin{center}
+\includegraphics[width = 0.9\textwidth]{images/gal_hurr_path}
+\end{center}
+
+\vspace{-0.12in}
+\footnotesize Source: \textit{Encyclopedia Britannica}
+
+## Galveston Hurricane, 1900
+
+\tikz[overlay,remember picture] \node[at=(current page.center)]{%
+  \includegraphics[width = \paperwidth]{images/gal_1900_detail}};
+
+\vspace{2.4in}
+\footnotesize Source: \textit{Library of Congress}
+
+## Advances in forecasting hurricanes
+
+\begin{center}
+\includegraphics[width = 0.7\textwidth]{images/harvey_forecast}
+\end{center}
+
+\vspace{-0.12in}
+\footnotesize Source: \textit{Seattle Times}
+
+<!-- ## Advances in hurricane preparation -->
+
+<!-- \begin{center} -->
+<!-- \includegraphics[width = \textwidth]{images/evac_zone} -->
+<!-- \end{center} -->
+
+<!-- \vspace{-0.12in} -->
+<!-- \footnotesize Source: \textit{City of Norfolk, Virginia} -->
+
+<!-- ## Advances in hurricane preparation -->
+
+<!-- \begin{center} -->
+<!-- \includegraphics[width = 0.75\textwidth]{images/evac_zone_2} -->
+<!-- \end{center} -->
+
+___
+
+\begin{center}
+\includegraphics[width = 0.85\textwidth]{images/fatal_hurricanes}
+\end{center}
+
+\vspace{-0.12in}
+\footnotesize Source: \textit{Houston Chronicle}
+
+## Excess deaths, Hurricane Maria
+
+\begin{center}
+\includegraphics[width = 0.85\textwidth]{images/rafa_causes}
+\end{center}
+
+## Climate-related disasters today
+
+\begin{center}
+\includegraphics[width = \textwidth]{images/climate_disasters_2018}
+\end{center}
+
+\vspace{-0.12in}
+\footnotesize Source: \textit{NOAA}
+
+<!-- ## Anticipated changes  -->
+
+<!-- \begin{center} -->
+<!-- \includegraphics[width = 0.7\textwidth]{images/texas_hot_days} -->
+<!-- \end{center} -->
+
+<!-- \vspace{-0.2cm} -->
+<!-- \begin{center} -->
+<!-- \footnotesize Change from present in number of days $>$100\textsuperscript{o}F -->
+<!-- \end{center} -->
+
+<!-- \vspace{-0.1cm} -->
+<!-- \footnotesize Source: \textit{Fourth National Climate Assessment} -->
+
+## Hurricane Sandy event attribution 
+
+\begin{center}
+\includegraphics[width = 0.5\textwidth]{images/sandy_att_tracks}
+\end{center}
+
+\vspace{-0.4cm}
+\begin{center}
+\footnotesize Under conditions in the 1880s (green), at present (blue), and 2090s (red) \\
+\end{center}
+\vspace{-0.1cm}
+\footnotesize Source: \textit{Lackmann 2015}
+
+## Hurricane Sandy event attribution 
+
+\begin{center}
+\includegraphics[width = 0.8\textwidth]{images/sandy_att_pressure}
+\end{center}
+
+\vspace{-0.4cm}
+\begin{center}
+\footnotesize Under conditions in the 1880s (green), at present (blue), and 2090s (red) \\
+\end{center}
+\vspace{-0.1cm}
+\footnotesize Source: \textit{Lackmann 2015}
+
+## Health impact attribution
+
+\color{colorblue}{\Large
+Attributing human mortality during extreme heat waves to anthropogenic climate change}
+
+\color{black}{
+Mitchell et al., 2016. \textit{Environmental Research Letters}}
+
+____
+
+\tikz[overlay,remember picture] \node[opacity=0.1, at=(current page.center)]{%
+  \includegraphics[width=\paperwidth]{images/gal_hurr_analysis}};
+\begin{textblock}{10}(0,-2)
+  {\color{colorblue}\hugetext{\textbf{Talk about the weather}}}
+\end{textblock}
+
+____
+
+\tikz[overlay,remember picture] \node[opacity=0.1, at=(current page.center)]{%
+  \includegraphics[width=\paperwidth]{images/gal_hurr_analysis}};
+\begin{textblock}{10}(0,-2)
+  {\color{colorblue}\hugetext{\textbf{Talk with atmospheric scientists}}}
+\end{textblock}
+
+____
+
+\tikz[overlay,remember picture] \node[opacity=0.1, at=(current page.center)]{%
+  \includegraphics[width=\paperwidth]{images/gal_hurr_analysis}};
+\begin{textblock}{10}(0,-2)
+  {\color{colorblue}\largetext{\textbf{The Future of Climate Epidemiology: Opportunities for Advancing Health Research in the Context of Climate Change}}\\ \color{black}G. Brooke Anderson, Elizabeth A. Barnes, Michelle L. Bell, and Francesca Dominici}
+\end{textblock}
+
