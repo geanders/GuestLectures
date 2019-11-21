@@ -1,0 +1,38 @@
+---
+author: Brooke Anderson
+title: Tropical cyclcones and human health
+subtitle: Lightning talk for Hazard SEES meeting
+date: \today
+output: binb::presento
+---
+
+## Tropical cyclones in China
+
+```{r echo = FALSE, fig.align = "center", out.height = "0.8\\textheight"}
+knitr::include_graphics("images/tc_paths.pdf")
+```
+
+## Health impacts in coastal provinces
+
+```{r echo = FALSE, fig.align = "center", out.height = "0.8\\textheight"}
+knitr::include_graphics("images/detailed_china_locs.pdf")
+```
+
+## Survey in Guangdong Province
+
+```{r echo = FALSE, fig.align = "center", out.height = "0.8\\textheight"}
+knitr::include_graphics("images/china_survey_locs.pdf")
+```
+
+## Vulnerability in Florida
+
+```{r echo = FALSE, fig.align = "center", out.height = "0.8\\textheight"}
+knitr::include_graphics("images/detailed_fl_locs.pdf")
+```
+
+## Mid-term health impacts
+
+```{r echo = FALSE, fig.align = "center", out.height = "0.8\\textheight"}
+knitr::include_graphics("images/nmmaps_study_map.pdf")
+```
+

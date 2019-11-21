@@ -1,0 +1,15 @@
+\frametitle{Open-source software}
+\protect\hypertarget{open-source-software}{}
+
+\footnotesize
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(hurricaneexposuredata)}
+\KeywordTok{library}\NormalTok{(hurricaneexposure)}
+\KeywordTok{map_counties}\NormalTok{(}\DataTypeTok{storm =} \StringTok{"Floyd-1999"}\NormalTok{, }\DataTypeTok{metric =} \StringTok{"rainfall"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=\textwidth]{anderson_onehealth_2019_files/figure-beamer/unnamed-chunk-22-1} \end{center}
+
