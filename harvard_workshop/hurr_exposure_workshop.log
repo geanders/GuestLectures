@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  20 NOV 2019 23:35
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  22 NOV 2019 07:51
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1197,15 +1197,21 @@ Overfull \vbox (39.39339pt too high) detected at line 154
 [1
 
 {/usr/local/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-LaTeX Font Info:    Try loading font information for TS1+lmss on input line 167
+LaTeX Font Info:    Try loading font information for TS1+lmss on input line 168
 .
 (/usr/local/texlive/2019/texmf-dist/tex/latex/lm/ts1lmss.fd
 File: ts1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ) [2
 
-] [3
-
 ]
+<figures/drat_article.png, id=33, 716.6775pt x 322.20375pt>
+File: figures/drat_article.png Graphic file (type png)
+<use figures/drat_article.png>
+Package pdftex.def Info: figures/drat_article.png  used on input line 175.
+(pdftex.def)             Requested size: 307.29048pt x 138.1516pt.
+[3
+
+ <./figures/drat_article.png>]
 \openout4 = `hurr_exposure_workshop.vrb'.
 
 (./hurr_exposure_workshop.vrb
@@ -1221,7 +1227,10 @@ LaTeX Font Info:    Try loading font information for TS1+lmtt on input line 12.
 File: ts1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )) [4
 
-] [5
+]
+\openout4 = `hurr_exposure_workshop.vrb'.
+
+(./hurr_exposure_workshop.vrb) [5
 
 ]
 \openout4 = `hurr_exposure_workshop.vrb'.
@@ -1229,17 +1238,37 @@ File: ts1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 (./hurr_exposure_workshop.vrb) [6
 
 ]
+<figures/r_for_data_science.png, id=66, 183.68625pt x 276.03125pt>
+File: figures/r_for_data_science.png Graphic file (type png)
+<use figures/r_for_data_science.png>
+Package pdftex.def Info: figures/r_for_data_science.png  used on input line 253
+.
+(pdftex.def)             Requested size: 153.65633pt x 230.90434pt.
+
+Overfull \vbox (13.73534pt too high) detected at line 253
+ []
+
+[7
+
+ <./figures/r_for_data_science.png>]
+<figures/geocom_with_r.jpeg, id=75, 184.69pt x 275.0275pt>
+File: figures/geocom_with_r.jpeg Graphic file (type jpg)
+<use figures/geocom_with_r.jpeg>
+Package pdftex.def Info: figures/geocom_with_r.jpeg  used on input line 260.
+(pdftex.def)             Requested size: 153.64491pt x 228.79733pt.
+
+Overfull \vbox (11.62833pt too high) detected at line 260
+ []
+
+[8
+
+ <./figures/geocom_with_r.jpeg>]
 \openout4 = `hurr_exposure_workshop.vrb'.
 
-(./hurr_exposure_workshop.vrb) [7
+(./hurr_exposure_workshop.vrb) [9
 
 ]
-\openout4 = `hurr_exposure_workshop.vrb'.
-
-(./hurr_exposure_workshop.vrb) [8
-
-]
-LaTeX Font Info:    Try loading font information for OT1+lmss on input line 270
+LaTeX Font Info:    Try loading font information for OT1+lmss on input line 280
 .
 (/usr/local/texlive/2019/texmf-dist/tex/latex/lm/ot1lmss.fd
 File: ot1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
@@ -1248,1404 +1277,471 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `lmss' (encoding: OT1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-LaTeX Font Info:    Try loading font information for OML+lmm on input line 270.
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 280.
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 270
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 280
 .
 (/usr/local/texlive/2019/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMX+lmex on input line 270
+LaTeX Font Info:    Try loading font information for OMX+lmex on input line 280
 .
 (/usr/local/texlive/2019/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 270.
+(Font)              <10> on input line 280.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 270.
+(Font)              <7> on input line 280.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 270.
-LaTeX Font Info:    Try loading font information for U+msa on input line 270.
+(Font)              <5> on input line 280.
+LaTeX Font Info:    Try loading font information for U+msa on input line 280.
 (/usr/local/texlive/2019/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 ) (/usr/local/texlive/2019/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 270.
+LaTeX Font Info:    Try loading font information for U+msb on input line 280.
 (/usr/local/texlive/2019/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) (/usr/local/texlive/2019/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <10> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 270.
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 280.
 LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <7> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 270.
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 280.
 LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <5> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 270.
-[9
-
-]
-<figures/tc_basis_dwd_de.jpg, id=81, 784.8522pt x 392.1852pt>
-File: figures/tc_basis_dwd_de.jpg Graphic file (type jpg)
-<use figures/tc_basis_dwd_de.jpg>
-Package pdftex.def Info: figures/tc_basis_dwd_de.jpg  used on input line 278.
-(pdftex.def)             Requested size: 307.28871pt x 153.55003pt.
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 280.
 [10
 
+]
+<figures/tc_basis_dwd_de.jpg, id=95, 784.8522pt x 392.1852pt>
+File: figures/tc_basis_dwd_de.jpg Graphic file (type jpg)
+<use figures/tc_basis_dwd_de.jpg>
+Package pdftex.def Info: figures/tc_basis_dwd_de.jpg  used on input line 288.
+(pdftex.def)             Requested size: 307.28871pt x 153.55003pt.
+[11
+
  <./figures/tc_basis_dwd_de.jpg>]
-<figures/atlantic_storm_names_cnbc.png, id=88, 531.9072pt x 545.3976pt>
+<figures/atlantic_storm_names_cnbc.png, id=102, 531.9072pt x 545.3976pt>
 File: figures/atlantic_storm_names_cnbc.png Graphic file (type png)
 <use figures/atlantic_storm_names_cnbc.png>
 Package pdftex.def Info: figures/atlantic_storm_names_cnbc.png  used on input l
-ine 288.
+ine 298.
 (pdftex.def)             Requested size: 206.04697pt x 211.2728pt.
 
-Overfull \vbox (13.02873pt too high) detected at line 288
+Overfull \vbox (13.02873pt too high) detected at line 298
  []
 
-[11
-
- <./figures/atlantic_storm_names_cnbc.png (PNG copy)>]
-<figures/retired_2018_lex18.jpg, id=95, 955.57pt x 530.98375pt>
-File: figures/retired_2018_lex18.jpg Graphic file (type jpg)
-<use figures/retired_2018_lex18.jpg>
-Package pdftex.def Info: figures/retired_2018_lex18.jpg  used on input line 298
-.
-(pdftex.def)             Requested size: 307.29047pt x 170.75278pt.
 [12
 
- <./figures/retired_2018_lex18.jpg>] [13
+ <./figures/atlantic_storm_names_cnbc.png (PNG copy)>]
+<figures/retired_2018_lex18.jpg, id=109, 955.57pt x 530.98375pt>
+File: figures/retired_2018_lex18.jpg Graphic file (type jpg)
+<use figures/retired_2018_lex18.jpg>
+Package pdftex.def Info: figures/retired_2018_lex18.jpg  used on input line 308
+.
+(pdftex.def)             Requested size: 307.29047pt x 170.75278pt.
+[13
 
-] [14
+ <./figures/retired_2018_lex18.jpg>]
+<figures/hurricane_michael_track.png, id=117, 900.36375pt x 738.76pt>
+File: figures/hurricane_michael_track.png Graphic file (type png)
+<use figures/hurricane_michael_track.png>
+Package pdftex.def Info: figures/hurricane_michael_track.png  used on input lin
+e 318.
+(pdftex.def)             Requested size: 261.19496pt x 214.31381pt.
 
-]
-\openout4 = `hurr_exposure_workshop.vrb'.
+Overfull \vbox (14.06975pt too high) detected at line 318
+ []
 
-(./hurr_exposure_workshop.vrb
-<hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-6-1.pdf, id=115, 262.
-9825pt x 200.75pt>
-File: hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-6-1.pdf Graphic 
-file (type pdf)
-<use hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-6-1.pdf>
+[14
+
+ <./figures/hurricane_michael_track.png>]
+<figures/tracks-at-2018.png, id=125, 3312.375pt x 2559.5625pt>
+File: figures/tracks-at-2018.png Graphic file (type png)
+<use figures/tracks-at-2018.png>
+Package pdftex.def Info: figures/tracks-at-2018.png  used on input line 328.
+(pdftex.def)             Requested size: 276.51915pt x 213.67389pt.
+
+Overfull \vbox (13.42982pt too high) detected at line 328
+ []
+
+[15
+
+ <./figures/tracks-at-2018.png>]
+<hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-12-1.pdf, id=133, 345
+.29pt x 285.065pt>
+File: hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-12-1.pdf Graphic
+ file (type pdf)
+<use hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-12-1.pdf>
 Package pdftex.def Info: hurr_exposure_workshop_files/figure-beamer/unnamed-chu
-nk-6-1.pdf  used on input line 14.
-(pdftex.def)             Requested size: 184.38342pt x 140.7507pt.
-) [15
+nk-12-1.pdf  used on input line 335.
+(pdftex.def)             Requested size: 276.56429pt x 228.32634pt.
 
- <./hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-6-1.pdf>]
-\openout4 = `hurr_exposure_workshop.vrb'.
-
-(./hurr_exposure_workshop.vrb
-<hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-7-1.pdf, id=127, 289.
-08pt x 253.94875pt>
-File: hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-7-1.pdf Graphic 
-file (type pdf)
-<use hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-7-1.pdf>
-Package pdftex.def Info: hurr_exposure_workshop_files/figure-beamer/unnamed-chu
-nk-7-1.pdf  used on input line 15.
-(pdftex.def)             Requested size: 169.00745pt x 148.46835pt.
-)
-Overfull \vbox (15.46571pt too high) detected at line 345
+Overfull \vbox (11.15733pt too high) detected at line 335
  []
 
 [16
 
- <./hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-7-1.pdf>]
+ <./hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-12-1.pdf>]
+<hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-13-1.pdf, id=147, 345
+.29pt x 264.99pt>
+File: hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-13-1.pdf Graphic
+ file (type pdf)
+<use hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-13-1.pdf>
+Package pdftex.def Info: hurr_exposure_workshop_files/figure-beamer/unnamed-chu
+nk-13-1.pdf  used on input line 342.
+(pdftex.def)             Requested size: 276.56429pt x 212.24701pt.
+[17
+
+ <./hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-13-1.pdf>]
+<hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-14-1.pdf, id=161, 344
+.28625pt x 280.04625pt>
+File: hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-14-1.pdf Graphic
+ file (type pdf)
+<use hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-14-1.pdf>
+Package pdftex.def Info: hurr_exposure_workshop_files/figure-beamer/unnamed-chu
+nk-14-1.pdf  used on input line 349.
+(pdftex.def)             Requested size: 276.55884pt x 224.95601pt.
+
+Overfull \vbox (7.787pt too high) detected at line 349
+ []
+
+[18
+
+ <./hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-14-1.pdf>]
+<hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-15-1.pdf, id=176, 573
+.14125pt x 277.035pt>
+File: hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-15-1.pdf Graphic
+ file (type pdf)
+<use hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-15-1.pdf>
+Package pdftex.def Info: hurr_exposure_workshop_files/figure-beamer/unnamed-chu
+nk-15-1.pdf  used on input line 356.
+(pdftex.def)             Requested size: 307.29655pt x 148.53563pt.
+[19
+
+ <./hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-15-1.pdf>]
 \openout4 = `hurr_exposure_workshop.vrb'.
 
 (./hurr_exposure_workshop.vrb
-<hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-8-1.pdf, id=141, 624.
-3325pt x 459.7175pt>
-File: hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-8-1.pdf Graphic 
-file (type pdf)
-<use hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-8-1.pdf>
+<hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-16-1.pdf, id=192, 262
+.9825pt x 200.75pt>
+File: hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-16-1.pdf Graphic
+ file (type pdf)
+<use hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-16-1.pdf>
 Package pdftex.def Info: hurr_exposure_workshop_files/figure-beamer/unnamed-chu
-nk-8-1.pdf  used on input line 14.
-(pdftex.def)             Requested size: 307.29742pt x 226.27365pt.
-)
-Overfull \vbox (78.63885pt too high) detected at line 362
- []
+nk-16-1.pdf  used on input line 14.
+(pdftex.def)             Requested size: 184.38342pt x 140.7507pt.
+) [20
 
-[17
-
- <./hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-8-1.pdf>]
+ <./hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-16-1.pdf>]
 \openout4 = `hurr_exposure_workshop.vrb'.
 
-(./hurr_exposure_workshop.vrb) [18
+(./hurr_exposure_workshop.vrb
+<hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-17-1.pdf, id=204, 289
+.08pt x 253.94875pt>
+File: hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-17-1.pdf Graphic
+ file (type pdf)
+<use hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-17-1.pdf>
+Package pdftex.def Info: hurr_exposure_workshop_files/figure-beamer/unnamed-chu
+nk-17-1.pdf  used on input line 15.
+(pdftex.def)             Requested size: 169.00745pt x 148.46835pt.
+)
+Overfull \vbox (15.46571pt too high) detected at line 391
+ []
+
+[21
+
+ <./hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-17-1.pdf>]
+\openout4 = `hurr_exposure_workshop.vrb'.
+
+(./hurr_exposure_workshop.vrb
+<hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-18-1.pdf, id=218, 263
+.98625pt x 195.73125pt>
+File: hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-18-1.pdf Graphic
+ file (type pdf)
+<use hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-18-1.pdf>
+Package pdftex.def Info: hurr_exposure_workshop_files/figure-beamer/unnamed-chu
+nk-18-1.pdf  used on input line 14.
+(pdftex.def)             Requested size: 169.01103pt x 125.31236pt.
+) [22
+
+ <./hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-18-1.pdf>]
+\openout4 = `hurr_exposure_workshop.vrb'.
+
+(./hurr_exposure_workshop.vrb) [23
 
 ]
 \openout4 = `hurr_exposure_workshop.vrb'.
 
 (./hurr_exposure_workshop.vrb)
-Overfull \vbox (17.1463pt too high) detected at line 416
+Overfull \vbox (19.36853pt too high) detected at line 462
  []
 
-[19
+[24
 
 ]
 \openout4 = `hurr_exposure_workshop.vrb'.
 
 (./hurr_exposure_workshop.vrb
-<hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-11-1.pdf, id=167, 712
+<hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-21-1.pdf, id=242, 712
 .6625pt x 242.9075pt>
-File: hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-11-1.pdf Graphic
+File: hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-21-1.pdf Graphic
  file (type pdf)
-<use hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-11-1.pdf>
+<use hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-21-1.pdf>
 Package pdftex.def Info: hurr_exposure_workshop_files/figure-beamer/unnamed-chu
-nk-11-1.pdf  used on input line 18.
+nk-21-1.pdf  used on input line 18.
 (pdftex.def)             Requested size: 307.2871pt x 104.73727pt.
 )
-Overfull \vbox (13.07768pt too high) detected at line 437
+Overfull \vbox (13.07768pt too high) detected at line 483
  []
 
-[20
+[25
 
- <./hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-11-1.pdf>] [21
-
-]
+ <./hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-21-1.pdf>]
 \openout4 = `hurr_exposure_workshop.vrb'.
 
-(./hurr_exposure_workshop.vrb) [22
+(./hurr_exposure_workshop.vrb
+<figures/ibtracs-tropical-cyclone-tracks-map.png, id=257, 1204.5pt x 797.98125p
+t>
+File: figures/ibtracs-tropical-cyclone-tracks-map.png Graphic file (type png)
+<use figures/ibtracs-tropical-cyclone-tracks-map.png>
+Package pdftex.def Info: figures/ibtracs-tropical-cyclone-tracks-map.png  used 
+on input line 4.
+(pdftex.def)             Requested size: 300.13179pt x 198.8373pt.
+)
+Overfull \vbox (3.41264pt too high) detected at line 492
+ []
 
-] [23
+[26
+
+ <./figures/ibtracs-tropical-cyclone-tracks-map.png>]
+\openout4 = `hurr_exposure_workshop.vrb'.
+
+(./hurr_exposure_workshop.vrb) [27
+
+] [28
 
 ]
 \openout4 = `hurr_exposure_workshop.vrb'.
 
 (./hurr_exposure_workshop.vrb)
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <12> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 479.
-[24
-
-]
-\openout4 = `hurr_exposure_workshop.vrb'.
-
-(./hurr_exposure_workshop.vrb)
-Overfull \vbox (29.68019pt too high) detected at line 513
- []
-
-[25
-
-]
-\openout4 = `hurr_exposure_workshop.vrb'.
-
-(./hurr_exposure_workshop.vrb
-<hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-14-1.pdf, id=213, 386
-.44376pt x 243.91125pt>
-File: hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-14-1.pdf Graphic
- file (type pdf)
-<use hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-14-1.pdf>
-Package pdftex.def Info: hurr_exposure_workshop_files/figure-beamer/unnamed-chu
-nk-14-1.pdf  used on input line 11.
-(pdftex.def)             Requested size: 236.28462pt x 149.13548pt.
-) [26
-
- <./hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-14-1.pdf>]
-\openout4 = `hurr_exposure_workshop.vrb'.
-
-(./hurr_exposure_workshop.vrb
-<hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-15-1.pdf, id=227, 440
-.64626pt x 243.91125pt>
-File: hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-15-1.pdf Graphic
- file (type pdf)
-<use hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-15-1.pdf>
-Package pdftex.def Info: hurr_exposure_workshop_files/figure-beamer/unnamed-chu
-nk-15-1.pdf  used on input line 14.
-(pdftex.def)             Requested size: 269.42584pt x 149.13548pt.
-)
-Overfull \vbox (9.5006pt too high) detected at line 544
- []
-
-[27
-
- <./hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-15-1.pdf>]
-\openout4 = `hurr_exposure_workshop.vrb'.
-
-(./hurr_exposure_workshop.vrb
-<hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-16-1.pdf, id=242, 343
-.2825pt x 243.91125pt>
-File: hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-16-1.pdf Graphic
- file (type pdf)
-<use hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-16-1.pdf>
-Package pdftex.def Info: hurr_exposure_workshop_files/figure-beamer/unnamed-chu
-nk-16-1.pdf  used on input line 15.
-(pdftex.def)             Requested size: 209.89438pt x 149.13548pt.
-)
-Overfull \vbox (23.87604pt too high) detected at line 562
- []
-
-[28
-
- <./hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-16-1.pdf>]
-\openout4 = `hurr_exposure_workshop.vrb'.
-
-(./hurr_exposure_workshop.vrb
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |                                                          
-       |   0%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |                                                          
-       |   1%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |=                                                         
-       |   1%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |=                                                         
-       |   2%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |==                                                        
-       |   2%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |==                                                        
-       |   3%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |==                                                        
-       |   4%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |===                                                       
-       |   4%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |===                                                       
-       |   5%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |====                                                      
-       |   5%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |====                                                      
-       |   6%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |====                                                      
-       |   7%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |=====                                                     
-       |   7%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |=====                                                     
-       |   8%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |======                                                    
-       |   8%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |======                                                    
-       |   9%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |======                                                    
-       |  10%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |=======                                                   
-       |  10%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |=======                                                   
-       |  11%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |=======                                                   
-       |  12%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |========                                                  
-       |  12%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |========                                                  
-       |  13%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |=========                                                 
-       |  13%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |=========                                                 
-       |  14%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |=========                                                 
-       |  15%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |==========                                                
-       |  15%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |==========                                                
-       |  16%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |===========                                               
-       |  16%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |===========                                               
-       |  17%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |===========                                               
-       |  18%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |============                                              
-       |  18%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |============                                              
-       |  19%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |=============                                             
-       |  19%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |=============                                             
-       |  20%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |=============                                             
-       |  21%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |==============                                            
-       |  21%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |==============                                            
-       |  22%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |===============                                           
-       |  22%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |===============                                           
-       |  23%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |===============                                           
-       |  24%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |================                                          
-       |  24%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |================                                          
-       |  25%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |=================                                         
-       |  25%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |=================                                         
-       |  26%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |=================                                         
-       |  27%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |==================                                        
-       |  27%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |==================                                        
-       |  28%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |===================                                       
-       |  28%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |===================                                       
-       |  29%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |===================                                       
-       |  30%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |====================                                      
-       |  30%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |====================                                      
-       |  31%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |====================                                      
-       |  32%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |=====================                                     
-       |  32%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |=====================                                     
-       |  33%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |======================                                    
-       |  33%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |======================                                    
-       |  34%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |======================                                    
-       |  35%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |=======================                                   
-       |  35%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |=======================                                   
-       |  36%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |========================                                  
-       |  36%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |========================                                  
-       |  37%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |========================                                  
-       |  38%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |=========================                                 
-       |  38%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |=========================                                 
-       |  39%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |==========================                                
-       |  39%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |==========================                                
-       |  40%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |==========================                                
-       |  41%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |===========================                               
-       |  41%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |===========================                               
-       |  42%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |============================                              
-       |  42%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |============================                              
-       |  43%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |============================                              
-       |  44%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |=============================                             
-       |  44%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |=============================                             
-       |  45%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |==============================                            
-       |  45%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |==============================                            
-       |  46%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |==============================                            
-       |  47%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |===============================                           
-       |  47%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |===============================                           
-       |  48%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |================================                          
-       |  48%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |================================                          
-       |  49%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |================================                          
-       |  50%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |=================================                         
-       |  50%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |=================================                         
-       |  51%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |=================================                         
-       |  52%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |==================================                        
-       |  52%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |==================================                        
-       |  53%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |===================================                       
-       |  53%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |===================================                       
-       |  54%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |===================================                       
-       |  55%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |====================================                      
-       |  55%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |====================================                      
-       |  56%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |=====================================                     
-       |  56%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |=====================================                     
-       |  57%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |=====================================                     
-       |  58%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |======================================                    
-       |  58%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |======================================                    
-       |  59%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |=======================================                   
-       |  59%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |=======================================                   
-       |  60%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |=======================================                   
-       |  61%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |========================================                  
-       |  61%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |========================================                  
-       |  62%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |=========================================                 
-       |  62%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |=========================================                 
-       |  63%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |=========================================                 
-       |  64%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |==========================================                
-       |  64%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |==========================================                
-       |  65%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |===========================================               
-       |  65%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |===========================================               
-       |  66%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |===========================================               
-       |  67%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |============================================              
-       |  67%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |============================================              
-       |  68%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |=============================================             
-       |  68%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |=============================================             
-       |  69%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |=============================================             
-       |  70%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |==============================================            
-       |  70%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |==============================================            
-       |  71%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |==============================================            
-       |  72%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |===============================================           
-       |  72%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |===============================================           
-       |  73%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |================================================          
-       |  73%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |================================================          
-       |  74%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |================================================          
-       |  75%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |=================================================         
-       |  75%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |=================================================         
-       |  76%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |==================================================        
-       |  76%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |==================================================        
-       |  77%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |==================================================        
-       |  78%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |===================================================       
-       |  78%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |===================================================       
-       |  79%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |====================================================      
-       |  79%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |====================================================      
-       |  80%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |====================================================      
-       |  81%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |=====================================================     
-       |  81%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |=====================================================     
-       |  82%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |======================================================    
-       |  82%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |======================================================    
-       |  83%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |======================================================    
-       |  84%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |=======================================================   
-       |  84%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |=======================================================   
-       |  85%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |========================================================  
-       |  85%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |========================================================  
-       |  86%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |========================================================  
-       |  87%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |========================================================= 
-       |  87%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |========================================================= 
-       |  88%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |==========================================================
-       |  88%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |==========================================================
-       |  89%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |==========================================================
-       |  90%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |==========================================================
-=      |  90%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |==========================================================
-=      |  91%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |==========================================================
-=      |  92%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |==========================================================
-==     |  92%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |==========================================================
-==     |  93%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |==========================================================
-===    |  93%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |==========================================================
-===    |  94%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |==========================================================
-===    |  95%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |==========================================================
-====   |  95%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |==========================================================
-====   |  96%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |==========================================================
-=====  |  96%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |==========================================================
-=====  |  97%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |==========================================================
-=====  |  98%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |==========================================================
-====== |  98%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |==========================================================
-====== |  99%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |==========================================================
-=======|  99%[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 347--347
-[]  \T1/lmtt/m/n/10 |==========================================================
-=======| 100%[] 
- []
-
-)
-Overfull \vbox (4441.01414pt too high) detected at line 912
- []
-
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 529.
 [29
 
 ]
 \openout4 = `hurr_exposure_workshop.vrb'.
 
+(./hurr_exposure_workshop.vrb) [30
+
+]
+\openout4 = `hurr_exposure_workshop.vrb'.
+
 (./hurr_exposure_workshop.vrb
-Overfull \hbox (107.45892pt too wide) in paragraph at lines 29--29
-[]\T1/lmtt/m/n/10 ## bbox:           xmin: -86.3975 ymin: 28.43329 xmax: -82.05
-447 ymax: 30.99455[] 
+<hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-25-1.pdf, id=289, 250
+.9375pt x 243.91125pt>
+File: hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-25-1.pdf Graphic
+ file (type pdf)
+<use hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-25-1.pdf>
+Package pdftex.def Info: hurr_exposure_workshop_files/figure-beamer/unnamed-chu
+nk-25-1.pdf  used on input line 13.
+(pdftex.def)             Requested size: 153.43156pt x 149.13548pt.
+) [31
+
+ <./hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-25-1.pdf>]
+\openout4 = `hurr_exposure_workshop.vrb'.
+
+(./hurr_exposure_workshop.vrb
+<hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-26-1.pdf, id=305, 250
+.9375pt x 243.91125pt>
+File: hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-26-1.pdf Graphic
+ file (type pdf)
+<use hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-26-1.pdf>
+Package pdftex.def Info: hurr_exposure_workshop_files/figure-beamer/unnamed-chu
+nk-26-1.pdf  used on input line 14.
+(pdftex.def)             Requested size: 153.43156pt x 149.13548pt.
+)
+Overfull \vbox (9.5006pt too high) detected at line 584
+ []
+
+[32
+
+ <./hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-26-1.pdf>]
+\openout4 = `hurr_exposure_workshop.vrb'.
+
+(./hurr_exposure_workshop.vrb
+<hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-27-1.pdf, id=319, 290
+.08376pt x 243.91125pt>
+File: hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-27-1.pdf Graphic
+ file (type pdf)
+<use hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-27-1.pdf>
+Package pdftex.def Info: hurr_exposure_workshop_files/figure-beamer/unnamed-chu
+nk-27-1.pdf  used on input line 14.
+(pdftex.def)             Requested size: 177.3669pt x 149.13548pt.
+)
+Overfull \vbox (10.07611pt too high) detected at line 601
+ []
+
+[33
+
+ <./hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-27-1.pdf>]
+\openout4 = `hurr_exposure_workshop.vrb'.
+
+(./hurr_exposure_workshop.vrb) [34
+
+]
+\openout4 = `hurr_exposure_workshop.vrb'.
+
+(./hurr_exposure_workshop.vrb
+LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <8> not available
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 8.
+
+Overfull \hbox (28.45013pt too wide) in paragraph at lines 31--31
+[]\T1/lmtt/m/n/8 ## bbox:           xmin: -86.3975 ymin: 28.43329 xmax: -82.054
+47 ymax: 30.99455[] 
  []
 
 
-Overfull \hbox (96.95895pt too wide) in paragraph at lines 29--29
+Overfull \hbox (19.96013pt too wide) in paragraph at lines 31--31
+[]\T1/lmtt/m/n/8 ## proj4string:    +proj=longlat +ellps=GRS80 +towgs84=0,0,0,0
+,0,0,0 +no_defs[] 
+ []
+
+
+Overfull \hbox (7.21013pt too wide) in paragraph at lines 31--31
+[]\T1/lmtt/m/n/8 ##   STATEFP COUNTYFP COUNTYNS GEOID     NAME        NAMELSAD 
+LSAD CLASSFP[] 
+ []
+
+
+Overfull \hbox (7.20613pt too wide) in paragraph at lines 31--31
+[]\T1/lmtt/m/n/8 ## 1      12      053 00295751 12053 Hernando Hernando County 
+  06      H1[] 
+ []
+
+
+Overfull \hbox (7.20013pt too wide) in paragraph at lines 31--31
+[]\T1/lmtt/m/n/8 ## 2      12      129 00306912 12129  Wakulla  Wakulla County 
+  06      H1[] 
+ []
+
+
+Overfull \hbox (7.20613pt too wide) in paragraph at lines 31--31
+[]\T1/lmtt/m/n/8 ## 3      12      131 00295727 12131   Walton   Walton County 
+  06      H1[] 
+ []
+
+
+Overfull \hbox (7.21013pt too wide) in paragraph at lines 31--31
+[]\T1/lmtt/m/n/8 ##   MTFCC CSAFP CBSAFP METDIVFP FUNCSTAT      ALAND    AWATER
+    INTPTLAT[] 
+ []
+
+
+Overfull \hbox (7.20213pt too wide) in paragraph at lines 31--31
+[]\T1/lmtt/m/n/8 ## 1 G4020  <NA>  45300     <NA>        A 1224692722 300863005
+ +28.5730426[] 
+ []
+
+
+Overfull \hbox (7.20013pt too wide) in paragraph at lines 31--31
+[]\T1/lmtt/m/n/8 ## 2 G4020   533  45220     <NA>        A 1570625279 334901690
+ +30.1403575[] 
+ []
+
+
+Overfull \hbox (7.20013pt too wide) in paragraph at lines 31--31
+[]\T1/lmtt/m/n/8 ## 3 G4020  <NA>  18880     <NA>        A 2687686788 522848570
+ +30.6312106[] 
+ []
+
+) [35
+
+]
+\openout4 = `hurr_exposure_workshop.vrb'.
+
+(./hurr_exposure_workshop.vrb
+<hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-30-1.pdf, id=346, 297
+.11pt x 277.035pt>
+File: hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-30-1.pdf Graphic
+ file (type pdf)
+<use hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-30-1.pdf>
+Package pdftex.def Info: hurr_exposure_workshop_files/figure-beamer/unnamed-chu
+nk-30-1.pdf  used on input line 11.
+(pdftex.def)             Requested size: 213.2526pt x 198.84364pt.
+)
+Overfull \vbox (18.38449pt too high) detected at line 667
+ []
+
+[36
+
+ <./hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-30-1.pdf>]
+\openout4 = `hurr_exposure_workshop.vrb'.
+
+(./hurr_exposure_workshop.vrb
+Overfull \hbox (96.95895pt too wide) in paragraph at lines 20--20
 []\T1/lmtt/m/n/10 ## proj4string:    +proj=longlat +ellps=GRS80 +towgs84=0,0,0,
 0,0,0,0 +no_defs[] 
  []
 
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 29--29
-[]\T1/lmtt/m/n/10 ##   STATEFP COUNTYFP COUNTYNS GEOID     NAME        NAMELSAD
- LSAD CLASSFP[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 29--29
-[]\T1/lmtt/m/n/10 ## 1      12      053 00295751 12053 Hernando Hernando County
-   06      H1[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 29--29
-[]\T1/lmtt/m/n/10 ## 2      12      129 00306912 12129  Wakulla  Wakulla County
-   06      H1[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 29--29
-[]\T1/lmtt/m/n/10 ## 3      12      131 00295727 12131   Walton   Walton County
-   06      H1[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 29--29
-[]\T1/lmtt/m/n/10 ##   MTFCC CSAFP CBSAFP METDIVFP FUNCSTAT      ALAND    AWATE
-R    INTPTLAT[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 29--29
-[]\T1/lmtt/m/n/10 ## 1 G4020  <NA>  45300     <NA>        A 1224692722 30086300
-5 +28.5730426[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 29--29
-[]\T1/lmtt/m/n/10 ## 2 G4020   533  45220     <NA>        A 1570625279 33490169
-0 +30.1403575[] 
- []
-
-
-Overfull \hbox (81.209pt too wide) in paragraph at lines 29--29
-[]\T1/lmtt/m/n/10 ## 3 G4020  <NA>  18880     <NA>        A 2687686788 52284857
-0 +30.6312106[] 
- []
-
-)
-Overfull \vbox (53.47743pt too high) detected at line 944
- []
-
-[30
+) [37
 
 ]
 \openout4 = `hurr_exposure_workshop.vrb'.
 
-(./hurr_exposure_workshop.vrb
-<hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-19-1.pdf, id=269, 519
-.9425pt x 493.845pt>
-File: hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-19-1.pdf Graphic
+(./hurr_exposure_workshop.vrb) [38
+
+]
+<hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-33-1.pdf, id=374, 224
+.84pt x 218.8175pt>
+File: hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-33-1.pdf Graphic
  file (type pdf)
-<use hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-19-1.pdf>
+<use hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-33-1.pdf>
 Package pdftex.def Info: hurr_exposure_workshop_files/figure-beamer/unnamed-chu
-nk-19-1.pdf  used on input line 11.
-(pdftex.def)             Requested size: 261.68428pt x 248.54955pt.
-)
-Overfull \vbox (68.0904pt too high) detected at line 958
- []
+nk-33-1.pdf  used on input line 719.
+(pdftex.def)             Requested size: 204.31996pt x 198.84709pt.
+[39
 
-[31
-
- <./hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-19-1.pdf>]
+ <./hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-33-1.pdf>]
 \openout4 = `hurr_exposure_workshop.vrb'.
 
-(./hurr_exposure_workshop.vrb
-Overfull \hbox (28.70915pt too wide) in paragraph at lines 24--24
-[]\T1/lmtt/m/n/10 ## bbox:           xmin: -86.9 ymin: 17.8 xmax: -86.6 ymax: 1
-8.1[] 
- []
+(./hurr_exposure_workshop.vrb) [40
 
-
-Overfull \hbox (96.95895pt too wide) in paragraph at lines 24--24
-[]\T1/lmtt/m/n/10 ## proj4string:    +proj=longlat +ellps=GRS80 +towgs84=0,0,0,
-0,0,0,0 +no_defs[] 
- []
-
-
-Overfull \hbox (7.70921pt too wide) in paragraph at lines 24--24
-[]\T1/lmtt/m/n/10 ##       storm_id         date wind                 geometry[
-] 
- []
-
-
-Overfull \hbox (7.70921pt too wide) in paragraph at lines 24--24
-[]\T1/lmtt/m/n/10 ## 1 Michael-2018 201810061800   25       POINT (-86.6 17.8)[
-] 
- []
-
-
-Overfull \hbox (7.70921pt too wide) in paragraph at lines 24--24
-[]\T1/lmtt/m/n/10 ## 2 Michael-2018 201810062100   25 POINT (-86.7824 17.9526)[
-] 
- []
-
-
-Overfull \hbox (7.70921pt too wide) in paragraph at lines 24--24
-[]\T1/lmtt/m/n/10 ## 3 Michael-2018 201810070000   25       POINT (-86.9 18.1)[
-] 
- []
-
-) [32
+] [41
 
 ]
-\openout4 = `hurr_exposure_workshop.vrb'.
+<figures/geo_centroid_hallisey_2017.png, id=400, 649.42625pt x 616.3025pt>
+File: figures/geo_centroid_hallisey_2017.png Graphic file (type png)
+<use figures/geo_centroid_hallisey_2017.png>
+Package pdftex.def Info: figures/geo_centroid_hallisey_2017.png  used on input 
+line 745.
+(pdftex.def)             Requested size: 222.62534pt x 211.27042pt.
 
-(./hurr_exposure_workshop.vrb) [33
-
-]
-<hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-22-1.pdf, id=298, 517
-.935pt x 490.83376pt>
-File: hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-22-1.pdf Graphic
- file (type pdf)
-<use hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-22-1.pdf>
-Package pdftex.def Info: hurr_exposure_workshop_files/figure-beamer/unnamed-chu
-nk-22-1.pdf  used on input line 1011.
-(pdftex.def)             Requested size: 262.27823pt x 248.55437pt.
-
-Overfull \vbox (31.38536pt too high) detected at line 1011
+Overfull \vbox (12.58191pt too high) detected at line 745
  []
 
-[34
+[42
 
- <./hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-22-1.pdf>] [35
+ <./figures/geo_centroid_hallisey_2017.png>]
+<figures/pop_centroid_hallisey_2017.png, id=408, 656.4525pt x 615.29875pt>
+File: figures/pop_centroid_hallisey_2017.png Graphic file (type png)
+<use figures/pop_centroid_hallisey_2017.png>
+Package pdftex.def Info: figures/pop_centroid_hallisey_2017.png  used on input 
+line 755.
+(pdftex.def)             Requested size: 225.39456pt x 211.26431pt.
 
-]
-\openout4 = `hurr_exposure_workshop.vrb'.
+Overfull \vbox (12.5758pt too high) detected at line 755
+ []
 
-(./hurr_exposure_workshop.vrb) [36
+[43
 
-] [37
-
-] [38
-
-]
+ <./figures/pop_centroid_hallisey_2017.png>]
 \openout4 = `hurr_exposure_workshop.vrb'.
 
 (./hurr_exposure_workshop.vrb
@@ -2690,105 +1786,53 @@ Overfull \hbox (23.45917pt too wide) in paragraph at lines 19--19
 19[] 
  []
 
-) [39
-
-] [40
-
-] [41
-
-] [42
+) [44
 
 ]
-<figures/ivanonly.pdf, id=365, 433.62pt x 237.88875pt>
-File: figures/ivanonly.pdf Graphic file (type pdf)
-<use figures/ivanonly.pdf>
-Package pdftex.def Info: figures/ivanonly.pdf  used on input line 1082.
-(pdftex.def)             Requested size: 307.30333pt x 168.59001pt.
-[43
+<figures/FIPSCode_policymap.png, id=423, 370.38374pt x 90.3375pt>
+File: figures/FIPSCode_policymap.png Graphic file (type png)
+<use figures/FIPSCode_policymap.png>
+Package pdftex.def Info: figures/FIPSCode_policymap.png  used on input line 784
+.
+(pdftex.def)             Requested size: 215.10529pt x 52.46469pt.
+[45
 
- <./figures/ivanonly.pdf>] [44
+ <./figures/FIPSCode_policymap.png (PNG copy)>]
+<figures/finding_closest_point2.pdf, id=430, 505.89pt x 505.89pt>
+File: figures/finding_closest_point2.pdf Graphic file (type pdf)
+<use figures/finding_closest_point2.pdf>
+Package pdftex.def Info: figures/finding_closest_point2.pdf  used on input line
+ 791.
+(pdftex.def)             Requested size: 248.55983pt x 248.55983pt.
 
-] [45
-
-] [46
-
-]
-\openout4 = `hurr_exposure_workshop.vrb'.
-
-(./hurr_exposure_workshop.vrb
-<hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-25-1.pdf, id=397, 694
-.595pt x 434.62375pt>
-File: hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-25-1.pdf Graphic
- file (type pdf)
-<use hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-25-1.pdf>
-Package pdftex.def Info: hurr_exposure_workshop_files/figure-beamer/unnamed-chu
-nk-25-1.pdf  used on input line 10.
-(pdftex.def)             Requested size: 307.29733pt x 192.28287pt.
-) [47
-
- <./hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-25-1.pdf>] [48
-
-]
-\openout4 = `hurr_exposure_workshop.vrb'.
-
-(./hurr_exposure_workshop.vrb
-Overfull \hbox (65.45905pt too wide) in paragraph at lines 23--23
-[]\T1/lmtt/m/n/10 ##  [1] "12001" "12003" "12005" "12007" "12009" "12011" "1201
-3" "12015"[] 
+Overfull \vbox (31.39082pt too high) detected at line 791
  []
 
+[46
 
-Overfull \hbox (65.45905pt too wide) in paragraph at lines 23--23
-[]\T1/lmtt/m/n/10 ##  [9] "12017" "12019" "12021" "12023" "12027" "12029" "1203
-1" "12033"[] 
- []
-
-
-Overfull \hbox (65.45905pt too wide) in paragraph at lines 23--23
-[]\T1/lmtt/m/n/10 ## [17] "12035" "12037" "12039" "12041" "12043" "12045" "1204
-7" "12049"[] 
- []
-
-
-Overfull \hbox (65.45905pt too wide) in paragraph at lines 23--23
-[]\T1/lmtt/m/n/10 ## [25] "12051" "12053" "12055" "12057" "12059" "12061" "1206
-3" "12065"[] 
- []
-
-
-Overfull \hbox (65.45905pt too wide) in paragraph at lines 23--23
-[]\T1/lmtt/m/n/10 ## [33] "12067" "12069" "12071" "12073" "12075" "12077" "1207
-9" "12081"[] 
- []
-
-
-Overfull \hbox (65.45905pt too wide) in paragraph at lines 23--23
-[]\T1/lmtt/m/n/10 ## [41] "12083" "12085" "12086" "12087" "12089" "12091" "1209
-3" "12095"[] 
- []
-
-
-Overfull \hbox (65.45905pt too wide) in paragraph at lines 23--23
-[]\T1/lmtt/m/n/10 ## [49] "12097" "12099" "12101" "12103" "12105" "12107" "1210
-9" "12111"[] 
- []
-
-
-Overfull \hbox (65.45905pt too wide) in paragraph at lines 23--23
-[]\T1/lmtt/m/n/10 ## [57] "12113" "12115" "12117" "12119" "12121" "12123" "1212
-5" "12127"[] 
- []
-
-) [49
-
-]
+ <./figures/finding_closest_point2.pdf>]
 \openout4 = `hurr_exposure_workshop.vrb'.
 
 (./hurr_exposure_workshop.vrb
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <9> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 8.
-)
-Overfull \vbox (118.97925pt too high) detected at line 1182
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 12.
+) [47
+
+]
+\openout4 = `hurr_exposure_workshop.vrb'.
+
+(./hurr_exposure_workshop.vrb) [48
+
+]
+\openout4 = `hurr_exposure_workshop.vrb'.
+
+(./hurr_exposure_workshop.vrb) [49
+
+]
+\openout4 = `hurr_exposure_workshop.vrb'.
+
+(./hurr_exposure_workshop.vrb)
+Overfull \vbox (11.28535pt too high) detected at line 909
  []
 
 [50
@@ -2797,177 +1841,485 @@ Overfull \vbox (118.97925pt too high) detected at line 1182
 \openout4 = `hurr_exposure_workshop.vrb'.
 
 (./hurr_exposure_workshop.vrb
-<hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-28-1.pdf, id=431, 694
-.595pt x 424.58624pt>
-File: hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-28-1.pdf Graphic
+<hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-43-1.pdf, id=472, 466
+.74374pt x 263.98625pt>
+File: hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-43-1.pdf Graphic
  file (type pdf)
-<use hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-28-1.pdf>
+<use hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-43-1.pdf>
 Package pdftex.def Info: hurr_exposure_workshop_files/figure-beamer/unnamed-chu
-nk-28-1.pdf  used on input line 10.
-(pdftex.def)             Requested size: 307.29733pt x 187.84215pt.
-) [51
+nk-43-1.pdf  used on input line 14.
+(pdftex.def)             Requested size: 307.30402pt x 173.8085pt.
+)
+Overfull \vbox (13.20601pt too high) detected at line 926
+ []
 
- <./hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-28-1.pdf>] [52
+[51
 
-] [53
+ <./hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-43-1.pdf>] [52
 
 ]
-<figures/ext_tracks_1.png, id=457, 453.695pt x 274.02374pt>
-File: figures/ext_tracks_1.png Graphic file (type png)
-<use figures/ext_tracks_1.png>
-Package pdftex.def Info: figures/ext_tracks_1.png  used on input line 1216.
-(pdftex.def)             Requested size: 307.2901pt x 185.59778pt.
+<figures/Hurricane-Florence-Hazards-Summary-Chart-9-11-18.png, id=493, 803.0pt 
+x 602.25pt>
+File: figures/Hurricane-Florence-Hazards-Summary-Chart-9-11-18.png Graphic file
+ (type png)
+<use figures/Hurricane-Florence-Hazards-Summary-Chart-9-11-18.png>
+Package pdftex.def Info: figures/Hurricane-Florence-Hazards-Summary-Chart-9-11-
+18.png  used on input line 936.
+(pdftex.def)             Requested size: 281.69136pt x 211.26851pt.
+[53
+
+ <./figures/Hurricane-Florence-Hazards-Summary-Chart-9-11-18.png>]
+<figures/ivanonly.pdf, id=500, 433.62pt x 237.88875pt>
+File: figures/ivanonly.pdf Graphic file (type pdf)
+<use figures/ivanonly.pdf>
+Package pdftex.def Info: figures/ivanonly.pdf  used on input line 943.
+(pdftex.def)             Requested size: 307.30333pt x 168.59001pt.
 [54
 
- <./figures/ext_tracks_1.png>]
-<figures/ext_tracks_2.png, id=466, 552.0625pt x 333.245pt>
-File: figures/ext_tracks_2.png Graphic file (type png)
-<use figures/ext_tracks_2.png>
-Package pdftex.def Info: figures/ext_tracks_2.png  used on input line 1223.
-(pdftex.def)             Requested size: 307.29965pt x 185.49724pt.
-[55
-
- <./figures/ext_tracks_2.png>]
-<figures/windcomparison.pdf, id=475, 379.4175pt x 578.16pt>
-File: figures/windcomparison.pdf Graphic file (type pdf)
-<use figures/windcomparison.pdf>
-Package pdftex.def Info: figures/windcomparison.pdf  used on input line 1230.
-(pdftex.def)             Requested size: 154.95428pt x 236.12082pt.
-
-Overfull \vbox (18.95181pt too high) detected at line 1230
- []
-
-[56
-
- <./figures/windcomparison.pdf>]
-<figures/windexamples.pdf, id=765, 497.20145pt x 393.39339pt>
-File: figures/windexamples.pdf Graphic file (type pdf)
-<use figures/windexamples.pdf>
-Package pdftex.def Info: figures/windexamples.pdf  used on input line 1237.
-(pdftex.def)             Requested size: 282.72496pt x 223.6963pt.
-
-Overfull \vbox (6.5273pt too high) detected at line 1237
- []
-
-[57
-
- <./figures/windexamples.pdf>] [58
-
-] [59
-
-] [60
-
-] [61
+ <./figures/ivanonly.pdf>] [55
 
 ]
-<figures/global_observing_system_wmo_2.png, id=816, 585.18625pt x 426.59375pt>
-File: figures/global_observing_system_wmo_2.png Graphic file (type png)
-<use figures/global_observing_system_wmo_2.png>
-Package pdftex.def Info: figures/global_observing_system_wmo_2.png  used on inp
-ut line 1289.
-(pdftex.def)             Requested size: 323.91608pt x 236.13092pt.
+<figures/storm_crosssection_thomson.png, id=520, 687.56876pt x 444.66125pt>
+File: figures/storm_crosssection_thomson.png Graphic file (type png)
+<use figures/storm_crosssection_thomson.png>
+Package pdftex.def Info: figures/storm_crosssection_thomson.png  used on input 
+line 956.
+(pdftex.def)             Requested size: 307.46216pt x 198.84048pt.
 
-Overfull \hbox (16.6262pt too wide) in paragraph at lines 1289--1289
+Overfull \hbox (0.17229pt too wide) in paragraph at lines 956--956
  [] 
  []
 
 
-Overfull \vbox (32.76184pt too high) detected at line 1289
+Overfull \vbox (13.95184pt too high) detected at line 956
+ []
+
+[56
+
+ <./figures/storm_crosssection_thomson.png>]
+<figures/wind_add_noaa.jpg, id=527, 361.35pt x 361.35pt>
+File: figures/wind_add_noaa.jpg Graphic file (type jpg)
+<use figures/wind_add_noaa.jpg>
+Package pdftex.def Info: figures/wind_add_noaa.jpg  used on input line 966.
+(pdftex.def)             Requested size: 198.84236pt x 198.84236pt.
+[57
+
+ <./figures/wind_add_noaa.jpg>]
+<figures/hurricane_crosssection_bom_comet.jpg, id=534, 722.7pt x 406.51875pt>
+File: figures/hurricane_crosssection_bom_comet.jpg Graphic file (type jpg)
+<use figures/hurricane_crosssection_bom_comet.jpg>
+Package pdftex.def Info: figures/hurricane_crosssection_bom_comet.jpg  used on 
+input line 976.
+(pdftex.def)             Requested size: 276.55865pt x 155.56424pt.
+[58
+
+ <./figures/hurricane_crosssection_bom_comet.jpg>]
+<figures/Hurricane-Matthew-windfield_ecmwf.jpg, id=541, 592.2125pt x 351.3125pt
+>
+File: figures/Hurricane-Matthew-windfield_ecmwf.jpg Graphic file (type jpg)
+<use figures/Hurricane-Matthew-windfield_ecmwf.jpg>
+Package pdftex.def Info: figures/Hurricane-Matthew-windfield_ecmwf.jpg  used on
+ input line 986.
+(pdftex.def)             Requested size: 307.30164pt x 182.29758pt.
+[59
+
+ <./figures/Hurricane-Matthew-windfield_ecmwf.jpg>]
+Overfull \vbox (8.62982pt too high) detected at line 1016
+ []
+
+[60
+
+]
+\openout4 = `hurr_exposure_workshop.vrb'.
+
+(./hurr_exposure_workshop.vrb
+<hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-50-1.pdf, id=554, 446
+.66875pt x 263.98625pt>
+File: hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-50-1.pdf Graphic
+ file (type pdf)
+<use hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-50-1.pdf>
+Package pdftex.def Info: hurr_exposure_workshop_files/figure-beamer/unnamed-chu
+nk-50-1.pdf  used on input line 14.
+(pdftex.def)             Requested size: 252.33423pt x 149.13235pt.
+)
+Overfull \vbox (2.27306pt too high) detected at line 1033
+ []
+
+[61
+
+ <./hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-50-1.pdf>]
+\openout4 = `hurr_exposure_workshop.vrb'.
+
+(./hurr_exposure_workshop.vrb
+Overfull \hbox (7.21013pt too wide) in paragraph at lines 37--37
+[]\T1/lmtt/m/n/8 ##   storm_id  fips vmax_sust vmax_gust sust_dur gust_dur clos
+est_time_utc[] 
+ []
+
+
+Overfull \hbox (7.20413pt too wide) in paragraph at lines 37--37
+[]\T1/lmtt/m/n/8 ## 1 Ike-2008 48039  35.18867  52.43112      735     1230 2008
+-09-13 08:30[] 
+ []
+
+
+Overfull \hbox (7.20213pt too wide) in paragraph at lines 37--37
+[]\T1/lmtt/m/n/8 ## 2 Ike-2008 48071  45.10302  67.20350      840     1290 2008
+-09-13 09:30[] 
+ []
+
+
+Overfull \hbox (7.19614pt too wide) in paragraph at lines 37--37
+[]\T1/lmtt/m/n/8 ## 3 Ike-2008 48167  43.16761  64.31973      750     1260 2008
+-09-13 08:00[] 
+ []
+
+
+Overfull \hbox (7.20213pt too wide) in paragraph at lines 37--37
+[]\T1/lmtt/m/n/8 ## 4 Ike-2008 48201  38.67244  57.62194      720     1170 2008
+-09-13 10:30[] 
+ []
+
+
+Overfull \hbox (7.19814pt too wide) in paragraph at lines 37--37
+[]\T1/lmtt/m/n/8 ## 5 Ike-2008 48291  42.37380  63.13697      765     1230 2008
+-09-13 11:30[] 
+ []
+
+
+Overfull \hbox (7.19614pt too wide) in paragraph at lines 37--37
+[]\T1/lmtt/m/n/8 ## 6 Ike-2008 48339  36.00104  53.64154      660     1110 2008
+-09-13 12:15[] 
+ []
+
+
+Overfull \hbox (7.20213pt too wide) in paragraph at lines 37--37
+[]\T1/lmtt/m/n/8 ## 7 Ike-2008 48373  37.51845  55.90249      630     1110 2008
+-09-13 14:15[] 
+ []
+
+
+Overfull \hbox (7.20013pt too wide) in paragraph at lines 37--37
+[]\T1/lmtt/m/n/8 ## 8 Ike-2008 48407  37.83033  56.36719      600     1125 2008
+-09-13 13:30[] 
+ []
+
+)
+Overfull \vbox (65.19629pt too high) detected at line 1073
  []
 
 [62
 
- <./figures/global_observing_system_wmo_2.png>]
-<figures/cdc_wonder.png, id=824, 1368.11125pt x 613.29124pt>
-File: figures/cdc_wonder.png Graphic file (type png)
-<use figures/cdc_wonder.png>
-Package pdftex.def Info: figures/cdc_wonder.png  used on input line 1299.
-(pdftex.def)             Requested size: 307.28986pt x 137.75061pt.
-[63
+]
+\openout4 = `hurr_exposure_workshop.vrb'.
 
- <./figures/cdc_wonder.png>] [64
+(./hurr_exposure_workshop.vrb) [63
 
-] [65
+]
+\openout4 = `hurr_exposure_workshop.vrb'.
+
+(./hurr_exposure_workshop.vrb) [64
 
 ]
 \openout4 = `hurr_exposure_workshop.vrb'.
 
 (./hurr_exposure_workshop.vrb
-<hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-35-1.pdf, id=845, 693
-.59125pt x 409.53pt>
-File: hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-35-1.pdf Graphic
+<hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-54-1.pdf, id=588, 461
+.725pt x 263.98625pt>
+File: hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-54-1.pdf Graphic
  file (type pdf)
-<use hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-35-1.pdf>
+<use hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-54-1.pdf>
 Package pdftex.def Info: hurr_exposure_workshop_files/figure-beamer/unnamed-chu
-nk-35-1.pdf  used on input line 11.
-(pdftex.def)             Requested size: 307.29776pt x 181.44353pt.
+nk-54-1.pdf  used on input line 13.
+(pdftex.def)             Requested size: 307.28986pt x 175.68962pt.
 )
-Overfull \vbox (0.48888pt too high) detected at line 1323
+Overfull \vbox (15.0304pt too high) detected at line 1143
+ []
+
+[65
+
+ <./hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-54-1.pdf>]
+<figures/ext_tracks_1.png, id=602, 453.695pt x 274.02374pt>
+File: figures/ext_tracks_1.png Graphic file (type png)
+<use figures/ext_tracks_1.png>
+Package pdftex.def Info: figures/ext_tracks_1.png  used on input line 1153.
+(pdftex.def)             Requested size: 307.2901pt x 185.59778pt.
+
+Overfull \vbox (2.02863pt too high) detected at line 1153
  []
 
 [66
 
- <./hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-35-1.pdf>]
-\openout4 = `hurr_exposure_workshop.vrb'.
+ <./figures/ext_tracks_1.png>]
+<figures/ext_tracks_2.png, id=610, 552.0625pt x 333.245pt>
+File: figures/ext_tracks_2.png Graphic file (type png)
+<use figures/ext_tracks_2.png>
+Package pdftex.def Info: figures/ext_tracks_2.png  used on input line 1163.
+(pdftex.def)             Requested size: 307.29965pt x 185.49724pt.
 
-(./hurr_exposure_workshop.vrb
-Overfull \hbox (91.70897pt too wide) in paragraph at lines 31--31
-[]\T1/lmtt/m/n/10 ##       storm_id  fips closest_date  storm_dist tot_precip  
-     local_time[] 
- []
-
-
-Overfull \hbox (91.70897pt too wide) in paragraph at lines 31--31
-[]\T1/lmtt/m/n/10 ## 1 Allison-2001 22057   2001-06-11  34.6818251      152.4 2
-001-06-11 00:00[] 
- []
-
-
-Overfull \hbox (91.70897pt too wide) in paragraph at lines 31--31
-[]\T1/lmtt/m/n/10 ## 2 Allison-2001 48005   2001-06-07  17.0465190      170.4 2
-001-06-07 08:30[] 
- []
-
-
-Overfull \hbox (91.70897pt too wide) in paragraph at lines 31--31
-[]\T1/lmtt/m/n/10 ## 3 Allison-2001 48185   2001-06-08  18.9167371      179.9 2
-001-06-08 05:45[] 
- []
-
-
-Overfull \hbox (91.70897pt too wide) in paragraph at lines 31--31
-[]\T1/lmtt/m/n/10 ## 4 Allison-2001 48241   2001-06-07 101.3829776      171.0 2
-001-06-07 11:15[] 
- []
-
-
-Overfull \hbox (91.70897pt too wide) in paragraph at lines 31--31
-[]\T1/lmtt/m/n/10 ## 5 Allison-2001 48455   2001-06-07   0.2772971      169.8 2
-001-06-07 15:45[] 
- []
-
-
-Overfull \hbox (91.70897pt too wide) in paragraph at lines 31--31
-[]\T1/lmtt/m/n/10 ## 6 Allison-2001 48457   2001-06-07  71.5347264      182.0 2
-001-06-07 11:45[] 
- []
-
-
-Overfull \hbox (91.70897pt too wide) in paragraph at lines 31--31
-[]\T1/lmtt/m/n/10 ## 7 Allison-2001 48471   2001-06-07  19.5921732      154.2 2
-001-06-07 19:00[] 
- []
-
-)
-Overfull \vbox (80.24396pt too high) detected at line 1357
+Overfull \vbox (1.92809pt too high) detected at line 1163
  []
 
 [67
 
+ <./figures/ext_tracks_2.png>]
+<figures/windcomparison.pdf, id=619, 379.4175pt x 578.16pt>
+File: figures/windcomparison.pdf Graphic file (type pdf)
+<use figures/windcomparison.pdf>
+Package pdftex.def Info: figures/windcomparison.pdf  used on input line 1170.
+(pdftex.def)             Requested size: 154.95428pt x 236.12082pt.
+
+Overfull \vbox (18.95181pt too high) detected at line 1170
+ []
+
+[68
+
+ <./figures/windcomparison.pdf>]
+<figures/windexamples.pdf, id=909, 497.20145pt x 393.39339pt>
+File: figures/windexamples.pdf Graphic file (type pdf)
+<use figures/windexamples.pdf>
+Package pdftex.def Info: figures/windexamples.pdf  used on input line 1177.
+(pdftex.def)             Requested size: 282.72496pt x 223.6963pt.
+
+Overfull \vbox (6.5273pt too high) detected at line 1177
+ []
+
+[69
+
+ <./figures/windexamples.pdf>]
+\openout4 = `hurr_exposure_workshop.vrb'.
+
+(./hurr_exposure_workshop.vrb
+<hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-59-1.pdf, id=934, 461
+.725pt x 262.9825pt>
+File: hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-59-1.pdf Graphic
+ file (type pdf)
+<use hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-59-1.pdf>
+Package pdftex.def Info: hurr_exposure_workshop_files/figure-beamer/unnamed-chu
+nk-59-1.pdf  used on input line 15.
+(pdftex.def)             Requested size: 261.84737pt x 149.13914pt.
+)
+Overfull \vbox (15.58427pt too high) detected at line 1195
+ []
+
+[70
+
+ <./hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-59-1.pdf>]
+\openout4 = `hurr_exposure_workshop.vrb'.
+
+(./hurr_exposure_workshop.vrb
+<hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-60-1.pdf, id=948, 461
+.725pt x 262.9825pt>
+File: hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-60-1.pdf Graphic
+ file (type pdf)
+<use hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-60-1.pdf>
+Package pdftex.def Info: hurr_exposure_workshop_files/figure-beamer/unnamed-chu
+nk-60-1.pdf  used on input line 15.
+(pdftex.def)             Requested size: 261.84737pt x 149.13914pt.
+)
+Overfull \vbox (16.1365pt too high) detected at line 1213
+ []
+
+[71
+
+ <./hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-60-1.pdf>]
+\openout4 = `hurr_exposure_workshop.vrb'.
+
+(./hurr_exposure_workshop.vrb
+<hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-61-1.pdf, id=962, 437
+.635pt x 262.9825pt>
+File: hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-61-1.pdf Graphic
+ file (type pdf)
+<use hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-61-1.pdf>
+Package pdftex.def Info: hurr_exposure_workshop_files/figure-beamer/unnamed-chu
+nk-61-1.pdf  used on input line 15.
+(pdftex.def)             Requested size: 248.18576pt x 149.13914pt.
+)
+Overfull \vbox (15.58427pt too high) detected at line 1231
+ []
+
+[72
+
+ <./hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-61-1.pdf>]
+\openout4 = `hurr_exposure_workshop.vrb'.
+
+(./hurr_exposure_workshop.vrb
+Overfull \hbox (12.9592pt too wide) in paragraph at lines 22--22
+[]\T1/lmtt/m/n/10 ##    fips vmax_gust vmax_sust gust_dur sust_dur     storm_id
+[] 
+ []
+
+
+Overfull \hbox (12.9592pt too wide) in paragraph at lines 22--22
+[]\T1/lmtt/m/n/10 ## 1 01001  1.168851 0.7844640        0        0 Alberto-1988
+[] 
+ []
+
+
+Overfull \hbox (12.9592pt too wide) in paragraph at lines 22--22
+[]\T1/lmtt/m/n/10 ## 2 01003  1.000133 0.6712300        0        0 Alberto-1988
+[] 
+ []
+
+
+Overfull \hbox (12.9592pt too wide) in paragraph at lines 22--22
+[]\T1/lmtt/m/n/10 ## 3 01005  1.522113 1.0215523        0        0 Alberto-1988
+[] 
+ []
+
+
+Overfull \hbox (12.9592pt too wide) in paragraph at lines 22--22
+[]\T1/lmtt/m/n/10 ## 4 01007  1.010524 0.6782040        0        0 Alberto-1988
+[] 
+ []
+
+
+Overfull \hbox (12.9592pt too wide) in paragraph at lines 22--22
+[]\T1/lmtt/m/n/10 ## 5 01009  1.007067 0.6758839        0        0 Alberto-1988
+[] 
+ []
+
+
+Overfull \hbox (12.9592pt too wide) in paragraph at lines 22--22
+[]\T1/lmtt/m/n/10 ## 6 01011  1.387692 0.9313369        0        0 Alberto-1988
+[] 
+ []
+
+) [73
+
 ]
 \openout4 = `hurr_exposure_workshop.vrb'.
 
-(./hurr_exposure_workshop.vrb) [68
+(./hurr_exposure_workshop.vrb) [74
+
+] [75
+
+] [76
+
+]
+<figures/global_observing_system_wmo_2.png, id=1003, 585.18625pt x 426.59375pt>
+
+File: figures/global_observing_system_wmo_2.png Graphic file (type png)
+<use figures/global_observing_system_wmo_2.png>
+Package pdftex.def Info: figures/global_observing_system_wmo_2.png  used on inp
+ut line 1312.
+(pdftex.def)             Requested size: 272.76955pt x 198.84572pt.
+[77
+
+ <./figures/global_observing_system_wmo_2.png>]
+<figures/cdc_wonder.png, id=1011, 1368.11125pt x 613.29124pt>
+File: figures/cdc_wonder.png Graphic file (type png)
+<use figures/cdc_wonder.png>
+Package pdftex.def Info: figures/cdc_wonder.png  used on input line 1322.
+(pdftex.def)             Requested size: 307.28986pt x 137.75061pt.
+[78
+
+ <./figures/cdc_wonder.png>]
+File: figures/finding_closest_point2.pdf Graphic file (type pdf)
+<use figures/finding_closest_point2.pdf>
+Package pdftex.def Info: figures/finding_closest_point2.pdf  used on input line
+ 1329.
+(pdftex.def)             Requested size: 236.12411pt x 236.12411pt.
+
+Overfull \vbox (18.95511pt too high) detected at line 1329
+ []
+
+[79
+
+]
+<figures/cyclone_rain_timing_shieh_2010.jpg, id=1026, 424.58624pt x 286.06876pt
+>
+File: figures/cyclone_rain_timing_shieh_2010.jpg Graphic file (type jpg)
+<use figures/cyclone_rain_timing_shieh_2010.jpg>
+Package pdftex.def Info: figures/cyclone_rain_timing_shieh_2010.jpg  used on in
+put line 1339.
+(pdftex.def)             Requested size: 332.01816pt x 223.70018pt.
+
+Overfull \hbox (24.72829pt too wide) in paragraph at lines 1339--1339
+ [] 
+ []
+
+
+Overfull \vbox (37.25604pt too high) detected at line 1339
+ []
+
+[80
+
+ <./figures/cyclone_rain_timing_shieh_2010.jpg>]
+\openout4 = `hurr_exposure_workshop.vrb'.
+
+(./hurr_exposure_workshop.vrb
+<hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-68-1.pdf, id=1033, 46
+2.72874pt x 262.9825pt>
+File: hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-68-1.pdf Graphic
+ file (type pdf)
+<use hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-68-1.pdf>
+Package pdftex.def Info: hurr_exposure_workshop_files/figure-beamer/unnamed-chu
+nk-68-1.pdf  used on input line 15.
+(pdftex.def)             Requested size: 262.4166pt x 149.13914pt.
+)
+Overfull \vbox (15.58427pt too high) detected at line 1357
+ []
+
+[81
+
+ <./hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-68-1.pdf>]
+<figures/rainexamples.pdf, id=1047, 505.89pt x 289.08pt>
+File: figures/rainexamples.pdf Graphic file (type pdf)
+<use figures/rainexamples.pdf>
+Package pdftex.def Info: figures/rainexamples.pdf  used on input line 1364.
+(pdftex.def)             Requested size: 307.29561pt x 175.59749pt.
+[82
+
+ <./figures/rainexamples.pdf>]
+\openout4 = `hurr_exposure_workshop.vrb'.
+
+(./hurr_exposure_workshop.vrb
+Overfull \hbox (47.08444pt too wide) in paragraph at lines 33--33
+[]\T1/lmtt/m/n/9 ##       storm_id  fips closest_date storm_dist tot_precip    
+   local_time[] 
+ []
+
+
+Overfull \hbox (47.08444pt too wide) in paragraph at lines 33--33
+[]\T1/lmtt/m/n/9 ## 1 Allison-2001 22057   2001-06-11  28.350391      152.4 200
+1-06-11 00:45[] 
+ []
+
+
+Overfull \hbox (47.08444pt too wide) in paragraph at lines 33--33
+[]\T1/lmtt/m/n/9 ## 2 Allison-2001 48005   2001-06-07  17.287200      170.4 200
+1-06-07 08:00[] 
+ []
+
+
+Overfull \hbox (47.08444pt too wide) in paragraph at lines 33--33
+[]\T1/lmtt/m/n/9 ## 3 Allison-2001 48185   2001-06-08  21.118270      179.9 200
+1-06-08 02:45[] 
+ []
+
+
+Overfull \hbox (47.08444pt too wide) in paragraph at lines 33--33
+[]\T1/lmtt/m/n/9 ## 4 Allison-2001 48455   2001-06-07   5.013884      169.8 200
+1-06-07 15:15[] 
+ []
+
+
+Overfull \hbox (47.08444pt too wide) in paragraph at lines 33--33
+[]\T1/lmtt/m/n/9 ## 5 Allison-2001 48471   2001-06-07  15.764435      154.2 200
+1-06-07 19:30[] 
+ []
+
+)
+Overfull \vbox (51.87962pt too high) detected at line 1400
+ []
+
+[83
+
+]
+\openout4 = `hurr_exposure_workshop.vrb'.
+
+(./hurr_exposure_workshop.vrb) [84
 
 ]
 \openout4 = `hurr_exposure_workshop.vrb'.
@@ -2980,232 +2332,437 @@ Overfull \hbox (51.80943pt too wide) in paragraph at lines 29--29
 
 
 Overfull \hbox (51.80943pt too wide) in paragraph at lines 29--29
-[]\T1/lmtt/m/n/9 ## 1:    Alex-2010 48215   2010-06-30  230.15397      183.3 20
-10-06-30 20:00[] 
+[]\T1/lmtt/m/n/9 ## 1:    Alex-2010 48215   2010-06-30  210.74322      183.3 20
+10-06-30 20:45[] 
  []
 
 
 Overfull \hbox (51.80943pt too wide) in paragraph at lines 29--29
-[]\T1/lmtt/m/n/9 ## 2: Hermine-2010 48027   2010-09-07  154.26915      181.4 20
-10-09-07 18:45[] 
+[]\T1/lmtt/m/n/9 ## 2: Hermine-2010 48027   2010-09-07  159.62482      181.4 20
+10-09-07 19:00[] 
  []
 
 
 Overfull \hbox (51.80943pt too wide) in paragraph at lines 29--29
-[]\T1/lmtt/m/n/9 ## 3: Hermine-2010 48031   2010-09-07   47.00182      175.5 20
+[]\T1/lmtt/m/n/9 ## 3: Hermine-2010 48031   2010-09-07   51.76863      175.5 20
 10-09-07 16:00[] 
  []
 
 
 Overfull \hbox (51.80943pt too wide) in paragraph at lines 29--29
-[]\T1/lmtt/m/n/9 ## 4: Hermine-2010 48091   2010-09-07   47.27736      187.8 20
-10-09-07 14:00[] 
+[]\T1/lmtt/m/n/9 ## 4: Hermine-2010 48091   2010-09-07   49.69290      187.8 20
+10-09-07 14:15[] 
  []
 
 
 Overfull \hbox (51.80943pt too wide) in paragraph at lines 29--29
-[]\T1/lmtt/m/n/9 ## 5: Hermine-2010 48209   2010-09-07   81.80723      186.1 20
-10-09-07 14:30[] 
+[]\T1/lmtt/m/n/9 ## 5: Hermine-2010 48209   2010-09-07   85.01687      186.1 20
+10-09-07 14:45[] 
  []
 
 
 Overfull \hbox (51.80943pt too wide) in paragraph at lines 29--29
-[]\T1/lmtt/m/n/9 ## 6: Hermine-2010 48491   2010-09-07  122.60846      187.4 20
-10-09-07 16:30[] 
+[]\T1/lmtt/m/n/9 ## 6: Hermine-2010 48491   2010-09-07  127.78742      187.4 20
+10-09-07 16:45[] 
  []
 
 )
-Overfull \vbox (5.12985pt too high) detected at line 1407
- []
-
-[69
-
-]
-<figures/rainexamples.pdf, id=878, 505.89pt x 289.08pt>
-File: figures/rainexamples.pdf Graphic file (type pdf)
-<use figures/rainexamples.pdf>
-Package pdftex.def Info: figures/rainexamples.pdf  used on input line 1414.
-(pdftex.def)             Requested size: 307.29561pt x 175.59749pt.
-[70
-
- <./figures/rainexamples.pdf>]
-\openout4 = `hurr_exposure_workshop.vrb'.
-
-(./hurr_exposure_workshop.vrb
-<hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-40-1.pdf, id=891, 693
-.59125pt x 447.6725pt>
-File: hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-40-1.pdf Graphic
- file (type pdf)
-<use hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-40-1.pdf>
-Package pdftex.def Info: hurr_exposure_workshop_files/figure-beamer/unnamed-chu
-nk-40-1.pdf  used on input line 10.
-(pdftex.def)             Requested size: 307.29776pt x 198.34268pt.
-)
-Overfull \vbox (4.0836pt too high) detected at line 1427
- []
-
-[71
-
- <./hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-40-1.pdf>]
-\openout4 = `hurr_exposure_workshop.vrb'.
-
-(./hurr_exposure_workshop.vrb
-<hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-41-1.pdf, id=905, 693
-.59125pt x 412.54124pt>
-File: hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-41-1.pdf Graphic
- file (type pdf)
-<use hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-41-1.pdf>
-Package pdftex.def Info: hurr_exposure_workshop_files/figure-beamer/unnamed-chu
-nk-41-1.pdf  used on input line 14.
-(pdftex.def)             Requested size: 307.29776pt x 182.77768pt.
-)
-Overfull \vbox (35.97511pt too high) detected at line 1444
- []
-
-[72
-
- <./hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-41-1.pdf>]
-\openout4 = `hurr_exposure_workshop.vrb'.
-
-(./hurr_exposure_workshop.vrb
-<hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-42-1.pdf, id=919, 693
-.59125pt x 412.54124pt>
-File: hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-42-1.pdf Graphic
- file (type pdf)
-<use hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-42-1.pdf>
-Package pdftex.def Info: hurr_exposure_workshop_files/figure-beamer/unnamed-chu
-nk-42-1.pdf  used on input line 14.
-(pdftex.def)             Requested size: 307.29776pt x 182.77768pt.
-)
-Overfull \vbox (35.97511pt too high) detected at line 1461
- []
-
-[73
-
- <./hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-42-1.pdf>]
-\openout4 = `hurr_exposure_workshop.vrb'.
-
-(./hurr_exposure_workshop.vrb
-<hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-43-1.pdf, id=934, 693
-.59125pt x 412.54124pt>
-File: hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-43-1.pdf Graphic
- file (type pdf)
-<use hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-43-1.pdf>
-Package pdftex.def Info: hurr_exposure_workshop_files/figure-beamer/unnamed-chu
-nk-43-1.pdf  used on input line 14.
-(pdftex.def)             Requested size: 307.29776pt x 182.77768pt.
-)
-Overfull \vbox (35.97511pt too high) detected at line 1478
- []
-
-[74
-
- <./hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-43-1.pdf>] [75
-
-]
-File: figures/global_observing_system_wmo_2.png Graphic file (type png)
-<use figures/global_observing_system_wmo_2.png>
-Package pdftex.def Info: figures/global_observing_system_wmo_2.png  used on inp
-ut line 1492.
-(pdftex.def)             Requested size: 323.91608pt x 236.13092pt.
-
-Overfull \hbox (16.6262pt too wide) in paragraph at lines 1492--1492
- [] 
- []
-
-
-Overfull \vbox (32.76184pt too high) detected at line 1492
- []
-
-[76
-
-]
-<figures/raincomparison.pdf, id=960, 650.43pt x 650.43pt>
-File: figures/raincomparison.pdf Graphic file (type pdf)
-<use figures/raincomparison.pdf>
-Package pdftex.def Info: figures/raincomparison.pdf  used on input line 1499.
-(pdftex.def)             Requested size: 236.11972pt x 236.11972pt.
-
-Overfull \vbox (18.95071pt too high) detected at line 1499
- []
-
-[77
-
- <./figures/raincomparison.pdf>] [78
-
-] [79
-
-] [80
-
-] [81
-
-]
-\openout4 = `hurr_exposure_workshop.vrb'.
-
-(./hurr_exposure_workshop.vrb
-<hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-46-1.pdf, id=1004, 69
-3.59125pt x 410.53375pt>
-File: hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-46-1.pdf Graphic
- file (type pdf)
-<use hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-46-1.pdf>
-Package pdftex.def Info: hurr_exposure_workshop_files/figure-beamer/unnamed-chu
-nk-46-1.pdf  used on input line 10.
-(pdftex.def)             Requested size: 307.29776pt x 181.88824pt.
-) [82
-
- <./hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-46-1.pdf>]
-\openout4 = `hurr_exposure_workshop.vrb'.
-
-(./hurr_exposure_workshop.vrb
-Overfull \hbox (49.70909pt too wide) in paragraph at lines 16--16
-[]\T1/lmtt/m/n/10 ## [1] fips             storm_id         closest_time_utc sto
-rm_dist[] 
- []
-
-) [83
-
-]
-File: figures/global_observing_system_wmo_2.png Graphic file (type png)
-<use figures/global_observing_system_wmo_2.png>
-Package pdftex.def Info: figures/global_observing_system_wmo_2.png  used on inp
-ut line 1572.
-(pdftex.def)             Requested size: 323.91608pt x 236.13092pt.
-
-Overfull \hbox (16.6262pt too wide) in paragraph at lines 1572--1572
- [] 
- []
-
-
-Overfull \vbox (32.76184pt too high) detected at line 1572
- []
-
-[84
-
-]
-<figures/floodcomparison.pdf, id=1030, 650.43pt x 433.62pt>
-File: figures/floodcomparison.pdf Graphic file (type pdf)
-<use figures/floodcomparison.pdf>
-Package pdftex.def Info: figures/floodcomparison.pdf  used on input line 1579.
-(pdftex.def)             Requested size: 307.30002pt x 204.86668pt.
-
-Overfull \vbox (1.4976pt too high) detected at line 1579
+Overfull \vbox (5.12985pt too high) detected at line 1455
  []
 
 [85
 
- <./figures/floodcomparison.pdf>] [86
+]
+\openout4 = `hurr_exposure_workshop.vrb'.
 
-] [87
+(./hurr_exposure_workshop.vrb
+<hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-73-1.pdf, id=1079, 44
+2.65375pt x 262.9825pt>
+File: hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-73-1.pdf Graphic
+ file (type pdf)
+<use hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-73-1.pdf>
+Package pdftex.def Info: hurr_exposure_workshop_files/figure-beamer/unnamed-chu
+nk-73-1.pdf  used on input line 13.
+(pdftex.def)             Requested size: 292.86832pt x 173.99432pt.
+)
+Overfull \vbox (13.3351pt too high) detected at line 1471
+ []
 
-] [88
+[86
 
-] [89
+ <./hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-73-1.pdf>]
+\openout4 = `hurr_exposure_workshop.vrb'.
 
-] [90
+(./hurr_exposure_workshop.vrb
+<hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-74-1.pdf, id=1093, 45
+9.7175pt x 262.9825pt>
+File: hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-74-1.pdf Graphic
+ file (type pdf)
+<use hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-74-1.pdf>
+Package pdftex.def Info: hurr_exposure_workshop_files/figure-beamer/unnamed-chu
+nk-74-1.pdf  used on input line 14.
+(pdftex.def)             Requested size: 260.7089pt x 149.13914pt.
+)
+Overfull \vbox (2.33658pt too high) detected at line 1488
+ []
 
-] [91
+[87
+
+ <./hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-74-1.pdf>]
+\openout4 = `hurr_exposure_workshop.vrb'.
+
+(./hurr_exposure_workshop.vrb
+<hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-75-1.pdf, id=1107, 45
+9.7175pt x 262.9825pt>
+File: hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-75-1.pdf Graphic
+ file (type pdf)
+<use hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-75-1.pdf>
+Package pdftex.def Info: hurr_exposure_workshop_files/figure-beamer/unnamed-chu
+nk-75-1.pdf  used on input line 14.
+(pdftex.def)             Requested size: 260.7089pt x 149.13914pt.
+)
+Overfull \vbox (2.33658pt too high) detected at line 1505
+ []
+
+[88
+
+ <./hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-75-1.pdf>]
+\openout4 = `hurr_exposure_workshop.vrb'.
+
+(./hurr_exposure_workshop.vrb
+<hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-76-1.pdf, id=1122, 45
+9.7175pt x 262.9825pt>
+File: hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-76-1.pdf Graphic
+ file (type pdf)
+<use hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-76-1.pdf>
+Package pdftex.def Info: hurr_exposure_workshop_files/figure-beamer/unnamed-chu
+nk-76-1.pdf  used on input line 14.
+(pdftex.def)             Requested size: 260.7089pt x 149.13914pt.
+)
+Overfull \vbox (2.33658pt too high) detected at line 1522
+ []
+
+[89
+
+ <./hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-76-1.pdf>]
+\openout4 = `hurr_exposure_workshop.vrb'.
+
+(./hurr_exposure_workshop.vrb) [90
 
 ]
+File: figures/global_observing_system_wmo_2.png Graphic file (type png)
+<use figures/global_observing_system_wmo_2.png>
+Package pdftex.def Info: figures/global_observing_system_wmo_2.png  used on inp
+ut line 1551.
+(pdftex.def)             Requested size: 272.76955pt x 198.84572pt.
+[91
+
+]
+<figures/raincomparison.pdf, id=1149, 650.43pt x 650.43pt>
+File: figures/raincomparison.pdf Graphic file (type pdf)
+<use figures/raincomparison.pdf>
+Package pdftex.def Info: figures/raincomparison.pdf  used on input line 1558.
+(pdftex.def)             Requested size: 223.69392pt x 223.69392pt.
+
+Overfull \vbox (6.52492pt too high) detected at line 1558
+ []
+
+[92
+
+ <./figures/raincomparison.pdf>] [93
+
+] [94
+
+]
+<figures/noaa_storm_events.png, id=1179, 968.61874pt x 590.205pt>
+File: figures/noaa_storm_events.png Graphic file (type png)
+<use figures/noaa_storm_events.png>
+Package pdftex.def Info: figures/noaa_storm_events.png  used on input line 1585
+.
+(pdftex.def)             Requested size: 285.53313pt x 173.98288pt.
+[95
+
+ <./figures/noaa_storm_events.png>]
+\openout4 = `hurr_exposure_workshop.vrb'.
+
+(./hurr_exposure_workshop.vrb
+<hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-81-1.pdf, id=1187, 69
+3.59125pt x 419.5675pt>
+File: hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-81-1.pdf Graphic
+ file (type pdf)
+<use hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-81-1.pdf>
+Package pdftex.def Info: hurr_exposure_workshop_files/figure-beamer/unnamed-chu
+nk-81-1.pdf  used on input line 11.
+(pdftex.def)             Requested size: 307.29776pt x 185.89067pt.
+)
+Overfull \vbox (5.48825pt too high) detected at line 1599
+ []
+
+[96
+
+ <./hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-81-1.pdf>]
+\openout4 = `hurr_exposure_workshop.vrb'.
+
+(./hurr_exposure_workshop.vrb
+Overfull \hbox (54.95908pt too wide) in paragraph at lines 63--63
+[]\T1/lmtt/m/n/10 ##     fips     storm_id closest_time_utc storm_dist       lo
+cal_time[] 
+ []
+
+
+Overfull \hbox (54.95908pt too wide) in paragraph at lines 63--63
+[]\T1/lmtt/m/n/10 ## 1  48001 Allison-2001 2001-06-06 21:30  63.100572 2001-06-
+06 16:30[] 
+ []
+
+
+Overfull \hbox (54.95908pt too wide) in paragraph at lines 63--63
+[]\T1/lmtt/m/n/10 ## 2  48005 Allison-2001 2001-06-07 13:00  17.287200 2001-06-
+07 08:00[] 
+ []
+
+
+Overfull \hbox (54.95908pt too wide) in paragraph at lines 63--63
+[]\T1/lmtt/m/n/10 ## 3  48039 Allison-2001 2001-06-06 00:00   5.778571 2001-06-
+05 19:00[] 
+ []
+
+
+Overfull \hbox (54.95908pt too wide) in paragraph at lines 63--63
+[]\T1/lmtt/m/n/10 ## 4  48073 Allison-2001 2001-06-07 00:00  28.509330 2001-06-
+06 19:00[] 
+ []
+
+
+Overfull \hbox (54.95908pt too wide) in paragraph at lines 63--63
+[]\T1/lmtt/m/n/10 ## 5  48157 Allison-2001 2001-06-09 05:45  16.917932 2001-06-
+09 00:45[] 
+ []
+
+
+Overfull \hbox (54.95908pt too wide) in paragraph at lines 63--63
+[]\T1/lmtt/m/n/10 ## 6  48167 Allison-2001 2001-06-06 00:45  30.537577 2001-06-
+05 19:45[] 
+ []
+
+
+Overfull \hbox (54.95908pt too wide) in paragraph at lines 63--63
+[]\T1/lmtt/m/n/10 ## 7  48185 Allison-2001 2001-06-08 07:45  21.118270 2001-06-
+08 02:45[] 
+ []
+
+
+Overfull \hbox (54.95908pt too wide) in paragraph at lines 63--63
+[]\T1/lmtt/m/n/10 ## 8  48199 Allison-2001 2001-06-06 07:45  91.632707 2001-06-
+06 02:45[] 
+ []
+
+
+Overfull \hbox (54.95908pt too wide) in paragraph at lines 63--63
+[]\T1/lmtt/m/n/10 ## 9  48201 Allison-2001 2001-06-06 03:15  11.362299 2001-06-
+05 22:15[] 
+ []
+
+
+Overfull \hbox (54.95908pt too wide) in paragraph at lines 63--63
+[]\T1/lmtt/m/n/10 ## 10 48203 Allison-2001 2001-06-07 03:15 102.434495 2001-06-
+06 22:15[] 
+ []
+
+
+Overfull \hbox (54.95908pt too wide) in paragraph at lines 63--63
+[]\T1/lmtt/m/n/10 ## 11 48225 Allison-2001 2001-06-07 20:00  34.159162 2001-06-
+07 15:00[] 
+ []
+
+
+Overfull \hbox (54.95908pt too wide) in paragraph at lines 63--63
+[]\T1/lmtt/m/n/10 ## 12 48241 Allison-2001 2001-06-06 11:30 109.351292 2001-06-
+06 06:30[] 
+ []
+
+
+Overfull \hbox (54.95908pt too wide) in paragraph at lines 63--63
+[]\T1/lmtt/m/n/10 ## 13 48245 Allison-2001 2001-06-06 05:45 115.226972 2001-06-
+06 00:45[] 
+ []
+
+
+Overfull \hbox (54.95908pt too wide) in paragraph at lines 63--63
+[]\T1/lmtt/m/n/10 ## 14 48291 Allison-2001 2001-06-06 06:00  33.387854 2001-06-
+06 01:00[] 
+ []
+
+
+Overfull \hbox (54.95908pt too wide) in paragraph at lines 63--63
+[]\T1/lmtt/m/n/10 ## 15 48339 Allison-2001 2001-06-06 06:15  21.961784 2001-06-
+06 01:15[] 
+ []
+
+
+Overfull \hbox (54.95908pt too wide) in paragraph at lines 63--63
+[]\T1/lmtt/m/n/10 ## 16 48347 Allison-2001 2001-06-07 08:30  18.670315 2001-06-
+07 03:30[] 
+ []
+
+
+Overfull \hbox (54.95908pt too wide) in paragraph at lines 63--63
+[]\T1/lmtt/m/n/10 ## 17 48351 Allison-2001 2001-06-07 14:00 131.769420 2001-06-
+07 09:00[] 
+ []
+
+
+Overfull \hbox (54.95908pt too wide) in paragraph at lines 63--63
+[]\T1/lmtt/m/n/10 ## 18 48361 Allison-2001 2001-06-06 07:00 132.080185 2001-06-
+06 02:00[] 
+ []
+
+
+Overfull \hbox (54.95908pt too wide) in paragraph at lines 63--63
+[]\T1/lmtt/m/n/10 ## 19 48373 Allison-2001 2001-06-06 10:30  19.595214 2001-06-
+06 05:30[] 
+ []
+
+
+Overfull \hbox (54.95908pt too wide) in paragraph at lines 63--63
+[]\T1/lmtt/m/n/10 ## 20 48403 Allison-2001 2001-06-07 11:00  94.950830 2001-06-
+07 06:00[] 
+ []
+
+
+Overfull \hbox (54.95908pt too wide) in paragraph at lines 63--63
+[]\T1/lmtt/m/n/10 ## 21 48455 Allison-2001 2001-06-07 20:15   5.013884 2001-06-
+07 15:15[] 
+ []
+
+
+Overfull \hbox (54.95908pt too wide) in paragraph at lines 63--63
+[]\T1/lmtt/m/n/10 ## 22 48471 Allison-2001 2001-06-08 00:30  15.764435 2001-06-
+07 19:30[] 
+ []
+
+
+Overfull \hbox (54.95908pt too wide) in paragraph at lines 63--63
+[]\T1/lmtt/m/n/10 ## 23 48473 Allison-2001 2001-06-08 21:00   1.972226 2001-06-
+08 16:00[] 
+ []
+
+
+Overfull \hbox (54.95908pt too wide) in paragraph at lines 63--63
+[]\T1/lmtt/m/n/10 ## 24 48477 Allison-2001 2001-06-08 15:30  22.657835 2001-06-
+08 10:30[] 
+ []
+
+)
+Overfull \vbox (521.84161pt too high) detected at line 1666
+ []
+
+[97
+
+]
+File: figures/global_observing_system_wmo_2.png Graphic file (type png)
+<use figures/global_observing_system_wmo_2.png>
+Package pdftex.def Info: figures/global_observing_system_wmo_2.png  used on inp
+ut line 1673.
+(pdftex.def)             Requested size: 272.76955pt x 198.84572pt.
+[98
+
+]
+<figures/floodcomparison.pdf, id=1214, 650.43pt x 433.62pt>
+File: figures/floodcomparison.pdf Graphic file (type pdf)
+<use figures/floodcomparison.pdf>
+Package pdftex.def Info: figures/floodcomparison.pdf  used on input line 1680.
+(pdftex.def)             Requested size: 307.30002pt x 204.86668pt.
+
+Overfull \vbox (1.4976pt too high) detected at line 1680
+ []
+
+[99
+
+ <./figures/floodcomparison.pdf>] [100
+
+] [101
+
+]
+<figures/heat_index_paper.png, id=1242, 759.83875pt x 174.6525pt>
+File: figures/heat_index_paper.png Graphic file (type png)
+<use figures/heat_index_paper.png>
+Package pdftex.def Info: figures/heat_index_paper.png  used on input line 1708.
+
+(pdftex.def)             Requested size: 307.29242pt x 70.6326pt.
+[102
+
+ <./figures/heat_index_paper.png>]
+\openout4 = `hurr_exposure_workshop.vrb'.
+
+(./hurr_exposure_workshop.vrb) [103
+
+]
+\openout4 = `hurr_exposure_workshop.vrb'.
+
+(./hurr_exposure_workshop.vrb) [104
+
+]
+\openout4 = `hurr_exposure_workshop.vrb'.
+
+(./hurr_exposure_workshop.vrb
+Overfull \hbox (11.46013pt too wide) in paragraph at lines 35--35
+[]\T1/lmtt/m/n/8 ## #   injuries_indirect <int>, deaths_direct <int>, deaths_in
+direct <int>,[] 
+ []
+
+) [105
+
+]
+\openout4 = `hurr_exposure_workshop.vrb'.
+
+(./hurr_exposure_workshop.vrb
+Overfull \hbox (11.46013pt too wide) in paragraph at lines 27--27
+[]\T1/lmtt/m/n/8 ## #   injuries_indirect <int>, deaths_direct <int>, deaths_in
+direct <int>,[] 
+ []
+
+
+Overfull \hbox (15.71013pt too wide) in paragraph at lines 27--27
+[]\T1/lmtt/m/n/8 ## #   damage_property <dbl>, damage_crops <dbl>, fips <dbl>, 
+storm_id <chr>[] 
+ []
+
+) [106
+
+]
+\openout4 = `hurr_exposure_workshop.vrb'.
+
+(./hurr_exposure_workshop.vrb
+<hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-90-1.pdf, id=1278, 34
+9.305pt x 201.75375pt>
+File: hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-90-1.pdf Graphic
+ file (type pdf)
+<use hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-90-1.pdf>
+Package pdftex.def Info: hurr_exposure_workshop_files/figure-beamer/unnamed-chu
+nk-90-1.pdf  used on input line 17.
+(pdftex.def)             Requested size: 215.10112pt x 124.23943pt.
+) [107
+
+ <./hurr_exposure_workshop_files/figure-beamer/unnamed-chunk-90-1.pdf>]
+<figures/futureheatwaves_paper.png, id=1293, 731.73375pt x 368.37625pt>
+File: figures/futureheatwaves_paper.png Graphic file (type png)
+<use figures/futureheatwaves_paper.png>
+Package pdftex.def Info: figures/futureheatwaves_paper.png  used on input line 
+1842.
+(pdftex.def)             Requested size: 307.29259pt x 154.70009pt.
+[108
+
+ <./figures/futureheatwaves_paper.png>]
+<figures/mapping_climate_data.png, id=1301, 755.82375pt x 464.73625pt>
+File: figures/mapping_climate_data.png Graphic file (type png)
+<use figures/mapping_climate_data.png>
+Package pdftex.def Info: figures/mapping_climate_data.png  used on input line 1
+849.
+(pdftex.def)             Requested size: 307.2833pt x 188.94046pt.
+[109
+
+ <./figures/mapping_climate_data.png>]
 \tf@nav=\write6
 \openout6 = `hurr_exposure_workshop.nav'.
 
@@ -3215,18 +2772,18 @@ Overfull \vbox (1.4976pt too high) detected at line 1579
 \tf@snm=\write8
 \openout8 = `hurr_exposure_workshop.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1624.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1624.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1851.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1851.
 (./hurr_exposure_workshop.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1624.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 1624.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1851.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 1851.
  ) 
 Here is how much of TeX's memory you used:
- 27336 strings out of 492616
- 521884 string characters out of 6129482
- 735270 words of memory out of 5000000
- 30315 multiletter control sequences out of 15000+600000
- 57254 words of font info for 71 fonts, out of 8000000 for 9000
+ 27584 strings out of 492616
+ 530656 string characters out of 6129482
+ 600255 words of memory out of 5000000
+ 30460 multiletter control sequences out of 15000+600000
+ 61267 words of font info for 80 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  71i,13n,94p,1823b,740s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/local/
@@ -3237,12 +2794,13 @@ e1/public/lm/lmss8.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/l
 m/lmss9.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/lm/lmssbx10.
 pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/lm/lmtk10.pfb></usr/
 local/texlive/2019/texmf-dist/fonts/type1/public/lm/lmtt10.pfb></usr/local/texl
-ive/2019/texmf-dist/fonts/type1/public/lm/lmtt9.pfb></usr/local/texlive/2019/te
-xmf-dist/fonts/type1/public/lm/lmtti10.pfb>
-Output written on hurr_exposure_workshop.pdf (91 pages, 10928476 bytes).
+ive/2019/texmf-dist/fonts/type1/public/lm/lmtt8.pfb></usr/local/texlive/2019/te
+xmf-dist/fonts/type1/public/lm/lmtt9.pfb></usr/local/texlive/2019/texmf-dist/fo
+nts/type1/public/lm/lmtti10.pfb>
+Output written on hurr_exposure_workshop.pdf (109 pages, 19472612 bytes).
 PDF statistics:
- 1207 PDF objects out of 1440 (max. 8388607)
- 938 compressed objects within 10 object streams
- 273 named destinations out of 1000 (max. 500000)
- 12545 words of extra memory for PDF output out of 14400 (max. 10000000)
+ 1448 PDF objects out of 1728 (max. 8388607)
+ 1102 compressed objects within 12 object streams
+ 327 named destinations out of 1000 (max. 500000)
+ 12690 words of extra memory for PDF output out of 14400 (max. 10000000)
 

@@ -12,35 +12,38 @@ output:
 fontsize: 10pt
 ---
 
-## Workshop overview
-
-- Topics: ...
-- Packages: ...
-
 ## Required set-up (1)
 
-- Install R [add link]
-- Install RStudio [add link] (Recommended but not required)
+- [Install R](https://cran.rstudio.com/)
+- [Install RStudio](https://rstudio.com/products/rstudio/download/) (Recommended but not required)
+
+## Required set-up (2)
+
+```{r echo = FALSE, out.width = "\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/drat_article.png")
+```
 
 ## Required set-up (2)
 
 - Install `hurricaneexposuredata` (from our personal repo)
 
 ```{r eval = FALSE}
-install.packages("drat") # Only run if you don't have `drat` installed
+install.packages("drat") # Only run if you don't have `drat` 
 library("drat")
 
 addRepo("geanders")
 install.packages("hurricaneexposuredata")
 ```
 
-## Required set-up (2)
-
-[Screenshot---R Journal article]
-
 ## Required set-up (3)
 
 - Install `hurricaneexposure` (from GitHub)
+
+```{r eval = FALSE}
+install.packages("devtools") # If you don't have `devtools`
+library("devtools")
+install_github("geanders/hurricaneexposure")
+```
 
 ## Required set-up (4)
 
@@ -53,6 +56,18 @@ install.packages("hurricaneexposuredata")
     + `noaastormevents`
     + `stormwindmodel`
     + `viridis`
+    
+## For more on R
+
+```{r echo = FALSE, out.width = "0.5\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/r_for_data_science.png")
+```
+
+## For more on geocomputation with R
+
+```{r echo = FALSE, out.width = "0.5\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/geocom_with_r.jpeg")
+```
     
 ## Load packages
 
@@ -91,11 +106,85 @@ knitr::include_graphics("figures/retired_2018_lex18.jpg")
 \footnotesize
 Source: Lex18
 
+## Storm track data
+
+```{r echo = FALSE, out.width = "0.85\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/hurricane_michael_track.png")
+```
+\footnotesize
+Source: NOAA
+
 ## "Best tracks" data
+
+```{r echo = FALSE, out.width = "0.9\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/tracks-at-2018.png")
+```
+\footnotesize
+Source: NOAA
+
+## Unusual storm tracks 
+
+```{r echo = FALSE, out.width = "0.9\\textwidth", fig.width = 5, fig.align = "center"}
+map_tracks(storm = "Gordon-1994") + 
+   ggtitle("Gordon (1994)")
+```
+
+## Unusual storm tracks 
+
+```{r echo = FALSE, out.width = "0.9\\textwidth", fig.width = 5, fig.align = "center"}
+map_tracks(storm = "Allison-2001") + 
+   ggtitle("Allison (2001)")
+```
+
+## Unusual storm tracks 
+
+```{r echo = FALSE, out.width = "0.9\\textwidth", fig.width = 5, fig.align = "center"}
+map_tracks(storm = "Ivan-2004") + 
+   ggtitle("Ivan (2004)")
+```
 
 ## Interpolating tracks
 
-[Plot from stormwindmodel vignette]
+```{r echo = FALSE, message = FALSE, warning = FALSE, out.height = "\\textheight", fig.height = 4}
+library(stormwindmodel)
+data("floyd_tracks")
+floyd_15_min <- create_full_track(hurr_track = floyd_tracks)
+library(sf)
+library(maps)
+library(ggplot2)
+
+floyd_states <- sf::st_as_sf(map("state", plot = FALSE, fill = TRUE)) %>% 
+  dplyr::filter(ID %in% c("north carolina", "south carolina", "maryland",
+                          "georgia", "florida", "virginia", "delaware", 
+                          "pennsylvania", "west virginia", "new jersey",
+                          "new york"))
+
+floyd_tracks <- floyd_tracks %>% 
+  st_as_sf(coords = c("longitude", "latitude")) %>% 
+  st_set_crs(4326)
+
+floyd_15_min <- floyd_15_min %>% 
+  mutate(tclon = -tclon) %>% 
+  st_as_sf(coords = c("tclon", "tclat")) %>% 
+  st_set_crs(4326)
+
+a <- ggplot() + 
+  geom_sf(data = floyd_states, 
+          fill = "aliceblue") + 
+  xlim(c(-90, -70)) + 
+  ylim(c(24, 46))
+b <- a +
+  geom_sf(data = floyd_15_min,
+          size = 0.5, color = "red") + 
+  ggtitle("Interpolated to 15 minutes")
+c <- a + 
+    geom_sf(data = floyd_tracks,
+            size = 0.5, color = "red") + 
+  ggtitle("Uninterpolated (6 hours)") 
+
+gridExtra::grid.arrange(c, b, ncol = 2)
+```
+
 
 ## Mapping storm tracks
 
@@ -120,11 +209,11 @@ map_tracks(storm = "Sandy-2012") +
 ## Mapping storm tracks
 
 You can plot the tracks of multiple storms. For example, you can plot the 
-tracks of all the tracked storms that came near the US in 2018 with:
+tracks of all the tracked storms that came near the US in 2012 with:
 
-```{r}
-map_tracks(storm = c("Alberto-2018", "Chris-2018", "Florence-2018", 
-                     "Gordon-2018", "Michael-2018"))
+```{r out.width = "0.55\\textwidth", fig.width = 4,  fig.align = "center"}
+map_tracks(storm = c("Alberto-2012", "Beryl-2012", "Debby-2012",
+                     "Isaac-2012", "Sandy-2012"))
 ```
 
 ## Storm track data
@@ -145,7 +234,7 @@ and the number of tracking data points for each in this data:
 
 ```{r}
 hurr_tracks %>% 
-   filter(str_detect(storm_id, "2018")) %>%
+   filter(str_detect(storm_id, "2012")) %>%
    group_by(storm_id) %>% 
    summarize(n = n(), max_wind = max(wind), 
              start_date = first(date))
@@ -159,7 +248,7 @@ each storm's pattern of maximum sustained winds over time:
 ```{r out.height = "0.5\\textheight", fig.height = 3.5, message = FALSE, warning = FALSE}
 library("lubridate")
 hurr_tracks %>% 
-   filter(str_detect(storm_id, "2018")) %>% 
+   filter(str_detect(storm_id, "2012")) %>% 
    ggplot(aes(x = ymd_hm(date), y = wind)) + 
    geom_point() + 
    facet_wrap(~ storm_id, scales = "free_x")
@@ -170,19 +259,23 @@ hurr_tracks %>%
 
 ## Other R sources for storm tracks
 
-[IBTrACS?]
+```{r echo = FALSE, out.height = "0.8\\textheight", fig.align = "center"}
+knitr::include_graphics("figures/ibtracs-tropical-cyclone-tracks-map.png")
+```
+
+The R package `noaastorms` wraps an API for IBTrACS.
 
 ## Your turn
 
-- Map the tracks of Hurricane Harvey in 2012 using `map_tracks`.
-- Map the tracks of Hurricane Harvey in 2012 and Tropical Storm 
-Allison in 2011 using `map_tracks`
-- Create these maps using the `sf` package, adding color for the
-maximum sustained wind of the storm at each time point
+- Map the tracks of one of the unusual storms using `map_tracks`.
+- Map the tracks of several of the unusual storms on the same map using `map_tracks`
 
 # R tools for geospatial tools
 
 ## `sf` framework for geospatial data
+
+The `sf` package allows you to work with geospatial data within the "tidyverse" 
+framework. You can convert a regular dataframe to an `sf` object using `st_as_sf`:
 
 ```{r message = FALSE, warning = FALSE}
 library("sf")
@@ -200,6 +293,8 @@ storms_2018
 ```
 
 ## `sf` framework for geospatial data
+
+You can use `ggplot2` to create maps with `sf` objects:
 
 ```{r out.height = "0.6\\textheight", fig.height = 3.5, fig.align = "center"}
 ggplot() + 
@@ -223,13 +318,16 @@ ggplot() +
    geom_sf(data = storms_2018, 
            aes(color = wind)) + 
    scale_color_viridis() + 
-   xlim(c(-95, -65)) + 
-   ylim(c(20, 45))
+   xlim(c(-95, -65)) + ylim(c(20, 45))
 ```
 
 ## `tigris` package
 
-```{r message = FALSE, warning = FALSE}
+The `tigris` package allows you to access spatial data from the US Census
+directly from R. For example, to pull geographic data for county boundaries
+for Florida counties, run:
+
+```{r message = FALSE, warning = FALSE, results = "hide"}
 library("tigris")
 fl_counties <- counties(state = "FL", 
                         cb = FALSE, resolution = "20m", 
@@ -238,13 +336,15 @@ fl_counties <- counties(state = "FL",
 
 ## `tigris` package
 
+\footnotesize
+
 ```{r}
 fl_counties %>% slice(1:3)
 ```
 
 ## `tigris` package
 
-```{r}
+```{r out.height = "0.8\\textheight", fig.height = 4, fig.align = "center"}
 ggplot() + 
    geom_sf(data = fl_counties)
 ```
@@ -260,6 +360,9 @@ michael_2018 %>% slice(1:3)
 
 ## Putting things together
 
+You can plot several "layers" of geospatial data by adding `geom_sf` calls for the
+ggplot object:
+
 ```{r eval = FALSE}
 ggplot() + 
    geom_sf(data = fl_counties) +
@@ -274,7 +377,7 @@ ggplot() +
 
 ## Putting things together
 
-```{r echo = FALSE}
+```{r echo = FALSE, out.height = "0.8\\textheight", fig.height = 4, fig.align = "center"}
 ggplot() + 
    geom_sf(data = fl_counties) +
    geom_sf(data = michael_2018, 
@@ -286,18 +389,30 @@ ggplot() +
    labs(color = "Maximum\nsustained\nwind (m/s)")
 ```
 
-## `rnaturalearth` packages
-
-## Converting to `sf` object
-
-[Convert hurricane tracks to `sf`]
 
 ## Your turn
 
-- Create a map of North America and the track of [storm]
-- Create a map of Florida ZIP codes and the track of [storm]
+
+- Use `tigris` and `sf` to create a map of Florida ZIP codes and the track of one of
+the unusual storms
 
 # How close have storms come to US counties?
+
+## Geographic mean centers
+
+```{r echo = FALSE, out.height = "0.85\\textheight", fig.align = "center"}
+knitr::include_graphics("figures/geo_centroid_hallisey_2017.png")
+```
+\footnotesize
+Source: Hallisey et al., 2017
+
+## Population mean centers
+
+```{r echo = FALSE, out.height = "0.85\\textheight", fig.align = "center"}
+knitr::include_graphics("figures/pop_centroid_hallisey_2017.png")
+```
+\footnotesize
+Source: Hallisey et al., 2017
 
 ## Population mean centers
 
@@ -308,9 +423,85 @@ head(county_centers)
 
 ## FIPs codes
 
+```{r echo = FALSE, out.width = "0.7\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/FIPSCode_policymap.png")
+```
+
+## Finding storm-county minimum distance
+
+```{r echo = FALSE, out.width = "\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/finding_closest_point2.pdf")
+```
+
+## Determining all storms that came close to a county
+
+The `county_distance` function from `hurricaneexposure` allows you to determine
+which of a county were within a certain distance of the storm's track:
+
+\small
+
+```{r}
+county_distance(counties = "51700",
+              start_year = 1995, end_year = 2005,
+              dist_limit = 30)
+```
+
+## Determining all storms that came close to a county
+
+The `county_distance` function from `hurricaneexposure` allows you to determine
+which of a **set** of counties were within a certain distance of the storm's track:
+
+\footnotesize 
+
+```{r}
+county_distance(counties = c("22071", "51700"),
+              start_year = 1995, end_year = 2005,
+              dist_limit = 30)
+```
+
+## Determining all counties close to a storm track
+
+First, use regular expressions to extract all North Carolina county FIPs
+from the dataset of all counties:
+
+```{r}
+nc_counties <- county_centers %>% 
+   filter(str_sub(fips, 1, 2) == "37") %>% 
+   pull("fips")
+head(nc_counties)
+```
+
+## Determining all counties close to a storm track
+
+The `county_distance` function from `hurricaneexposure` allows you to determine
+which of a set of counties were within a certain distance of the storm's track:
+
+\footnotesize
+
+```{r}
+county_distance(counties = nc_counties,
+              start_year = 1999, end_year = 1999,
+              dist_limit = 10) %>% 
+   filter(storm_id == "Floyd-1999")
+```
+
+## Mapping all counties close to a storm track
+
+The `map_distance_exposure` function from `hurricaneexposure` allows you to 
+map all counties within a certain distance of a storm's track:
+
+```{r fig.height = 4, out.height = "0.9\\textheight"}
+map_distance_exposure(storm = "Floyd-1999", dist_limit = 20)
+```
+
+
 # Tropical cyclone hazards
 
 ## Tropical cyclone hazards
+
+```{r echo = FALSE, out.height = "0.85\\textheight", fig.align = "center"}
+knitr::include_graphics("figures/Hurricane-Florence-Hazards-Summary-Chart-9-11-18.png")
+```
 
 ## Different patterns in hazards
 
@@ -318,30 +509,85 @@ head(county_centers)
 knitr::include_graphics("figures/ivanonly.pdf")
 ```
 
-# Wind exposures
+# Wind exposure
+
 
 ## Modeling storm wind field
 
-## Determining county peak sustained wind
+```{r echo = FALSE, out.height = "0.8\\textheight", fig.align = "center"}
+knitr::include_graphics("figures/storm_crosssection_thomson.png")
+```
+\footnotesize
+Source: Thompson
+
+## Modeling storm wind field
+
+```{r echo = FALSE, out.height = "0.8\\textheight", fig.align = "center"}
+knitr::include_graphics("figures/wind_add_noaa.jpg")
+```
+\footnotesize
+Source: NOAA
+
+## Modeling a storm's wind field
+
+```{r echo = FALSE, out.width = "0.9\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/hurricane_crosssection_bom_comet.jpg")
+```
+\footnotesize
+Source: NOAA
+
+## Modeling storm wind field
+
+```{r echo = FALSE, out.width = "\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/Hurricane-Matthew-windfield_ecmwf.jpg")
+```
+\footnotesize
+Source: ECMWF
+
+## Modeling storm wind field
+
+Here is an overview of the wind modeling process implemented by this package: 
+
+1. Impute location and maximum wind speed from hurricane track data (every 6 hours) to  every 15 minutes.
+2. For each storm track location, calculate all the inputs needed for the Willoughby wind speed model (e.g., forward speed, direction of forward motion of the storm). 
+3. For each county center (or other grid point), estimate surface-level sustained wind every 15 minutes. This step includes: measuring distance to county from storm center (radius); calculating tangential gradient wind components at that grid point; calculating gradient wind direction at that grid point; calculating surface wind speed; calculating surface wind direction, adding storm forward motion back into surface wind estimate.
+4. Determine for each county the peak sustained wind throughout the storm.
 
 
 ## All wind exposures for a storm
 
-```{r}
-map_wind_exposure(storm = "Michael-2018", wind_limit = 38)
+The `map_wind_exposure` function in `hurricaneexposure` allows you to map
+all counties with peak sustained wind over a certain threshold (in m / s) 
+for a storm:
+
+```{r fig.height = 4, out.height = "0.6\\textheight"}
+map_wind_exposure(storm = "Ike-2008", wind_limit = 35)
 ```
 
 ## All wind exposures for a storm
 
-[Dataframe]
+The `county_wind` function from `hurricaneexposure` allows you to determine
+which of a set of counties had peak sustained wind above a certain threshold:
+
+\footnotesize
+
+```{r}
+county_wind(counties = county_centers$fips, wind_limit = 35,
+            start_year = 2008, end_year = 2008) %>% 
+   filter(storm_id == "Ike-2008")
+```
 
 ## All wind exposures for a county
+
+If you want to get values for a certain region (e.g., a state), start by 
+creating a vector with the county FIPs codes for all counties in that region.
+For example, to get everything from Florida counties, start by running:
 
 ```{r}
 fl_counties <- county_centers %>% 
    filter(str_sub(fips, 1, 2) == "12") %>% 
-   purrr::pluck("fips")
-fl_counties
+   pull("fips")
+fl_counties %>% head()
 ```
 
 ## All wind exposures for a county
@@ -349,33 +595,30 @@ fl_counties
 \small
 
 ```{r}
-county_wind(counties = fl_counties, wind_limit = 38,
-            start_year = 2016, end_year = 2018)
+county_wind(counties = fl_counties, wind_limit = 45,
+            start_year = 2004, end_year = 2004)
 ```
 
-## All wind exposures for a county
+## All wind exposures for a storm
 
-```{r}
-map_counties(storm = "Michael-2018", metric = "wind")
+Use `map_counties` with `metric = "wind"` to map county-level peak sustained
+wind from a storm:
+
+```{r fig.height = 4, out.height = "0.9\\textheight"}
+map_counties(storm = "Ike-2008", metric = "wind")
 ```
-
-
-
-## All wind exposures for a county
-
-[Histogram of intensities]
-
-## Joining wind exposure and outcomes
-
-[Air delay example]
 
 ## Other sources of wind exposure
+
+Wind radii: estimates of extent of peak sustained winds of certain speeds.
 
 ```{r echo = FALSE, out.width = "\\textwidth", fig.align = "center"}
 knitr::include_graphics("figures/ext_tracks_1.png")
 ```
 
 ## Other sources of wind exposure
+
+Wind radii: estimates of extent of peak sustained winds of certain speeds.
 
 ```{r echo = FALSE, out.width = "\\textwidth", fig.align = "center"}
 knitr::include_graphics("figures/ext_tracks_2.png")
@@ -395,34 +638,74 @@ knitr::include_graphics("figures/windexamples.pdf")
 
 ## Using wind radii--based metrics
 
-[Code for using wind radii]
+You can change to use the wind radii (instead of the modeled wind)
+by using the "ext_tracks" option for the `wind_source` parameter
+(available since 2004):
 
-## Other wind metrics
+```{r fig.height = 4, out.height = "0.6\\textheight"}
+map_counties(storm = "Katrina-2005", metric = "wind",
+             wind_source = "ext_tracks")
+```
 
-- Gust wind speed
-- Duration of high wind
+## Other wind metrics: Gust
+
+You can use the "vmax_gust" option to the `wind_var` parameter to use gust 
+wind estimates unstead of sustained wind estimates (note: this uses a constant
+gust factor for conversion):
+
+```{r fig.height = 4, out.height = "0.6\\textheight"}
+map_counties(storm = "Katrina-2005", metric = "wind",
+             wind_var = "vmax_gust")
+```
+
+## Other wind metrics: Duration
+
+You can use the "sust_dur" option to the `wind_var` parameter to use gust 
+wind estimates unstead of sustained wind estimates (note: this uses a constant
+gust factor for conversion):
+
+```{r fig.height = 4, out.height = "0.6\\textheight"}
+map_counties(storm = "Katrina-2005", metric = "wind",
+             wind_var = "sust_dur")
+```
+
+## Wind data
+
+You can also access the dataframe with all tropical cyclone wind data, 
+using `storm_winds`:
+
+```{r}
+data("storm_winds")
+head(storm_winds)
+```
+
+## Wind data---wind radii--based estimates
+
+The wind radii--based estimates are available in the `ext_tracks_wind` data:
+
+```{r}
+data("ext_tracks_wind")
+head(ext_tracks_wind)
+```
+
 
 ## Your turn
 
 - Determine all the storms that brought winds
-of [x] m / s or higher to the following counties: 
-x, y, z.
-- Which brought the most intense wind to county x?
+of 17.5 m / s or higher to Miami-Dade County, FL between
+1990 and 2015
+- Which brought the most intense wind to Miami-Dade County?
 Create a map showing the peak sustained wind that
 storm brought to each eastern US county.
 - Create the same map, but use the wind radii--based
 wind exposure values rather than the modeled wind 
 values.
-- Create a scatterplot comparing modeled wind estimates
-versus wind radii--based estimates for all storms that
-brought winds of [x] m / s or higher to county x 
-(based on modeled wind estimates).
 
-# Rain exposures
+# Rain exposure
 
 ## Re-analysis weather data
 
-```{r echo = FALSE, out.height = "0.95\\textheight", fig.align = "center"}
+```{r echo = FALSE, out.height = "0.8\\textheight", fig.align = "center"}
 knitr::include_graphics("figures/global_observing_system_wmo_2.png")
 ```
 
@@ -436,17 +719,42 @@ Source: US Centers for Disease Control and Prevention
 
 ## Matching with storm tracks
 
+```{r echo = FALSE, out.height = "0.95\\textheight", fig.align = "center"}
+knitr::include_graphics("figures/finding_closest_point2.pdf")
+```
+
 ## Cumulative rainfall
 
+```{r echo = FALSE, out.height = "0.9\\textheight", fig.align = "center"}
+knitr::include_graphics("figures/cyclone_rain_timing_shieh_2010.jpg")
+```
+\footnotesize
+Source: Shieh et al. 2010
 
 ## All rain exposures for a storm
 
-```{r}
+The `map_rain_exposure` function in `hurricaneexposure` allows you to map
+all counties with cumulative precipitation over a certain threshold (in mm) 
+for a storm:
+
+```{r fig.height = 4, out.height = "0.6\\textheight"}
 map_rain_exposure(storm = "Allison-2001", rain_limit = 75, 
                   dist_limit = 250)
 ```
 
+## Distance constraint
+
+```{r echo = FALSE, out.height = "0.95\\textheight", fig.align = "center"}
+knitr::include_graphics("figures/rainexamples.pdf")
+```
+
+
 ## All rain exposures for a storm
+
+The `county_rain` function from `hurricaneexposure` allows you to determine
+which of a set of counties had cumulative rainfall above a certain threshold:
+
+\small
 
 ```{r}
 all_fips <- county_centers %>% pull("fips")
@@ -458,6 +766,10 @@ county_rain(counties = all_fips,
 
 
 ## All rain exposures for a county
+
+If you want to get values for a certain region (e.g., a state), start by 
+creating a vector with the county FIPs codes for all counties in that region.
+For example, to get everything from Texas counties, start by running:
 
 ```{r}
 tx_counties <- county_centers %>% 
@@ -476,15 +788,13 @@ county_rain(counties = tx_counties, rain_limit = 175,
             start_year = 2009, end_year = 2011)
 ```
 
-## Distance constraint
-
-```{r echo = FALSE, out.height = "0.95\\textheight", fig.align = "center"}
-knitr::include_graphics("figures/rainexamples.pdf")
-```
 
 ## All rain exposures for a county
 
-```{r}
+Use `map_counties` with `metric = "rain"` to map county-level peak sustained
+wind from a storm:
+
+```{r fig.height = 4, out.height = "0.7\\textheight"}
 map_counties(storm = "Hermine-2010", metric = "rainfall")
 ```
 
@@ -492,7 +802,7 @@ map_counties(storm = "Hermine-2010", metric = "rainfall")
 
 Use only the storm day for the cumulative precipitation for Tropical Storm Allison.
 
-```{r}
+```{r fig.height = 4, out.height = "0.6\\textheight"}
 map_counties(storm = "Allison-2001", metric = "rainfall",
              days_included = 0)
 ```
@@ -501,7 +811,7 @@ map_counties(storm = "Allison-2001", metric = "rainfall",
 
 Use a three-day window for the cumulative precipitation for Tropical Storm Allison.
 
-```{r}
+```{r fig.height = 4, out.height = "0.6\\textheight"}
 map_counties(storm = "Allison-2001", metric = "rainfall",
              days_included = -1:1)
 ```
@@ -510,36 +820,37 @@ map_counties(storm = "Allison-2001", metric = "rainfall",
 
 Use a six-day window for the cumulative precipitation for Tropical Storm Allison.
 
-```{r}
+```{r fig.height = 4, out.height = "0.6\\textheight"}
 map_counties(storm = "Allison-2001", metric = "rainfall",
              days_included = -3:3)
 ```
 
-## All rain exposures for a county
+## Rain data
 
-[Histogram of intensities]
+```{r}
+data("rain")
+head(rain)
+```
+
 
 ## Alternative precipitation data
 
-```{r echo = FALSE, out.height = "0.95\\textheight", fig.align = "center"}
+```{r echo = FALSE, out.height = "0.8\\textheight", fig.align = "center"}
 knitr::include_graphics("figures/global_observing_system_wmo_2.png")
 ```
 
 ## Comparison with ground-based monitors
 
-```{r echo = FALSE, out.height = "0.95\\textheight", fig.align = "center"}
+```{r echo = FALSE, out.height = "0.9\\textheight", fig.align = "center"}
 knitr::include_graphics("figures/raincomparison.pdf")
 ```
 
 ## Your turn
 
-- Map the precipitation associated with [storm]
+- Map the precipitation associated with Hurricane Ike
 for the day of the storm.
 - Map the cumulative precipitation associated 
-with [storm] from one day before to one day
-after the storm.
-- Map the cumulative precipitation associated 
-with [storm] from three days before to three
+with Hurricane Ike from three days before to three
 days after (i.e., a one week window around the
 storm day).
 
@@ -547,12 +858,15 @@ storm day).
 
 ## NOAA Storm Events database
 
-## Matching event listings with storm tracks
+```{r echo = FALSE, out.height = "0.7\\textheight", fig.align = "center"}
+knitr::include_graphics("figures/noaa_storm_events.png")
+```
 
 ## Mapping flood events for a storm
 
 ```{r}
-map_event_exposure(storm_id = "Allison-2001", event_type = "flood")
+map_event_exposure(storm_id = "Allison-2001", 
+                   event_type = "flood")
 ```
 
 
@@ -561,12 +875,12 @@ map_event_exposure(storm_id = "Allison-2001", event_type = "flood")
 ```{r}
 county_events(counties = tx_counties, event_type = "flood",
               start_year = 2001, end_year = 2001) %>% 
-   filter(storm_id == "Allison_2001")
+   filter(storm_id == "Allison-2001")
 ```
 
 ## Other sources of flood data
 
-```{r echo = FALSE, out.height = "0.95\\textheight", fig.align = "center"}
+```{r echo = FALSE, out.height = "0.8\\textheight", fig.align = "center"}
 knitr::include_graphics("figures/global_observing_system_wmo_2.png")
 ```
 
@@ -579,9 +893,9 @@ knitr::include_graphics("figures/floodcomparison.pdf")
 ## Your turn
 
 - Which county had the most tropical cyclone
-tornado exposures between 1988 and 2015?
+tornado exposures between 1996 and 2015?
 - Which state had the most county tropical 
-cyclone tornado exposures between 1988 and 2015?
+cyclone tornado exposures between 1996 and 2015?
 - Which storm brought the most tornado exposures
 to this state? Map county tornado exposures during this 
 storm.
@@ -590,11 +904,82 @@ storm.
 
 ## `weathermetrics` package
 
-## `stormwindmodel` package
+```{r echo = FALSE, out.width = "\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/heat_index_paper.png")
+```
+
+## `weathermetrics` package
+
+You can also use this package to convert among weather metrics. For example, you 
+can convert from meters per second to knots, you can run:
+
+```{r}
+library("weathermetrics")
+speed_to_knots(c(20, 30, 40), "mps")
+```
+
+
+## `stormwindmodel`package
+
+The `stormwindmodel` has the wind model used to create the county wind exposure
+dataset. You can use it to model winds to other geographical points, as well 
+(e.g., ZIP code centriods).
+
+Vignettes: 
+
+- [Overview](https://cran.r-project.org/web/packages/stormwindmodel/vignettes/Overview.html)
+- [Full details of the storm modeling](https://cran.r-project.org/web/packages/stormwindmodel/vignettes/Details.html)
 
 ## `noaastormevents` package
 
+\footnotesize
+\begin{block}{`noaastormevents`}
+\medskip
+Download and explore listings from the NOAA Storm Events database. Includes the ability to pull events based on a tropical storm, using events listed close in time and distance to the storm's tracks. On CRAN.
+\end{block}
+
+\bigskip
+
+```{r message = FALSE, warning = FALSE}
+library(noaastormevents)
+```
+```{r echo = TRUE}
+sept_1999_events <- find_events(date_range = c("1999-09-14", "1999-09-18"))
+head(sept_1999_events, 3)
+```
+
+## `noaastormevents` package
+
+\footnotesize
+
+You can also use this package to identify all counties with events near the time and location of a tropical cyclone:
+
+```{r fig.align = "center", echo = TRUE, fig.width = 5, out.width="\\textwidth"}
+floyd_events <- find_events(storm = "Floyd-1999", dist_limit = 300) 
+head(floyd_events, 4)
+```
+
+## `noaastormevents` package
+
+\footnotesize
+
+You can also pull out and map specific information in this database, including specific types of disasters, property damage, and crop damage.
+
+```{r fig.align = "center", echo = TRUE, fig.width = 5, out.width="0.7\\textwidth"}
+floyd_events %>%   
+  map_events(plot_type = "crop damage",
+             states = c("north carolina", "virginia", "maryland"))
+```
+
 ## `futureheatwaves` package
 
-[R Journal article on working with climate data]
+```{r echo = FALSE, out.width = "\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/futureheatwaves_paper.png")
+```
+
+## `futureheatwaves` package
+
+```{r echo = FALSE, out.width = "\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/mapping_climate_data.png")
+```
 
