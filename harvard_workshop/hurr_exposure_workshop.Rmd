@@ -279,8 +279,8 @@ framework. You can convert a regular dataframe to an `sf` object using `st_as_sf
 
 ```{r message = FALSE, warning = FALSE}
 library("sf")
-storms_2018 <- hurr_tracks %>% 
-   filter(str_detect(storm_id, "2018")) %>% 
+storms_2012 <- hurr_tracks %>% 
+   filter(str_detect(storm_id, "2012")) %>% 
    st_as_sf(coords = c("longitude", "latitude"))
 ```
 
@@ -289,7 +289,7 @@ storms_2018 <- hurr_tracks %>%
 \small
 
 ```{r}
-storms_2018
+storms_2012
 ```
 
 ## `sf` framework for geospatial data
@@ -298,7 +298,7 @@ You can use `ggplot2` to create maps with `sf` objects:
 
 ```{r out.height = "0.6\\textheight", fig.height = 3.5, fig.align = "center"}
 ggplot() + 
-   geom_sf(data = storms_2018) 
+   geom_sf(data = storms_2012) 
 ```
 
 ## `sf` framework for geospatial data
@@ -306,7 +306,7 @@ ggplot() +
 ```{r message = FALSE, warning = FALSE, out.height = "0.6\\textheight", fig.height = 3.5, fig.align = "center"}
 library("viridis")
 ggplot() + 
-   geom_sf(data = storms_2018, 
+   geom_sf(data = storms_2012, 
            aes(color = wind)) + 
    scale_color_viridis()
 ```
@@ -315,7 +315,7 @@ ggplot() +
 
 ```{r out.height = "0.6\\textheight", fig.height = 3.5, fig.align = "center"}
 ggplot() + 
-   geom_sf(data = storms_2018, 
+   geom_sf(data = storms_2012, 
            aes(color = wind)) + 
    scale_color_viridis() + 
    xlim(c(-95, -65)) + ylim(c(20, 45))
@@ -329,7 +329,7 @@ for Florida counties, run:
 
 ```{r message = FALSE, warning = FALSE, results = "hide"}
 library("tigris")
-fl_counties <- counties(state = "FL", 
+ny_counties <- counties(state = "NY", 
                         cb = FALSE, resolution = "20m", 
                         class = "sf")
 ```
@@ -339,23 +339,23 @@ fl_counties <- counties(state = "FL",
 \footnotesize
 
 ```{r}
-fl_counties %>% slice(1:3)
+ny_counties %>% slice(1:3)
 ```
 
 ## `tigris` package
 
 ```{r out.height = "0.8\\textheight", fig.height = 4, fig.align = "center"}
 ggplot() + 
-   geom_sf(data = fl_counties)
+   geom_sf(data = ny_counties)
 ```
 
 ## Putting things together
 
 ```{r}
-michael_2018 <- storms_2018 %>% 
+sandy_2012 <- storms_2012 %>% 
    st_set_crs(4269) %>% 
-   filter(storm_id == "Michael-2018")
-michael_2018 %>% slice(1:3)
+   filter(storm_id == "Sandy-2012")
+sandy_2012 %>% slice(1:3)
 ```
 
 ## Putting things together
@@ -365,12 +365,12 @@ ggplot object:
 
 ```{r eval = FALSE}
 ggplot() + 
-   geom_sf(data = fl_counties) +
-   geom_sf(data = michael_2018, 
+   geom_sf(data = ny_counties) +
+   geom_sf(data = sandy_2012, 
            aes(color = wind)) + 
    scale_color_viridis() + 
-   xlim(c(-88, -79)) + 
-   ylim(c(24, 32)) + 
+   xlim(c(-80, -70)) + 
+   ylim(c(38, 46)) + 
    theme_void() + 
    labs(color = "Maximum\nsustained\nwind (m/s)")
 ```
@@ -379,12 +379,12 @@ ggplot() +
 
 ```{r echo = FALSE, out.height = "0.8\\textheight", fig.height = 4, fig.align = "center"}
 ggplot() + 
-   geom_sf(data = fl_counties) +
-   geom_sf(data = michael_2018, 
+   geom_sf(data = ny_counties) +
+   geom_sf(data = sandy_2012, 
            aes(color = wind)) + 
    scale_color_viridis() + 
-   xlim(c(-88, -79)) + 
-   ylim(c(24, 32)) + 
+   xlim(c(-80, -70)) + 
+   ylim(c(38, 46)) + 
    theme_void() + 
    labs(color = "Maximum\nsustained\nwind (m/s)")
 ```
