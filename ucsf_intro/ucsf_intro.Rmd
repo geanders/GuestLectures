@@ -1,0 +1,90 @@
+---
+title: "Introduction for UCSF meeting"
+author: "Brooke Anderson"
+address: Colorado State University
+date: January 28, 2020
+output: binb::presento
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Education and Position
+
+B.S. in Chemical Engineering \newline
+*North Carolina State University*
+
+Ph.D. in Environmental Engineering \newline
+*Yale University*
+
+PostDoc in Biostatistics \newline
+*Johns Hopkins Bloomberg School of Public Health*
+
+Asst. Prof. of Environmental Epidemiology \newline
+*Dept. of Environmental & Radiological Health Sciences, CSU*
+
+## Environmental epidemiology
+
+```{r echo = FALSE, out.width = "\\textwidth"}
+knitr::include_graphics("images/checking_many_storms.png")
+```
+
+## Environmental epidemiology
+
+```{r echo = FALSE, out.width = "\\textwidth"}
+knitr::include_graphics("images/single_storms.png")
+```
+
+## Environmental epidemiology
+
+```{r echo = FALSE, out.width = "\\textwidth"}
+knitr::include_graphics("images/many_storms.png")
+```
+
+## R Programming
+
+```{r echo = FALSE, out.width = "\\textwidth"}
+knitr::include_graphics("images/r_course.png")
+```
+
+https://geanders.github.io/RProgrammingForResearch/
+
+## R Programming
+
+```{r echo = FALSE, out.width = "\\textwidth"}
+knitr::include_graphics("images/coursera.png")
+```
+
+https://www.coursera.org/specializations/r
+
+## Reproducible research
+
+```{r echo = FALSE, out.width = "\\textwidth"}
+knitr::include_graphics("images/improve_repro.png")
+```
+
+https://geanders.github.io/improve_repro/
+
+## Statistics for biology course
+
+```{r echo = FALSE, out.width = "\\textwidth"}
+knitr::include_graphics("images/msmb_website.png")
+```
+
+https://kind-neumann-789611.netlify.com/
+
+## Statistics for biology course
+
+Topics include: 
+
+Clustering \newline
+Mixture Models  \newline
+Testing \newline
+Networks and Trees \newline
+High-Throughput Count Data  \newline
+Image Data \newline
+Supervised Data  \newline
+Design of High-Throughput Experiments
+
+
