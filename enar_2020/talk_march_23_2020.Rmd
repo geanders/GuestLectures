@@ -102,32 +102,32 @@ Obviously the midnight visitor was someone whom the dog knew well."
 
 *Source: Doyle, The Adventure of Silver Blaze, 1892*
 
-## Negative controls
+<!-- ## Negative controls -->
 
 
-> "Biologists employ 'negative controls' as a means of ruling out possible noncausal 
-interpretations of their results \ldots 
-[They] repeat the experiment under conditions in which it is expected to produce a 
-null result and verify that it does." --Lipsitch et al., *Epidemiology*, 2010
+<!-- > "Biologists employ 'negative controls' as a means of ruling out possible noncausal  -->
+<!-- interpretations of their results \ldots  -->
+<!-- [They] repeat the experiment under conditions in which it is expected to produce a  -->
+<!-- null result and verify that it does." --Lipsitch et al., *Epidemiology*, 2010 -->
 
-\bigskip \bigskip
+<!-- \bigskip \bigskip -->
 
-```{r echo = FALSE, fig.align = "center", out.width = "\\textwidth"}
-knitr::include_graphics("figures/lipsitch_article.png")
-```
+<!-- ```{r echo = FALSE, fig.align = "center", out.width = "\\textwidth"} -->
+<!-- knitr::include_graphics("figures/lipsitch_article.png") -->
+<!-- ``` -->
 
 
-## Negative controls
+<!-- ## Negative controls -->
 
-Techniques for negative controls in experimental biology: 
+<!-- Techniques for negative controls in experimental biology:  -->
 
-- "Leave out an essential ingredient"
-- "Inactivate the (hypothesized) active ingredient"
-- "Check for an effect that would be impossible by the hypothesized mechanism"
+<!-- - "Leave out an essential ingredient" -->
+<!-- - "Inactivate the (hypothesized) active ingredient" -->
+<!-- - "Check for an effect that would be impossible by the hypothesized mechanism" -->
 
-*Source: Lipsitch et al., Epidemiology, 2010*
+<!-- *Source: Lipsitch et al., Epidemiology, 2010* -->
 
-\bigskip \bigskip
+<!-- \bigskip \bigskip -->
 
 
 <!-- ## Negative controls in observational studies -->
@@ -314,7 +314,7 @@ We matched each storm-exposed day to ten unexposed days in the county, randomly 
 1. in a different year 
 2. within a seven-day window of the exposure’s day of year 
 3. outside a three-day window of a different storm-exposed day for the county 
-4. outside September 11–-24, 2001
+4. outside September 11--24, 2001
 
 <!-- ## Selecting matched unexposed days -->
 

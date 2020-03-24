@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  24 MAR 2020 12:50
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  24 MAR 2020 13:22
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1785,194 +1785,184 @@ Overfull \vbox (20.05057pt too high) detected at line 214
 [4
 
 ]
-<figures/lipsitch_article.png, id=50, 920.43875pt x 152.57pt>
-File: figures/lipsitch_article.png Graphic file (type png)
-<use figures/lipsitch_article.png>
-Package pdftex.def Info: figures/lipsitch_article.png  used on input line 231.
-(pdftex.def)             Requested size: 307.28987pt x 50.93724pt.
+<figures/nc_outcome_causal_diagram.png, id=50, 409.53pt x 345.29pt>
+File: figures/nc_outcome_causal_diagram.png Graphic file (type png)
+<use figures/nc_outcome_causal_diagram.png>
+Package pdftex.def Info: figures/nc_outcome_causal_diagram.png  used on input l
+ine 223.
+(pdftex.def)             Requested size: 230.46739pt x 194.31998pt.
 [5
 
- <./figures/lipsitch_article.png>]
-LaTeX Font Info:    Try loading font information for TS1+lmss on input line 253
+ <./figures/nc_outcome_causal_diagram.png>]
+LaTeX Font Info:    Try loading font information for TS1+lmss on input line 250
 .
 (/usr/local/texlive/2019/texmf-dist/tex/latex/lm/ts1lmss.fd
 File: ts1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ) [6
 
 ]
-<figures/nc_outcome_causal_diagram.png, id=66, 409.53pt x 345.29pt>
-File: figures/nc_outcome_causal_diagram.png Graphic file (type png)
-<use figures/nc_outcome_causal_diagram.png>
-Package pdftex.def Info: figures/nc_outcome_causal_diagram.png  used on input l
-ine 262.
-(pdftex.def)             Requested size: 230.46739pt x 194.31998pt.
-[7
-
- <./figures/nc_outcome_causal_diagram.png>] [8
-
-]
-<figures/sandy_satellite.jpg, id=81, 2036.60875pt x 2076.75874pt>
+<figures/sandy_satellite.jpg, id=66, 2036.60875pt x 2076.75874pt>
 File: figures/sandy_satellite.jpg Graphic file (type jpg)
 <use figures/sandy_satellite.jpg>
-Package pdftex.def Info: figures/sandy_satellite.jpg  used on input line 320.
+Package pdftex.def Info: figures/sandy_satellite.jpg  used on input line 281.
 (pdftex.def)             Requested size: 138.2795pt x 140.98323pt.
-[9
+[7
 
- <./figures/sandy_satellite.jpg>] [10
+ <./figures/sandy_satellite.jpg>] [8
 
 ]
-<talk_march_23_2020_files/figure-beamer/unnamed-chunk-7-1.pdf, id=96, 377.41pt 
+<talk_march_23_2020_files/figure-beamer/unnamed-chunk-6-1.pdf, id=82, 377.41pt 
 x 298.11375pt>
-File: talk_march_23_2020_files/figure-beamer/unnamed-chunk-7-1.pdf Graphic file
+File: talk_march_23_2020_files/figure-beamer/unnamed-chunk-6-1.pdf Graphic file
  (type pdf)
-<use talk_march_23_2020_files/figure-beamer/unnamed-chunk-7-1.pdf>
-Package pdftex.def Info: talk_march_23_2020_files/figure-beamer/unnamed-chunk-7
--1.pdf  used on input line 336.
+<use talk_march_23_2020_files/figure-beamer/unnamed-chunk-6-1.pdf>
+Package pdftex.def Info: talk_march_23_2020_files/figure-beamer/unnamed-chunk-6
+-1.pdf  used on input line 297.
 (pdftex.def)             Requested size: 276.559pt x 218.45366pt.
 
-Overfull \vbox (1.28465pt too high) detected at line 336
+Overfull \vbox (1.28465pt too high) detected at line 297
+ []
+
+[9
+
+ <./talk_march_23_2020_files/figure-beamer/unnamed-chunk-6-1.pdf>]
+<figures/storm_tracks.pdf, id=99, 306.39906pt x 241.64531pt>
+File: figures/storm_tracks.pdf Graphic file (type pdf)
+<use figures/storm_tracks.pdf>
+Package pdftex.def Info: figures/storm_tracks.pdf  used on input line 304.
+(pdftex.def)             Requested size: 276.559pt x 218.1277pt.
+
+Overfull \vbox (0.9587pt too high) detected at line 304
+ []
+
+[10
+
+ <./figures/storm_tracks.pdf>]
+<figures/charley.png, id=121, 631.35875pt x 632.3625pt>
+File: figures/charley.png Graphic file (type png)
+<use figures/charley.png>
+Package pdftex.def Info: figures/charley.png  used on input line 311.
+(pdftex.def)             Requested size: 230.46739pt x 230.83452pt.
+
+Overfull \vbox (13.66551pt too high) detected at line 311
  []
 
 [11
 
- <./talk_march_23_2020_files/figure-beamer/unnamed-chunk-7-1.pdf>]
-<figures/storm_tracks.pdf, id=113, 306.39906pt x 241.64531pt>
-File: figures/storm_tracks.pdf Graphic file (type pdf)
-<use figures/storm_tracks.pdf>
-Package pdftex.def Info: figures/storm_tracks.pdf  used on input line 343.
-(pdftex.def)             Requested size: 276.559pt x 218.1277pt.
-
-Overfull \vbox (0.9587pt too high) detected at line 343
- []
-
+ <./figures/charley.png>]
+<talk_march_23_2020_files/figure-beamer/unnamed-chunk-9-1.pdf, id=129, 463.7325
+pt x 280.04625pt>
+File: talk_march_23_2020_files/figure-beamer/unnamed-chunk-9-1.pdf Graphic file
+ (type pdf)
+<use talk_march_23_2020_files/figure-beamer/unnamed-chunk-9-1.pdf>
+Package pdftex.def Info: talk_march_23_2020_files/figure-beamer/unnamed-chunk-9
+-1.pdf  used on input line 318.
+(pdftex.def)             Requested size: 307.28987pt x 185.57462pt.
 [12
 
- <./figures/storm_tracks.pdf>]
-<figures/charley.png, id=135, 631.35875pt x 632.3625pt>
-File: figures/charley.png Graphic file (type png)
-<use figures/charley.png>
-Package pdftex.def Info: figures/charley.png  used on input line 350.
-(pdftex.def)             Requested size: 230.46739pt x 230.83452pt.
+ <./talk_march_23_2020_files/figure-beamer/unnamed-chunk-9-1.pdf>]
+<figures/amo.jpg, id=143, 622.325pt x 463.7325pt>
+File: figures/amo.jpg Graphic file (type jpg)
+<use figures/amo.jpg>
+Package pdftex.def Info: figures/amo.jpg  used on input line 327.
+(pdftex.def)             Requested size: 276.559pt x 206.0808pt.
 
-Overfull \vbox (13.66551pt too high) detected at line 350
+Overfull \vbox (9.65492pt too high) detected at line 327
  []
 
 [13
 
- <./figures/charley.png>]
-<talk_march_23_2020_files/figure-beamer/unnamed-chunk-10-1.pdf, id=144, 463.732
-5pt x 280.04625pt>
-File: talk_march_23_2020_files/figure-beamer/unnamed-chunk-10-1.pdf Graphic fil
-e (type pdf)
-<use talk_march_23_2020_files/figure-beamer/unnamed-chunk-10-1.pdf>
-Package pdftex.def Info: talk_march_23_2020_files/figure-beamer/unnamed-chunk-1
-0-1.pdf  used on input line 357.
-(pdftex.def)             Requested size: 307.28987pt x 185.57462pt.
-[14
+ <./figures/amo.jpg>] [14
 
- <./talk_march_23_2020_files/figure-beamer/unnamed-chunk-10-1.pdf>]
-<figures/amo.jpg, id=159, 622.325pt x 463.7325pt>
-File: figures/amo.jpg Graphic file (type jpg)
-<use figures/amo.jpg>
-Package pdftex.def Info: figures/amo.jpg  used on input line 366.
-(pdftex.def)             Requested size: 276.559pt x 206.0808pt.
-
-Overfull \vbox (9.65492pt too high) detected at line 366
- []
-
-[15
-
- <./figures/amo.jpg>] [16
-
-] [17
+] [15
 
 ]
-<talk_march_23_2020_files/figure-beamer/unnamed-chunk-12-1.pdf, id=187, 499.867
+<talk_march_23_2020_files/figure-beamer/unnamed-chunk-11-1.pdf, id=173, 499.867
 5pt x 316.18124pt>
+File: talk_march_23_2020_files/figure-beamer/unnamed-chunk-11-1.pdf Graphic fil
+e (type pdf)
+<use talk_march_23_2020_files/figure-beamer/unnamed-chunk-11-1.pdf>
+Package pdftex.def Info: talk_march_23_2020_files/figure-beamer/unnamed-chunk-1
+1-1.pdf  used on input line 391.
+(pdftex.def)             Requested size: 307.28987pt x 194.37552pt.
+[16
+
+ <./talk_march_23_2020_files/figure-beamer/unnamed-chunk-11-1.pdf>]
+<talk_march_23_2020_files/figure-beamer/unnamed-chunk-12-1.pdf, id=190, 500.871
+25pt x 316.18124pt>
 File: talk_march_23_2020_files/figure-beamer/unnamed-chunk-12-1.pdf Graphic fil
 e (type pdf)
 <use talk_march_23_2020_files/figure-beamer/unnamed-chunk-12-1.pdf>
 Package pdftex.def Info: talk_march_23_2020_files/figure-beamer/unnamed-chunk-1
-2-1.pdf  used on input line 430.
-(pdftex.def)             Requested size: 307.28987pt x 194.37552pt.
-[18
-
- <./talk_march_23_2020_files/figure-beamer/unnamed-chunk-12-1.pdf>]
-<talk_march_23_2020_files/figure-beamer/unnamed-chunk-13-1.pdf, id=204, 500.871
-25pt x 316.18124pt>
-File: talk_march_23_2020_files/figure-beamer/unnamed-chunk-13-1.pdf Graphic fil
-e (type pdf)
-<use talk_march_23_2020_files/figure-beamer/unnamed-chunk-13-1.pdf>
-Package pdftex.def Info: talk_march_23_2020_files/figure-beamer/unnamed-chunk-1
-3-1.pdf  used on input line 437.
+2-1.pdf  used on input line 398.
 (pdftex.def)             Requested size: 307.28987pt x 193.98956pt.
-[19
+[17
 
- <./talk_march_23_2020_files/figure-beamer/unnamed-chunk-13-1.pdf>] [20
+ <./talk_march_23_2020_files/figure-beamer/unnamed-chunk-12-1.pdf>] [18
 
 ]
 File: figures/nc_outcome_causal_diagram.png Graphic file (type png)
 <use figures/nc_outcome_causal_diagram.png>
 Package pdftex.def Info: figures/nc_outcome_causal_diagram.png  used on input l
-ine 456.
+ine 417.
 (pdftex.def)             Requested size: 245.83282pt x 207.2757pt.
 
-Overfull \vbox (10.84982pt too high) detected at line 456
+Overfull \vbox (10.84982pt too high) detected at line 417
+ []
+
+[19
+
+]
+<figures/michael.png, id=220, 797.98125pt x 444.66125pt>
+File: figures/michael.png Graphic file (type png)
+<use figures/michael.png>
+Package pdftex.def Info: figures/michael.png  used on input line 429.
+(pdftex.def)             Requested size: 307.28987pt x 171.23242pt.
+
+Overfull \vbox (7.40518pt too high) detected at line 429
+ []
+
+[20
+
+ <./figures/michael.png>]
+<figures/harvey.jpg, id=228, 486.81876pt x 274.02374pt>
+File: figures/harvey.jpg Graphic file (type jpg)
+<use figures/harvey.jpg>
+Package pdftex.def Info: figures/harvey.jpg  used on input line 441.
+(pdftex.def)             Requested size: 307.28987pt x 172.97037pt.
+
+Overfull \vbox (7.1987pt too high) detected at line 441
  []
 
 [21
 
-]
-<figures/michael.png, id=234, 797.98125pt x 444.66125pt>
-File: figures/michael.png Graphic file (type png)
-<use figures/michael.png>
-Package pdftex.def Info: figures/michael.png  used on input line 468.
-(pdftex.def)             Requested size: 307.28987pt x 171.23242pt.
-
-Overfull \vbox (7.40518pt too high) detected at line 468
+ <./figures/harvey.jpg>]
+Overfull \vbox (15.68257pt too high) detected at line 477
  []
 
 [22
 
- <./figures/michael.png>]
-<figures/harvey.jpg, id=242, 486.81876pt x 274.02374pt>
-File: figures/harvey.jpg Graphic file (type jpg)
-<use figures/harvey.jpg>
-Package pdftex.def Info: figures/harvey.jpg  used on input line 480.
-(pdftex.def)             Requested size: 307.28987pt x 172.97037pt.
-
-Overfull \vbox (7.1987pt too high) detected at line 480
- []
-
-[23
-
- <./figures/harvey.jpg>]
-Overfull \vbox (15.68257pt too high) detected at line 516
- []
-
-[24
-
 ]
-<figures/negativeControl_wind.pdf, id=256, 578.16pt x 252.945pt>
+<figures/negativeControl_wind.pdf, id=242, 578.16pt x 252.945pt>
 File: figures/negativeControl_wind.pdf Graphic file (type pdf)
 <use figures/negativeControl_wind.pdf>
-Package pdftex.def Info: figures/negativeControl_wind.pdf  used on input line 5
-23.
+Package pdftex.def Info: figures/negativeControl_wind.pdf  used on input line 4
+84.
 (pdftex.def)             Requested size: 307.28987pt x 134.43845pt.
-[25
+[23
 
- <./figures/negativeControl_wind.pdf>] [26
+ <./figures/negativeControl_wind.pdf>] [24
 
-] [27
+] [25
 
-] [28
+] [26
 
 ]
-Overfull \hbox (3.33333pt too wide) in paragraph at lines 634--634
+Overfull \hbox (3.33333pt too wide) in paragraph at lines 595--595
 [][] 
  []
 
-[29
+[27
 
 ]
 \openout4 = `talk_march_23_2020.vrb'.
@@ -1984,62 +1974,62 @@ File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10> not available
 (Font)              Font shape `T1/lmtt/b/n' tried instead on input line 9.
-<talk_march_23_2020_files/figure-beamer/unnamed-chunk-18-1.pdf, id=296, 350.308
+<talk_march_23_2020_files/figure-beamer/unnamed-chunk-17-1.pdf, id=282, 350.308
 75pt x 177.66376pt>
-File: talk_march_23_2020_files/figure-beamer/unnamed-chunk-18-1.pdf Graphic fil
+File: talk_march_23_2020_files/figure-beamer/unnamed-chunk-17-1.pdf Graphic fil
 e (type pdf)
-<use talk_march_23_2020_files/figure-beamer/unnamed-chunk-18-1.pdf>
+<use talk_march_23_2020_files/figure-beamer/unnamed-chunk-17-1.pdf>
 Package pdftex.def Info: talk_march_23_2020_files/figure-beamer/unnamed-chunk-1
-8-1.pdf  used on input line 13.
+7-1.pdf  used on input line 13.
 (pdftex.def)             Requested size: 307.28987pt x 155.85661pt.
 )
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <12> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 650.
-[30
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 611.
+[28
 
- <./talk_march_23_2020_files/figure-beamer/unnamed-chunk-18-1.pdf>]
+ <./talk_march_23_2020_files/figure-beamer/unnamed-chunk-17-1.pdf>]
 \openout4 = `talk_march_23_2020.vrb'.
 
 (./talk_march_23_2020.vrb
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <8> not available
 (Font)              Font shape `T1/lmtt/b/n' tried instead on input line 14.
-) [31
+) [29
 
 ]
-<figures/maria_timeseries.png, id=321, 628.3475pt x 393.47pt>
+<figures/maria_timeseries.png, id=306, 628.3475pt x 393.47pt>
 File: figures/maria_timeseries.png Graphic file (type png)
 <use figures/maria_timeseries.png>
-Package pdftex.def Info: figures/maria_timeseries.png  used on input line 689.
+Package pdftex.def Info: figures/maria_timeseries.png  used on input line 650.
 (pdftex.def)             Requested size: 307.28987pt x 192.42374pt.
 
-Overfull \vbox (9.97716pt too high) detected at line 689
+Overfull \vbox (9.97716pt too high) detected at line 650
+ []
+
+[30
+
+ <./figures/maria_timeseries.png>]
+<figures/bonnie.png, id=314, 624.3325pt x 634.37pt>
+File: figures/bonnie.png Graphic file (type png)
+<use figures/bonnie.png>
+Package pdftex.def Info: figures/bonnie.png  used on input line 657.
+(pdftex.def)             Requested size: 230.46739pt x 234.17116pt.
+
+Overfull \vbox (17.00215pt too high) detected at line 657
+ []
+
+[31
+
+ <./figures/bonnie.png>]
+<figures/ike.png, id=323, 625.33624pt x 635.37375pt>
+File: figures/ike.png Graphic file (type png)
+<use figures/ike.png>
+Package pdftex.def Info: figures/ike.png  used on input line 664.
+(pdftex.def)             Requested size: 230.46739pt x 234.16357pt.
+
+Overfull \vbox (16.99457pt too high) detected at line 664
  []
 
 [32
-
- <./figures/maria_timeseries.png>]
-<figures/bonnie.png, id=329, 624.3325pt x 634.37pt>
-File: figures/bonnie.png Graphic file (type png)
-<use figures/bonnie.png>
-Package pdftex.def Info: figures/bonnie.png  used on input line 696.
-(pdftex.def)             Requested size: 230.46739pt x 234.17116pt.
-
-Overfull \vbox (17.00215pt too high) detected at line 696
- []
-
-[33
-
- <./figures/bonnie.png>]
-<figures/ike.png, id=337, 625.33624pt x 635.37375pt>
-File: figures/ike.png Graphic file (type png)
-<use figures/ike.png>
-Package pdftex.def Info: figures/ike.png  used on input line 703.
-(pdftex.def)             Requested size: 230.46739pt x 234.16357pt.
-
-Overfull \vbox (16.99457pt too high) detected at line 703
- []
-
-[34
 
  <./figures/ike.png>]
 \tf@nav=\write6
@@ -2051,17 +2041,17 @@ Overfull \vbox (16.99457pt too high) detected at line 703
 \tf@snm=\write8
 \openout8 = `talk_march_23_2020.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 705.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 705.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 666.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 666.
 (./talk_march_23_2020.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 705.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 705.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 666.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 666.
  ) 
 Here is how much of TeX's memory you used:
- 30280 strings out of 492616
- 560273 string characters out of 6129482
+ 30248 strings out of 492616
+ 559632 string characters out of 6129482
  653243 words of memory out of 5000000
- 33369 multiletter control sequences out of 15000+600000
+ 33344 multiletter control sequences out of 15000+600000
  82421 words of font info for 95 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  71i,13n,79p,1817b,917s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -2089,10 +2079,10 @@ mf-dist/fonts/type1/public/lm/lmsy7.pfb></usr/local/texlive/2019/texmf-dist/fon
 ts/type1/public/lm/lmsy9.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/pu
 blic/lm/lmtk10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/lm/lm
 tt10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/lm/lmtt8.pfb>
-Output written on talk_march_23_2020.pdf (34 pages, 6513245 bytes).
+Output written on talk_march_23_2020.pdf (32 pages, 6450461 bytes).
 PDF statistics:
- 446 PDF objects out of 1000 (max. 8388607)
- 342 compressed objects within 4 object streams
- 103 named destinations out of 1000 (max. 500000)
- 16530 words of extra memory for PDF output out of 17280 (max. 10000000)
+ 431 PDF objects out of 1000 (max. 8388607)
+ 331 compressed objects within 4 object streams
+ 97 named destinations out of 1000 (max. 500000)
+ 16525 words of extra memory for PDF output out of 17280 (max. 10000000)
 
