@@ -1,0 +1,276 @@
+## Estimating excess---Examples
+
+```{r out.width = "0.9\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/excess_deaths_financial_times.jpeg")
+```
+
+*Source:* Financial Times
+
+## Estimated excess---Examples
+
+```{r out.width = "0.9\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/excess_deaths_nyt.png")
+```
+
+*Source:* NY Times
+
+## Estimated excess---Examples
+
+```{r out.width = "0.9\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/nyc_covid_excess.png")
+```
+
+*Source:* NYC DOHMH COVID-19 Response Team, 2020
+
+## Hurricane Maria, 2017
+
+```{r out.width = "0.9\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/maria_excess_location.jpg")
+```
+
+*Source:* Washington Post
+
+## Countable cases---Examples
+
+```{r out.width = "\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/charley_table.png")
+```
+
+*Source:* US CDC MMWR
+
+## Countable cases---Examples
+
+```{r out.width = "0.9\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/katrina_count_cases.png")
+```
+
+*Source:* US CDC MMWR
+
+## Estimating excess
+
+> "To estimate excess deaths in NYC during the COVID-19 pandemic, a seasonal periodic regression model, as is routinely conducted for monitoring the impact of seasonal influenza, was used. Excess deaths were determined for the period March 11--May 2, 2020, using mortality data from the period January 1, 2015–May 2, 2020 and calculated as the difference between the seasonally expected baseline number and the reported number of all-cause deaths."
+\flushleft --CDC MMWR, May 15, 2020, 69(19);603--605
+
+## 1928 Okeechobee hurricane
+
+
+##
+
+> "So the beginning of this was a woman and she had come back from 
+burying the dead. Not the dead of sick and ailing with friends at
+the pillow and the feet. She had come back from the sodden and the
+bloated; the sudden dead, their eyes flung wide open in judgement."
+
+## 
+
+```{r out.width = "0.7\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/oke_map.jpg")
+```
+
+*Source:* https://www.floridamemory.com/
+
+## 
+
+```{r out.width = "0.7\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/oke_statue.jpg")
+```
+
+*Source:* NOAA
+
+## 
+
+```{r out.width = "0.7\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/oke_damage.png")
+```
+
+*Source:* weather.gov
+
+## 
+
+```{r out.width = "0.7\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/oke_deaths.png")
+```
+
+*Source:* weather.gov
+
+## 
+
+```{r out.width = "0.25\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/TheirEyesWereWatchingGod.jpeg")
+```
+
+*Source:* http://myloc.gov
+
+## Finding out what you don't know from what you do
+
+```{r out.width = "\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/surv_bias.png")
+```
+
+\small *Source:* McGeddon, Wikipedia
+
+## Hurricane Katrina, 2005
+
+```{r out.width = "0.9\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/katrina_fl_sun_sentinel.jpg")
+```
+
+*Source:* Sun Sentinel
+
+## Estimating excess
+
+\begin{columns}
+\begin{column}{0.7\textwidth}
+\begin{quotation}
+"There are years that ask questions and years that answer." \\
+\flushright --Zore Neale Hurston
+\end{quotation}
+\end{column}
+\begin{column}{0.3\textwidth}
+```{r out.width = "1.2\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/TheirEyesWereWatchingGod.jpeg")
+```
+\textit{Source:} http://myloc.gov
+\end{column}
+\end{columns}
+
+## 1940s--1960s air pollution episodes
+
+```{r out.width = "0.9\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/london_fog_1952.jpg")
+```
+
+*Source:* Bettmann Archive/Getty Images
+
+## 1940s--1960s air pollution episodes
+
+```{r out.width = "0.9\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/ap_excess_goldberg_2003.png")
+```
+
+*Source:* Goldberg et al., 2003
+
+## Estimating excess
+
+> "Excess deaths are typically defined as the difference between observed numbers of deaths and expected numbers. ... Counts of deaths in more recent weeks are compared with historical trends to determine whether the number of deaths is significantly higher than expected."
+\flushleft --CDC, Excess Deaths Associated with COVID-19 \\
+\flushleft https://www.cdc.gov/nchs/nvss/vsrr/covid19/excess_deaths.htm
+
+## 2004 Florida hurricane study
+
+```{r out.width = "0.9\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/fl_table2.png")
+```
+
+*Source:* McKinney et al., 2011
+
+## Estimating excess
+
+> "Estimation of all-cause excess deaths is used as a nonspecific measure of the severity or impact of pandemics and public health emergencies. Reporting of excess deaths might provide **a more accurate measure of the impact** of the pandemic."
+\flushleft --Olson et al., CDC MMWR, May 15, 2020
+
+## Estimating excess
+
+> "Excess deaths refer to the number of deaths above expected seasonal baseline levels, regardless of the reported cause of death."
+
+\small \textit{Source:} Olson et al., 2020, "Preliminary Estimate of Excess Mortality During the COVID-19 Outbreak---New York City, March 11--May 2, 2020", \textit{Morbidity and Mortality Weekly Report}
+
+## 1995 Chicago heatwave
+
+```{r out.width = "0.9\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/chicago_1995_chic_tribune.jpg")
+```
+
+*Source:* Chicago Tribune
+
+## Hurricane Maria, 2017
+
+```{r out.width = "0.9\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/maria_pr_wsj.jpg")
+```
+
+*Source:* Wall Street Journal
+
+## Hurricane Irma, 2017
+
+```{r out.width = "0.7\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/irma_table.png")
+```
+
+*Source:* Issa et al., 2018
+
+## Hurricane Irma, 2017
+
+```{r out.width = "0.6\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/irma_figure.png")
+```
+
+*Source:* Issa et al., 2018
+
+
+## CO poisoning, Hurricane Katrina
+
+```{r out.width = "0.8\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/katrina_co_fig.png")
+```
+
+\small \textit{Source:} US CDC, 2005, "Carbon Monoxide Poisoning After Hurricane Katrina---Alabama, Louisiana, and Mississippi, August--September 2005", \textit{Morbidity and Mortality Weekly Report}
+
+## CO poisoning, Hurricane Katrina
+
+```{r out.width = "0.8\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/katrina_co_conclusions.png")
+```
+
+\small \textit{Source:} US CDC, 2005, "Carbon Monoxide Poisoning After Hurricane Katrina---Alabama, Louisiana, and Mississippi, August--September 2005", \textit{Morbidity and Mortality Weekly Report}
+
+
+
+## Abraham Wald and World War II
+
+```{r out.width = "\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/abraham_wald.png")
+```
+
+```{r out.width = "0.7\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/wald_report.png")
+```
+
+\small \textit{Sources:} hackaday.com, Centre for Naval Analyses
+
+## Ideal information
+
+\center 
+
+Ideally, you would have detailed information on all the planes sent out.
+
+```{r out.width = "0.8\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/eighth_air_force.jpg")
+```
+
+\small \textit{Source:} Eighth Air Force of the British Royal Air Force
+
+## Data on specific cases
+
+```{r out.width = "0.8\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/C-47_aircraft_hit_by_flak.jpg")
+```
+
+\small \textit{Source:} Imperial War Museums
+
+## Wald's observed information
+
+```{r out.width = "\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/hero-survivorship-bias.png")
+```
+
+\footnotesize \textit{Source:} http://geckoboard.com
+
+## Finding out what you don't know from what you do
+
+```{r out.width = "\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/wald_diagram.jpg")
+```
+
+\small \textit{Source:} National World War II Museum
+
