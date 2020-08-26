@@ -21,6 +21,11 @@ survey <- read_csv("data/Survey for epidemiology workshop on assessing exposure 
 
 **NSF Coastlines and People EAGER:** Establishing Interface Standards for Physical Exposure and Human Impacts Data Collection and Publication in Rapid Response to Coastal Hazards
 
+## Workshop format
+
+- Live (microphones on) participants
+- Other participants---please write your questions and comments in the Q&A
+
 ## Survey
 
 ```{r echo = FALSE, out.width="\\textwidth"}

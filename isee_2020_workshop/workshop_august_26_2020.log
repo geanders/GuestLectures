@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  26 AUG 2020 12:36
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  26 AUG 2020 14:35
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1733,174 +1733,174 @@ File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )) [2
 
 ]
-<figures/survey.png, id=36, 574.145pt x 177.66376pt>
-File: figures/survey.png Graphic file (type png)
-<use figures/survey.png>
-Package pdftex.def Info: figures/survey.png  used on input line 149.
-(pdftex.def)             Requested size: 307.28987pt x 95.08847pt.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 149.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 149.
-LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <10> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 149.
-LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <7> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 149.
-[3
-
- <./figures/survey.png>] [4
+LaTeX Font Info:    Try loading font information for TS1+lmss on input line 147
+.
+(/usr/local/texlive/2019/texmf-dist/tex/latex/lm/ts1lmss.fd
+File: ts1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
+) [3
 
 ]
-<figures/birth_outcomes.png, id=55, 746.79pt x 305.14pt>
+<figures/survey.png, id=43, 574.145pt x 177.66376pt>
+File: figures/survey.png Graphic file (type png)
+<use figures/survey.png>
+Package pdftex.def Info: figures/survey.png  used on input line 163.
+(pdftex.def)             Requested size: 307.28987pt x 95.08847pt.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10> on input line 163.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <7> on input line 163.
+LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <10> not available
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 163.
+LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <7> not available
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 163.
+[4
+
+ <./figures/survey.png>] [5
+
+]
+<figures/birth_outcomes.png, id=62, 746.79pt x 305.14pt>
 File: figures/birth_outcomes.png Graphic file (type png)
 <use figures/birth_outcomes.png>
-Package pdftex.def Info: figures/birth_outcomes.png  used on input line 165.
+Package pdftex.def Info: figures/birth_outcomes.png  used on input line 179.
 (pdftex.def)             Requested size: 245.83282pt x 100.44507pt.
-[5
+[6
 
  <./figures/birth_outcomes.png>]
-<workshop_august_26_2020_files/figure-beamer/unnamed-chunk-4-1.pdf, id=63, 415.
+<workshop_august_26_2020_files/figure-beamer/unnamed-chunk-4-1.pdf, id=70, 415.
 5525pt x 222.8325pt>
 File: workshop_august_26_2020_files/figure-beamer/unnamed-chunk-4-1.pdf Graphic
  file (type pdf)
 <use workshop_august_26_2020_files/figure-beamer/unnamed-chunk-4-1.pdf>
 Package pdftex.def Info: workshop_august_26_2020_files/figure-beamer/unnamed-ch
-unk-4-1.pdf  used on input line 172.
+unk-4-1.pdf  used on input line 186.
 (pdftex.def)             Requested size: 307.28987pt x 164.78465pt.
-[6
+[7
 
  <./workshop_august_26_2020_files/figure-beamer/unnamed-chunk-4-1.pdf>]
-<workshop_august_26_2020_files/figure-beamer/unnamed-chunk-5-1.pdf, id=77, 414.
+<workshop_august_26_2020_files/figure-beamer/unnamed-chunk-5-1.pdf, id=85, 414.
 54875pt x 222.8325pt>
 File: workshop_august_26_2020_files/figure-beamer/unnamed-chunk-5-1.pdf Graphic
  file (type pdf)
 <use workshop_august_26_2020_files/figure-beamer/unnamed-chunk-5-1.pdf>
 Package pdftex.def Info: workshop_august_26_2020_files/figure-beamer/unnamed-ch
-unk-5-1.pdf  used on input line 179.
+unk-5-1.pdf  used on input line 193.
 (pdftex.def)             Requested size: 307.28987pt x 165.18248pt.
-[7
-
- <./workshop_august_26_2020_files/figure-beamer/unnamed-chunk-5-1.pdf>]
-<figures/tc_basins2.png, id=92, 738.76pt x 547.04375pt>
-File: figures/tc_basins2.png Graphic file (type png)
-<use figures/tc_basins2.png>
-Package pdftex.def Info: figures/tc_basins2.png  used on input line 188.
-(pdftex.def)             Requested size: 291.92444pt x 216.16756pt.
-
-Overfull \vbox (16.47777pt too high) detected at line 188
- []
-
 [8
 
+ <./workshop_august_26_2020_files/figure-beamer/unnamed-chunk-5-1.pdf>]
+<figures/tc_basins2.png, id=99, 738.76pt x 547.04375pt>
+File: figures/tc_basins2.png Graphic file (type png)
+<use figures/tc_basins2.png>
+Package pdftex.def Info: figures/tc_basins2.png  used on input line 202.
+(pdftex.def)             Requested size: 291.92444pt x 216.16756pt.
+
+Overfull \vbox (16.47777pt too high) detected at line 202
+ []
+
+[9
+
  <./figures/tc_basins2.png>]
-<workshop_august_26_2020_files/figure-beamer/unnamed-chunk-7-1.pdf, id=99, 466.
-74374pt x 207.77625pt>
+<workshop_august_26_2020_files/figure-beamer/unnamed-chunk-7-1.pdf, id=106, 466
+.74374pt x 207.77625pt>
 File: workshop_august_26_2020_files/figure-beamer/unnamed-chunk-7-1.pdf Graphic
  file (type pdf)
 <use workshop_august_26_2020_files/figure-beamer/unnamed-chunk-7-1.pdf>
 Package pdftex.def Info: workshop_august_26_2020_files/figure-beamer/unnamed-ch
-unk-7-1.pdf  used on input line 195.
+unk-7-1.pdf  used on input line 209.
 (pdftex.def)             Requested size: 307.28987pt x 136.79984pt.
-[9
+[10
 
- <./workshop_august_26_2020_files/figure-beamer/unnamed-chunk-7-1.pdf>]
-LaTeX Font Info:    Try loading font information for TS1+lmss on input line 224
-.
-(/usr/local/texlive/2019/texmf-dist/tex/latex/lm/ts1lmss.fd
-File: ts1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
-) [10
+ <./workshop_august_26_2020_files/figure-beamer/unnamed-chunk-7-1.pdf>] [11
 
 ]
-<workshop_august_26_2020_files/figure-beamer/unnamed-chunk-8-1.pdf, id=120, 360
+<workshop_august_26_2020_files/figure-beamer/unnamed-chunk-8-1.pdf, id=126, 360
 .34625pt x 165.61874pt>
 File: workshop_august_26_2020_files/figure-beamer/unnamed-chunk-8-1.pdf Graphic
  file (type pdf)
 <use workshop_august_26_2020_files/figure-beamer/unnamed-chunk-8-1.pdf>
 Package pdftex.def Info: workshop_august_26_2020_files/figure-beamer/unnamed-ch
-unk-8-1.pdf  used on input line 231.
+unk-8-1.pdf  used on input line 245.
 (pdftex.def)             Requested size: 307.28987pt x 141.234pt.
-[11
+[12
 
- <./workshop_august_26_2020_files/figure-beamer/unnamed-chunk-8-1.pdf>] [12
+ <./workshop_august_26_2020_files/figure-beamer/unnamed-chunk-8-1.pdf>] [13
 
 ]
-<figures/Hurricane-Florence-Hazards-Summary-Chart-9-11-18.png, id=141, 803.0pt 
+<figures/Hurricane-Florence-Hazards-Summary-Chart-9-11-18.png, id=148, 803.0pt 
 x 602.25pt>
 File: figures/Hurricane-Florence-Hazards-Summary-Chart-9-11-18.png Graphic file
  (type png)
 <use figures/Hurricane-Florence-Hazards-Summary-Chart-9-11-18.png>
 Package pdftex.def Info: figures/Hurricane-Florence-Hazards-Summary-Chart-9-11-
-18.png  used on input line 241.
+18.png  used on input line 255.
 (pdftex.def)             Requested size: 307.28987pt x 230.47473pt.
 
-Overfull \vbox (13.30573pt too high) detected at line 241
+Overfull \vbox (13.30573pt too high) detected at line 255
  []
 
-[13
+[14
 
- <./figures/Hurricane-Florence-Hazards-Summary-Chart-9-11-18.png>] [14
+ <./figures/Hurricane-Florence-Hazards-Summary-Chart-9-11-18.png>] [15
 
 ]
-<workshop_august_26_2020_files/figure-beamer/unnamed-chunk-10-1.pdf, id=156, 41
+<workshop_august_26_2020_files/figure-beamer/unnamed-chunk-10-1.pdf, id=163, 41
 2.54124pt x 280.04625pt>
 File: workshop_august_26_2020_files/figure-beamer/unnamed-chunk-10-1.pdf Graphi
 c file (type pdf)
 <use workshop_august_26_2020_files/figure-beamer/unnamed-chunk-10-1.pdf>
 Package pdftex.def Info: workshop_august_26_2020_files/figure-beamer/unnamed-ch
-unk-10-1.pdf  used on input line 263.
+unk-10-1.pdf  used on input line 277.
 (pdftex.def)             Requested size: 307.28987pt x 208.60265pt.
-[15
+[16
 
  <./workshop_august_26_2020_files/figure-beamer/unnamed-chunk-10-1.pdf>]
-<workshop_august_26_2020_files/figure-beamer/unnamed-chunk-11-1.pdf, id=172, 41
+<workshop_august_26_2020_files/figure-beamer/unnamed-chunk-11-1.pdf, id=178, 41
 4.54875pt x 280.04625pt>
 File: workshop_august_26_2020_files/figure-beamer/unnamed-chunk-11-1.pdf Graphi
 c file (type pdf)
 <use workshop_august_26_2020_files/figure-beamer/unnamed-chunk-11-1.pdf>
 Package pdftex.def Info: workshop_august_26_2020_files/figure-beamer/unnamed-ch
-unk-11-1.pdf  used on input line 270.
+unk-11-1.pdf  used on input line 284.
 (pdftex.def)             Requested size: 307.28987pt x 207.59418pt.
-[16
+[17
 
  <./workshop_august_26_2020_files/figure-beamer/unnamed-chunk-11-1.pdf>]
 LaTeX Font Info:    Font shape `T1/lmss/bx/it' in size <10> not available
-(Font)              Font shape `T1/lmss/bx/sl' tried instead on input line 285.
+(Font)              Font shape `T1/lmss/bx/sl' tried instead on input line 299.
 
-[17
+[18
 
-] [18
+] [19
 
 ]
-<workshop_august_26_2020_files/figure-beamer/unnamed-chunk-12-1.pdf, id=201, 36
+<workshop_august_26_2020_files/figure-beamer/unnamed-chunk-12-1.pdf, id=208, 36
 1.35pt x 166.6225pt>
 File: workshop_august_26_2020_files/figure-beamer/unnamed-chunk-12-1.pdf Graphi
 c file (type pdf)
 <use workshop_august_26_2020_files/figure-beamer/unnamed-chunk-12-1.pdf>
 Package pdftex.def Info: workshop_august_26_2020_files/figure-beamer/unnamed-ch
-unk-12-1.pdf  used on input line 296.
+unk-12-1.pdf  used on input line 310.
 (pdftex.def)             Requested size: 307.28987pt x 141.69589pt.
-[19
+[20
 
- <./workshop_august_26_2020_files/figure-beamer/unnamed-chunk-12-1.pdf>] [20
-
-] [21
+ <./workshop_august_26_2020_files/figure-beamer/unnamed-chunk-12-1.pdf>] [21
 
 ] [22
 
+] [23
+
 ]
-<workshop_august_26_2020_files/figure-beamer/unnamed-chunk-13-1.pdf, id=236, 36
+<workshop_august_26_2020_files/figure-beamer/unnamed-chunk-13-1.pdf, id=242, 36
 1.35pt x 172.645pt>
 File: workshop_august_26_2020_files/figure-beamer/unnamed-chunk-13-1.pdf Graphi
 c file (type pdf)
 <use workshop_august_26_2020_files/figure-beamer/unnamed-chunk-13-1.pdf>
 Package pdftex.def Info: workshop_august_26_2020_files/figure-beamer/unnamed-ch
-unk-13-1.pdf  used on input line 337.
+unk-13-1.pdf  used on input line 351.
 (pdftex.def)             Requested size: 307.28987pt x 146.81741pt.
-[23
+[24
 
- <./workshop_august_26_2020_files/figure-beamer/unnamed-chunk-13-1.pdf>] [24
-
-] [25
+ <./workshop_august_26_2020_files/figure-beamer/unnamed-chunk-13-1.pdf>] [25
 
 ] [26
 
@@ -1914,69 +1914,69 @@ unk-13-1.pdf  used on input line 337.
 
 ] [31
 
+] [32
+
 ]
-<workshop_august_26_2020_files/figure-beamer/unnamed-chunk-14-1.pdf, id=303, 42
+<workshop_august_26_2020_files/figure-beamer/unnamed-chunk-14-1.pdf, id=309, 42
 7.5975pt x 280.04625pt>
 File: workshop_august_26_2020_files/figure-beamer/unnamed-chunk-14-1.pdf Graphi
 c file (type pdf)
 <use workshop_august_26_2020_files/figure-beamer/unnamed-chunk-14-1.pdf>
 Package pdftex.def Info: workshop_august_26_2020_files/figure-beamer/unnamed-ch
-unk-14-1.pdf  used on input line 482.
+unk-14-1.pdf  used on input line 496.
 (pdftex.def)             Requested size: 307.28987pt x 201.25282pt.
-[32
+[33
 
  <./workshop_august_26_2020_files/figure-beamer/unnamed-chunk-14-1.pdf>]
-<workshop_august_26_2020_files/figure-beamer/unnamed-chunk-15-1.pdf, id=317, 45
+<workshop_august_26_2020_files/figure-beamer/unnamed-chunk-15-1.pdf, id=323, 45
 0.68375pt x 207.77625pt>
 File: workshop_august_26_2020_files/figure-beamer/unnamed-chunk-15-1.pdf Graphi
 c file (type pdf)
 <use workshop_august_26_2020_files/figure-beamer/unnamed-chunk-15-1.pdf>
 Package pdftex.def Info: workshop_august_26_2020_files/figure-beamer/unnamed-ch
-unk-15-1.pdf  used on input line 489.
+unk-15-1.pdf  used on input line 503.
 (pdftex.def)             Requested size: 307.28987pt x 141.67592pt.
-[33
+[34
 
  <./workshop_august_26_2020_files/figure-beamer/unnamed-chunk-15-1.pdf>]
-<workshop_august_26_2020_files/figure-beamer/unnamed-chunk-16-1.pdf, id=331, 36
+<workshop_august_26_2020_files/figure-beamer/unnamed-chunk-16-1.pdf, id=337, 36
 0.34625pt x 207.77625pt>
 File: workshop_august_26_2020_files/figure-beamer/unnamed-chunk-16-1.pdf Graphi
 c file (type pdf)
 <use workshop_august_26_2020_files/figure-beamer/unnamed-chunk-16-1.pdf>
 Package pdftex.def Info: workshop_august_26_2020_files/figure-beamer/unnamed-ch
-unk-16-1.pdf  used on input line 496.
+unk-16-1.pdf  used on input line 510.
 (pdftex.def)             Requested size: 307.28987pt x 177.18448pt.
-[34
-
- <./workshop_august_26_2020_files/figure-beamer/unnamed-chunk-16-1.pdf>]
-<figures/ivanonly.pdf, id=345, 433.62pt x 237.88875pt>
-File: figures/ivanonly.pdf Graphic file (type pdf)
-<use figures/ivanonly.pdf>
-Package pdftex.def Info: figures/ivanonly.pdf  used on input line 505.
-(pdftex.def)             Requested size: 307.28987pt x 168.59001pt.
 [35
 
- <./figures/ivanonly.pdf>]
-<figures/wind_vs_rain.png, id=357, 574.145pt x 295.1025pt>
-File: figures/wind_vs_rain.png Graphic file (type png)
-<use figures/wind_vs_rain.png>
-Package pdftex.def Info: figures/wind_vs_rain.png  used on input line 515.
-(pdftex.def)             Requested size: 307.28987pt x 157.94356pt.
+ <./workshop_august_26_2020_files/figure-beamer/unnamed-chunk-16-1.pdf>]
+<figures/ivanonly.pdf, id=351, 433.62pt x 237.88875pt>
+File: figures/ivanonly.pdf Graphic file (type pdf)
+<use figures/ivanonly.pdf>
+Package pdftex.def Info: figures/ivanonly.pdf  used on input line 519.
+(pdftex.def)             Requested size: 307.28987pt x 168.59001pt.
 [36
 
+ <./figures/ivanonly.pdf>]
+<figures/wind_vs_rain.png, id=363, 574.145pt x 295.1025pt>
+File: figures/wind_vs_rain.png Graphic file (type png)
+<use figures/wind_vs_rain.png>
+Package pdftex.def Info: figures/wind_vs_rain.png  used on input line 529.
+(pdftex.def)             Requested size: 307.28987pt x 157.94356pt.
+[37
+
  <./figures/wind_vs_rain.png>]
-<workshop_august_26_2020_files/figure-beamer/unnamed-chunk-19-1.pdf, id=365, 51
+<workshop_august_26_2020_files/figure-beamer/unnamed-chunk-19-1.pdf, id=372, 51
 8.93875pt x 352.31625pt>
 File: workshop_august_26_2020_files/figure-beamer/unnamed-chunk-19-1.pdf Graphi
 c file (type pdf)
 <use workshop_august_26_2020_files/figure-beamer/unnamed-chunk-19-1.pdf>
 Package pdftex.def Info: workshop_august_26_2020_files/figure-beamer/unnamed-ch
-unk-19-1.pdf  used on input line 522.
+unk-19-1.pdf  used on input line 536.
 (pdftex.def)             Requested size: 307.28987pt x 208.63353pt.
-[37
+[38
 
- <./workshop_august_26_2020_files/figure-beamer/unnamed-chunk-19-1.pdf>] [38
-
-] [39
+ <./workshop_august_26_2020_files/figure-beamer/unnamed-chunk-19-1.pdf>] [39
 
 ] [40
 
@@ -1984,52 +1984,52 @@ unk-19-1.pdf  used on input line 522.
 
 ] [42
 
+] [43
+
 ]
-<workshop_august_26_2020_files/figure-beamer/unnamed-chunk-20-1.pdf, id=411, 51
+<workshop_august_26_2020_files/figure-beamer/unnamed-chunk-20-1.pdf, id=418, 51
 7.935pt x 352.31625pt>
 File: workshop_august_26_2020_files/figure-beamer/unnamed-chunk-20-1.pdf Graphi
 c file (type pdf)
 <use workshop_august_26_2020_files/figure-beamer/unnamed-chunk-20-1.pdf>
 Package pdftex.def Info: workshop_august_26_2020_files/figure-beamer/unnamed-ch
-unk-20-1.pdf  used on input line 641.
+unk-20-1.pdf  used on input line 655.
 (pdftex.def)             Requested size: 307.28987pt x 209.03673pt.
-[43
+[44
 
- <./workshop_august_26_2020_files/figure-beamer/unnamed-chunk-20-1.pdf>] [44
+ <./workshop_august_26_2020_files/figure-beamer/unnamed-chunk-20-1.pdf>] [45
 
 ]
-<workshop_august_26_2020_files/figure-beamer/unnamed-chunk-21-1.pdf, id=433, 62
+<workshop_august_26_2020_files/figure-beamer/unnamed-chunk-21-1.pdf, id=439, 62
 6.34pt x 496.85625pt>
 File: workshop_august_26_2020_files/figure-beamer/unnamed-chunk-21-1.pdf Graphi
 c file (type pdf)
 <use workshop_august_26_2020_files/figure-beamer/unnamed-chunk-21-1.pdf>
 Package pdftex.def Info: workshop_august_26_2020_files/figure-beamer/unnamed-ch
-unk-21-1.pdf  used on input line 669.
+unk-21-1.pdf  used on input line 683.
 (pdftex.def)             Requested size: 276.559pt x 219.39072pt.
 
-Overfull \vbox (2.22171pt too high) detected at line 669
+Overfull \vbox (2.22171pt too high) detected at line 683
  []
 
-[45
+[46
 
- <./workshop_august_26_2020_files/figure-beamer/unnamed-chunk-21-1.pdf>] [46
+ <./workshop_august_26_2020_files/figure-beamer/unnamed-chunk-21-1.pdf>] [47
 
-] [47
+] [48
 
 ]
-<workshop_august_26_2020_files/figure-beamer/unnamed-chunk-22-1.pdf, id=460, 51
+<workshop_august_26_2020_files/figure-beamer/unnamed-chunk-22-1.pdf, id=466, 51
 8.93875pt x 349.305pt>
 File: workshop_august_26_2020_files/figure-beamer/unnamed-chunk-22-1.pdf Graphi
 c file (type pdf)
 <use workshop_august_26_2020_files/figure-beamer/unnamed-chunk-22-1.pdf>
 Package pdftex.def Info: workshop_august_26_2020_files/figure-beamer/unnamed-ch
-unk-22-1.pdf  used on input line 696.
+unk-22-1.pdf  used on input line 710.
 (pdftex.def)             Requested size: 307.28987pt x 206.85034pt.
-[48
+[49
 
- <./workshop_august_26_2020_files/figure-beamer/unnamed-chunk-22-1.pdf>] [49
-
-] [50
+ <./workshop_august_26_2020_files/figure-beamer/unnamed-chunk-22-1.pdf>] [50
 
 ] [51
 
@@ -2041,6 +2041,8 @@ unk-22-1.pdf  used on input line 696.
 
 ] [55
 
+] [56
+
 ]
 \tf@nav=\write5
 \openout5 = `workshop_august_26_2020.nav'.
@@ -2051,18 +2053,18 @@ unk-22-1.pdf  used on input line 696.
 \tf@snm=\write7
 \openout7 = `workshop_august_26_2020.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 817.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 817.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 832.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 832.
 (./workshop_august_26_2020.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 817.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 817.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 832.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 832.
  ) 
 Here is how much of TeX's memory you used:
- 29941 strings out of 492616
- 557450 string characters out of 6129482
- 642622 words of memory out of 5000000
- 32969 multiletter control sequences out of 15000+600000
- 78879 words of font info for 94 fonts, out of 8000000 for 9000
+ 29948 strings out of 492616
+ 557526 string characters out of 6129482
+ 642635 words of memory out of 5000000
+ 32971 multiletter control sequences out of 15000+600000
+ 78980 words of font info for 95 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  71i,13n,79p,1822b,734s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/local/
@@ -2077,10 +2079,10 @@ type1/public/lm/lmss9.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/publi
 c/lm/lmssbo10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/lm/lms
 sbx10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/lm/lmsso10.pfb
 ></usr/local/texlive/2019/texmf-dist/fonts/type1/public/lm/lmtt10.pfb>
-Output written on workshop_august_26_2020.pdf (55 pages, 3062061 bytes).
+Output written on workshop_august_26_2020.pdf (56 pages, 3062985 bytes).
 PDF statistics:
- 624 PDF objects out of 1000 (max. 8388607)
- 491 compressed objects within 5 object streams
- 165 named destinations out of 1000 (max. 500000)
+ 630 PDF objects out of 1000 (max. 8388607)
+ 496 compressed objects within 5 object streams
+ 168 named destinations out of 1000 (max. 500000)
  16604 words of extra memory for PDF output out of 17280 (max. 10000000)
 
