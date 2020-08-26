@@ -111,7 +111,7 @@ knitr::include_graphics("figures/tc_basins2.png")
 
 ## Survey overview
 
-```{r out.width = "\\textwidth", fig.width = 5, fig.height = 3, echo = FALSE, warning = FALSE, message = FALSE}
+```{r out.width = "\\textwidth", fig.width = 6.7, fig.height = 3, echo = FALSE, warning = FALSE, message = FALSE}
 survey %>% 
   pull(53) %>% 
   paste(collapse = ";") %>% 
@@ -130,6 +130,20 @@ survey %>%
   theme_classic() +
   expand_limits(y = c(0, 12))
 ```
+
+## Survey overview
+
+Areas studied:
+
+- New York City
+- over 100 counties in Texas
+- North Carolina
+- Florida
+- Southeastern US
+- Eastern half of US
+- All counties in contiguous US
+- China
+- Coastal jurisdictions globally
 
 ## Survey overview
 
@@ -225,126 +239,6 @@ Are there any other physical hazards from the storm that you think are plausibly
 
 > "This is pretty speculative, but I've wondered whether **changes in atmospheric pressure** play a role"
 
-# Assessing exposure to multiple hazards
-
-## Assessing exposure to multiple hazards
-
-Survey question: What are the biggest challenges or limitations you have faced in conducting or planning a tropical cyclone epidemiology study?
-
-\bigskip
-
-> "Accounting for multiple hazards"
-
-## Assessing exposure to multiple hazards
-
-```{r echo = FALSE, fig.align = "center", fig.width = 6, fig.height = 4, out.width = "\\textwidth", warning = FALSE, message = FALSE}
-survey %>% 
-  select(1, 7:12) %>% 
-  rename_all(~ str_replace(., "Listed below are several physical hazards that a tropical cyclone can bring. Please rate each in terms of how likely you think they are to be in the causal pathway linking tropical cyclones exposure to a change in the risk of the health outcome you are studying. ", "")) %>% 
-  rename_all(~ str_replace_all(., "[\\[\\]]", "")) %>% 
-  mutate_all(~ str_replace_all(., "[a-zA-Z()]", "")) %>% 
-  mutate_all(str_trim) %>% 
-  mutate_all(as.numeric) %>% 
-  mutate(Timestamp = 1:n()) %>% 
-  pivot_longer(cols = -1) %>% 
-  group_by(Timestamp) %>% 
-  mutate(any_nas = anyNA(value)) %>% 
-  ungroup() %>% 
-  filter(!any_nas) %>% 
-  group_by(Timestamp) %>% 
-  summarize(n_high = sum(value %in% 4:5)) %>% 
-  ungroup() %>% 
-  ggplot(aes(x = n_high)) + 
-  geom_histogram() + 
-  labs(x = "# of hazards (of 6) rated as likely in causal pathways\nfor health outcomes studied",
-       y = "# respondents (of 12)") + 
-  expand_limits(x = 0) + 
-  theme_classic() + 
-  ggtitle("Number of hazards rated as likely in causal pathways by individual researchers" %>% 
-            str_wrap(60))
-
-```
-
-## Assessing exposure to multiple hazards
-
-Storm hits per county per decade based on rain (left) and wind (right) exposure metrics.
-
-```{r echo = FALSE, out.width="\\textwidth"}
-knitr::include_graphics("figures/wind_vs_rain.png")
-```
-
-## Assessing exposure to multiple hazards
-
-County-level patterns of physical hazard exposures, Hurricane Ivan
-
-```{r echo = FALSE, out.width="\\textwidth"}
-knitr::include_graphics("figures/ivanonly.pdf")
-```
-## Assessing exposure to multiple hazards
-
-```{r out.width = "\\textwidth", fig.width = 5, fig.height = 3, echo = FALSE, warning = FALSE, message = FALSE}
-survey %>% 
-  pull(40) %>% 
-  paste(collapse = ";") %>% 
-  str_split(pattern = ";") %>% 
-  unlist() %>% 
-  str_trim() %>%
-  as_tibble() %>% 
-  group_by(value) %>% 
-  count() %>% 
-  ggplot(aes(x = fct_reorder(str_wrap(value, 40), n), y = n)) + 
-  geom_col() +
-  coord_flip() + 
-  labs(x = "", y = "Number of survey respondents (of 12)\nstudying or hoping to study the storm basin") + 
-  ggtitle("Hazards/proxies incorporated into exposure assessment") + 
-  theme_classic() +
-  expand_limits(y = c(0, 12))
-```
-
-## Assessing exposure to multiple hazards
-
-```{r out.width = "\\textwidth", fig.width = 5, fig.height = 3, echo = FALSE, warning = FALSE, message = FALSE}
-survey %>% 
-  pluck(40) %>% 
-  unlist() %>% 
-  map(~ str_split(., pattern = ";")) %>% 
-  map(~ .[[1]] %>% length()) %>% 
-  unlist() %>% 
-  as_tibble() %>% 
-  ggplot(aes(x = value)) + 
-  geom_histogram() +
-  labs(x = "# of hazards / proxy measurements included\nin a specific researchers study", 
-       y = "Number of survey respondents (of 12)") + 
-  ggtitle("Number of hazards/proxies incorporated into exposure assessment") + 
-  theme_classic() +
-  expand_limits(x = 0)
-```
-
-## Assessing exposure to multiple hazards
-
-```{r echo = FALSE, fig.align = "center", fig.width = 7.5, fig.height = 5, out.width = "\\textwidth", warning = FALSE, message = FALSE}
-survey %>% 
-  select(50) %>%  
-  pull() %>% 
-  paste(collapse = ";") %>% 
-  str_split(";") %>% 
-  unlist() %>% 
-  as_tibble() %>% 
-  rename(value = "value") %>% 
-  group_by(value) %>% 
-  count() %>% 
-  ungroup() %>% 
-  filter(value != "Other") %>% 
-  mutate(value = as_factor(value)) %>% 
-  ggplot(aes(x = fct_reorder(str_wrap(value, 40), n), y = n)) + 
-  geom_col() + 
-  coord_flip() + 
-  theme_classic() + 
-  labs(x = "")
-```
-
-
-
 # Continuous versus binary exposure assessment
 
 ## Continuous versus binary exposure assessment
@@ -365,29 +259,19 @@ survey %>%
 
 ## Continuous versus binary exposure assessment
 
-> "If a dose response is seen, it is more likely that the association is causal."
+> "If a dose-response is seen, it is more likely that the association is causal."
 
-> \hfill --Bradford Hill
+> \hfill --Sir Austin Bradford Hill
 
 ## Continuous versus binary exposure assessment
 
 Survey question: What are the biggest challenges or limitations you have faced in conducting or planning a tropical cyclone epidemiology study?
 
-> "It is hard to define the appropriate spatial scale in assessing tropical cyclone exposure and further **in examining the exposure-outcome association.**"
-
-# Single-storm versus multi-storm studies
-
-## Challenges for single-storm versus multi-storm studies
-
-> ""This is not Harvey, this is not Imelda, this is not Allison. This is Laura. Every storm is different, and **we urge folks not to use any prior storm as a template** for what could or will happen. What we need to do is prepare for the worst." 
-
-> \hfill --Lina Hidalgo, Harris County Judge
-
 \bigskip
 
-Survey comment:
+> "It is hard to define the appropriate spatial scale in assessing tropical cyclone exposure and further in **examining the exposure-outcome association.**"
 
-> "I have not yet investigated single storms, but i think looking at single storms could help disentangle specific effects/phenomena"
+# Single-storm versus multi-storm studies
 
 ## Challenges for single-storm versus multi-storm studies
 
@@ -429,11 +313,25 @@ Time periods studied:
 
 ## Challenges for single-storm versus multi-storm studies
 
-Survey question: What are the biggest challenges or limitations you have faced in conducting or planning a tropical cyclone epidemiology study?
+> ""This is not Harvey, this is not Imelda, this is not Allison. This is Laura. Every storm is different, and **we urge folks not to use any prior storm as a template** for what could or will happen. What we need to do is prepare for the worst." 
 
-\bigskip
+> \hfill --Lina Hidalgo, Harris County Judge
 
-> "I also wonder whether **the extent to which a specific physical hazard is a good proxy across storms** is modified by aspects of the built environment or the population exposed in a specific location."
+## Challenges for single-storm versus multi-storm studies
+
+Survey comment:
+
+\bigskip 
+
+> "I have not yet investigated single storms, but I think looking at single storms **could help disentangle specific effects/phenomena**"
+
+## Challenges for single-storm versus multi-storm studies
+
+> "Next on my list of features to be specially considered, I would place the
+**consistency** of the observed association. Has it been repeatedly observed by different
+persons, in different places, circumstances and times?"
+
+> \hfill --Sir Austin Bradford Hill
 
 ## Challenges for single-storm versus multi-storm studies
 
@@ -441,9 +339,184 @@ Survey question: What challenges have you had in getting exposure data relevant 
 
 \bigskip
 
-> "Exposure data across multiple countries"
+> "**Exposure data across multiple countries**"
+
+## Challenges for single-storm versus multi-storm studies
+
+Survey question: What are the biggest challenges or limitations you have faced in conducting or planning a tropical cyclone epidemiology study?
+
+\bigskip
+
+> "I also wonder whether **the extent to which a specific physical hazard is a good proxy across storms** is modified by aspects of the built environment or the population exposed in a specific location."
+
+
+# Assessing exposure to multiple hazards
+
+## Assessing exposure to multiple hazards
+
+Survey question: What are the biggest challenges or limitations you have faced in conducting or planning a tropical cyclone epidemiology study?
+
+\bigskip
+
+> "**Accounting for multiple hazards**"
+
+## Assessing exposure to multiple hazards
+
+```{r echo = FALSE, fig.align = "center", fig.width = 6, fig.height = 4, out.width = "\\textwidth", warning = FALSE, message = FALSE}
+survey %>% 
+  select(1, 7:12) %>% 
+  rename_all(~ str_replace(., "Listed below are several physical hazards that a tropical cyclone can bring. Please rate each in terms of how likely you think they are to be in the causal pathway linking tropical cyclones exposure to a change in the risk of the health outcome you are studying. ", "")) %>% 
+  rename_all(~ str_replace_all(., "[\\[\\]]", "")) %>% 
+  mutate_all(~ str_replace_all(., "[a-zA-Z()]", "")) %>% 
+  mutate_all(str_trim) %>% 
+  mutate_all(as.numeric) %>% 
+  mutate(Timestamp = 1:n()) %>% 
+  pivot_longer(cols = -1) %>% 
+  group_by(Timestamp) %>% 
+  mutate(any_nas = anyNA(value)) %>% 
+  ungroup() %>% 
+  filter(!any_nas) %>% 
+  group_by(Timestamp) %>% 
+  summarize(n_high = sum(value %in% 4:5)) %>% 
+  ungroup() %>% 
+  ggplot(aes(x = n_high)) + 
+  geom_histogram() + 
+  labs(x = "# of hazards (of 6) rated as likely in causal pathways\nfor health outcomes studied",
+       y = "# respondents (of 12)") + 
+  expand_limits(x = 0) + 
+  theme_classic() + 
+  ggtitle("Number of hazards rated as likely in causal pathways by individual researchers" %>% 
+            str_wrap(60))
+
+```
+
+
+
+
+## Assessing exposure to multiple hazards
+
+```{r out.width = "\\textwidth", fig.width = 6.5, fig.height = 3, echo = FALSE, warning = FALSE, message = FALSE}
+survey %>% 
+  pull(40) %>% 
+  paste(collapse = ";") %>% 
+  str_split(pattern = ";") %>% 
+  unlist() %>% 
+  str_trim() %>%
+  as_tibble() %>% 
+  group_by(value) %>% 
+  count() %>% 
+  ggplot(aes(x = fct_reorder(str_wrap(value, 40), n), y = n)) + 
+  geom_col() +
+  coord_flip() + 
+  labs(x = "", y = "Number of survey respondents (of 12)\nstudying or hoping to study the storm basin") + 
+  ggtitle("Hazards/proxies incorporated into\nexposure assessment") + 
+  theme_classic() +
+  expand_limits(y = c(0, 12))
+```
+
+## Assessing exposure to multiple hazards
+
+```{r out.width = "\\textwidth", fig.width = 5, fig.height = 3, echo = FALSE, warning = FALSE, message = FALSE}
+survey %>% 
+  pluck(40) %>% 
+  unlist() %>% 
+  map(~ str_split(., pattern = ";")) %>% 
+  map(~ .[[1]] %>% length()) %>% 
+  unlist() %>% 
+  as_tibble() %>% 
+  ggplot(aes(x = value)) + 
+  geom_histogram() +
+  labs(x = "# of hazards / proxy measurements included\nin a specific researchers study", 
+       y = "Number of survey respondents (of 12)") + 
+  ggtitle("Number of hazards/proxies incorporated into exposure assessment") + 
+  theme_classic() +
+  expand_limits(x = 0)
+```
+
+## Assessing exposure to multiple hazards
+
+County-level patterns of physical hazard exposures, Hurricane Ivan
+
+```{r echo = FALSE, out.width="\\textwidth"}
+knitr::include_graphics("figures/ivanonly.pdf")
+```
+
+## Assessing exposure to multiple hazards
+
+Storm hits per county per decade based on rain (left) and wind (right) exposure metrics.
+
+```{r echo = FALSE, out.width="\\textwidth"}
+knitr::include_graphics("figures/wind_vs_rain.png")
+```
+
+
+## Assessing exposure to multiple hazards
+
+```{r echo = FALSE, fig.align = "center", fig.width = 7.5, fig.height = 5, out.width = "\\textwidth", warning = FALSE, message = FALSE}
+survey %>% 
+  select(50) %>%  
+  pull() %>% 
+  paste(collapse = ";") %>% 
+  str_split(";") %>% 
+  unlist() %>% 
+  as_tibble() %>% 
+  rename(value = "value") %>% 
+  group_by(value) %>% 
+  count() %>% 
+  ungroup() %>% 
+  filter(value != "Other") %>% 
+  mutate(value = as_factor(value)) %>% 
+  ggplot(aes(x = fct_reorder(str_wrap(value, 40), n), y = n)) + 
+  geom_col() + 
+  coord_flip() + 
+  theme_classic() + 
+  labs(x = "", 
+       y = "Number of survey respondents (of 12)\nwith the concern")
+```
+
+
 
 # Pathways for indirect effects
+
+## Pathways for indirect effects
+
+*Survey question:* If you think that any exposure-related factor---physical hazard or ensuing problems with the built environment, psychological stress, evacuation, etc.---dominates as a key factor for the outcome you are studying, please list that factor here and explained why you think it may have a very important role.
+
+\medskip
+
+> "One of my current studies examines whether children with asthma experience more frequent exacerbations of their symptoms in the months following tropical cyclones. I hypothesize that **exposure to bioaerosols (e.g., mold)** in the aftermath of the storm would be a key driver of an increase in symptom exacerbation frequency, but that there may be other factors at play as well especially immediately after a storm (e.g., psychological stress, interrupted access to routine care/medication)."
+
+\medskip
+
+> "**Power outages**, they likely lead to increased hospitalization for people dependent on electric powered medical devices."
+
+## Pathwasys for indirect effects
+
+**Survey question:** Do you collect and incorporate data on any of factors beyond the physical hazards of the storm (like wind and flooding) for your study or studies? Examples could include property damage reports, data on evacuations, measurements related to mold growth, surveys about psychological stress, or data on power outages.
+
+\bigskip 
+
+> "**Drinking water quality** samples"
+
+\bigskip
+
+> "I've been working on trying to obtain data on **power outages** from the ESRI utilities reporting"
+
+\bigskip
+
+> "No but I think **this is a really important direction** for future work related to my study."
+
+## Pathways for indirect effects
+
+Survey question: What are the biggest challenges or limitations you have faced in conducting or planning a tropical cyclone epidemiology study?
+
+\bigskip
+
+> "The question I've been doing some soul-searching about is whether **using information on physical hazards is a reasonably good proxy for exposure to the downstream hazards** that I think drive my health outcome of interest. I also wonder whether the extent to which a specific physical hazard is a good proxy across storms is modified by aspects of the built environment or the population exposed in a specific location."
+
+\bigskip
+
+> "In planning a study on mental health, I think major challenges include defining and accessing health data and **developing models to explore causal pathways**, particularly as outcomes may occur much later than exposures."
 
 ## Pathways for indirect effects
 
@@ -490,27 +563,29 @@ Other potential pathways through the built environment:
 
 > "**Damage to personal vehicles**, reducing capacity to evacuate or reach a hospital in an emergency situation"
 
-## Pathways for indirect effects
+## Other indirect pathways
 
-Survey question: If you think that any exposure-related factor---physical hazard or ensuing problems with the built environment, psychological stress, evacuation, etc.---dominates as a key factor for the outcome you are studying, please list that factor here and explained why you think it may have a very important role.
-
-\medskip
-
-> "One of my current studies examines whether children with asthma experience more frequent exacerbations of their symptoms in the months following tropical cyclones. I hypothesize that **exposure to bioaerosols (e.g., mold)** in the aftermath of the storm would be a key driver of an increase in symptom exacerbation frequency, but that there may be other factors at play as well especially immediately after a storm (e.g., psychological stress, interrupted access to routine care/medication)."
-
-> "**Power outages**, they likely lead to increased hospitalization for people dependent on electric powered medical devices."
-
-## Pathways for indirect effects
-
-Survey question: What are the biggest challenges or limitations you have faced in conducting or planning a tropical cyclone epidemiology study?
-
-\bigskip
-
-> "The question I've been doing some soul-searching about is whether using information on physical hazards is a reasonably good proxy for exposure to the downstream hazards that I think drive my health outcome of interest. I also wonder whether the extent to which a specific physical hazard is a good proxy across storms is modified by aspects of the built environment or the population exposed in a specific location."
-
-\bigskip
-
-> "In planning a study on mental health, I think major challenges include defining and accessing health data and developing models to explore causal pathways, particularly as outcomes may occur much later than exposures."
+```{r echo = FALSE, fig.align = "center", fig.width = 9, fig.height = 7, out.width = "0.9\\textwidth", warning = FALSE, message = FALSE}
+survey %>% 
+  select(23:36) %>% 
+  rename_all(~ str_replace(., "A storm's physical hazards can affect health through factors beyond \\(or as a resulting factor of\\) damage to the built environment. These can include factors related to psychological stress, exposure to hazardous chemical components, exposure to subsequent physical hazards \\(e.g., heat\\), and factors related to evacuation and sheltering. Please rank how likely you think each of the following factors is as a factor in causal pathways for the health exposure\\(s\\) you are studying or planning to study. ", "")) %>% 
+  rename_all(~ str_replace_all(., "[\\[\\]]", "")) %>% 
+  mutate_all(~ str_replace_all(., "[a-zA-Z()]", "")) %>% 
+  pivot_longer(cols = everything()) %>% 
+  group_by(name, value) %>% 
+  count() %>% 
+  ungroup() %>% 
+  filter(value %in% 4:5) %>% 
+  group_by(name) %>% 
+  summarize(n = sum(n)) %>% 
+  ggplot(aes(x = fct_reorder(str_wrap(name, 60), n), y = n)) + 
+  geom_col() + 
+  coord_flip() + 
+  labs(x = "", 
+       y = "# respondents (of 12) rating as likely (4 or 5 on scale of 1 to 5)\nin causal pathways for health outcome studied ") + 
+  theme_classic() + 
+  scale_y_continuous(breaks = c(0, 3, 6, 9, 12))
+```
 
 # Aggregating data spatially
 
@@ -551,22 +626,28 @@ survey %>%
 
 ## Aggregating data spatially
 
-Survey question: What are the biggest challenges or limitations you have faced in conducting or planning a tropical cyclone epidemiology study?
+*Survey question:* What are the biggest challenges or limitations you have faced in conducting or planning a tropical cyclone epidemiology study?
 
 \bigskip
 
-> "Linking spatially exposure and human health outcomes"
+> "**Linking spatially** exposure and human health outcomes"
+
+\bigskip
+
+*Survey question:* What challenges have you had in getting exposure data relevant for tropical cyclones for epidemiological research?
+
+\bigskip
+
+> "Hard to get exposure data at **high spatial resolution**"
+
 
 ## Aggregating data spatially
 
-Survey question: What challenges have you had in getting exposure data relevant for tropical cyclones for epidemiological research?
+*Survey question:* What challenges have you had in getting exposure data relevant for tropical cyclones for epidemiological research?
 
-> "Hard to get exposure data at high spatial resolution"
+\bigskip
 
-
-## Aggregating data spatially
-
-> "One challenge that I have had with aggregating data over time is changing geospatial boundaries. (i.e. the fact that zip codes, ZCTAs, and county boundaries all change regularly in the United States)"
+> "One challenge that I have had with aggregating data over time is **changing geospatial boundaries** (i.e. the fact that zip codes, ZCTAs, and county boundaries all change regularly in the United States)"
 
 # Assessing exposure during evacuation/moving
 
@@ -576,17 +657,17 @@ Survey question: What are the biggest challenges or limitations you have faced i
 
 \bigskip
 
-> "Understanding the population dynamics in turn affects the ability to classify the populations that were really affected by the storm / flood during the event"
+> "Understanding the **population dynamics** in turn affects the ability to **classify the populations that were really affected by the storm / flood** during the event"
 
 # Wrapping up
 
 ## The constant challenge
 
-Survey question: What are the biggest challenges or limitations you have faced in conducting or planning a tropical cyclone epidemiology study?
+*Survey question:* What are the biggest challenges or limitations you have faced in conducting or planning a tropical cyclone epidemiology study?
 
 \bigskip
 
-> "so far funding!"
+> "**so far funding!**"
 
 ## Thank you
 
@@ -605,5 +686,5 @@ Survey question: What are the biggest challenges or limitations you have faced i
 
 This project is supported by the National Science Foundation through 1331399.
 
-
+Email: brooke.anderson@colostate.edu
 
