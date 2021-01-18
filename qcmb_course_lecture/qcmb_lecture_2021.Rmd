@@ -1,0 +1,39 @@
+---
+title: "Reproducible Research with R"
+author: "Brooke Anderson"
+date: "1/25/2021"
+output: beamer_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+# Overview
+
+## Aims for lecture
+
+1. What are "knitted" documents?
+2. How to create these with R
+3. What is data pre-processing?
+4. Creating reproducible data pre-processing protocols for your research
+
+# Knitted documents
+
+## You already use knitted documents!
+
+You have likely already seen and used examples of **knitted documents**. 
+
+Many tutorials for R or Python packages are written as knitted documents. 
+
+[Visual of this]
+
+## Definition of knitted documents
+
+[Definition of knitted documents]
+
+# Creating knitted documents in R
+
+# Pre-processing for research data
+
+# Reproducible data pre-processing protocols
