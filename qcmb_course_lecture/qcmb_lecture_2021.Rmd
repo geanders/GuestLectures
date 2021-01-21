@@ -285,6 +285,8 @@ version control
 
 [Example of code symbols in Word that can mess up code]
 
+Word processors---WYSIWYG, text encoding / BOM
+
 ## Why use knitted documents?
 
 3. Code can be re-run with updated or new datasets
@@ -309,7 +311,25 @@ beginning and ```` ``` ```` at the end
 - **Executable code** can be in R, but also in a number of other
 languages
 
-[Figure for RMarkdown, from cheatsheet?]
+```{r echo = FALSE, out.width = "\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/rstudio_rmarkdown_graphic.png")
+```
+
+*Source: https://rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf*
+
+## RMarkdown versus Notebook
+
+Some subtle differences in how code is executed?
+
+Can be used to created similar output files?
+
+Write the syntax and code chunks the same way?
+
+You can change between the two in the YAML?
+
+In theory, easier to execute and check code as you go
+(preview vs render), but it's unclear if this is different
+from running RMarkdown code in the console.
 
 # Pre-processing for research data
 
@@ -418,3 +438,7 @@ In the `centWave` function, these two choices can be specified with
 - Create data preprocessing protocol for CFU data---data at 
 different dilutions, pick good dilution, convert back to 
 bacterial load in original sample (Amy's package?)
+- Render a document to Word. Change something in the ".docx" 
+document. Re-render (knit again) the RMarkdown document. Is you 
+change in the new version of the ".docx"? Why or why not? 
+How does this relate to the idea of "read only"?
