@@ -20,10 +20,12 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## Running example
 
-As a running example, we will use data preprocessing with the `xcms` package,
+As a running example, we will use data pre-processing with the `xcms` package,
 available on Bioconductor.
 
 Package description: 
+
+\bigskip
 
 > "Framework for processing and visualization of chromatographically separated
 and single-spectra **mass spectral data**. Imports from AIA/ANDI NetCDF, mzXML,
@@ -65,7 +67,7 @@ knitr::include_graphics("figures/vignette_example_annotated.png")
 ## Why use knitted documents?
 
 1. Code is checked every time you render the document
-(increase *reliability*)
+(increase **reliability**)
 2. Code can be re-run with updated or new datasets (increase 
 **efficiency**)
 3. Document is in plain text, so it can be tracked well with 
@@ -89,7 +91,7 @@ process runs through two software programs.
 7. The final document is attractive and **read-only**---you should never make
 edits to this output, only to your initial plain text document.
 
-## How knitted documents work
+## Plain text 
 
 1. Knitted documents start as plain text
 
@@ -105,7 +107,7 @@ For example:
 The `OnDiskMSExp` organizes the MS data ...
 ```
 
-## How knitted documents work
+## Plain text 
 
 Writing plain text: 
 
@@ -170,7 +172,7 @@ This is a first paragraph.
 This is still part of the first paragraph.
 ```
 
-## How knitted documents work
+## Preamble
 
 2. A special section at the start of the document  (**preamble**) gives some
 overall directions about the document
@@ -189,7 +191,7 @@ For example, here is the YAML for this presentation:
   ---
 ```
 
-## How knitted documents work
+## Preamble
 
 In this preamble, you can specify things using **keys** and **values**.
 
@@ -205,7 +207,7 @@ and the type of output:
 output: beamer_presentation
 ```
 
-## How knitted documents work
+## Preamble
 
 There are other types of knitted documents, too---they might use other
 languages for the preamble and the markup. Examples of other Markup 
@@ -216,7 +218,7 @@ out which keywords are available for the preamble in the type of
 document you're creating, as well as the range of values those 
 keywords can take.
 
-## How knitted documents work
+## Separating executable code 
 
 3. Special combinations of characters indicate where the executable code starts
 4. Other special combinations show where the regular text starts (and the
@@ -241,7 +243,7 @@ mean(class_grades)
 ```
 ````
 
-## How knitted documents work
+## Separating executable code 
 
 This combination indicates the start of executable code: 
 
@@ -271,7 +273,7 @@ how you want the code run and showed:
  
 ```` ```{r echo = FALSE, fig.align = "center"} ````
 
-## How knitted documents work
+## Formatting text
 
 5. Formatting for the rest of the document is specified with a **markup language**
 
@@ -284,7 +286,7 @@ For example, you'll surround a word or phrase in `**` to make it bold.
 To write "**this**" in the final document, you'll write `"**this**"` in the
 plain text initial document.
 
-## How knitted documents work
+## Formatting text
 
 The start of this document: 
 
@@ -302,7 +304,7 @@ Is written like this:
 The `OnDiskMSExp` organizes the MS data ...
 ```
 
-## How knitted documents work
+## Formatting text
 
 Imagine yourself dictating everything to your computer---you have to 
 say not just the words, but the formatting you want as each spot. 
@@ -313,7 +315,7 @@ knitr::include_graphics("figures/churchill.jpg")
 
 *Source: The Churchill Project*
 
-## How knitted documents work
+## Rendering the document
 
 6. You create the final document by **rendering** the plain text document. This
 process runs through two software programs.
@@ -379,7 +381,7 @@ knitr::include_graphics("figures/rmarkdown_template2.png")
 
 ## Markdown syntax
 
-For the main text, all format is down using **Markdown** syntax. 
+For the main text, all format is done using **Markdown** syntax. 
 
 Some example formatting symbols and conventions: 
 
@@ -530,7 +532,7 @@ research question (e.g., mortality status of a test subject).
 Sometimes data from measurements need a lot of **pre-processing** to 
 use to gain knowledge and test meaningful hypotheses.
 
-Often lots of preprocessing required for data from **complex equipment** that
+Often lots of pre-processing required for data from **complex equipment** that
 leverage cleverness (in physics or chemistry) to see a new angle, but need more
 work to interpret the resulting measurements.
 
@@ -545,7 +547,7 @@ example)
 - Leverages principles from chemistry and physics to identify 
 "stuff" in a sample and how much of each type of "stuff" 
 
-## Preprocessing LC-MS data with code
+## Pre-processing LC-MS data with code
 
 ```{r echo = FALSE, out.width = "\\textwidth"}
 knitr::include_graphics("figures/Liquid_chromatography_MS_spectrum_3D_analysis.png")
@@ -553,91 +555,34 @@ knitr::include_graphics("figures/Liquid_chromatography_MS_spectrum_3D_analysis.p
 
 *Image source: Daniel Norena-Caro*
 
-## Preprocessing LC-MS data 
+## Pre-processing LC-MS data 
+
+Example tasks in pre-processing LC-MS data include: 
 
 1. **Import data** from specialized file formats 
 (NetCDF, mzML / mzXML, mzData)
 2. **Filter data** (e.g., to a certain range of retention times)
 3. **Explore data**
-4. Perform **quality control**
+4. Perform **quality control** (e.g., identify and remove sample runs
+that failed or had other major problems)
+5. Ensure data from different samples are **comparable** (e.g., 
+retention time correction, normalization)
+6. **Detect peaks** and refine these results (e.g., diagnose and fix or 
+remove overlapping peaks or incorrectly split peaks)
 
-
+These pre-processing steps all come *before* any data analysis or visualization
+(other than exploratory data analysis).
 
 ## Pre-processing research data: GUI vs code
 
 - Complex equipment will often come with its own, or have available
 through outside vendors, proprietary software
-- This is typically based on a **GUI** [more on this]
-- You can use this for your preprocessing, but there are some 
-very good reasons not to if you can avoid it
+- This is typically based on a **GUI** (graphical user interface) 
+- You can use this for your pre-processing, but there are some 
+very good reasons not to if you can avoid it:
+  + Code scripts are reproducible---by you or by others.
+  + Well-documented code makes it much easier to write the 
+    Methods section later
 
-
-
-
-
-
-## Preprocessing LC-MS data with code
-
-- Complex equipment will often come with its own, or have available
-through outside vendors, proprietary software
-- This is typically based on a **GUI** [more on this]
-- You can use this for your preprocessing, but there are some 
-very good reasons to use code instead, when possible.
-
-- Reproducible---by you or by others.
-- Much easier to write the Methods section later!
-
-
-## Preprocessing LC-MS data with code
-
-- [More on chromatography]
-- [More on mass spec]
-
-
-## Preprocessing LC-MS data with code
-
-Common preprocessing steps: 
-
-- Import data (R has *loads* of packages for handling import of many 
-file formats; `mzR` [?] helpful for common LC-MS file formats)
-- Filter to a subset range of retention time [add why]
-- Ensure files from different samples are comparable
-- Identify and remove sample runs that failed or had other major problems
-- Line up retention times across samples [?]
-- Figure out the typical width of chromatographic peaks in a sample
-(to decide on parameters for chromatographic peak detection)
-- Chromatographic peak detection
-- Refine results from peak detection (e.g., diagnose and fix or remove
-overlapping peaks or incorrectly split peaks)
-- Extract specific chromatographic peaks
-- Peak alignment / retention time correction (adjusts raw retention times so 
-that they're comparable across samples---analogy is tare on a scale?)
-- **Correspondance**: Match peaks across samples, so intensities can be 
-compared?
-- Data normalization, to correct technical bias?
-- Normalize the intensity of feature signals
-
-## Preprocessing LC-MS data with code
-
-These preprocessing steps all come *before* any data analysis or visualization
-(other than exploratory data analysis). Data analysis *after* this preprocessing
-could include things like checking which features [?] / peaks [?] are significantly 
-different between two experimental groups. 
-
-## Preprocessing choices: GUI or script
-
-You will have choices about how you preprocess the data. For example, when doing
-chromotographic peak detection, there will be choices in the algorithm that is
-used (the `centWave` algorithm in `xcms`). These include the expected range of
-chromatographic peak widths and the deviation of mass to charge values that will 
-are expected, as a maximum, for chromatographic peaks [?]. 
-
-In the `centWave` function, these two choices can be specified with 
-`peakwidth` and `ppm`, respectively.
-
-## Preprocessing choices: GUI or script
-
-- Reproducible---by you or by others.
-- Much easier to write the Methods section later!
 
 
