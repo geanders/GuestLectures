@@ -14,9 +14,9 @@ knitr::opts_chunk$set(echo = FALSE)
 ## Aims for lecture
 
 1. What are "knitted" documents?
-2. How to create these with R
+2. How do knitted documents work?
+3. How can you create knitted documents with R?
 3. What is data pre-processing?
-4. Creating reproducible data pre-processing protocols for your research
 
 ## Running example
 
@@ -62,6 +62,19 @@ Example:
 knitr::include_graphics("figures/vignette_example_annotated.png")
 ```
 
+## Why use knitted documents?
+
+1. Code is checked every time you render the document
+(increase *reliability*)
+2. Code can be re-run with updated or new datasets (increase 
+**efficiency**)
+3. Document is in plain text, so it can be tracked well with 
+version control (increase **transparency**)
+4. Code can be clearly and thoroughly documented (increase
+**reproducibility**)
+
+# How knitted documents work 
+
 ## How knitted documents work
 
 1. Knitted documents start as plain text
@@ -96,9 +109,9 @@ The `OnDiskMSExp` organizes the MS data ...
 
 Writing plain text: 
 
+- Only use character from the American Standard Code for Information Interchange (ASCII) 
 - Use a text editor (*not* Word or similar word processing programs, instead
 RStudio, Notepad, TextEdit, pico, vi/vim, emacs)
-- Only use character from the American Standard Code for Information Interchange (ASCII) 
 - White space is important (empty lines and spaces)
 - Flexibility in file extension---choose based on the "knitting" software
 (for RMarkdown, ".Rmd")
@@ -109,7 +122,7 @@ RStudio, Notepad, TextEdit, pico, vi/vim, emacs)
 
 - Digits 0--9
 - Lowercase and uppercase alphabet (a--z, A--Z)
-- Punctuation: ...
+- Some symbols: e.g., ! " , . + - / # * ~
 - Some control codes (e.g., new line, tab, ring a bell)
 
 ```{r echo = FALSE, out.width = "\\textwidth"}
@@ -118,12 +131,52 @@ knitr::include_graphics("figures/ascii_characters.png")
 
 *Image source: https://commons.wikimedia.org/wiki/File:ASCII1963-infobox-paths.svg*
 
+## White space
+
+To create a section header, you would write: 
+
+```
+# Initial Data Inspection
+```
+
+\bigskip
+
+Meanwhile this: 
+
+```
+#Initial Data Inspection
+```
+
+Would render to: 
+
+#Initial Data Inspection
+
+## White space
+
+This would create two paragraphs: 
+
+```
+This is a first paragraph. 
+
+This is a second.
+```
+
+\bigskip
+
+Meanwhile this would create one: 
+
+```
+This is a first paragraph.
+This is still part of the first paragraph.
+```
+
 ## How knitted documents work
 
 2. A special section at the start of the document  (**preamble**) gives some
 overall directions about the document
 
-In RMarkdown documents, this preamble is specified using **YAML**.
+In RMarkdown documents, this preamble is specified using **YAML**: 
+YAML Ain’t Markup Language.
 
 For example, here is the YAML for this presentation:
 
@@ -138,7 +191,7 @@ For example, here is the YAML for this presentation:
 
 ## How knitted documents work
 
-In this preamble, you can specify things using **keywords** and **values** [?].
+In this preamble, you can specify things using **keys** and **values**.
 
 For example, you can specify the title: 
 
@@ -267,37 +320,6 @@ process runs through two software programs.
 7. The final document is attractive and **read-only**---you should never make
 edits to this output, only to your initial plain text document.
 
-## Why use knitted documents?
-
-1. Code is checked every time you render the document
-2. Code is formatted without special symbols
-3. Code can be re-run with updated or new datasets
-4. Document is in plain text, so it can be tracked well with 
-version control
-
-## Why use knitted documents?
-
-1. Code is checked every time you render the document
-
-## Why use knitted documents?
-
-2. Code is formatted without special symbols
-
-[Example of code symbols in Word that can mess up code]
-
-Word processors---WYSIWYG, text encoding / BOM
-
-## Why use knitted documents?
-
-3. Code can be re-run with updated or new datasets
-
-## Why use knitted documents?
-
-4. Document is in plain text, so it can be tracked well with 
-version control
-
-[Picture of diff from git tracking]
-
 # Creating knitted documents in R
 
 ## RMarkdown
@@ -317,61 +339,211 @@ knitr::include_graphics("figures/rstudio_rmarkdown_graphic.png")
 
 *Source: https://rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf*
 
-## RMarkdown versus Notebook
+## Creaing an RMarkdown document
 
-Some subtle differences in how code is executed?
+In RStudio, you can use create a number of types of new files through the 
+"File" menu. 
 
-Can be used to created similar output files?
+To create a new RMarkdown file, choose "New File" -> "RMarkdown"
 
-Write the syntax and code chunks the same way?
+```{r echo = FALSE, out.width = "0.7\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/rmarkdown_newfile.png")
+```
 
-You can change between the two in the YAML?
+## Creaing an RMarkdown document
 
-In theory, easier to execute and check code as you go
-(preview vs render), but it's unclear if this is different
-from running RMarkdown code in the console.
+This will open a window with some options. You can specify the title
+of the document, for example, and its output format. 
+
+```{r echo = FALSE, out.width = "0.7\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/rmarkdown_choices.png")
+```
+
+## Creaing an RMarkdown document
+
+This will open a new document. It won't be blank, though. Instead,
+it will give an example document that you can test out: 
+
+```{r echo = FALSE, out.width = "0.9\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/rmarkdown_template.png")
+```
+
+## Creaing an RMarkdown document
+
+You can render the whole document using the **Knit button**. You can 
+run code in specific chunks at the console using a button in the chunk. 
+
+```{r echo = FALSE, out.width = "0.9\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/rmarkdown_template2.png")
+```
+
+## Markdown syntax
+
+For the main text, all format is down using **Markdown** syntax. 
+
+Some example formatting symbols and conventions: 
+
+- `**` for bold, `*` for italics
+- `#` for first-level headers, `##` for second-level, and so on
+- Double new lines for new paragraphs (blank line between paragraphs)
+- Hyphens on new lines for itemized lists
+
+For more, see the RMarkdown Reference Guide: https://rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf
+
+## Code chunk options
+
+You can set many options for the code in a specific chunk by setting
+**chunk options** for that chunk. 
+
+- `eval`: Whether to evaluate the code
+- `echo`: Whether to print the code
+- `message`, `warning`: Whether to print messages and warnings in the 
+document code output
+
+For more, see the RMarkdown Cheatsheet: 
+https://rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf
+
+
+
+## Useful advanced features in RMarkdown
+
+1. **Include bibliographical references**
+2. *Include math / equations*
+2. Include code that executes in different languages
+3. Shift to LaTeX / HTML if you can't express something 
+in Markdown
+4. Can output different formats (articles, presentations, 
+posters)
+5. Expands to create larger projects: books (`bookdown`), 
+blogs (`blogdown`), online dashboards (`flexdashboard`)
+
+## Including bibliographical references
+
+To include references in RMarkdown documents, you can 
+use something called **BibTeX**. 
+
+This has three components: 
+
+1. Create a plain text file with listings for each of 
+your references (**BibTeX file**). Save it with the
+extension `.bib`. 
+2. In your RMarkdown document, include the filepath
+to this BibTeX file. 
+3. In the text of the RMarkdown file, include a key and special character
+combination anytime you want to reference a paper.
+
+## Including bibliographical references
+
+Once you have a BibTeX file, you will include its
+path in the YAML: 
+
+```
+  ---
+  title: "Reproducible Research with R"
+  author: "Brooke Anderson"
+  date: "1/25/2021"
+  output: beamer_presentation
+  bibliography: mybibliography.bib
+  ---
+```
+
+It is easiest if you save the BibTeX file in the same directory 
+as the RMarkdown document.
+
+## Including bibliographical references
+
+You can add references in the text using a key for each paper
+within special characters (`[@paper1, @paper2]`). 
+
+\pause
+
+For example, you would write:
+
+```
+This technique follows earlier work [@fox2020, 
+@anderson2019].
+```
+
+\bigskip
+
+To create: 
+
+\bigskip
+
+> ``This technique follows earlier work (Fox et al. 2020, Anderson et al. 2019)."
+
+With full paper details included at the end of the document.
+
+## Including bibliographical references
+
+Put all the bibliographical details in the BibTeX file: 
+
+You will have a file named something like `mybibliography.bib`
+with entries for each paper like this: 
+
+\footnotesize
+
+```
+@article{fox2020,
+  title={Cyto-feature engineering: A pipeline for flow cytometry 
+    analysis to uncover immune populations and associations with 
+    disease},
+  author={Fox, Amy and Dutt, Taru S and Karger, Burton and Rojas, 
+    Mauricio and Obreg{\'o}n-Henao, Andr{\'e}s and 
+    Anderson, G Brooke and Henao-Tamayo, Marcela},
+  journal={Scientific Reports},
+  volume={10},
+  number={1},
+  pages={1--12},
+  year={2020}
+}
+```
+
+## Including bibliographical references
+
+You can get these details from Google Scholar: 
+
+```{r echo = FALSE, out.width = "\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/google_scholar.png")
+```
+
+## Where to develop RMarkdown skills
+
+- RStudio RMarkdown material: https://rmarkdown.rstudio.com/
+  + Tutorials
+  + Gallery
+  + Advanced articles
+- Free online books
+  + [*RMarkdown: The Definitive Guide*](https://bookdown.org/yihui/rmarkdown/)
+  + [*RMarkdown Cookbook*](https://bookdown.org/yihui/rmarkdown-cookbook/)
 
 # Pre-processing for research data
 
-## Preprocessing LC-MS data with code
+## Pre-processing research data
 
-- Want to get from data (direct measurements of something) to 
-knowledge
-- Sometimes direct measurements line up very closely with a 
-research question (e.g., weight of research animal, to some 
-degree CFUs), sometimes they need a lot of pre-processing to 
-use to gain knowledge and test meaningful hypotheses
-- Often lots of preprocessing required for data from complex
-equipment that do very clever things with chemistry or 
-physics---leveraging cleverness to see a new angle, but need to 
-work more to interpret the resulting measurements
+When we take measurements, we do so with the goal of using those
+**data** (direct measurements of something) to gain **knowledge**.
 
-## Preprocessing LC-MS data with code
+Sometimes direct measurements line up very closely with a 
+research question (e.g., mortality status of a test subject).
 
-- Complex equipment will often come with its own, or have available
-through outside vendors, proprietary software
-- This is typically based on a **GUI** [more on this]
-- You can use this for your preprocessing, but there are some 
-very good reasons not to if you can avoid it
+Sometimes data from measurements need a lot of **pre-processing** to 
+use to gain knowledge and test meaningful hypotheses.
 
-## Preprocessing LC-MS data with code
+Often lots of preprocessing required for data from **complex equipment** that
+leverage cleverness (in physics or chemistry) to see a new angle, but need more
+work to interpret the resulting measurements.
 
-**Liquid chromatography–mass spectrometry**: 
-[Type of equipment]
-[Kinds of data]
-[File formats: NetCDF, mzML/mzXML, mzData]
+## LC-MS data
 
-- Often used for chemical analysis, including biochemical molecules
-- Used for metabolomics and proteomics
-- Used in research, also in industry research (pharmaceutical, for
+**Liquid chromatography–mass spectrometry**:
+
+- Often used for chemical analysis, including biochemical molecules, including
+for metabolomics and proteomics
+- Used in academic research, also in industry research (pharmaceutical, for
 example)
-- Leverages principles from chemistry and physics [?] to identify 
-"stuff" in a sample and how much of each type of "stuff" [?]
-
-## Preprocessing LC-MS data with code
-
-- [More on chromatography]
-- [More on mass spec]
+- Leverages principles from chemistry and physics to identify 
+"stuff" in a sample and how much of each type of "stuff" 
 
 ## Preprocessing LC-MS data with code
 
@@ -380,6 +552,47 @@ knitr::include_graphics("figures/Liquid_chromatography_MS_spectrum_3D_analysis.p
 ```
 
 *Image source: Daniel Norena-Caro*
+
+## Preprocessing LC-MS data 
+
+1. **Import data** from specialized file formats 
+(NetCDF, mzML / mzXML, mzData)
+2. **Filter data** (e.g., to a certain range of retention times)
+3. **Explore data**
+4. Perform **quality control**
+
+
+
+## Pre-processing research data: GUI vs code
+
+- Complex equipment will often come with its own, or have available
+through outside vendors, proprietary software
+- This is typically based on a **GUI** [more on this]
+- You can use this for your preprocessing, but there are some 
+very good reasons not to if you can avoid it
+
+
+
+
+
+
+## Preprocessing LC-MS data with code
+
+- Complex equipment will often come with its own, or have available
+through outside vendors, proprietary software
+- This is typically based on a **GUI** [more on this]
+- You can use this for your preprocessing, but there are some 
+very good reasons to use code instead, when possible.
+
+- Reproducible---by you or by others.
+- Much easier to write the Methods section later!
+
+
+## Preprocessing LC-MS data with code
+
+- [More on chromatography]
+- [More on mass spec]
+
 
 ## Preprocessing LC-MS data with code
 
@@ -427,18 +640,4 @@ In the `centWave` function, these two choices can be specified with
 - Reproducible---by you or by others.
 - Much easier to write the Methods section later!
 
-# Reproducible data pre-processing protocols
 
-# In-course exercise
-
-## In-course exercise
-
-- Recreate a document's formatting by looking up Markdown syntax 
-(focuses on Markdown syntax to format text in document)
-- Create data preprocessing protocol for CFU data---data at 
-different dilutions, pick good dilution, convert back to 
-bacterial load in original sample (Amy's package?)
-- Render a document to Word. Change something in the ".docx" 
-document. Re-render (knit again) the RMarkdown document. Is you 
-change in the new version of the ".docx"? Why or why not? 
-How does this relate to the idea of "read only"?

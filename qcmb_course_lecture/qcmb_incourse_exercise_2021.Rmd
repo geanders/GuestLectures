@@ -1,0 +1,122 @@
+---
+title: "Reproducible Research with R"
+subtitle: "In-course exercise"
+author: "Brooke Anderson"
+date: "1/27/2021"
+output: beamer_presentation
+---
+
+# In-course exercise
+
+## In-course exercise
+
+- Open RStudio. Create a new RMarkdown document that will render to 
+Word. 
+- Run the example file that you get as a template. Try changing some
+of the paragraphs in the example. Try adding some formatting
+(link to cheatsheet). Try changing some code in the code sections. 
+Try adding a new code chunk.
+- Recreate a document's formatting by looking up Markdown syntax 
+(focuses on Markdown syntax to format text in document)
+- Create data preprocessing protocol for CFU data---data at 
+different dilutions, pick good dilution, convert back to 
+bacterial load in original sample (Amy's package?)
+- Render a document to Word. Change something in the ".docx" 
+document. Re-render (knit again) the RMarkdown document. Is you 
+change in the new version of the ".docx"? Why or why not? 
+How does this relate to the idea of "read only"?
+- Make different output formats (html, Word, PowerPoint)
+- Add a bibliography file (BibTex) and add references in the
+main text
+- Add math to explain how to do something
+
+## Colony-forming units (CFUs)
+
+How much viable (i.e., replicating) bacteria are in your sample?
+(Concentration of bacteria, can help show success or failures in 
+treating an infectious disease)
+
+You can find out by estimating the sample's concentration of 
+**colony-forming units (CFUs)** by **plating** the sample at
+different **dilutions** and counting the colonies that form
+[are cultured?] on each plate.
+
+[Image of plating]
+
+## Colony-forming units (CFUs)
+
+- Want to determine the [concentration?] of reproducing bacteria in a particular sample
+- *Plate* the sample at different *dilutions*
+- Need different dilutions because you need to count at the
+"just right" conditions---too diluted, and you'll have a lot
+of randomness in the count (if mean is 1 for counts, then 
+randomly getting two doubles your number), while too 
+concentrated and the bacteria will compete for resources
+on the [plate?] and colonies [?] will merge and be hard
+to count separately
+
+## Plating
+
+You put a sample on a plate with a medium they can grow on 
+(agar?) and then give them time to grow. Idea is that individual 
+bacteria from the original sample end up randomly around the 
+surface of the plate, and any that are viable (able to reproduce)
+will form a new colony that, after a while, you'll be able to see.
+
+## Plating
+
+The pattern you see when the dilution is too low (i.e., too concentrated
+with bacteria) is called a *lawn*---colonies merge together into 
+blobs.
+
+## Dilution
+
+Take some of your sample and combine it with liquid medium [?] / 
+diluent [?]. You can do this over and over to create higher dilutions. 
+The dilution level is the proportion of the sample volume to the
+whole, final volume (sample + diluent). One part sample to nine parts
+diluent is a 1:10 dilution (1 part sample + 9 parts diluent = 10 final 
+volume). If you take a sample of that diluted version and add 9 parts
+diluent to that, you'll go up to a 1:100 dilution, and so on.
+*Serial dilutions*---dilute the dilution...
+
+## Dilution for counting
+
+To count the number of colonies, you need a "just right" dilution (likely 
+won't know what this is until after plating). The plate with the 
+"just right" dilution will have [30--300? colonies] on it.
+
+*Countable plate*: one with a "just right" dilution.
+
+## Dilution for counting
+
+Translating from diluted concentration to original concentration. 
+You need to do a back calculation. 
+
+You have found: 
+
+- The "just right" dilution
+- The number of colonies that grew in that dilution
+
+You need to use these numbers to estimate the number of viable 
+bacteria in the original sample. 
+
+## Data format
+
+Columns for: 
+
+- Sample ID
+- Dilution level for plating
+- Colonies counted from plate
+
+You might have other data you'll later want to merge with, 
+including: 
+
+- Experimental design information (which samples were from treated animals, 
+what is the time point for the sample, etc.)
+- Other measured outcomes (immune cell populations, animal weight, 
+etc.)
+
+At the end of your pre-processing protocol, the data should be in a 
+format that's easy to merge with these other types of data (also 
+pre-processed, if necessary)
