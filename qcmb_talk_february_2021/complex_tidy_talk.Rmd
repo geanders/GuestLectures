@@ -17,7 +17,7 @@ knitr::opts_chunk$set(echo = FALSE)
 3. The Bioconductor approach
 4. Transitioning across approaches in a workflow
 
-Slides are available at: [link]
+Slides are available at: \url{bit.ly/complex_tidy}
 
 # Data structures
 
@@ -29,10 +29,12 @@ To work with data in R, you typically read it into memory.
 
 ## Types of data structures in R: Simple
 
-[Dataframe as a datastructure---very simple format. Rules: same data type within
-each column (each is essentially a vector), can have different data types across
-columns, each row is an observation, columns give values for each observation, 
-each column has the same length]
+One simple data structure in R is the **dataframe**. This is the structure
+used extensively in the **tidyverse approach**.
+
+```{r out.width = "\\textwidth"}
+knitr::include_graphics("figures/dataframe.png")
+```
 
 ## Types of data structures in R: Complex
 
@@ -45,19 +47,14 @@ knitr::include_graphics("figures/complex_data_structure.png")
 ```
 
 
-## Data structures in Bioconductor
-
-[Examples of some of the main object classes used for data structure in 
-Bioconductor work]
-
-- `ExpressionSet`
-- `DGEList`
-- `DGEExact`
-
 
 ## Data structures across a workflow
 
-```{r out.width = "\\textwidth"}
+Work with research data will typically require a series of steps for
+pre-processing, analysis, exploration, and visualization. Collectively, 
+these form a **workflow** for the data.
+
+```{r out.width = "0.9\\textwidth", fig.align = "center"}
 knitr::include_graphics("figures/workflow.png")
 ```
 
@@ -65,7 +62,7 @@ knitr::include_graphics("figures/workflow.png")
 
 You can move your data among different structures across a workflow, including from more complex data to simpler data structures.
 
-```{r out.width = "0.9\\textwidth"}
+```{r out.width = "0.9\\textwidth", fig.align = "center"}
 knitr::include_graphics("figures/workflow_structures.png")
 ```
 
@@ -73,39 +70,79 @@ knitr::include_graphics("figures/workflow_structures.png")
 
 ## Tidyverse data structure
 
-[Visualization of a tidy dataframe]
+The key data structure in the tidyverse approach is the **dataframe**:
+
+```{r out.width = "\\textwidth"}
+knitr::include_graphics("figures/dataframe.png")
+```
 
 ## Tidyverse approach
 
-[It is built on the use of a common structure for storing data---almost all 
-functions take data in this structure and almost all return data in 
-this structure. In other words, it is built on the idea of a common interface
-across all its functions. Think Legos.]
+The tidyverse approach is built on the use of a common structure for storing
+data---almost all functions take data in this structure and almost all return
+data in this structure.
+
+In other words, it is built on the idea of a **common interface** across all its
+functions.
 
 ## Advantage of the tidyverse approach
 
-[The common interface idea turns out to be very powerful. It allows you to 
-not have to rely on large functions that do a lot all at once. Instead, this
-idea allows for lots of small functions that each do one small thing, but that
-can be chained together in lots of different configurations to do very 
-flexible and powerful things. Again, think Legos.]
+This is similar to Legos: there are set dimensions for all blocks, so they
+can easily snap together in any order:
+
+\bigskip
+
+```{r out.width = "0.9\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/lego_dimensions.png")
+```
+
+\footnotesize
+
+Image source: https://en.wikipedia.org/wiki/Lego#/media/File:Lego_dimensions.svg
+
 
 ## Advantage of the tidyverse approach
 
-[This allows you to learn a single set of tools---most of which can be learned
-in a few months. These work across all your data, as long as it's in a tidy
-dataframe structure while you're working on it. By contrast, if you use a 
-variety of data structures, you often have to learn different tools (functions)
-for each data structure, rather than being able to use a single set of 
-tools for all your data.]
+The common interface idea turns out to be very powerful. It allows you to 
+not have to rely on large functions that do a lot all at once. 
+
+Instead, this idea allows for lots of **small functions** that each do **one
+small thing**, but that can be chained together in lots of different
+configurations to do very flexible and powerful things.
 
 ## Advantage of the tidyverse approach
 
-[It is hard to overemphasize how powerful this approach is. It has quickly 
-moved from its initial development to being the primary way that R programming
-is taught and used among most R programmers. Even many people who have worked
-extensively in the past with a more "base R" approach have now adapted and
-celebrated this approach to R programming.]
+It is hard to overemphasize how powerful this approach is. Simple tools that
+can be connected together in different ways can be used to create very 
+complex things: 
+
+```{r out.width = "0.9\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/lego_architecture.jpg")
+```
+
+\footnotesize
+
+Image source: *Architectural Digest*
+
+## Advantage of the tidyverse approach
+
+This allows you to learn a single set of tools---most of which can be learned
+in a few months. 
+
+These work across all your data, as long as it's in a **tidy dataframe structure**
+while you're working on it.
+
+By contrast, if you use a variety of data structures, you often have to learn
+different tools (functions) for each data structure, rather than being able to
+use a single set of tools for all your data.
+
+## Advantage of the tidyverse approach
+
+The tidyverse approach has quickly moved from its initial development to being
+the primary way that R programming is taught and used among most R programmers.
+
+Even many people who have worked extensively in the past with a more "base R"
+approach have now adapted and celebrated this approach to R programming.
 
 ## More resources on the tidyverse approach
 
@@ -115,30 +152,113 @@ celebrated this approach to R programming.]
 
 ## Bioconductor data structures
 
-[These tend to be more complex. They are built on S4 objects, which is
-one of R's object-oriented programming systems. They often will include
-several elements.]
+Bioconductor data structures tend to be more complex. 
+
+They are built on **S4 object classes**, which is one of R's **object-oriented
+programming** systems. 
 
 ## Bioconductor data structures
 
-[Visualization of a Bioconductor data structure]
+They often will include several elements. The elements might have different
+data types or different dimensions, but the data structure stores these
+disparate parts together in one object.
+
+```{r out.width = "0.9\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/complex_data_structure.png")
+```
+
+## Types of data structures in R: Complex
+
+You can start to see these levels in a complex data object by using the
+`str` function. 
+
+For example, here's a peak at the structure of data stored in an `ExpressionSet`
+data structure from Bioconductor:
+
+\footnotesize
+
+```{r echo = TRUE, warning = FALSE, message = FALSE}
+library(Biobase); library(biobroom); data(hammer)
+str(hammer, max.level = 3)
+```
+
+## Data structures in Bioconductor
+
+Examples of data structures in Bioconductor include:
+
+- `SummarizedExperiment`
+- `GRanges`
+- `ExpressionSet`
+- `MSnExp`
+- `SingleCellExperiment`
+- `MultiAssayExperiment`
+- `DGEList`
+- `DGEExact`
 
 ## Why use more complex data structures?
 
-[1. To get lots of differently structured things out of a function]
+1. To keep together lots of differently structured things 
+
+```{r out.width = "\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/validation.png")
+```
+
+\footnotesize
+
+Image source: Amezquita et al., 2020
 
 ## Why use more complex data structures?
 
-[2. To work with large data]
+2. To work with large data
+
+Complex data structures can help ensure that data are efficiently 
+stored. In some cases, they can also allow for data storage formats
+where part of the data stay on disk, rather than being read into memory.
+
+```{r out.width = "0.9\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/memory_storage.png")
+```
+
+\footnotesize
+
+Image source: callnerds.com
 
 ## Why use more complex data structures?
 
-[3. To validate data when an object's created]
+One example is the `OnDiskMSnExp` data structure from the `MSnbase` package:
+
+\bigskip
+
+> "The distinction between MSnExp and OnDiskMSnExp is often not explicitly
+stated as **it should not matter, from a user’s perspective, which data structure
+they are working with**, as both behave in equivalent ways. Often, they are
+referred to as in-memory and on-disk MSnExp implementations."
+(Gatto et al. 2013)
 
 ## Why use more complex data structures?
 
-[4. To facilitate software development across large and diverse
-groups of contributors]
+3. To validate data when an object's created
+
+```{r out.width = "\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/validation.png")
+```
+
+\footnotesize
+
+Image source: Amezquita et al., 2020
+
+## Why use more complex data structures?
+
+4. To facilitate software development across large and diverse
+groups of contributors
+
+\bigskip
+
+> "S4 is a rigorous system that forces you to thing carefully about program
+design. **It's particularly well-suited for building large systems that evolve
+over time and will receive contributions from many programmers.** This is why it's
+used by the Bioconductor project, so another reason to learn S4 is to equip you
+to contribute to that project." (Wickham, *Advanced R*)
 
 ## More resources on the Bioconductor approach
 
@@ -151,8 +271,6 @@ groups of contributors]
 The `hammer` dataset is available through the `biobroom` package. It 
 provides data from an RNA-Seq experiment for a study on nervous system
 transcriptomics (Hammer et al., 2010).
-
-## Example data
 
 The data are stored in an `ExpressionSet` data structure, a common class
 used in Bioconductor work. Different elements of the data structure store
@@ -173,24 +291,29 @@ print(hammer)
 
 There are several ways you can connect the two approaches: 
 
-- Generic functions from the `biobroom` package
-- *Accessor functions* written for specific Bioconductor data 
+- Generic functions from the **`biobroom` package**
+- **Accessor functions** written for specific Bioconductor data 
 structures
-- Elemental tools for extracting parts of data from R objects
+- **Elemental tools** for extracting parts of data from R objects
 
 ## `biobroom` package
 
-[If you're lucky, you can make the connection very easily using the 
-`biobroom` package. This package allows you to extract elements from 
-several types of Bioconductor data structures. It has generic functions
-that pull out elements and format them as tidy dataframes.]
+If you're lucky, you can make the connection very easily using the 
+**`biobroom` package**. 
+
+This package allows you to extract elements from 
+several types of Bioconductor data structures. 
+
+It has generic functions
+that pull out elements and format them as tidy dataframes.
 
 ## `biobroom` package
 
-[Bioconductor data structures that currently work with `biobroom`]
+Bioconductor data structures that currently work with `biobroom`
+include: 
 
 - `ExpressionSet`
-
+- ...
 
 
 ## `biobroom` example
@@ -204,24 +327,45 @@ from an `ExpressionSet` object in R:
 tidy(hammer, addPheno = TRUE)
 ```
 
+## `biobroom` example
+
+This allows you to use tidyverse functions to explore and visualize the data. 
+For example, to explore the values for a single gene: 
+
+\footnotesize
+
+```{r echo = TRUE, message = FALSE, warning = FALSE}
+library(tidyverse); library(ggbeeswarm); library(ggrepel)
+one_gene <- tidy(hammer, addPheno = TRUE) %>% 
+        filter(gene == "ENSRNOG00000004805")
+one_gene
+```
 
 ## `biobroom` example
 
-[Example of being able to do tidyverse stuff with that output]
+\footnotesize
 
-```{r message = FALSE, warning = FALSE}
-library(tidyverse)
+```{r echo = TRUE, message = FALSE, warning = FALSE, fig.width = 5, fig.height = 3, out.width = "0.9\\textwidth", fig.align = "center"}
+
+one_gene %>% 
+        ggplot(aes(x = protocol, y = value)) + 
+        geom_beeswarm() +
+        geom_label_repel(aes(label = sample)) + 
+        ggtitle("Values by sample for gene ENSRNOG00000004805", 
+                subtitle = "Samples are labeled with their sample ID")
 ```
 
 
 ## Accessor functions
 
-[What are accessor functions]
+**Accessor functions** are written to allow you to extract specific elements
+from complex data structures. 
 
-## Accessor function example
+For example, you can extract the assay data (in a
+matrix format) from an `ExpressionSet` object using the `exprs` accessor
+function:
 
-You can extract the assay data (in a matrix format) from an `ExpressionSet`
-object using the `exprs` accessor function:
+\bigskip
 
 \footnotesize
 
@@ -236,7 +380,12 @@ You can use the `pData` accessor function to extract the phenotype data
 ```{r echo = TRUE}
 pData(hammer)[1:6, 1:3]
 ```
+## Accessor functions
 
+Accessor functions are meant to be more robust than more elemental tools.
+
+Developers are meant to consider these a "contract" with users, so their changes
+"under the hood" shouldn't affect code that uses these functions.
 
 ## Extracting from R objects
 
@@ -273,6 +422,8 @@ points to an environment, rather than directly storing the assay data:
 hammer@assayData
 ```
 
+# Future directions in connecting workflows
+
 ## Future directions: `ggbio` package
 
 The `ggbio` package allows you to coordinate Bioconductor-style analysis
@@ -293,14 +444,32 @@ knitr::include_graphics("figures/ggbio_vignette_example.png")
 
 ## Future directions: List-columns
 
-[In some areas, there is a movement to allow a tidyverse approach even in the
-context of very complex data that doesn't fit naturally into a dataframe. One 
-example is with spatial data. More complex "tidy" dataframes are being 
-developed that allow some columns to be *list-columns* and store pretty 
-complex data within a cell of the dataframe. These are being powerfully 
-used, for example, within the `sf` package, for geospatial data in R. It's
-allowing a tidyverse approach to be used from early stages with a type of 
-data for which R-based analysis traditionally relied heavily on much more
-complex S4? objects for data structures. It seems likely that a similar 
-approach might be adapted at some point for Bioconductor-style work.]
+In some areas, there is a movement to allow a tidyverse approach even in the
+context of very complex data that doesn't fit naturally into a dataframe.  
 
+More complex "tidy" dataframes are being developed that allow some columns to be
+**list-columns** and store pretty complex data within a cell of the dataframe.
+
+## Future directions: List-columns
+
+One example is with spatial data. List-columns are being powerfully used, for
+example, within the `sf` package for geospatial data in R.
+
+\bigskip
+
+```{r out.width = "\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/sf_example.png")
+```
+
+\footnotesize
+
+Image source: https://r-spatial.github.io/sf/articles/sf1.html
+
+## Future directions: List-columns
+
+This allows a tidyverse approach to be used from early stages with a type of
+data for which R-based analysis traditionally relied heavily on much more
+complex data structures.
+
+It seems likely that this approach might be adapted at some point for
+Bioconductor-style work.
