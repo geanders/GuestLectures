@@ -136,14 +136,6 @@ By contrast, if you use a variety of data structures, you often have to learn
 different tools (functions) for each data structure, rather than being able to
 use a single set of tools for all your data.
 
-## Advantage of the tidyverse approach
-
-The tidyverse approach has quickly moved from its initial development to being
-the primary way that R programming is taught and used among most R programmers.
-
-Even many people who have worked extensively in the past with a more "base R"
-approach have now adapted and celebrated this approach to R programming.
-
 ## More resources on the tidyverse approach
 
 There are lots of excellent resources on learning the tidyverse approach 
@@ -189,6 +181,16 @@ library(Biobase); library(biobroom); data(hammer)
 str(hammer, max.level = 3)
 ```
 
+## Types of data structures in R: Complex
+
+```{r out.width = "\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/validation.png")
+```
+
+\footnotesize
+
+Image source: Amezquita et al., 2020
+
 ## Data structures in Bioconductor
 
 Examples of data structures in Bioconductor include:
@@ -201,6 +203,10 @@ Examples of data structures in Bioconductor include:
 - `MultiAssayExperiment`
 - `DGEList`
 - `DGEExact`
+
+Once you have its package loaded, you can access help 
+documentation on a data structure using, e.g., 
+`` ?`DGEList-class` ``.
 
 ## Why use more complex data structures?
 
@@ -274,16 +280,23 @@ to contribute to that project." (Wickham, *Advanced R*)
 
 # Connecting the two approaches
 
+## Data structures across a workflow
+
+You can move your data among different structures across a workflow, including from more complex data to simpler data structures.
+
+```{r out.width = "0.9\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/workflow_structures.png")
+```
+
 ## Example data
 
 The `hammer` dataset is available through the `biobroom` package. It 
 provides data from an RNA-Seq experiment for a study on nervous system
 transcriptomics (Hammer et al., 2010).
 
-The data are stored in an `ExpressionSet` data structure, a common class
-used in Bioconductor work. Different elements of the data structure store
-data from the assay (intensities of different ...) as well as phenotype 
-data.
+The data are stored in an `ExpressionSet` data structure, a common class used in
+Bioconductor work. Different elements of the data structure store data from the
+assay as well as phenotype data.
 
 ## Example data
 
@@ -437,6 +450,14 @@ points to an environment, rather than directly storing the assay data:
 hammer@assayData
 ```
 
+## Data structures across a workflow
+
+You can move your data among different structures across a workflow, including from more complex data to simpler data structures.
+
+```{r out.width = "0.9\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/workflow_structures.png")
+```
+
 # Future directions in connecting workflows
 
 ## Future directions: `ggbio` package
@@ -480,11 +501,3 @@ knitr::include_graphics("figures/sf_example.png")
 
 Image source: https://r-spatial.github.io/sf/articles/sf1.html
 
-## Future directions: List-columns
-
-This allows a tidyverse approach to be used from early stages with a type of
-data for which R-based analysis traditionally relied heavily on much more
-complex data structures.
-
-It seems likely that this approach might be adapted at some point for
-Bioconductor-style work.
