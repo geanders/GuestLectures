@@ -146,7 +146,14 @@ approach have now adapted and celebrated this approach to R programming.
 
 ## More resources on the tidyverse approach
 
-[Links to: my coursebook, R for Data Science, RStudio::conf recordings, other resources for tidyverse]
+There are lots of excellent resources on learning the tidyverse approach 
+in R, many of which are freely available online. 
+
+You may want to check: 
+
+- [*R for Data Science*](https://r4ds.had.co.nz/)
+- [Course book for ERHS 535](https://geanders.github.io/RProgrammingForResearch/)
+- [rstudio::conf talks](https://rstudio.com/resources/rstudioconf-2020/)
 
 # Bioconductor approach
 
@@ -262,7 +269,8 @@ to contribute to that project." (Wickham, *Advanced R*)
 
 ## More resources on the Bioconductor approach
 
-[Links to: Bioconductor page, with vignettes / tutorials, BioC conference, BioC articles and book]
+- [Bioconductor site](https://www.bioconductor.org/) (especially the "Learn" section)
+- [BioC Conference](http://bioc2020.bioconductor.org/)
 
 # Connecting the two approaches
 
@@ -313,7 +321,14 @@ Bioconductor data structures that currently work with `biobroom`
 include: 
 
 - `ExpressionSet`
-- ...
+- `GRanges`
+- `GRangesList`
+- `MSnSet`
+- `RangedSummarizedExperiment`
+- `qvalue`
+- `DESeqDataSet`
+- `DESeqResults`
+- `MArrayLM`
 
 
 ## `biobroom` example
