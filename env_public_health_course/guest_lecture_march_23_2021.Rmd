@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = FALSE)
 - Climate change in the US
 - US Global Change Research Program
 - Temperature and Human Health
-- Climate-related Disasters and Human Health
+- Extreme events and Human Health
 
 # Climate change
 
@@ -36,6 +36,11 @@ knitr::include_graphics("figures/weather_vs_climate.png")
 
 ## Why is climate changing?
 
+```{r echo = FALSE, out.width = "\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/ghg-emissions.jpg")
+```
+
+\footnotesize Source: World Meteorological Organization
 
 ## Observed climate trends in the US
 
@@ -46,23 +51,23 @@ knitr::include_graphics("figures/us_climate_trends.png")
 \footnotesize Source: https://health2016.globalchange.gov/climate-change-and-human-health
 
 
-## Projected climate trends in the US
+<!-- ## Projected climate trends in the US -->
 
-Projected changes in temperature and precipitation in the US under RCP6.0
-scenario.
+<!-- Projected changes in temperature and precipitation in the US under RCP6.0 -->
+<!-- scenario. -->
 
-```{r echo = FALSE, out.width = "0.6\\textwidth", fig.align = "center"}
-knitr::include_graphics("figures/temp_precip_changes.png")
-```
+<!-- ```{r echo = FALSE, out.width = "0.6\\textwidth", fig.align = "center"} -->
+<!-- knitr::include_graphics("figures/temp_precip_changes.png") -->
+<!-- ``` -->
 
-\footnotesize Source: https://health2016.globalchange.gov
+<!-- \footnotesize Source: https://health2016.globalchange.gov -->
 
 ## Projected climate trends in the US
 
 Projected changes in risk weeks with risk of large fires in the US by mid-century (2041--2070) under RCP8.5
 scenario.
 
-```{r echo = FALSE, out.width = "0.8\\textwidth", fig.align = "center"}
+```{r echo = FALSE, out.width = "0.7\\textwidth", fig.align = "center"}
 knitr::include_graphics("figures/wildfire_projections.png")
 ```
 
@@ -82,13 +87,13 @@ knitr::include_graphics("figures/Change-in-Exposure-flow.png")
 
 \footnotesize Source: https://health2016.globalchange.gov
 
-## Projected health impacts---Sources of uncertainty
+<!-- ## Projected health impacts---Sources of uncertainty -->
 
-```{r echo = FALSE, out.width = "0.8\\textwidth", fig.align = "center"}
-knitr::include_graphics("figures/source_uncertainty.png")
-```
+<!-- ```{r echo = FALSE, out.width = "0.8\\textwidth", fig.align = "center"} -->
+<!-- knitr::include_graphics("figures/source_uncertainty.png") -->
+<!-- ``` -->
 
-\footnotesize Source: https://health2016.globalchange.gov
+<!-- \footnotesize Source: https://health2016.globalchange.gov -->
 
 # US Global Change Research Program
 
@@ -144,6 +149,8 @@ Key activities of USGCRP include:
 knitr::include_graphics("figures/CHA_Cover.jpg")
 ```
 
+\center https://health2016.globalchange.gov/
+
 ## Documenting uncertainty in key findings
 
 ```{r echo = FALSE, out.width = "\\textwidth", fig.align = "center"}
@@ -193,7 +200,7 @@ knitr::include_graphics("figures/temp_mort_curve.png")
 Overall cumulative relative risk at 29 degrees Celsius relative to 22 degrees Celsius on mortality in New York City by
 decade, 1900s-2000s.
 
-```{r echo = FALSE, out.width = "\\textwidth", fig.align = "center"}
+```{r echo = FALSE, out.width = "0.8\\textwidth", fig.align = "center"}
 knitr::include_graphics("figures/ny_temp_health.png")
 ```
 
@@ -210,7 +217,7 @@ knitr::include_graphics("figures/heatwave_park.jpeg")
 \footnotesize Source: www.history.com, credit to Bain News Service / The Library of Congress
 
 
-## Pathways for extreme heat and health
+## Pathways for extreme heat and health impacts
 
 ```{r echo = FALSE, out.width = "\\textwidth", fig.align = "center"}
 knitr::include_graphics("figures/temp_pathways.png")
@@ -256,7 +263,7 @@ knitr::include_graphics("figures/key_finding_4.png")
 \footnotesize Source: https://health2016.globalchange.gov/temperature-related-death-and-illness
 
 
-# Climate-related Disasters and Human Health
+# Extreme Events and Human Health
 
 ## Climate-related disasters
 
@@ -310,11 +317,11 @@ knitr::include_graphics("figures/floyd_table.png")
 
 \footnotesize Source: US CDC, 2000, "Morbidity and Mortality Associated With Hurricane Floyd---North Carolina, September--October 1999", \textit{Morbidity and Mortality Weekly Report}
 
-## Hurricane Floyd, 1999
+<!-- ## Hurricane Floyd, 1999 -->
 
-> "The medical examiner determined that 52 deaths were associated directly with the storm. Decedents ranged in age from 1 to 96 years (median: 43 years); 38 (73%) were males. \ldots \ Seven deaths occurred during transport by boat; flotation devices were not worn by any of the decedents."
+<!-- > "The medical examiner determined that 52 deaths were associated directly with the storm. Decedents ranged in age from 1 to 96 years (median: 43 years); 38 (73%) were males. \ldots \ Seven deaths occurred during transport by boat; flotation devices were not worn by any of the decedents." -->
 
-\footnotesize Source: US CDC, 2000, "Morbidity and Mortality Associated With Hurricane Floyd---North Carolina, September--October 1999", \textit{Morbidity and Mortality Weekly Report}
+<!-- \footnotesize Source: US CDC, 2000, "Morbidity and Mortality Associated With Hurricane Floyd---North Carolina, September--October 1999", \textit{Morbidity and Mortality Weekly Report} -->
 
 
 ## Direct and indirect deaths
@@ -345,7 +352,7 @@ knitr::include_graphics("figures/fl_table.png")
 
 \small \textit{Source:} McKinney et al., 2011, "Direct and indirect mortality in Florida during the 2004 hurricane season," \textit{International Journal of Biometeorology}
 
-## Pathways
+## Pathways for flooding and health impacts
 
 ```{r echo = FALSE, out.width = "\\textwidth", fig.align = "center"}
 knitr::include_graphics("figures/extreme_weather_pathways.png")
