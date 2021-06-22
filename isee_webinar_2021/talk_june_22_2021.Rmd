@@ -19,17 +19,54 @@ library(hurricaneexposure)
 ```
 
 
+## Tropical cyclones 
+
+\begin{center} 
+Hurricane Florence, 2018
+\end{center}
+
+```{r fig.align = "center", out.width = "\\textwidth", fig.align = "center"}
+include_graphics("figures/florence.jpeg")
+```
+
+\footnotesize Source: NOAA
+
+## Tropical cyclones 
+
+\begin{center}
+Tropical cyclones worldwide
+\end{center}
+
+```{r echo = FALSE, out.width = "\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/tc_basis_dwd_de.jpg")
+```
+
+\footnotesize
+Source: Deutsche Wetterdienst
+
+<!-- ## Tropical cyclones -->
+
+<!-- \begin{center} -->
+<!-- North Atlantic-basin tropical cyclones in 2020 -->
+<!-- \end{center} -->
+
+<!-- ```{r echo = FALSE, out.width = "0.85\\textwidth", fig.align = "center"} -->
+<!-- knitr::include_graphics("figures/tracks-at-2020.png") -->
+<!-- ``` -->
+
+<!-- \footnotesize -->
+<!-- Source: NOAA -->
+
 ## `hurricaneexposure` package
 
-The `hurricaneexposure` R package: An open-source software to explore and map county-level hurricane exposure in the United States.
+The `hurricaneexposure` R package is an open-source software to explore and map county-level hurricane exposure in the United States.
 
 Key goals: 
 
 1. Incorporate measures of **different hazards** of each storm.
 2. Create exposure data for tropical cyclones in the US at the 
 **county level**.
-3. Share the data in a way that is easy to use in a way that 
-is **efficient** and **reproducible**.
+3. Share the data in a way that is easy to use **efficiently** and **reproducibly**.
 
 ## Getting started with the `hurricaneexposure` package
 
@@ -109,7 +146,7 @@ We used a wind model to assess county-level exposure.
 include_graphics("figures/exposure_assessment.pdf")
 ```
 
-Adapted from Yan et al., *Epidemiology*, 2021.
+\footnotesize Adapted from Yan et al., *Epidemiology*, 2021.
 
 ## County-level exposure assessment
 
@@ -151,36 +188,36 @@ county_wind(counties = "12086", wind_limit = 17.5,
             start_year = 1990, end_year = 2000)
 ```
 
-## County-level exposure assessment
+<!-- ## County-level exposure assessment -->
 
-The `hurricaneexposure` package can be used to map exposures for specific storms:
+<!-- The `hurricaneexposure` package can be used to map exposures for specific storms: -->
 
-```{r fig.align = "center", echo = TRUE, fig.width = 5, out.width="0.9\\textwidth"}
-map_counties(storm = "Floyd-1999", metric = "rainfall")
-```
+<!-- ```{r fig.align = "center", echo = TRUE, fig.width = 5, out.width="0.9\\textwidth"} -->
+<!-- map_counties(storm = "Floyd-1999", metric = "rainfall") -->
+<!-- ``` -->
 
-## County-level exposure assessment
+<!-- ## County-level exposure assessment -->
 
-The `hurricaneexposure` package can also be used to identify all exposures 
-meeting specific criteria:
+<!-- The `hurricaneexposure` package can also be used to identify all exposures  -->
+<!-- meeting specific criteria: -->
 
-\bigskip
+<!-- \bigskip -->
 
-\small
+<!-- \small -->
 
-```{r echo = TRUE, eval = FALSE}
-county_rain(counties = c("22071", "51700"), rain_limit = 100, 
-            start_year = 1995, end_year = 2005, dist_limit = 100,
-            days_included = c(-1, 0, 1))
-```
+<!-- ```{r echo = TRUE, eval = FALSE} -->
+<!-- county_rain(counties = c("22071", "51700"), rain_limit = 100,  -->
+<!--             start_year = 1995, end_year = 2005, dist_limit = 100, -->
+<!--             days_included = c(-1, 0, 1)) -->
+<!-- ``` -->
 
-```{r echo = FALSE}
-county_rain(counties = c("22071", "51700"), rain_limit = 100, 
-            start_year = 1995, end_year = 2005, dist_limit = 100,
-            days_included = c(-1, 0, 1)) %>%
-  slice(1:4) %>%
-  select(storm_id, fips, closest_date, storm_dist, tot_precip)
-```
+<!-- ```{r echo = FALSE} -->
+<!-- county_rain(counties = c("22071", "51700"), rain_limit = 100,  -->
+<!--             start_year = 1995, end_year = 2005, dist_limit = 100, -->
+<!--             days_included = c(-1, 0, 1)) %>% -->
+<!--   slice(1:4) %>% -->
+<!--   select(storm_id, fips, closest_date, storm_dist, tot_precip) -->
+<!-- ``` -->
 
 ## Sharing data through an R package
 
@@ -202,12 +239,12 @@ This tool is being used to study how tropical cyclone wind exposures are associa
 3. Risk of broad-cause mortality
 4. Risk of death among those on dialysis 
 
-## Future directions
+<!-- ## Future directions -->
 
-1. Creating exposure datasets for human impacts data at other geopolitical
-spatial scales (e.g., ZIP codes).
-2. Expand to measure some hazards outside the US. 
-3. Continue updates with new years of data.
+<!-- 1. Create exposure datasets for human impacts data at other geopolitical -->
+<!-- spatial scales (e.g., ZIP codes). -->
+<!-- 2. Expand to measure some hazards outside the US.  -->
+<!-- 3. Continue updates with new years of data. -->
 
 ## Questions?
 
