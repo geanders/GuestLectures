@@ -1,7 +1,6 @@
 ---
 title: "Reproducible Research with R"
 author: "Brooke Anderson"
-date: "1/25/2021"
 output: beamer_presentation
 ---
 
@@ -307,7 +306,7 @@ The `OnDiskMSExp` organizes the MS data ...
 ## Formatting text
 
 Imagine yourself dictating everything to your computer---you have to 
-say not just the words, but the formatting you want as each spot. 
+say not just the words, but the formatting you want at each spot. 
 
 ```{r echo = FALSE, out.width = "\\textwidth", fig.align = "center"}
 knitr::include_graphics("figures/churchill.jpg")
