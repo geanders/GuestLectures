@@ -1,7 +1,6 @@
 ---
 title: "Climate and Health"
 author: "Brooke Anderson"
-date: "3/23/2021"
 output: beamer_presentation
 ---
 
