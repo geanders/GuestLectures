@@ -1,0 +1,460 @@
+---
+title: "Creating, Sharing, and Teaching Open-Source Software"
+subtitle: "A Groundhog Day Example"
+author: "Brooke Anderson"
+date: "January 27, 2026"
+output:
+  beamer_presentation:
+    theme: "Dresden"
+    colortheme: "beaver"
+    fonttheme: "structurebold"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(knitr)
+library(tidyverse)
+library(hurricaneexposuredata)
+library(hurricaneexposure)
+```
+
+## Let's go all the way back to the beginning...
+
+\vspace{-0.2cm}
+
+```{r echo = FALSE, out.width = "0.35\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/corn_pic.jpg")
+```
+
+\vspace{-1cm}
+\footnotesize The Virginian Pilot
+
+## Strawberry pie
+
+```{r echo = FALSE, out.width = "0.7\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/pie_recipe.jpg")
+```
+
+\footnotesize Source: Virginia Cooperative Extension Service
+
+## Strawberry pie
+
+```{r echo = FALSE, out.width = "0.9\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/pie_slice.jpg")
+```
+
+## Learning to grow cotton
+
+```{r echo = FALSE, out.width = "0.9\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/powell_farm.jpg")
+```
+
+## What we got from our local land grant
+
+As a farm family, we got many useful things from Virginia Tech and its
+extension service: 
+
+- Evidence basis and demonstration of best practices
+- Documents that provided guidance: "helpfiles"
+- Recipes!
+- Training to make the best, safest use of available tools
+
+Overall, we got information and training that was **based on good science**, **free**, 
+**practical**, and ready to **use right away**. 
+
+# Open-source software
+
+## R programming language
+
+The R programming language is **free and open-source software**. 
+
+```{r echo = FALSE, out.width = "\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/cran_base_r.png")
+```
+
+## Base R
+
+When you initially install R, you are getting **base R**, which is a fairly 
+basic set of tools for working with data. 
+
+```{r echo = FALSE, out.width = "0.65\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/BrioBasicSet.jpg")
+```
+
+\vspace{-1cm}
+\footnotesize Source: Brio
+
+## R Package Ecosystem
+
+**Packages** extend base R to do all kinds of different things, and they can
+be created and shared by anyone. 
+
+```{r echo = FALSE, out.width = "\\textwidth"}
+knitr::include_graphics("figures/BrioFancySet.jpg")
+```
+
+\vspace{-1cm}
+\footnotesize Source: Brio
+
+## R Package Ecosystem
+
+There are over 20,000 packages on the primary repository alone. 
+
+```{r echo = FALSE, out.width = "0.8\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/use_r_aust_hexbins_closeup.jpg")
+```
+
+\footnotesize Mitchell O'Hara-Wild: https://www.mitchelloharawild.com/blog/user-2018-feature-wall/
+
+## What's in an R package?
+
+Process: 
+
+$$
+\mbox{Temperature (F)} = \frac{9}{5} \mbox{Temperature (C)} + 32
+$$
+
+Example R function:
+
+```{r echo = FALSE, out.width = "\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/example_function.png")
+```
+
+## What's in an R Package?
+
+Example help file:
+
+```{r echo = FALSE, out.width = "\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/example_help_file.png")
+```
+
+<!-- ## Software vignettes -->
+
+<!-- \begin{block}{Documenting R Software} -->
+<!-- R packages can include \textbf{vignettes}, which provide tutorials or documentation for users. These vignettes can be written in RMarkdown, which allows a mix of executable R code and text, figures, tables, etc. -->
+<!-- \end{block} -->
+
+## What's in an R Package?
+
+```{r echo = FALSE, out.width = "\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/weathermetrics_package.png")
+```
+
+<!-- ## R package repositories -->
+
+<!-- \begin{block}{Sharing R packages} -->
+<!-- R packages can be shared with others through:  -->
+<!-- \begin{itemize} -->
+<!--   \item By sharing a \texttt{.tar.gz} file -->
+<!--   \item Through the Comprehensive R Archive Network (CRAN) -->
+<!--   \item Through GitHub (packages can be installed from GitHub with the \texttt{install\_github} function from the \texttt{devtools} package) -->
+<!--   \item Through a \texttt{drat} repository, hosted locally or through GitHub pages -->
+<!-- \end{itemize} -->
+<!-- \end{block} -->
+
+# Groundhog Day
+
+## Groundhog Day
+
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\textbf{Groundhog Day: February 2}
+
+\medskip
+
+If a grandhog sees its shadow, there will be six more weeks of winter. 
+If not, there will be an early spring.
+\end{column}
+\begin{column}{0.5\textwidth} 
+    \begin{center}
+     \includegraphics[width=\textwidth]{figures/justphil.png}
+     \end{center}
+\end{column}
+\end{columns}
+
+## Groundhog Day
+
+```{r echo = FALSE, out.width = "\\textwidth"}
+knitr::include_graphics("figures/prognosticators.png")
+```
+
+## Groundhog Day
+
+We'll use this as an example of open-source software and how a scientist 
+can use it for some of the key tasks in making sense of all the data out 
+there in the world: 
+
+- **Gather**
+- Integrate
+- Explore
+- Analyze
+- **Communicate**
+
+## Groundhog Day
+
+```{r echo = FALSE, out.width = "\\textwidth"}
+knitr::include_graphics("figures/student_website.png")
+```
+
+https://apriljohns.github.io/Groundhog-Day-Predictions/
+
+## Groundhog Day
+
+Thanks to three students who did the work I'll be using here to highlight
+the power of open-source software: 
+
+- Molly Murphy
+- April Johns
+- Josh Daniels
+
+# Gather
+
+## Groundhog Day data
+
+```{r echo = FALSE, out.width = "\\textwidth"}
+knitr::include_graphics("figures/groundhog_day_dot_com.png")
+```
+
+## Groundhog Day data
+
+```{r echo = FALSE, out.width = "\\textwidth"}
+knitr::include_graphics("figures/about_groundhog_day_dot_com.png")
+```
+
+## Groundhog Day data
+
+```{r echo = FALSE, out.width = "\\textwidth"}
+knitr::include_graphics("figures/get_groundhog_data.png")
+```
+
+## Groundhog Day data
+
+```{r echo = FALSE, out.width = "\\textwidth"}
+knitr::include_graphics("figures/groundhog_data_format.png")
+```
+
+## Groundhog Day data
+
+```{r echo = FALSE, out.width = "\\textwidth"}
+knitr::include_graphics("figures/httr.png")
+```
+
+## Groundhog Day data
+
+```{r echo = FALSE, out.width = "\\textwidth"}
+knitr::include_graphics("figures/phil.png")
+```
+
+## Marmot habitats
+
+```{r echo = FALSE, out.width = "\\textwidth"}
+knitr::include_graphics("figures/marmot_habitat.png")
+```
+
+Marmot range: International Union for the Conservation of Nature
+
+## Marmot habitats
+
+```{r echo = FALSE, out.width = "\\textwidth"}
+knitr::include_graphics("figures/simple_features.png")
+```
+
+## Marmot habitats
+
+```{r echo = FALSE, out.width = "\\textwidth"}
+knitr::include_graphics("figures/concord_charlie.png")
+```
+
+## Marmot habitats
+
+```{r echo = FALSE, out.width = "\\textwidth"}
+knitr::include_graphics("figures/sylvia.png")
+```
+
+## Weather records
+
+```{r echo = FALSE, out.width = "\\textwidth"}
+knitr::include_graphics("figures/nasa.png")
+```
+
+## Weather records
+
+```{r echo = FALSE, out.width = "\\textwidth"}
+knitr::include_graphics("figures/nasa_power.png")
+```
+
+## Weather records
+
+```{r echo = FALSE, out.width = "0.6\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/nasa_code.png")
+```
+
+## Weather records
+
+```{r echo = FALSE, out.width = "\\textwidth"}
+knitr::include_graphics("figures/nasa_data.png")
+```
+
+## Weather records
+
+```{r echo = FALSE, out.width = "\\textwidth"}
+knitr::include_graphics("figures/staten_island_chuck.png")
+```
+
+## ROpenSci
+
+```{r echo = FALSE, out.width = "\\textwidth"}
+knitr::include_graphics("figures/ropensci.png")
+```
+
+## ROpenSci
+
+```{r echo = FALSE, out.width = "\\textwidth"}
+knitr::include_graphics("figures/weatherapis.png")
+```
+
+# Communicate
+
+## Touch the art
+
+```{r echo = FALSE, out.width = "0.45\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/melinn_art.png")
+```
+
+## Touch the art
+
+```{r echo = FALSE, out.width = "0.5\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/discovery_museum.jpg")
+```
+
+## Role of seasonal consistency
+
+```{r echo = FALSE, out.width = "\\textwidth"}
+knitr::include_graphics("figures/seasonal_consistency.png")
+```
+
+## Role of seasonal consistency
+
+```{r echo = FALSE, out.width = "\\textwidth"}
+knitr::include_graphics("figures/lucy.png")
+```
+
+## Types of prognosticators
+
+```{r echo = FALSE, out.width = "\\textwidth"}
+knitr::include_graphics("figures/map_big_al.png")
+```
+
+## Types of prognosticators
+
+```{r echo = FALSE, out.width = "\\textwidth"}
+knitr::include_graphics("figures/leaderboard.png")
+```
+
+## Interactive graphics
+
+```{r echo = FALSE, out.width = "\\textwidth"}
+knitr::include_graphics("figures/html_widgets.png")
+```
+
+## Interactive graphics
+
+```{r echo = FALSE, out.width = "\\textwidth"}
+knitr::include_graphics("figures/htmlwidget_examples.png")
+```
+
+
+# In the wild
+
+## Health dashboard
+
+```{r echo = FALSE, out.width = "\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/who_covid.png")
+```
+
+## New York Times
+
+```{r echo = FALSE, out.width = "0.8\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/nytimes.png")
+```
+
+## ERHS 535---R Programming for Research
+
+R Programming for Research (ERHS 535) has been taken by students pursuing 
+degrees in: 
+
+Environmental Health, Cellular \& Molecular Biology, 
+Public Health, Microbiology, Clinical Sciences, Animal Sciences, 
+Mechanical Engineering, Ecology, Radiological Health Sciences, 
+Biochemistry, Food Science \& Nutrition, Pathology, 
+Human Development \& Family Studies, Civil \& Environmental Engineering, 
+Ecosystem Sustainability, Fish Wildlife and Conservation Biology, 
+Forest Sciences, Soil \& Crop Sciences, Chemical Engineering, Horticulture, 
+Data Analysis, Civil Engineering, Mathematics, and Chemistry
+
+
+## ERHS 535---R Programming for Research
+
+\footnotesize
+\begin{block}{Nutrition Sciences}
+\medskip
+``Enrolling in this course turned out to be a \textbf{pivotal} moment in my academic journey'' 
+\end{block}
+
+\begin{block}{Radiological Health Sciences}
+\medskip
+``It may have been my favorite [course] at CSU. It was definitely work-intensive, but so worth it. Your class has taught be a great deal, and I now \textbf{use R almost every day}.'' 
+\end{block}
+
+\begin{block}{Cellular \& Molecular Biology}
+\medskip
+``EHRS 535 taught by Brooke Anderson was one of the most \textbf{important} courses I took during my PhD.'' 
+\end{block}
+
+\begin{block}{Environmental Health}
+\medskip
+``I would say that \textbf{I wouldn’t have my current job} without this class.'' 
+\end{block}
+
+## ERHS 535---R Programming for Research
+
+```{r echo = FALSE, out.width="\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/book_535.png")
+```
+
+https://geanders.github.io/RProgrammingForResearch/
+
+## Ologies
+
+```{r echo = FALSE, out.width = "0.7\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/ologies.png")
+```
+
+## Local prognosticators
+
+```{r echo = FALSE, out.width = "\\textwidth"}
+knitr::include_graphics("figures/flatiron_freddy.png")
+```
+
+## Local prognosticators
+
+```{r echo = FALSE, out.width = "\\textwidth"}
+knitr::include_graphics("figures/lander_lil.png")
+```
+
+## Local (potential) prognosticators
+
+```{r echo = FALSE, out.width = "0.8\\textwidth", fig.align = "center"}
+knitr::include_graphics("figures/Leopard.jpg")
+```
+
+## Lyric Cinema's Groundhog Day
+
+```{r echo = FALSE, out.width = "\\textwidth"}
+knitr::include_graphics("figures/lyric.png")
+```
+
+## Acknowledgements
+
+Thank you to April Johns, Molly Murphy, and Josh Daniels for letting me 
+share your amazing class project for this talk!
